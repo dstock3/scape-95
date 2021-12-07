@@ -71,3 +71,9 @@ body {
   padding-inline: 1%;
   border: 1px solid black;
 }
+
+#net-icon {
+  width: 125px;
+  height: 80px;
+  margin: -10px;
+}

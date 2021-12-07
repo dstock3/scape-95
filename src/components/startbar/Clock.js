@@ -1,6 +1,6 @@
 import React from 'react'
 
-function formatAMPM(newDate) {
+const formatTime = (newDate) =>{
     let hours = newDate.getHours();
     let min = newDate.getMinutes();
     let ampm
@@ -16,12 +16,12 @@ function formatAMPM(newDate) {
     if (min < 10) { min = '0'+ min }
     let time = hours + ':' + min + ' ' + ampm;
     return time;
-  }
+}
 
-function Clock() {
+const Clock = () => {
     const time = new Date().getTime(); 
     const date = new Date(time); 
-    let newTime = formatAMPM(date)
+    let newTime = formatTime(date)
     return (
         <div className="clock">
             {newTime}
