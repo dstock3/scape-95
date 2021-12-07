@@ -9,7 +9,7 @@ import { letDrop, newDrop } from '../DragFunctions'
 function Main() {
     return (
         <div className="main" onDrop={newDrop} onDragOver={letDrop}>
-            <div className="left">
+            <div className="left" onDrop={newDrop} onDragOver={letDrop}>
                 <DesktopIcon shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
                 <DesktopIcon shortcutId={"comp"} shortcutIconId={"comp-icon"} imgSrc={compIcon} shortcut={"My Computer"}/>
                 <DesktopIcon shortcutId={"bin"} shortcutIconId={"bin-icon"} imgSrc={binIcon} shortcut={"Recycle Bin"}/>
@@ -17,6 +17,7 @@ function Main() {
 
             <div className="bottom">
                 <Start />
+                
             </div>
 
         </div>

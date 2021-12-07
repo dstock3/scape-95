@@ -1,6 +1,14 @@
 body {
   background-color:lightsteelblue;
+  width: 100%;
+  height: 100%;
 }
+
+.App {
+  width: 100%;
+  height: 100%;
+}
+
 
 .main {
   display: flex;
@@ -39,6 +47,8 @@ body {
 }
 
 .start-bar {
+  display: flex;
+  justify-content: space-between;
   height: 35px;
   width: 100%;
   background-color: rgb(218, 216, 216);
@@ -55,3 +65,9 @@ body {
   border-radius: 3px;
 }
 
+.clock {
+  display: flex;
+  align-items: center;
+  padding-inline: 1%;
+  border: 1px solid black;
+}
