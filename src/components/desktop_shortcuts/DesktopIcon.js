@@ -1,9 +1,10 @@
 import React from 'react'
+import { newDrag } from '../../DragFunctions'
 
-function DesktopIcon(props) {
+const DesktopIcon = (props) => {
     return (
-        <div className="shortcut">
-            <img className="desktop-icon" id={props.shortcutId} src={props.imgSrc} alt={props.shortcut}></img>
+        <div className="shortcut" id={props.shortcutId} draggable="true" onDragStart={newDrag}>
+            <img className="desktop-icon" id={props.shortcutIconId} src={props.imgSrc} alt={props.shortcut}></img>
             <div className="folder-name">{props.shortcut}</div>
         </div>
     )
