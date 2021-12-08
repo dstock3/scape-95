@@ -8,6 +8,7 @@ import netIcon from "./desktop_shortcuts/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
 
 function Main() {
+    
     return (
         <div className="main" onDrop={newDrop} onDragOver={letDrop}>
             <div className="left" onDrop={newDrop} onDragOver={letDrop}>
@@ -19,7 +20,6 @@ function Main() {
 
             <div className="bottom">
                 <Start />
-                
             </div>
 
         </div>
