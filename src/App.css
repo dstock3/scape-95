@@ -1,7 +1,7 @@
-body {
+html, body {
+  margin:0px;
+  height:100%;
   background-color:lightsteelblue;
-  width: 100%;
-  height: 100%;
 }
 
 .App {
@@ -9,19 +9,18 @@ body {
   height: 100%;
 }
 
-
 .main {
   display: flex;
-  width: 100%;
-  height: 100%;
+  height:100vh;
+  height:100vh;
 }
 
-.left {
-  margin: 1% 1%;
+.col {
+  margin: 1% 0;
   display: flex;
   flex-direction: column;
-  width: 8%;
-  height: 100%;
+  width: 10%;
+  height:100vh;
 }
 
 .shortcut {
@@ -79,4 +78,10 @@ body {
   width: 125px;
   height: 80px;
   margin: 0px 0px -15px -10px;
+}
+
+.basic-window {
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
 }
