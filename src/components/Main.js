@@ -27,7 +27,10 @@ function Main() {
                  <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
                     <DesktopIcon shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"}/>
                 </div>
-                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    <BasicWindow winTitle="Test Window" winId="test-window" contents={"this is a test"}/>
+                    {/*<BasicWindow winTitle="Notepad" winId="notepad" contents={<NotePad />}/>*/}
+                </div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
@@ -40,9 +43,7 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                    <BasicWindow winTitle="Notepad" winId="test-window" contents={<NotePad />}/>
-                </div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
