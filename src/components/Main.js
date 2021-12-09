@@ -6,12 +6,14 @@ import docIcon from "./desktop_shortcuts/documents.png"
 import DesktopIcon from './desktop_shortcuts/DesktopIcon'
 import netIcon from "./desktop_shortcuts/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
+import BasicWindow from './Windows/BasicWindow'
+import NotePad from './Windows/NotePad'
 
 function Main() {
     
     return (
         <div className="main">
-            <div className="col" id="col-one" >
+            <div className="col" id="col-one">
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
                     <DesktopIcon shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
                 </div>
@@ -30,6 +32,7 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
             </div>
 
             <div className="col" id="two">
@@ -37,6 +40,9 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    <BasicWindow winTitle="Notepad" winId="test-window" contents={<NotePad />}/>
+                </div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
@@ -45,6 +51,7 @@ function Main() {
             </div>
 
             <div className="col" id="three">
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
@@ -66,9 +73,11 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
             </div>
 
             <div className="col" id="five">
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
@@ -90,9 +99,11 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
             </div>
 
             <div className="col" id="seven">
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
@@ -114,6 +125,7 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
             </div>
 
             <div className="col" id="nine">
@@ -126,9 +138,11 @@ function Main() {
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
             </div>
 
             <div className="col" id="ten">
+                <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
