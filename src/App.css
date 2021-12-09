@@ -119,3 +119,28 @@ html, body {
   height: 100%;
 }
 
+.start-menu {
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 5%;
+  width: 15%;
+  height: fit-content;
+  background-color: rgb(218, 216, 216);
+}
+
+.start-title {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(-180deg);
+}
+
+.start-item {
+  list-style-type: none;
+}
+
+.start-item:hover {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
