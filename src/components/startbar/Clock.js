@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-const formatTime = (newDate) =>{
-    let hours = newDate.getHours();
-    let min = newDate.getMinutes();
+const formatTime = () =>{
+    let time = new Date().getTime(); 
+    let date = new Date(time); 
+    let hours = date.getHours();
+    let min = date.getMinutes();
     let ampm
     
     if (hours >= 12) {
@@ -14,17 +16,22 @@ const formatTime = (newDate) =>{
     hours = hours % 12;
     if (!hours) { hours = 12 }
     if (min < 10) { min = '0'+ min }
-    let time = hours + ':' + min + ' ' + ampm;
-    return time;
+    let curTime = hours + ':' + min + ' ' + ampm;
+    return curTime;
 }
 
 const Clock = () => {
-    const time = new Date().getTime(); 
-    const date = new Date(time); 
-    let newTime = formatTime(date)
+    const [clock, setClock] = useState(formatTime())
+
+    useEffect(() => {
+        setInterval(() => {
+            setClock(formatTime());
+        }, 1000)
+    });
+
     return (
         <div className="clock">
-            {newTime}
+            {clock}
         </div>
     )
 }
