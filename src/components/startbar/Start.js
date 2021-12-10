@@ -6,8 +6,10 @@ const Start = () => {
     const [start, setStart] = useState({isStarted: false})
 
     useEffect(() => {
-        
-
+        if (start.isStarted) {
+            let offStart = document.querySelector(".col-container")
+            offStart.addEventListener("click", startToggle)
+        }
     })
 
     const startToggle = () => {
