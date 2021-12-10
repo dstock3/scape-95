@@ -6,8 +6,6 @@ import docIcon from "./desktop_shortcuts/documents.png"
 import DesktopIcon from './desktop_shortcuts/DesktopIcon'
 import netIcon from "./desktop_shortcuts/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
-import BasicWindow from './Windows/BasicWindow'
-import NotePad from './Windows/NotePad'
 
 function Main() {
     
@@ -28,10 +26,7 @@ function Main() {
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
                         <DesktopIcon shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"}/>
                     </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow winTitle="Test Window" winId="test-window" contents={"this is a test"}/>
-                        {/*<BasicWindow winTitle="Notepad" winId="notepad" contents={<NotePad />}/>*/}
-                    </div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
