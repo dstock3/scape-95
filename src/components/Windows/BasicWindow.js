@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { newDrag } from '../../DragFunctions'
+import MinWindow from '../startbar/MinWindow'
 
 function BasicWindow(props) {
     const [win, setWin] = useState({
@@ -22,7 +23,8 @@ function BasicWindow(props) {
 
             if (!win.isOpen && currentWindow) {
                 currentWindow.remove();
-            } 
+            }
+
             /*
             else if (!win.isMax) {
                 let col = document.getElementById("four");
@@ -30,6 +32,10 @@ function BasicWindow(props) {
             }*/
         }
     })
+
+    useEffect(() => {
+
+    }, [win.isMin])
 
     const styleController = () => {
         const main = document.querySelector(".main")
@@ -83,22 +89,37 @@ function BasicWindow(props) {
         setWin({ ...win, isOpen: false, isMin: true, isMax: false })
     }
 
+    const passMin = () => {
+        if (win.isMin) {
+            return props.winTitle
+        } else {
+            return null
+        }
+    }
+
+    const minValue = passMin()
+
     if (props.isClicked) {
         return (
-            <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
-                <div className="window-top">
-                    <div className="window-title">{props.winTitle}</div>
-                    <div className="window-buttons">
-                        <button className="min" onClick={minWindow}>-</button>
-                        <button className="max" onClick={maxToggle}>❑</button>
-                        <button className="close" onClick={closeWindow}>X</button>
+            <>
+                <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+                    <div className="window-top">
+                        <div className="window-title">{props.winTitle}</div>
+                        <div className="window-buttons">
+                            <button className="min" onClick={minWindow}>-</button>
+                            <button className="max" onClick={maxToggle}>❑</button>
+                            <button className="close" onClick={closeWindow}>X</button>
+                        </div>
                     </div>
+                    <div className="window-body">
+                        {props.contents}             
+                    </div>
+
                 </div>
-                <div className="window-body">
-                    {props.contents}
-                    {console.log(win)}                
-                </div>
-            </div>
+                
+                <MinWindow winItem={minValue}/>
+
+            </>
         )
     } else {
         return null

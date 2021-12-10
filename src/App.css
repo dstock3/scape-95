@@ -64,7 +64,8 @@ html, body {
   cursor: pointer;
   display: flex;
   font-weight: bold;
-  width: 75px;
+  width: 4%;
+  min-width: 75px;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -72,7 +73,14 @@ html, body {
   border-radius: 3px;
 }
 
+.bar-body {
+  display: flex;
+  width: 92.5%;
+}
+
 .clock {
+  width: 3.5%;
+  min-width: 75px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -157,4 +165,21 @@ html, body {
   background-color: blue;
   color: white;
   cursor: pointer;
+}
+
+.min-win {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.min-win-button {
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  width: 75px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 2px;
 }

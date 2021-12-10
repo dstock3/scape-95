@@ -6,6 +6,9 @@ import docIcon from "./desktop_shortcuts/documents.png"
 import DesktopIcon from './desktop_shortcuts/DesktopIcon'
 import netIcon from "./desktop_shortcuts/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
+import { Controller } from '../Controller'
+
+const newController = Controller()
 
 function Main() {
     
@@ -153,11 +156,12 @@ function Main() {
             </div>
             
             <div className="bottom">
-                <Start />
+                <Start minWindows={newController.minWindows}/>
             </div>
 
         </div>
     )
 }
-
+export { newController }
 export default Main
+
