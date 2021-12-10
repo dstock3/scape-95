@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { newDrag } from '../../DragFunctions'
 
 function BasicWindow(props) {
-    const [win, setWin] = useState({isMax: false, isMin: false, isOpen: true})
+    const [win, setWin] = useState({isMax: false, isMin: false, isOpen: true, isDraggable: true})
 
     useEffect(() => {
         if (props.isClicked) {
@@ -34,14 +34,14 @@ function BasicWindow(props) {
 
     const maxToggle = () => {
         if (win.isMax) {
-            setWin({ ...win, isMin: false, isMax: false })
+            setWin({ ...win, isMin: false, isMax: false, isDraggable: true })
         } else {
-            setWin({ ...win, isMin: false, isMax: true })
+            setWin({ ...win, isMin: false, isMax: true, isDraggable: false })
         }
     }
     if (props.isClicked) {
         return (
-            <div className="basic-window" id={props.winId} draggable="true" onDragStart={newDrag}>
+            <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag}>
                 <div className="window-top">
                     <div className="window-title">{props.winTitle}</div>
                     <div className="window-buttons">
