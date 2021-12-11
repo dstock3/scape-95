@@ -29,10 +29,13 @@ function BasicWindow(props) {
     }
 
     useEffect(() => {
-        if (props.isClicked) {
-            let currentWindow = document.getElementById(props.winId);
+        let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
+        let startBar = document.querySelector(".bar-body")
+        let buttonObjArray = []
+        let currentWindow = document.getElementById(props.winId);
 
-            if (win.isMin && currentWindow) {
+        if (props.isClicked && currentWindow) {
+            if (win.isMin) {
                 currentWindow.classList.add("hidden")
             } else if (!win.isOpen) {
                 currentWindow.remove()
@@ -46,24 +49,26 @@ function BasicWindow(props) {
                 col.firstChild.appendChild(currentWindow)
             }*/
         }
-    })
-
-    useEffect(() => {
-        const winButtons = Array.from(document.getElementsByClassName("min-win-button"))
-        const startBar = document.querySelector(".bar-body")
-        const buttonObjArray = []
 
         for (let i = 0; i < winButtons.length; i++) {
             let newButtonObj = { element: winButtons[i], contents: winButtons[i].innerHTML, key: i }
             buttonObjArray.push(newButtonObj)
-            
         }
 
         for (let i = 0; i < buttonObjArray.length; i++) {
             for (let y = 0; y < buttonObjArray.length; y++) {
-                if ((buttonObjArray[y].contents === buttonObjArray[i].contents) &&(buttonObjArray[y].key !== buttonObjArray[i].key)) {
+                if ((buttonObjArray[y].contents === buttonObjArray[i].contents) && (buttonObjArray[y].key !== buttonObjArray[i].key)) {
                     buttonObjArray[y].element.remove()
                     buttonObjArray.splice(y, 1)
+                }
+            }
+        }
+
+        if (!win.isOpen) {
+            for (let i = 0; i < buttonObjArray.length; i++) {
+                if (buttonObjArray[i].contents === props.winTitle) {
+                    buttonObjArray[i].element.remove()
+                    buttonObjArray.splice(i, 1)
                 }
             }
         }
