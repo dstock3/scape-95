@@ -61,7 +61,8 @@ html, body {
   justify-content: space-between;
   height: 35px;
   width: 100%;
-  background-color: rgb(218, 216, 216);
+  background: rgb(184,184,184);
+  background: linear-gradient(180deg, rgba(184,184,184,1) 83%, rgba(129,129,129,1) 100%);
 }
 
 .start-button {
@@ -139,7 +140,7 @@ html, body {
   bottom: 3.25%;
   width: 10%;
   height: 33%;
-  background-color: rgb(218, 216, 216);
+  background-color: #b8b8b8;
   border: solid black 1px;
   border-top-right-radius: 5px;
 }
@@ -192,4 +193,9 @@ html, body {
   border: 2px solid black;
   border-radius: 2px;
   padding-inline: 7px;
+}
+
+.selected {
+  font-weight: bold;
+  background-color: #d3d3d3;
 }
