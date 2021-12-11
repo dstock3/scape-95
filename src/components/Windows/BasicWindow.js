@@ -8,12 +8,13 @@ function BasicWindow(props) {
         isMin: false, 
         isOpen: true, 
         isDraggable: true,
+        isSelected: true,
         style: {
             position: "relative",
             left: "45%",
             top: "15%",
-            height: "350px",
-            width: "350px"
+            height: "500px",
+            width: "500px"
         }
     })
 
@@ -37,17 +38,21 @@ function BasicWindow(props) {
         if (props.isClicked && currentWindow) {
             if (win.isMin) {
                 currentWindow.classList.add("hidden")
+                for (let i = 0; i < winButtons.length; i++) {
+                    if (winButtons[i].innerHTML === props.winTitle) {
+                        winButtons[i].classList.remove("selected")
+                    }
+                }
             } else if (!win.isOpen) {
                 currentWindow.remove()
             } else {
+                for (let i = 0; i < winButtons.length; i++) {
+                    if (winButtons[i].innerHTML === props.winTitle) {
+                        winButtons[i].classList.add("selected")
+                    }
+                }
                 currentWindow.classList.remove("hidden")
             }
-
-            /*
-            else if (!win.isMax) {
-                let col = document.getElementById("four");
-                col.firstChild.appendChild(currentWindow)
-            }*/
         }
 
         for (let i = 0; i < winButtons.length; i++) {
@@ -87,8 +92,8 @@ function BasicWindow(props) {
             position: "relative",
             left: "45%",
             top: "15%",
-            height: "350px",
-            width: "350px",
+            height: "500px",
+            width: "500px",
             zIndex: 1
         }
     
@@ -123,7 +128,7 @@ function BasicWindow(props) {
     }
 
     const openWindow = () => {
-        setWin({ ...win, isOpen: true, isMin: false, isMax: false })
+        setWin({ ...win, isOpen: true, isMin: false, isMax: false, isSelected: true })
     }
 
     const closeWindow = () => {
@@ -131,7 +136,7 @@ function BasicWindow(props) {
     }
 
     const minWindow = () => {
-        setWin({ ...win, isOpen: true, isMin: true, isMax: false })
+        setWin({ ...win, isOpen: true, isMin: true, isMax: false, isSelected: false })
     }
 
     const passMin = () => {
