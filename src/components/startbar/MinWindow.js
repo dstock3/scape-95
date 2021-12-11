@@ -12,6 +12,7 @@ function MinWindow(props) {
             }])
         }
     }
+    
     useEffect(() => {
         const winButtons = Array.from(document.getElementsByClassName("min-win-button"))
         const startBar = document.querySelector(".bar-body")
@@ -31,7 +32,7 @@ function MinWindow(props) {
     return (
         <div className="min-win">
             {minWin.map(minWindow => (
-                <div className="min-win-button" key={minWindow.id}>{minWindow.value}</div>
+                <div className="min-win-button" onClick={props.open}key={minWindow.id} >{minWindow.value}</div>
             ))}
         </div>
     )
