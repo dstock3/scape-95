@@ -6,9 +6,12 @@ function StartMenu(props) {
     if (props.canStart) {
         return (
             <div className="start-menu">
-                <div className="start-title">
-                    Scape 95
+                <div className="start-title-container">
+                    <div className="start-title">
+                        Scape 95
+                    </div>
                 </div>
+
                 <div className="start-options">
                     <ul className="start-list">
                         <li className="start-item">Programs</li>

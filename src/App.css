@@ -143,18 +143,23 @@ html, body {
   border-top-right-radius: 5px;
 }
 
-.start-title {
-  width: 25%;
+.start-title-container {
+  display: flex;
+  width: 33%;
   height: 100%;
-  text-align: center;
+  background-color: blue;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-title {
   writing-mode: vertical-lr;
   transform: rotate(-180deg);
-  background-color: blue;
   color: white;
   font-weight: bold;
-  font-family:Cambria;
+  font-family: Cambria;
   font-size: 2.5em;
-  align-self: center;
 }
 
 .start-list {
