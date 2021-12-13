@@ -1,4 +1,6 @@
 import React from 'react'
+import defaultIcon from "../desktop_shortcuts/mycomputer.png"
+
 
 function StartMenu(props) {
     if (props.canStart) {
@@ -9,14 +11,27 @@ function StartMenu(props) {
                         Scape 95
                     </div>
                 </div>
+                
+                <div className="start-options-list">
+                    <div className="start-options-container">
+                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                        <div className="start-item">Programs</div>
+                    </div>
 
-                <div className="start-options">
-                    <ul className="start-list">
-                        <li className="start-item">Programs</li>
-                        <li className="start-item">Favorites</li>
-                        <li className="start-item">Documents</li>
-                        <li className="start-item">Shut Down</li>
-                    </ul>
+                    <div className="start-options-container">
+                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                        <div className="start-item">Favorites</div> 
+                    </div>
+
+                    <div className="start-options-container">
+                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                        <div className="start-item">Documents</div>
+                    </div>
+
+                    <div className="start-options-container" id="shutdown">
+                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                        <div className="start-item">Shut Down...</div>
+                    </div>
                 </div>
             </div>
         )
