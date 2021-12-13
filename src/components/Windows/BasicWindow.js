@@ -146,7 +146,7 @@ function BasicWindow(props) {
             return null
         }
     })()
-    
+
     useEffect(() => {
         if (minValue) {
             newController.minWindows.push(minValue)
@@ -161,7 +161,7 @@ function BasicWindow(props) {
                     <div className="window-top">
                         <div className="window-title">{props.winTitle}</div>
                         <div className="window-buttons">
-                            <button className="min" id={`min-${props.winId}`}onClick={minWindow}>-</button>
+                            <button className="min" onClick={minWindow}>-</button>
                             <button className="max" onClick={maxToggle}>❑</button>
                             <button className="close" onClick={closeWindow}>X</button>
                         </div>
