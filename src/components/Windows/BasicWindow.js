@@ -140,7 +140,7 @@ function BasicWindow(props) {
     }
 
     const minValue = (() => {
-        if (win.isMin) {
+        if (props.isClicked) {
             return props.winTitle
         } else {
             return null
