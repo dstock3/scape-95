@@ -1,6 +1,8 @@
 const Controller = () => {
     const minWindows = []
-    return {minWindows}
+    const winParent = null
+    
+    return {minWindows, winParent}
 }
 
 export { Controller }

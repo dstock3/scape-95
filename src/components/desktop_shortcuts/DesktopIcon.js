@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { newDrag } from '../../DragFunctions'
 import BasicWindow from '../Windows/BasicWindow'
+import { newController } from '../Main'
 
 const DesktopIcon = (props) => {
     const [newShortcut, setShortcut] = useState({isClicked: false, isRightClicked: false})
-    
+
     const openWindow = () => {
         setShortcut({ ...newShortcut, isClicked: true})
     }
@@ -14,16 +15,29 @@ const DesktopIcon = (props) => {
     }
 
     useEffect(() => {
+        newController.winParent = document.getElementById(props.shortcutId).parentElement
+
         let closeButtons = Array.from(document.getElementsByClassName("close"))
 
         function closeSet() {
+            
             let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
             for (let i = 0; i < winButtons.length; i++) {
+                let close = closeButtons[i];
+                
                 if (winButtons[i].innerHTML === props.shortcut) {
                     winButtons[i].remove()
+                    let newWindow = close.parentElement.parentElement.parentElement;
+                    if (newWindow.id === props.shortcutId + "-window") {
+                        if (newWindow.parentElement !== newController.winParent) {
+                            newController.winParent.appendChild(newWindow)
+                        }
+                    /* think i need to loop though em again */
+
+                        closeWindow()
+                    }
                 }
             }
-            closeWindow()
         }
 
         for (let i = 0; i < closeButtons.length; i++) {
@@ -36,7 +50,7 @@ const DesktopIcon = (props) => {
 
         return () => {
             for (let i = 0; i < closeButtons.length; i++) {
-                closeButtons[i].removeEventListener("click", closeWindow);
+                closeButtons[i].removeEventListener("click", closeSet);
             }
         }
     })

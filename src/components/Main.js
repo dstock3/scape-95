@@ -155,10 +155,58 @@ function Main() {
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                 </div>
+                <div className="col" id="eleven">
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                </div>
+                <div className="col" id="twelve">
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                </div>
+                <div className="col" id="thirteen">
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                </div>
+                <div className="col" id="fourteen">
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
+                </div>
             </div>
             
             <div className="bottom">
-                <Start minWindows={newController.minWindows}/>
+                <Start />
             </div>
 
         </div>

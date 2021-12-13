@@ -36,6 +36,11 @@ function BasicWindow(props) {
         let currentWindow = document.getElementById(props.winId);
 
         if (props.isClicked && currentWindow) {
+            for (let i = 0; i < winButtons.length; i++) {
+                if (winButtons[i].innerHTML !== props.winTitle) {
+                    winButtons[i].classList.remove("selected");
+                }
+            }
             if (win.isMin) {
                 currentWindow.classList.add("hidden")
                 for (let i = 0; i < winButtons.length; i++) {
@@ -43,8 +48,6 @@ function BasicWindow(props) {
                         winButtons[i].classList.remove("selected")
                     }
                 }
-            } else if (!win.isOpen) {
-                currentWindow.remove()
             } else {
                 for (let i = 0; i < winButtons.length; i++) {
                     if (winButtons[i].innerHTML === props.winTitle) {
@@ -91,7 +94,7 @@ function BasicWindow(props) {
                 buttonObjArray[i].element.addEventListener("click", selectEffect)
             }
         }
-        
+
         return () => {
             for (let i = 0; i < buttonObjArray.length; i++) {
                 buttonObjArray[i].element.removeEventListener("click", selectEffect)
