@@ -139,16 +139,14 @@ function BasicWindow(props) {
         setWin({ ...win, isOpen: true, isMin: true, isMax: false, isSelected: false })
     }
 
-    const passMin = () => {
+    const minValue = (() => {
         if (win.isMin) {
             return props.winTitle
         } else {
             return null
         }
-    }
-
-    const minValue = passMin()
-
+    })()
+    
     useEffect(() => {
         if (minValue) {
             newController.minWindows.push(minValue)
