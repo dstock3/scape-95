@@ -2,13 +2,16 @@ import React, {useState, useEffect} from 'react'
 import Clock from './Clock'
 import StartMenu from './StartMenu'
 
-const Start = (props) => {
+const Start = () => {
     const [start, setStart] = useState({isStarted: false})
     
     useEffect(() => {
+        let offStart = document.querySelector(".col-container")
         if (start.isStarted) {
-            let offStart = document.querySelector(".col-container")
             offStart.addEventListener("click", startToggle)
+        }
+        return () => {
+            offStart.removeEventListener("click", startToggle)
         }
     })
 

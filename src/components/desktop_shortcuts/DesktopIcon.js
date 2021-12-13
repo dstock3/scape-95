@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { newDrag } from '../../DragFunctions'
 import BasicWindow from '../Windows/BasicWindow'
 
@@ -15,7 +15,7 @@ const DesktopIcon = (props) => {
                 <img className="desktop-icon" id={props.shortcutIconId} src={props.imgSrc} alt={props.shortcut}></img>
                 <div className="folder-name">{props.shortcut}</div>
             </div>
-            <BasicWindow isClicked={(newShortcut.isClicked)} winTitle={props.shortcut} winId={props.shortcutId + "-window"} />
+            <BasicWindow isClicked={(newShortcut.isClicked)} winTitle={props.shortcut} winId={props.shortcutId + "-window"} contents={props.contents}/>
         </>
     )
 }

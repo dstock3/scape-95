@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 function StartMenu(props) {
-    const [state, setState] = useState()
-
     if (props.canStart) {
         return (
             <div className="start-menu">

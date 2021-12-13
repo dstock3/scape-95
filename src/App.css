@@ -113,6 +113,10 @@ html, body {
   overflow: auto;  
 }
 
+.window-body {
+  height: 100%;
+}
+
 .window-top {
   width: 100%;
   align-self: flex-start;
