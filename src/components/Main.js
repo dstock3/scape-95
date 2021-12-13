@@ -12,7 +12,7 @@ import NotePad from './Windows/NotePad'
 const newController = Controller()
 
 function Main() {
-    
+
     return (
         <div className="main">
             <div className="col-container">
@@ -21,8 +21,7 @@ function Main() {
                         <DesktopIcon shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon shortcutId={"comp"} shortcutIconId={"comp-icon"}
-                        imgSrc={compIcon} shortcut={"My Computer"}/>
+                        <DesktopIcon shortcutId={"comp"} shortcutIconId={"comp-icon"} imgSrc={compIcon} shortcut={"My Computer"}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
                         <DesktopIcon shortcutId={"bin"} shortcutIconId={"bin-icon"} imgSrc={binIcon} shortcut={"Recycle Bin"}/>
