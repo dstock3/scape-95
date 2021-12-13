@@ -19,7 +19,6 @@ const DesktopIcon = (props) => {
         function closeSet() {
             let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
             for (let i = 0; i < winButtons.length; i++) {
-                console.log(winButtons[i].innerHTML)
                 if (winButtons[i].innerHTML === props.shortcut) {
                     winButtons[i].remove()
                 }

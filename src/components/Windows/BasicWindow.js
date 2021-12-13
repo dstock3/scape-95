@@ -77,9 +77,25 @@ function BasicWindow(props) {
                 }
             }
         }
+        function selectEffect() {
+            for (let i = 0; i < buttonObjArray.length; i++) {
+                if (buttonObjArray[i].element.classList.contains("selected")) {
+                    buttonObjArray[i].element.classList.remove("selected")
+                }
+            }
+        }
 
         for (let i = 0; i < buttonObjArray.length; i++) {
             startBar.appendChild(buttonObjArray[i].element)
+            if (!buttonObjArray[i].element.classList.contains("selected")) {
+                buttonObjArray[i].element.addEventListener("click", selectEffect)
+            }
+        }
+        
+        return () => {
+            for (let i = 0; i < buttonObjArray.length; i++) {
+                buttonObjArray[i].element.removeEventListener("click", selectEffect)
+            }
         }
     })
 
