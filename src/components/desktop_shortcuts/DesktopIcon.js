@@ -15,13 +15,23 @@ const DesktopIcon = (props) => {
 
     useEffect(() => {
         let closeButtons = Array.from(document.getElementsByClassName("close"))
-        
+
+        function closeSet() {
+            let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
+            for (let i = 0; i < winButtons.length; i++) {
+                console.log(winButtons[i].innerHTML)
+                if (winButtons[i].innerHTML === props.shortcut) {
+                    winButtons[i].remove()
+                }
+            }
+            closeWindow()
+        }
+
         for (let i = 0; i < closeButtons.length; i++) {
             let close = closeButtons[i];
             let newWindow = close.parentElement.parentElement.parentElement;
             if (newWindow.id === props.shortcutId + "-window") {
-                console.log(`added event for ${props.shortcutId}`)
-                close.addEventListener("click", closeWindow)
+                close.addEventListener("click", closeSet)
             }
         }
 
