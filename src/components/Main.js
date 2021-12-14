@@ -18,10 +18,10 @@ function Main() {
             <div className="col-container">
                 <div className="col" id="col-one">
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
+                        <DesktopIcon shortcutId={"comp"} shortcutIconId={"comp-icon"} imgSrc={compIcon} shortcut={"My Computer"}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon shortcutId={"comp"} shortcutIconId={"comp-icon"} imgSrc={compIcon} shortcut={"My Computer"}/>
+                        <DesktopIcon shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
                         <DesktopIcon shortcutId={"bin"} shortcutIconId={"bin-icon"} imgSrc={binIcon} shortcut={"Recycle Bin"}/>

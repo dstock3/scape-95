@@ -19,39 +19,31 @@ const DesktopIcon = (props) => {
 
         let closeButtons = Array.from(document.getElementsByClassName("close"))
 
-        function closeSet() {
-            
-            let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
-            for (let i = 0; i < winButtons.length; i++) {
-                let close = closeButtons[i];
-                
-                if (winButtons[i].innerHTML === props.shortcut) {
-                    winButtons[i].remove()
-                    let newWindow = close.parentElement.parentElement.parentElement;
-                    if (newWindow.id === props.shortcutId + "-window") {
-                        if (newWindow.parentElement !== newController.winParent) {
-                            newController.winParent.appendChild(newWindow)
-                        }
-                    /* think i need to loop though em again */
-
-                        closeWindow()
-                    }
-                }
-            }
-        }
-
         for (let i = 0; i < closeButtons.length; i++) {
             let close = closeButtons[i];
             let newWindow = close.parentElement.parentElement.parentElement;
-            if (newWindow.id === props.shortcutId + "-window") {
-                close.addEventListener("click", closeSet)
-            }
-        }
 
-        return () => {
-            for (let i = 0; i < closeButtons.length; i++) {
-                closeButtons[i].removeEventListener("click", closeSet);
+            function closeSet() {
+                let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
+                for (let y = 0; y < winButtons.length; y++) {
+                    if (props.shortcut === winButtons[y].innerHTML) {
+                        winButtons[y].remove()
+                    }
+
+                    if (newWindow.id === props.shortcutId + "-window")  {
+                        if (newWindow.parentElement !== newController.winParent) {
+                            newWindow.classList.add("hidden")
+                            newController.winParent.appendChild(newWindow)
+                            newWindow.remove()
+                        } else {
+                            closeWindow()
+                            newWindow.remove()
+                        }
+                    }
+                }
             }
+
+            close.addEventListener("click", closeSet)
         }
     })
 

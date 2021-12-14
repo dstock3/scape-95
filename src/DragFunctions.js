@@ -8,8 +8,18 @@ function allowDrop(ev) {
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    let data = ev.dataTransfer.getData("text");
+    let newChild = document.getElementById(data)
+    let childrenArray = Array.from(newChild.children)
+    let childCheck = false
+    for (let i = 0; i < childrenArray.length; i++) {
+        if (childrenArray[i] === ev.target) {
+            childCheck = true
+        }
+    }
+    if (!childCheck) {
+        ev.target.appendChild(newChild);
+    }
 }
 
 const letDrop = event => {
