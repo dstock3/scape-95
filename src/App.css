@@ -100,17 +100,16 @@ html, body {
 }
 
 .basic-window {
-  min-width: 250px;
-  min-height: 150px;
-  width: 300px;
-  height: 300px;
+  min-width: 300px;
+  min-height: 350px;
+  width: 25%;
+  height: 33%;
   border: 1px solid black;
   z-index: 1;
   background-color: azure;
   display: flex;
   flex-direction: column;
   resize: both;
-  overflow: visible;
 }
 
 .window-top {
@@ -125,10 +124,13 @@ html, body {
   z-index: 5;
 }
 
-.window-body {
+.basic-window div {
   overflow: auto;
-  max-height: inherit;
+}
+
+.window-body {
   width: 100%;
+  height: 100%;
 }
 
 .window-title {
@@ -144,6 +146,7 @@ html, body {
 }
 
 .window-buttons {
+  margin: 0 3px;
   height: 100%;
   width: 75px;
 }
