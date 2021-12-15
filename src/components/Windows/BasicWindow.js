@@ -180,9 +180,9 @@ function BasicWindow(props) {
                     <div className="window-top" onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
                         <div className="window-buttons">
-                            <button className="min" onClick={minWindow}>-</button>
-                            <button className="max" onClick={maxToggle}>❑</button>
-                            <button className="close" onClick={closeWindow}>X</button>
+                            <button className="windows-button min" onClick={minWindow}>-</button>
+                            <button className="windows-button max" onClick={maxToggle}>❑</button>
+                            <button className="windows-button close" onClick={closeWindow}>X</button>
                         </div>
                     </div>
                     <div className="window-body">

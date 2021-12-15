@@ -110,7 +110,7 @@ html, body {
   display: flex;
   flex-direction: column;
   resize: both;
-  overflow: auto;
+  overflow: visible;
 }
 
 .window-top {
@@ -126,8 +126,9 @@ html, body {
 }
 
 .window-body {
-  overflow: scroll;
-
+  overflow: auto;
+  max-height: inherit;
+  width: 100%;
 }
 
 .window-title {
@@ -138,8 +139,13 @@ html, body {
   font-weight: bold;
 }
 
+.windows-button {
+  width: 25px;
+}
+
 .window-buttons {
   height: 100%;
+  width: 75px;
 }
 
 .start-menu {
