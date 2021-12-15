@@ -177,7 +177,7 @@ function BasicWindow(props) {
         return (
             <>
                 <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
-                    <div className="window-top">
+                    <div className="window-top" onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
                         <div className="window-buttons">
                             <button className="min" onClick={minWindow}>-</button>

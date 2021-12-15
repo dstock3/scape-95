@@ -15,17 +15,17 @@ function StartMenu(props) {
                 <div className="start-options-list">
                     <div className="start-options-container">
                         <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Programs</div>
+                        <div className="start-item">Programs ▶</div>
                     </div>
 
                     <div className="start-options-container">
                         <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Favorites</div> 
+                        <div className="start-item">Favorites ▶</div> 
                     </div>
 
                     <div className="start-options-container">
                         <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Documents</div>
+                        <div className="start-item">Documents ▶</div>
                     </div>
 
                     <div className="start-options-container" id="shutdown">
