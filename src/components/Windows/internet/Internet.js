@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Homepage from './Homepage'
 import NotFound from './NotFound'
 import NewPage from './NewPage'
+import '../../../style/net.css'
 
 function Internet() {
     const [pageList, setPageList] = useState([

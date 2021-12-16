@@ -1,6 +1,7 @@
 import React from 'react'
+import '../../../style/homepage.css'
 
-function Homepage(props) {
+function Homepage() {
     return (
         <>
             <h1>Welcome Home</h1>
