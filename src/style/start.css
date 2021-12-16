@@ -1,0 +1,88 @@
+.start-menu {
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 3.25%;
+    width: 17%;
+    height: 33%;
+    background-color: #b8b8b8;
+    border: solid black 1px;
+    border-top-right-radius: 5px;
+  }
+  
+  .start-title-container {
+    display: flex;
+    width: 33%;
+    height: 100%;
+    background-color: blue;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .start-options-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 75%;
+  }
+  
+  .start-options-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 7%;
+  }
+  
+  .start-title {
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    color: white;
+    font-weight: bold;
+    font-family: Cambria;
+    font-size: 2.5em;
+  }
+  
+  .start-item {
+    display: flex;
+    text-align: center;
+    align-self: center;
+    list-style-type: none;
+    padding: 0 10%;
+  }
+  
+  .start-options-container:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .min-win {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .min-win-button {
+    cursor: pointer;
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 2px;
+    padding-inline: 7px;
+  }
+  
+  .selected {
+    font-weight: bold;
+    background-color: #d3d3d3;
+  }
+  
+  .start-item-icon {
+    width: 40px;
+  }
+  
+  #shutdown {
+    position: relative;
+    top: 5%;
+  }

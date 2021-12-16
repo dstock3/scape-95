@@ -1,6 +1,6 @@
 import React from 'react'
 import defaultIcon from "../desktop_shortcuts/mycomputer.png"
-
+import '../../style/start.css'
 
 function StartMenu(props) {
     if (props.canStart) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { newDrag } from '../../DragFunctions'
 import { newController } from '../Main'
+import '../../style/window.css'
 
 function BasicWindow(props) {
     const [win, setWin] = useState({
