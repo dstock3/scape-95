@@ -19,6 +19,8 @@ function Internet() {
         let winTitle = netWindow.firstChild.firstChild
         winTitle.innerHTML = page.title
 
+        let netInput = document.querySelector(".net-input")
+        netInput.value = page.url
     }, [page])
 
     useEffect(()=> {
@@ -43,7 +45,7 @@ function Internet() {
         setPageTerm(e.target.value)
 
     }
-    
+
     const findPage = () => {
         let match = false
         for (let i = 0; i < pageList.length; i++) {
