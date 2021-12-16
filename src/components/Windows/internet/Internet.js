@@ -12,6 +12,8 @@ function Internet() {
 
     const [page, setPage] = useState({current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
 
+    const [pageTerm, setPageTerm] = useState(null)
+
     useEffect(()=> {
         let netWindow = document.getElementById("net-window")
         let winTitle = netWindow.firstChild.firstChild
@@ -19,20 +21,33 @@ function Internet() {
 
     }, [page])
 
+    useEffect(()=> {
+        let enterEvent = (e) => {
+            if (e.key === 'Enter') {
+                findPage()
+            }
+        }
+
+        document.addEventListener('keypress', enterEvent);
+    })
 
     const setHome = () => {
         setPage({...page, current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
     }
     
     const refresh = () => {
-        setPage({...page, current: page.current, title: page.title, pageID: page.pageID})
+        setPage({...page, current: page.current, title: page.title, pageID: page.pageID, url: page.url})
+    }
+
+    const searchPageTerm = e => {
+        setPageTerm(e.target.value)
+
     }
     
-    const findPage = e => {
-        e.preventDefault();
+    const findPage = () => {
         let match = false
         for (let i = 0; i < pageList.length; i++) {
-            if (e.target.value === pageList[i].url) {
+            if (pageTerm === pageList[i].url) {
                 match = true
                 setPage({...page, current: pageList[i].component, title: pageList[i].title, pageID: pageList[i].id, url: pageList[i].url})
             }
@@ -41,7 +56,7 @@ function Internet() {
             setPage({...page, current: <NotFound />, title: "404 Not Found", pageID: "not-found", url: ""})
         }
     }
-
+    
     return (
         <div className="internet">
             <div className="net-header">
@@ -54,10 +69,10 @@ function Internet() {
                 </div>
                 <div className="net-input-container">
                     <div className="net-location">Location:</div>
-                    <input className="net-input" type="text" value={page.url} onChange={findPage} />
+                    <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
                 </div>
             </div>
-            <div id={page.pageID}>
+            <div className="net-page" id={page.pageID}>
                 {page.current}
             </div>
         </div>

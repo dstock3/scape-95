@@ -241,6 +241,13 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: beige;
+}
+
+.internet > .net-page {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
 .internet > h1 {
@@ -268,7 +275,6 @@ html, body {
 .net-button-container > button {
   width: 40px;
   height: 40px;
-
 }
 
 .net-button-container {
@@ -294,9 +300,7 @@ html, body {
   background: rgb(0,26,255);
   background: linear-gradient(180deg, rgba(0,26,255,1) 88%, rgba(90,110,255,1) 100%);
   color: white;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
+
 }
 
 #homepage p {

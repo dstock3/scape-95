@@ -185,7 +185,7 @@ function BasicWindow(props) {
                             <button className="windows-button close" onClick={closeWindow}>X</button>
                         </div>
                     </div>
-                    <div className={`window-body ${props.winClass}`}>
+                    <div className="window-body">
                         {props.contents}             
                     </div>
                 </div>
