@@ -7,9 +7,7 @@ import DesktopIcon from './desktop_shortcuts/DesktopIcon'
 import netIcon from "./desktop_shortcuts/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
 import { Controller } from '../Controller'
-import NotePad from './Windows/NotePad'
 import Internet from './Windows/internet/Internet'
-import Homepage from './Windows/internet/Homepage'
 
 
 const newController = Controller()
