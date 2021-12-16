@@ -8,7 +8,9 @@ import netIcon from "./desktop_shortcuts/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
 import { Controller } from '../Controller'
 import NotePad from './Windows/NotePad'
+import Internet from './Windows/internet/Internet'
 import Homepage from './Windows/internet/Homepage'
+
 
 const newController = Controller()
 
@@ -28,7 +30,7 @@ function Main() {
                         <DesktopIcon shortcutId={"bin"} shortcutIconId={"bin-icon"} imgSrc={binIcon} shortcut={"Recycle Bin"}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"} contents={<Homepage />}/>
+                        <DesktopIcon shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"} contents={<Internet />}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
 
