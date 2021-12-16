@@ -272,11 +272,12 @@ html, body {
 }
 
 .net-button-container {
+  padding-top: 5px;
   display: flex;
 }
 
 .net-input-container {
-  margin: 10px 0;
+  margin: 5px 0;
   padding-inline: 2%;
   display: flex;
   width: 95%;
