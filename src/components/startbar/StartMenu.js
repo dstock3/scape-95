@@ -1,5 +1,6 @@
 import React from 'react'
-import defaultIcon from "../../assets/mycomputer.png"
+import docIcon from "../../assets/documents.png"
+import compIcon from "../../assets/mycomputer.png"
 import '../../style/start.css'
 
 function StartMenu(props) {
@@ -15,7 +16,7 @@ function StartMenu(props) {
                 <div className="start-option-list">
                     <div className="start-option-container">
                         <div className="start-option">
-                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <img src={docIcon} alt="dummy-alt" className="start-item-icon"></img>
                             <div className="start-item">Programs</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
@@ -23,7 +24,7 @@ function StartMenu(props) {
 
                     <div className="start-option-container">
                         <div className="start-option">
-                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <img src={docIcon} alt="dummy-alt" className="start-item-icon"></img>
                             <div className="start-item">Favorites</div> 
                         </div>
                         <div className="start-option-arrow">▶</div>
@@ -31,7 +32,7 @@ function StartMenu(props) {
 
                     <div className="start-option-container">
                         <div className="start-option">
-                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <img src={docIcon} alt="dummy-alt" className="start-item-icon"></img>
                             <div className="start-item">Documents</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
@@ -39,7 +40,7 @@ function StartMenu(props) {
 
                     <div className="start-option-container" id="shutdown">
                         <div className="start-option">
-                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <img src={compIcon} alt="dummy-alt" className="start-item-icon"></img>
                             <div className="start-item">Shut Down...</div>
                         </div>
                     </div>

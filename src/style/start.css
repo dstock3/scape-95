@@ -36,13 +36,13 @@
 
   #shutdown {
     position: relative;
-    top: 40%;
+    top: 35%;
   }
   
   .start-option-container {
     display: flex;
     justify-content: flex-start;
-    margin: 0 7%;
+    margin: 2% 9%;
     width: 75%;
   }
 
