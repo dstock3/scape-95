@@ -1,10 +1,10 @@
 import React from 'react'
 import Start from './startbar/Start'
-import compIcon from "./desktop_shortcuts/mycomputer.png"
-import binIcon from "./desktop_shortcuts/bin.png"
-import docIcon from "./desktop_shortcuts/documents.png"
+import compIcon from "../assets/mycomputer.png"
+import binIcon from "../assets/bin.png"
+import docIcon from "../assets/documents.png"
 import DesktopIcon from './desktop_shortcuts/DesktopIcon'
-import netIcon from "./desktop_shortcuts/internet.png"
+import netIcon from "../assets/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
 import { Controller } from '../Controller'
 import Internet from './Windows/internet/Internet'
