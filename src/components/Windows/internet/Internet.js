@@ -11,9 +11,14 @@ function Internet() {
         {component: <NotFound />, title: "404 Not Found", id: "not-found", url: ""},
     ])
 
-    const [page, setPage] = useState({current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
+    const homePage = {current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}
+
+    const [page, setPage] = useState(homePage)
 
     const [pageTerm, setPageTerm] = useState("http://www.scape.net")
+
+    const [prevPage, setPrevPage] = useState([])
+    const [nextPage, setNextPage] = useState([])
 
     useEffect(()=> {
         let netWindow = document.getElementById("net-window")
@@ -38,12 +43,12 @@ function Internet() {
         let checkValue = pageTerm
         let link = `http://www.`
         if (!checkValue.includes(link)) {
-            console.log("check failed")
             setPageTerm(`http://www.${pageTerm}`)
         }
     }, [pageTerm])
 
     const setHome = () => {
+        setPrevPage([...prevPage, page])
         setPage({...page, current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
     }
     
@@ -56,16 +61,36 @@ function Internet() {
     }
 
     const findPage = () => {
-        console.log(pageTerm)
         let match = false
         for (let i = 0; i < pageList.length; i++) {
             if (pageTerm === pageList[i].url) {
                 match = true
+                setPrevPage([...prevPage, page])
                 setPage({...page, current: pageList[i].component, title: pageList[i].title, pageID: pageList[i].id, url: pageList[i].url})
             }
         }
         if (!match) {
-            setPage({...page, current: <NotFound />, title: "404 Not Found", pageID: "not-found", url: pageTerm})
+            setPrevPage([...prevPage, page])
+            setPage({...page, current: <NotFound />, title: "404 Not Found", pageID: "not-found", url: pageTerm}) 
+        }
+    }
+
+    const goBack = () => {
+        if (prevPage.length > 0) {
+            setNextPage([...nextPage, page])
+            setPage(prevPage[prevPage.length  - 1])
+            /*
+            setPrevPage((prevPage) => {
+                prevPage.filter((_, i) => i !== prevPage.length - 1)
+            })
+            */
+        }
+    }
+
+    const goForward = () => {
+        if (nextPage.length > 0) {
+            setPrevPage([...prevPage, page])
+            setPage(nextPage[nextPage.length  - 1])
         }
     }
     
@@ -74,8 +99,8 @@ function Internet() {
             <div className="net-header">
                 <div className="net-button-container">
                     <button onClick={setHome}>H</button>
-                    <button>B</button>
-                    <button>F</button>
+                    <button onClick={goBack}>B</button>
+                    <button onClick={goForward}>F</button>
                     <button onClick={refresh}>R</button>
 
                 </div>
