@@ -3,7 +3,7 @@
     position: fixed;
     left: 0;
     bottom: 3.25%;
-    width: 17%;
+    width: 20%;
     height: 33%;
     background-color: #b8b8b8;
     border: solid black 1px;
@@ -12,7 +12,7 @@
   
   .start-title-container {
     display: flex;
-    width: 33%;
+    width: 25%;
     height: 100%;
     background-color: blue;
     align-self: center;
@@ -20,17 +20,35 @@
     align-items: center;
   }
   
-  .start-options-list {
+  .start-option-list {
+    margin: 5% 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: 75%;
+    height: 100%;
+  }
+
+  .start-option {
+    width: 100%;
+    display: flex;
+  }
+
+  #shutdown {
+    position: relative;
+    top: 40%;
   }
   
-  .start-options-container {
+  .start-option-container {
     display: flex;
     justify-content: flex-start;
     margin: 0 7%;
+    width: 75%;
+  }
+
+  .start-option-arrow {
+    margin: 5%;
+    align-self: center;
   }
   
   .start-title {
@@ -50,7 +68,7 @@
     padding: 0 10%;
   }
   
-  .start-options-container:hover {
+  .start-option-container:hover {
     background-color: blue;
     color: white;
     cursor: pointer;
@@ -80,9 +98,4 @@
   
   .start-item-icon {
     width: 40px;
-  }
-  
-  #shutdown {
-    position: relative;
-    top: 5%;
   }

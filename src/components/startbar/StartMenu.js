@@ -12,25 +12,36 @@ function StartMenu(props) {
                     </div>
                 </div>
                 
-                <div className="start-options-list">
-                    <div className="start-options-container">
-                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Programs ▶</div>
+                <div className="start-option-list">
+                    <div className="start-option-container">
+                        <div className="start-option">
+                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <div className="start-item">Programs</div>
+                        </div>
+                        <div className="start-option-arrow">▶</div>
                     </div>
 
-                    <div className="start-options-container">
-                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Favorites ▶</div> 
+                    <div className="start-option-container">
+                        <div className="start-option">
+                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <div className="start-item">Favorites</div> 
+                        </div>
+                        <div className="start-option-arrow">▶</div>
                     </div>
 
-                    <div className="start-options-container">
-                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Documents ▶</div>
+                    <div className="start-option-container">
+                        <div className="start-option">
+                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <div className="start-item">Documents</div>
+                        </div>
+                        <div className="start-option-arrow">▶</div>
                     </div>
 
-                    <div className="start-options-container" id="shutdown">
-                        <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
-                        <div className="start-item">Shut Down...</div>
+                    <div className="start-option-container" id="shutdown">
+                        <div className="start-option">
+                            <img src={defaultIcon} alt="dummy-alt" className="start-item-icon"></img>
+                            <div className="start-item">Shut Down...</div>
+                        </div>
                     </div>
                 </div>
             </div>
