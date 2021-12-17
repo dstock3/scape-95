@@ -13,7 +13,7 @@ function Internet() {
 
     const [page, setPage] = useState({current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
 
-    const [pageTerm, setPageTerm] = useState(null)
+    const [pageTerm, setPageTerm] = useState("http://www.scape.net")
 
     useEffect(()=> {
         let netWindow = document.getElementById("net-window")
@@ -34,6 +34,15 @@ function Internet() {
         document.addEventListener('keypress', enterEvent);
     })
 
+    useEffect(()=> {
+        let checkValue = pageTerm
+        let link = `http://www.`
+        if (!checkValue.includes(link)) {
+            console.log("check failed")
+            setPageTerm(`http://www.${pageTerm}`)
+        }
+    }, [pageTerm])
+
     const setHome = () => {
         setPage({...page, current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
     }
@@ -44,10 +53,10 @@ function Internet() {
 
     const searchPageTerm = e => {
         setPageTerm(e.target.value)
-
     }
 
     const findPage = () => {
+        console.log(pageTerm)
         let match = false
         for (let i = 0; i < pageList.length; i++) {
             if (pageTerm === pageList[i].url) {
@@ -56,7 +65,7 @@ function Internet() {
             }
         }
         if (!match) {
-            setPage({...page, current: <NotFound />, title: "404 Not Found", pageID: "not-found", url: ""})
+            setPage({...page, current: <NotFound />, title: "404 Not Found", pageID: "not-found", url: pageTerm})
         }
     }
     
