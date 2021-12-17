@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Homepage from './Homepage'
 import NotFound from './NotFound'
 import NewPage from './NewPage'
+import NewPage2 from './NewPage2'
 import '../../../style/net.css'
 
 function Internet() {
     const [pageList, setPageList] = useState([
         {component: <Homepage />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
         {component: <NewPage />, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
+        {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
         {component: <NotFound />, title: "404 Not Found", id: "not-found", url: ""},
     ])
 
@@ -37,6 +39,9 @@ function Internet() {
         }
 
         document.addEventListener('keypress', enterEvent);
+        return () => {
+            document.removeEventListener('keypress', enterEvent);
+        }
     })
 
     useEffect(()=> {
@@ -48,6 +53,7 @@ function Internet() {
     }, [pageTerm])
 
     const setHome = () => {
+        console.log("sethome " + prevPage)
         setPrevPage([...prevPage, page])
         setPage({...page, current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
     }
@@ -61,6 +67,7 @@ function Internet() {
     }
 
     const findPage = () => {
+        console.log("findpage " + prevPage)
         let match = false
         for (let i = 0; i < pageList.length; i++) {
             if (pageTerm === pageList[i].url) {
@@ -75,22 +82,27 @@ function Internet() {
         }
     }
 
+    const setBack = () => {
+        setPrevPage(prevPage => prevPage.filter(item => item !== prevPage[prevPage.length  - 1]));
+    }
+
     const goBack = () => {
         if (prevPage.length > 0) {
             setNextPage([...nextPage, page])
             setPage(prevPage[prevPage.length  - 1])
-            /*
-            setPrevPage((prevPage) => {
-                prevPage.filter((_, i) => i !== prevPage.length - 1)
-            })
-            */
+            setBack()
         }
+    }
+
+    const setForward = () => {
+        setNextPage(nextPage => nextPage.filter(item => item !== nextPage[nextPage.length  - 1]));
     }
 
     const goForward = () => {
         if (nextPage.length > 0) {
             setPrevPage([...prevPage, page])
             setPage(nextPage[nextPage.length  - 1])
+            setForward()
         }
     }
     
