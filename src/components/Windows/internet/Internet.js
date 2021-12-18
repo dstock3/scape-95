@@ -4,10 +4,9 @@ import NotFound from './NotFound'
 import NewPage from './NewPage'
 import NewPage2 from './NewPage2'
 import '../../../style/net.css'
-import refreshIcon from '../../../assets/internet/refresh.svg'
-import homeIcon from '../../../assets/internet/home.svg'
-import backIcon from '../../../assets/internet/back.svg'
-import forwardIcon from '../../../assets/internet/forward.svg'
+
+import Loading from './Loading'
+import NetButtons from './NetButtons'
 
 function Internet() {
     const [pageList, setPageList] = useState([
@@ -25,15 +24,22 @@ function Internet() {
 
     const [prevPage, setPrevPage] = useState([])
     const [nextPage, setNextPage] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=> {
-        let netWindow = document.getElementById("net-window")
-        let winTitle = netWindow.firstChild.firstChild
-        winTitle.innerHTML = page.title
+        if (!loading) {
+            let netWindow = document.getElementById("net-window")
+            let winTitle = netWindow.firstChild.firstChild
+            winTitle.innerHTML = page.title
+    
+            let netInput = document.querySelector(".net-input")
+            netInput.value = page.url
+        }
+    }, [page, loading])
 
-        let netInput = document.querySelector(".net-input")
-        netInput.value = page.url
-    }, [page])
+    useEffect(()=> {
+
+    }, [loading])
 
     useEffect(()=> {
         let enterEvent = (e) => {
@@ -56,13 +62,21 @@ function Internet() {
         }
     }, [pageTerm])
 
+    const isLoading = () => {
+        setLoading(true)
+        let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
+        console.log(loadInterval)
+        setInterval(() => {setLoading(false)}, loadInterval);
+    }
+
     const setHome = () => {
-        console.log("sethome " + prevPage)
+        isLoading()
         setPrevPage([...prevPage, page])
         setPage({...page, current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
     }
     
     const refresh = () => {
+        isLoading()
         setPage({...page, current: page.current, title: page.title, pageID: page.pageID, url: page.url})
     }
 
@@ -71,7 +85,7 @@ function Internet() {
     }
 
     const findPage = () => {
-        console.log("findpage " + prevPage)
+        isLoading()
         let match = false
         for (let i = 0; i < pageList.length; i++) {
             if (pageTerm === pageList[i].url) {
@@ -91,6 +105,7 @@ function Internet() {
     }
 
     const goBack = () => {
+        isLoading()
         if (prevPage.length > 0) {
             setNextPage([...nextPage, page])
             setPage(prevPage[prevPage.length  - 1])
@@ -103,44 +118,47 @@ function Internet() {
     }
 
     const goForward = () => {
+        isLoading()
         if (nextPage.length > 0) {
             setPrevPage([...prevPage, page])
             setPage(nextPage[nextPage.length  - 1])
             setForward()
         }
     }
+
+    if (loading) {
+        return (
+            <div className="internet">
+                <div className="net-header">
+                    <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
-    return (
-        <div className="internet">
-            <div className="net-header">
-                <div className="net-button-container">
-                    <button onClick={setHome}>
-                        <img src={homeIcon} alt="home icon"></img>
-                        <div className="net-button-label">Home</div>
-                    </button>
-                    <button onClick={goBack}>
-                        <img src={backIcon} alt="back icon"></img>
-                        <div className="net-button-label">Back</div>
-                    </button>
-                    <button onClick={goForward}>
-                        <img src={forwardIcon} alt="forward icon"></img>
-                        <div className="net-button-label">Forward</div>
-                    </button>
-                    <button onClick={refresh}>
-                        <img src={refreshIcon} alt="refresh icon"></img>
-                        <div className="net-button-label">Refresh</div>
-                    </button>
+                    <div className="net-input-container">
+                        <div className="net-location">Location:</div>
+                        <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
+                    </div>
                 </div>
-                <div className="net-input-container">
-                    <div className="net-location">Location:</div>
-                    <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
+                <div className="net-page" id={page.pageID}>
+                    <Loading />
                 </div>
             </div>
-            <div className="net-page" id={page.pageID}>
-                {page.current}
+        )
+    } else {
+        return (
+            <div className="internet">
+                <div className="net-header">
+                    <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
+    
+                    <div className="net-input-container">
+                        <div className="net-location">Location:</div>
+                        <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
+                    </div>
+                </div>
+                <div className="net-page" id={page.pageID}>
+                    {page.current}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Internet

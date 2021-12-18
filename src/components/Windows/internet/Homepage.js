@@ -30,7 +30,6 @@ function Homepage() {
                 <div className="net-body">
                     
                     <section>
-
                         <article className="net-article">
                         <h3 className="net-article-head">Lorem Ipsum</h3>
                             <div className="net-lede">
