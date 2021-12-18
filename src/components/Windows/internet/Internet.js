@@ -4,6 +4,10 @@ import NotFound from './NotFound'
 import NewPage from './NewPage'
 import NewPage2 from './NewPage2'
 import '../../../style/net.css'
+import refreshIcon from '../../../assets/internet/refresh.svg'
+import homeIcon from '../../../assets/internet/home.svg'
+import backIcon from '../../../assets/internet/back.svg'
+import forwardIcon from '../../../assets/internet/forward.svg'
 
 function Internet() {
     const [pageList, setPageList] = useState([
@@ -110,11 +114,22 @@ function Internet() {
         <div className="internet">
             <div className="net-header">
                 <div className="net-button-container">
-                    <button onClick={setHome}>H</button>
-                    <button onClick={goBack}>B</button>
-                    <button onClick={goForward}>F</button>
-                    <button onClick={refresh}>R</button>
-
+                    <button onClick={setHome}>
+                        <img src={homeIcon} alt="home icon"></img>
+                        <div className="net-button-label">Home</div>
+                    </button>
+                    <button onClick={goBack}>
+                        <img src={backIcon} alt="back icon"></img>
+                        <div className="net-button-label">Back</div>
+                    </button>
+                    <button onClick={goForward}>
+                        <img src={forwardIcon} alt="forward icon"></img>
+                        <div className="net-button-label">Forward</div>
+                    </button>
+                    <button onClick={refresh}>
+                        <img src={refreshIcon} alt="refresh icon"></img>
+                        <div className="net-button-label">Refresh</div>
+                    </button>
                 </div>
                 <div className="net-input-container">
                     <div className="net-location">Location:</div>

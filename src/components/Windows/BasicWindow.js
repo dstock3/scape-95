@@ -12,10 +12,10 @@ function BasicWindow(props) {
         isSelected: true,
         style: {
             position: "relative",
-            left: "45%",
-            top: "15%",
+            left: "0",
+            top: "0",
             height: "500px",
-            width: "500px"
+            width: "700px"
         }
     })
 
@@ -110,10 +110,10 @@ function BasicWindow(props) {
 
         const defaultStyle = {
             position: "relative",
-            left: "45%",
-            top: "15%",
+            left: "0",
+            top: "0",
             height: "500px",
-            width: "500px",
+            width: "700px",
             zIndex: 1
         }
     
