@@ -15,7 +15,7 @@ function BasicWindow(props) {
             left: "0",
             top: "0",
             height: "500px",
-            width: "700px"
+            width: "900px"
         }
     })
 
@@ -113,7 +113,7 @@ function BasicWindow(props) {
             left: "0",
             top: "0",
             height: "500px",
-            width: "700px",
+            width: "900px",
             zIndex: 1
         }
     

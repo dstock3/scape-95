@@ -1,0 +1,78 @@
+.net-container {
+    display: flex;
+    justify-content: center;
+}
+
+.net-col {
+    width: 15%;
+    border: 2px solid white;
+}
+
+.net-col > ul {
+    list-style: none;
+    margin: 5% 0;
+
+}
+
+.net-list-item {
+    margin: 5% 0;
+}
+
+.net-body {
+    width: 65%;
+    border: 2px solid white;
+}
+
+.net-article-head {
+    text-align: center;
+
+}
+
+.net-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.net-body > section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5%;
+}
+
+.net-article {
+    align-self: center;
+    padding-inline: 2%;
+    padding-bottom: 2%;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted white;
+    margin: 1% 0;
+}
+
+.net-lede {
+    padding-top: 2%;
+    width: 100%;
+}
+
+.net-lede > img {
+    float: left;
+    padding-top: 2%;
+    padding-inline: 5%;
+    padding-bottom: 3%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.article-link {
+    display: inline;
+    height: 1em;
+    width: 25%;
+    color: white;
+    margin: 0 0 2% 75%;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
