@@ -25,7 +25,6 @@
 
 .net-article-head {
     text-align: center;
-
 }
 
 .net-body {
@@ -55,8 +54,7 @@
     width: 100%;
 }
 
-.net-lede > img {
-    float: left;
+.net-article-image {
     padding-top: 2%;
     padding-inline: 5%;
     padding-bottom: 3%;
