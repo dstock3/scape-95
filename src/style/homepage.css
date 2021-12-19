@@ -5,14 +5,14 @@
   
   }
   
-  #homepage p {
-    padding-inline: 5%;
-  }
+#homepage p {
+  padding-inline: 5%;
+}
   
-  #homepage > h1 {
-    text-align: center;
-  }
-  
-  #homepage > h2 {
-    text-align: center;
-  }
+#homepage > h1 {
+  text-align: center;
+}
+
+#homepage > h2 {
+  text-align: center;
+}

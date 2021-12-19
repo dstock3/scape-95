@@ -1,7 +1,6 @@
 import React from 'react'
 
 function NetColList(props) {
-    console.log(props.list)
     return (
         <ul className="net-list">
             {props.list.map(item => (

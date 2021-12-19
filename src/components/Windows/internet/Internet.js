@@ -21,7 +21,7 @@ function Internet() {
 
     const [pageList, setPageList] = useState([
         {component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
-        {component: <NewPage />, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
+        {component: <NewPage colPosition="col-right"/>, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
         {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
         {component: <NotFound />, title: "404 Not Found", id: "not-found", url: ""},
     ])

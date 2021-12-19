@@ -1,0 +1,17 @@
+#newpage {
+    background-color: #5E877D;
+    color: white;
+}
+  
+#newpage p {
+    padding-inline: 7%;
+}
+
+#newpage > h1 {
+    text-align: center;
+}
+  
+#newpage > h2 {
+    text-align: center;
+}
+  
