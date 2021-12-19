@@ -1,19 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import '../../../style/net-page.css'
 import '../../../style/homepage.css'
 
 function Homepage() {
-    useEffect(()=> {
-        let images = Array.from(document.getElementsByClassName("net-article-image"))
-        for (let i = 0; i < images.length; i++) {
-            if ((i === 0) || (i % 2 === 0)) {
-                images[i].style.float = "left"
-            } else {
-                images[i].style.float = "right"
-            }
-        }
-    })
-
     return (
         <>
             <h1>Welcome Home</h1>

@@ -4,11 +4,21 @@ import NotFound from './NotFound'
 import NewPage from './NewPage'
 import NewPage2 from './NewPage2'
 import '../../../style/net.css'
-
 import Loading from './Loading'
 import NetButtons from './NetButtons'
 
 function Internet() {
+    useEffect(()=> {
+        let images = Array.from(document.getElementsByClassName("net-article-image"))
+        for (let i = 0; i < images.length; i++) {
+            if ((i === 0) || (i % 2 === 0)) {
+                images[i].style.float = "left"
+            } else {
+                images[i].style.float = "right"
+            }
+        }
+    })
+    
     const [pageList, setPageList] = useState([
         {component: <Homepage />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
         {component: <NewPage />, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
