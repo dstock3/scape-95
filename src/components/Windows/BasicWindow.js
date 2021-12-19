@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { newDrag } from '../../DragFunctions'
 import { newController } from '../Main'
 import '../../style/window.css'
+import WindowsButtons from './WindowsButtons'
 
 function BasicWindow(props) {
     const [win, setWin] = useState({
@@ -15,7 +16,7 @@ function BasicWindow(props) {
             left: "0",
             top: "0",
             height: "500px",
-            width: "900px"
+            width: "900px",
         }
     })
 
@@ -105,7 +106,14 @@ function BasicWindow(props) {
 
     const styleController = () => {
         const main = document.querySelector(".main")
-        const maxHeight = main.offsetHeight
+        
+        let maxHeight
+        if (props.winId === "net-window") {
+            maxHeight = main.offsetHeight - 145
+        } else {
+            maxHeight = main.offsetHeight
+        }
+
         const maxWidth = main.offsetWidth
 
         const defaultStyle = {
@@ -180,11 +188,7 @@ function BasicWindow(props) {
                 <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
                     <div className="window-top" onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
-                        <div className="window-buttons">
-                            <button className="windows-button min" onClick={minWindow}>-</button>
-                            <button className="windows-button max" onClick={maxToggle}>❑</button>
-                            <button className="windows-button close" onClick={closeWindow}>X</button>
-                        </div>
+                        <WindowsButtons min={minWindow} max={maxToggle} close={closeWindow} />
                     </div>
                     <div className="window-body">
                         {props.contents}             

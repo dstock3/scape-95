@@ -10,6 +10,7 @@
   height: 100%;
   width: 100%;
   overflow: auto;
+  border: 1px solid black;
 }
 
 .internet > h1 {
@@ -28,10 +29,10 @@
   display: flex;
   padding-inline: 5%;
   align-items: center;
-  border: 1px solid black;
   background: rgb(184,184,184);
   background: linear-gradient(180deg, rgb(221, 221, 221) 83%, rgb(209, 209, 209) 100%);
   z-index: 5;
+  border-inline: 1px solid black;
 }
 
 .net-button-container > button {

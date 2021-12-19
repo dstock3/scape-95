@@ -15,8 +15,8 @@ html, body {
   
   .col-container {
     display: flex;
-    height:100vh;
-    height:100vh;
+    height: 100vh;
+    height: 100vh;
   }
   
   .col {
@@ -51,7 +51,6 @@ html, body {
   .bottom {
     position: fixed;
     bottom: 0;
-    height: 35px;
     width: 100%;
     z-index: 3;
   }
@@ -75,7 +74,6 @@ html, body {
     justify-content: center;
     align-items: center;
     border: 2px solid black;
-    border-radius: 3px;
   }
   
   .bar-body {
