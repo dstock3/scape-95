@@ -54,6 +54,10 @@ function Internet() {
         }
     })
 
+    const handleVisit = () => {
+        findPage()
+    }
+
     useEffect(()=> {
         let checkValue = pageTerm
         let link = `http://www.`
@@ -151,6 +155,7 @@ function Internet() {
                     <div className="net-input-container">
                         <div className="net-location">Location:</div>
                         <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
+                        <button className="visit-page-button" onClick={handleVisit}>Enter</button>
                     </div>
                 </div>
                 <div className="net-page" id={page.pageID}>

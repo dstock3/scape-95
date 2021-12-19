@@ -23,10 +23,10 @@
   .net-header {
     position: sticky;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 85px;
     display: flex;
-    flex-direction: column;
+    padding-inline: 5%;
     align-items: center;
     border: 1px solid black;
     background: rgb(184,184,184);
