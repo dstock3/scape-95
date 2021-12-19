@@ -2,13 +2,13 @@ import React from 'react'
 import '../../../style/net-page.css'
 import '../../../style/homepage.css'
 
-function Homepage() {
+function Homepage(props) {
     return (
         <>
             <h1>Welcome Home</h1>
             <h2>The frontpage of the entire internet.</h2>
             <div className="net-container">
-                <div className="net-col">
+                <div className="net-col col-left">
                     <ul className="net-list">
                         <li className="net-list-item"><a href="#">Lorem ipsum</a></li>
                         <li className="net-list-item"><a href="#">Lorem ipsum</a></li>
