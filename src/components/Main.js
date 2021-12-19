@@ -8,6 +8,7 @@ import netIcon from "../assets/internet.png"
 import { letDrop, newDrop } from '../DragFunctions'
 import { Controller } from '../Controller'
 import Internet from './Windows/internet/Internet'
+import '../style/main.css'
 
 
 const newController = Controller()

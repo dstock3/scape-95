@@ -18,6 +18,10 @@
     margin: 5% 0;
 }
 
+a {
+    color: white;
+}
+
 .net-body {
     width: 65%;
     border: 2px solid white;

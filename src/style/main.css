@@ -1,0 +1,100 @@
+html, body {
+    margin:0px;
+    height:100%;
+    background-color:lightsteelblue;
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }
+  
+  .App {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .col-container {
+    display: flex;
+    height:100vh;
+    height:100vh;
+  }
+  
+  .col {
+    margin: 1% 0;
+    display: flex;
+    flex-direction: column;
+    width: 8%;
+    height:95vh;
+  }
+  
+  .slot {
+    height: 10%;
+  }
+  
+  .shortcut {
+    margin: 5% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 0;
+  }
+  
+  .desktop-icon {
+    width: 48px;
+  }
+  
+  .folder-name {
+    margin: 5px;
+  }
+  
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .start-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    width: 100%;
+    background: rgb(184,184,184);
+    background: linear-gradient(180deg, rgba(184,184,184,1) 83%, rgba(129,129,129,1) 100%);
+  }
+  
+  .start-button {
+    cursor: pointer;
+    display: flex;
+    font-weight: bold;
+    width: 4%;
+    min-width: 75px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+  
+  .bar-body {
+    display: flex;
+    width: 92.5%;
+  }
+  
+  .clock {
+    width: 3.5%;
+    min-width: 75px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-inline: 1%;
+    border: 1px solid black;
+  }
+  
+  #net-icon {
+    width: 125px;
+    height: 80px;
+    margin: 0px 0px -15px -10px;
+  }

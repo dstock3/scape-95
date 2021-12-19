@@ -21,14 +21,13 @@ function Homepage() {
             <div className="net-container">
                 <div className="net-col">
                     <ul className="net-list">
-                        <li className="net-list-item">Lorem ipsum</li>
-                        <li className="net-list-item">Lorem ipsum</li>
-                        <li className="net-list-item">Lorem ipsum</li>
-                        <li className="net-list-item">Lorem ipsum</li>
+                        <li className="net-list-item"><a href="#">Lorem ipsum</a></li>
+                        <li className="net-list-item"><a href="#">Lorem ipsum</a></li>
+                        <li className="net-list-item"><a href="#">Lorem ipsum</a></li>
+                        <li className="net-list-item"><a href="#">Lorem ipsum</a></li>
                     </ul>
                 </div>
                 <div className="net-body">
-                    
                     <section>
                         <article className="net-article">
                         <h3 className="net-article-head">Lorem Ipsum</h3>
