@@ -11,18 +11,44 @@ import Internet from './Windows/internet/Internet'
 import '../style/main.css'
 import BasicWindow from './Windows/BasicWindow'
 
-
 const newController = Controller()
 
 function Main() {
-    const [win, setWin] = useState({isClicked: false, isRightClicked: false})
-
-    const openWindow = () => {
-        setWin({ ...win, isClicked: true})
+    const [comp, setComp] = useState({isClicked: false, isRightClicked: false})
+    const [doc, setDoc] = useState({isClicked: false, isRightClicked: false})
+    const [bin, setBin] = useState({isClicked: false, isRightClicked: false})
+    const [net, setNet] = useState({isClicked: false, isRightClicked: false})
+    
+    const openComp = () => {
+        setComp({ ...comp, isClicked: true})
     }
 
-    const closeWindow = () => {
-        setWin({...win, isClicked: false})
+    const closeComp = () => {
+        setComp({...comp, isClicked: false})
+    }
+
+    const openDoc = () => {
+        setDoc({ ...doc, isClicked: true})
+    }
+
+    const closeDoc = () => {
+        setDoc({...doc, isClicked: false})
+    }
+
+    const openNet = () => {
+        setNet({ ...net, isClicked: true})
+    }
+
+    const closeNet = () => {
+        setNet({...net, isClicked: false})
+    }
+
+    const openBin = () => {
+        setBin({ ...bin, isClicked: true})
+    }
+
+    const closeBin = () => {
+        setBin({...bin, isClicked: false})
     }
 
     return (
@@ -30,16 +56,16 @@ function Main() {
             <div className="col-container">
                 <div className="col" id="col-one">
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon open={openWindow} shortcutId={"comp"} shortcutIconId={"comp-icon"} imgSrc={compIcon} shortcut={"My Computer"}/>
+                        <DesktopIcon open={openComp} shortcutId={"comp"} shortcutIconId={"comp-icon"} imgSrc={compIcon} shortcut={"My Computer"}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon open={openWindow} shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
+                        <DesktopIcon open={openDoc} shortcutId={"doc"} shortcutIconId={"doc-icon"} imgSrc={docIcon} shortcut={"My Documents"} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon open={openWindow} shortcutId={"bin"} shortcutIconId={"bin-icon"} imgSrc={binIcon} shortcut={"Recycle Bin"}/>
+                        <DesktopIcon open={openBin} shortcutId={"bin"} shortcutIconId={"bin-icon"} imgSrc={binIcon} shortcut={"Recycle Bin"}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <DesktopIcon open={openWindow} shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"} contents={<Internet />}/>
+                        <DesktopIcon open={openNet} shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"} contents={<Internet />}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
                     </div>
@@ -93,10 +119,10 @@ function Main() {
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow isClicked={(win.isClicked)} winTitle={"My Computer"} winId={"comp-window"} close={closeWindow}contents={"contents"}/>
-                        <BasicWindow isClicked={(win.isClicked)} winTitle={"My Documents"} winId={"doc-window"} close={closeWindow}contents={"contents"}/>
-                        <BasicWindow isClicked={(win.isClicked)} winTitle={"Recycle Bin"} winId={"bin-window"} close={closeWindow}contents={"contents"}/>
-                        <BasicWindow isClicked={(win.isClicked)} winTitle={"Internet"} winId={"net-window"} close={closeWindow}contents={<Internet />} />
+                        <BasicWindow isClicked={(comp.isClicked)} winTitle={"My Computer"} winId={"comp-window"} close={closeComp}contents={"contents"}/>
+                        <BasicWindow isClicked={(doc.isClicked)} winTitle={"My Documents"} winId={"doc-window"} close={closeDoc}contents={"contents"}/>
+                        <BasicWindow isClicked={(bin.isClicked)} winTitle={"Recycle Bin"} winId={"bin-window"} close={closeBin}contents={"contents"}/>
+                        <BasicWindow isClicked={(net.isClicked)} winTitle={"Internet"} winId={"net-window"} close={closeNet}contents={<Internet />} />
                         
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
