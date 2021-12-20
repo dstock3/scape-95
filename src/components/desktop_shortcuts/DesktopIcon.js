@@ -6,14 +6,6 @@ import { newController } from '../Main'
 const DesktopIcon = (props) => {
     const [newShortcut, setShortcut] = useState({isClicked: false, isRightClicked: false})
 
-    const openWindow = () => {
-        setShortcut({ ...newShortcut, isClicked: true})
-    }
-
-    const closeWindow = () => {
-        setShortcut({...newShortcut, isClicked: false})
-    }
-
     useEffect(() => {
         newController.winParent = document.getElementById(props.shortcutId).parentElement
 
@@ -36,7 +28,7 @@ const DesktopIcon = (props) => {
                             newController.winParent.appendChild(newWindow)
                             newWindow.remove()
                         } else {
-                            closeWindow()
+                            //closeWindow()
                             newWindow.remove()
                         }
                     }
@@ -49,11 +41,14 @@ const DesktopIcon = (props) => {
 
     return (
         <>
-            <div className="shortcut" onDoubleClick={openWindow} id={props.shortcutId} draggable="true" onDragStart={newDrag}>
+            <div className="shortcut" onDoubleClick={props.open} id={props.shortcutId} draggable="true" onDragStart={newDrag}>
                 <img className="desktop-icon" id={props.shortcutIconId} src={props.imgSrc} alt={props.shortcut}></img>
                 <div className="folder-name">{props.shortcut}</div>
             </div>
+            {/*
             <BasicWindow isClicked={(newShortcut.isClicked)} winTitle={props.shortcut} winId={props.shortcutId + "-window"} contents={props.contents}/>
+            */}
+
         </>
     )
 }
