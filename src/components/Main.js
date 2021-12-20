@@ -32,7 +32,6 @@ function Main() {
                         <DesktopIcon shortcutId={"net"} shortcutIconId={"net-icon"} imgSrc={netIcon} shortcut={"Internet"} contents={<Internet />}/>
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
