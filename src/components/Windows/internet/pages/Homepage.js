@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import '../../../style/net-page.css'
-import '../../../style/homepage.css'
-import NetColList from './NetColList'
+import '../../../../style/net-page.css'
+import '../../../../style/homepage.css'
+import NetColList from '../containers/NetColList'
 
 function Homepage(props) {
     const [netList, setNetList] = useState([
         {key: 1, link: "#", linkTitle: "Lorem Ipsum"},
         {key: 2, link: "#", linkTitle: "Lorem Ipsum"},
         {key: 3, link: "#", linkTitle: "Lorem Ipsum"},
-        {key: 4, link: "#", linkTitle: "Lorem Ipsum"}
+        {key: 4, link: "#", linkTitle: "Lorem Ipsum"},
+        {key: 5, link: "#", linkTitle: "Lorem Ipsum"},
     ])
 
     return (
