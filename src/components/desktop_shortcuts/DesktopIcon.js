@@ -5,7 +5,7 @@ import { newController } from '../Main'
 
 const DesktopIcon = (props) => {
     const [newShortcut, setShortcut] = useState({isClicked: false, isRightClicked: false})
-
+    /*
     useEffect(() => {
         newController.winParent = document.getElementById(props.shortcutId).parentElement
 
@@ -37,7 +37,7 @@ const DesktopIcon = (props) => {
 
             close.addEventListener("click", closeSet)
         }
-    })
+    }) */
 
     return (
         <>

@@ -119,10 +119,10 @@ function Main() {
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow isClicked={(comp.isClicked)} winTitle={"My Computer"} winId={"comp-window"} close={closeComp}contents={"contents"}/>
-                        <BasicWindow isClicked={(doc.isClicked)} winTitle={"My Documents"} winId={"doc-window"} close={closeDoc}contents={"contents"}/>
-                        <BasicWindow isClicked={(bin.isClicked)} winTitle={"Recycle Bin"} winId={"bin-window"} close={closeBin}contents={"contents"}/>
-                        <BasicWindow isClicked={(net.isClicked)} winTitle={"Internet"} winId={"net-window"} close={closeNet}contents={<Internet />} />
+                        <BasicWindow isClicked={(comp.isClicked)} open={openComp} winTitle={"My Computer"} winId={"comp-window"} close={closeComp} contents={"contents"}/>
+                        <BasicWindow isClicked={(doc.isClicked)} open={openDoc}winTitle={"My Documents"} winId={"doc-window"} close={closeDoc} contents={"contents"}/>
+                        <BasicWindow isClicked={(bin.isClicked)} open={openBin} winTitle={"Recycle Bin"} winId={"bin-window"} close={closeBin} contents={"contents"}/>
+                        <BasicWindow isClicked={(net.isClicked)} open={openNet}winTitle={"Internet"} winId={"net-window"} close={closeNet} contents={<Internet />} />
                         
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>

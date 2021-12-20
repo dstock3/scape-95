@@ -8,7 +8,6 @@ function BasicWindow(props) {
     const [win, setWin] = useState({
         isMax: false, 
         isMin: false, 
-        isOpen: true, 
         isDraggable: true,
         isSelected: true,
         style: {
@@ -30,7 +29,7 @@ function BasicWindow(props) {
             }])
         }
     }
-
+    /*
     useEffect(() => {
         let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
         let startBar = document.querySelector(".bar-body")
@@ -74,7 +73,7 @@ function BasicWindow(props) {
             }
         }
 
-        if (!win.isOpen) {
+        if (!props.isClicked) {
             for (let i = 0; i < buttonObjArray.length; i++) {
                 if (buttonObjArray[i].contents === props.winTitle) {
                     buttonObjArray[i].element.remove()
@@ -102,7 +101,7 @@ function BasicWindow(props) {
                 buttonObjArray[i].element.removeEventListener("click", selectEffect)
             }
         }
-    })
+    }) */
 
     const styleController = () => {
         const main = document.querySelector(".main")
@@ -155,16 +154,8 @@ function BasicWindow(props) {
         }
     }
 
-    const openWindow = () => {
-        setWin({ ...win, isOpen: true, isMin: false, isMax: false, isSelected: true })
-    }
-
-    const closeWindow = () => {
-        setWin({ ...win, isOpen: false, isMin: false, isMax: false })
-    }
-
     const minWindow = () => {
-        setWin({ ...win, isOpen: true, isMin: true, isMax: false, isSelected: false })
+        setWin({ ...win, isMin: true, isMax: false, isSelected: false })
     }
 
     const minValue = (() => {
@@ -188,7 +179,7 @@ function BasicWindow(props) {
                 <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
                     <div className="window-top" onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
-                        <WindowsButtons min={minWindow} max={maxToggle} close={props.closeWindow} />
+                        <WindowsButtons min={minWindow} max={maxToggle} close={props.close} />
                     </div>
                     <div className="window-body">
                         {props.contents}             
@@ -196,7 +187,7 @@ function BasicWindow(props) {
                 </div>
                 <div className="min-win">
                     {minWin.map(minWindow => (
-                        <div className="min-win-button" onClick={openWindow} key={minWindow.id} >{minWindow.value}</div>
+                        <div className="min-win-button" onClick={props.open} key={minWindow.id} >{minWindow.value}</div>
                     ))}
                 </div>
             </>
