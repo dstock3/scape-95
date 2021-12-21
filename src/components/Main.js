@@ -26,7 +26,7 @@ function Main() {
     }
 
     const minComp = () => {
-        setComp({ ...comp, isMin: true})
+        setComp({ ...comp, isClicked: false, isMin: true})
         setMinWin([ ...minWin, {
             id: 0,
             value: comp.shortcut,
@@ -43,7 +43,7 @@ function Main() {
     }
 
     const minDoc = () => {
-        setDoc({ ...doc, isMin: true})
+        setDoc({ ...doc, isClicked: false, isMin: true})
         setMinWin([ ...minWin, {
             id: 1,
             value: doc.shortcut,
@@ -60,7 +60,7 @@ function Main() {
     }
 
     const minNet = () => {
-        setNet({ ...net, isMin: true})
+        setNet({ ...net, isClicked: false, isMin: true})
         setMinWin([ ...minWin, {
             id: 2,
             value: net.shortcut,
@@ -77,7 +77,7 @@ function Main() {
     }
 
     const minBin = () => {
-        setBin({ ...bin, isMin: true})
+        setBin({ ...bin, isClicked: false, isMin: true})
         setMinWin([ ...minWin, {
             id: 3,
             value: bin.shortcut,
