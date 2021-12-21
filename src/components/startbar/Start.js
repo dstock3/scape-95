@@ -131,7 +131,6 @@ const Start = (props) => {
         }
     })*/
 
-    console.log(props.windows)
     return (
         <div className="start-bar">
             <div className="start-button" onClick={startToggle}>
