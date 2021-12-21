@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { newDrag } from '../../DragFunctions'
 import '../../style/window.css'
 import WindowsButtons from './WindowsButtons'
@@ -16,6 +16,23 @@ function BasicWindow(props) {
             width: "700px",
         }
     })
+
+    const [isHidden, setHidden] = useState(props.minState)
+
+    useEffect(() => {
+        if (props.minState) {
+            setHidden("hidden")
+        } else {
+            setHidden("")
+        }
+    }, [props.minState])
+
+    const [isClosed, setClosed] = useState(false)
+    
+    const closeSet = () => {
+        setClosed(true)
+        props.close()
+    }
 
     const styleController = () => {
         const main = document.querySelector(".main")
@@ -71,10 +88,10 @@ function BasicWindow(props) {
     if (props.isClicked) {
         return (
             <>
-                <div className="basic-window" id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+                <div className={`basic-window ${isHidden}`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
                     <div className="window-top" onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
-                        <WindowsButtons min={props.min} max={maxToggle} close={props.close} />
+                        <WindowsButtons min={props.min} max={maxToggle} close={closeSet} />
                     </div>
                     <div className="window-body">
                         {props.contents}             
@@ -82,7 +99,13 @@ function BasicWindow(props) {
                 </div>
             </>
         )
-    } else {
+    } else if (!props.isClicked) {
+        return(
+            <div className={`basic-window hidden`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+
+            </div>
+        )
+    } else if (isClosed) {
         return null
     }
 }

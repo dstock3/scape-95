@@ -72,7 +72,7 @@ function Main() {
     }
 
     const minComp = () => {
-        setComp({ ...comp, isClicked: false, isMin: true})
+        setComp({ ...comp, isClicked: true, isMin: true})
         setMinWin(minHelper(comp.shortcut))
     }
 
@@ -94,7 +94,7 @@ function Main() {
     }
 
     const minDoc = () => {
-        setDoc({ ...doc, isClicked: false, isMin: true})
+        setDoc({ ...doc, isClicked: true, isMin: true})
         setMinWin(minHelper(doc.shortcut))
     }
 
@@ -115,7 +115,7 @@ function Main() {
     }
 
     const minNet = () => {
-        setNet({ ...net, isClicked: false, isMin: true})
+        setNet({ ...net, isClicked: true, isMin: true})
         setMinWin(minHelper(net.shortcut))
     }
 
@@ -136,7 +136,7 @@ function Main() {
     }
 
     const minBin = () => {
-        setBin({ ...bin, isClicked: false, isMin: true})
+        setBin({ ...bin, isClicked: true, isMin: true})
         setMinWin(minHelper(bin.shortcut))
     }
 
@@ -206,16 +206,16 @@ function Main() {
 
                 <div className="col" id="five">
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow isClicked={(comp.isClicked)} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} close={closeComp} contents={"contents"} />
+                        <BasicWindow isClicked={(comp.isClicked)} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow isClicked={(doc.isClicked)} open={openDoc}winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} close={closeDoc} contents={"contents"} />
+                        <BasicWindow isClicked={(doc.isClicked)} open={openDoc}winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow isClicked={(bin.isClicked)} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} close={closeBin} contents={"contents"} />
+                        <BasicWindow isClicked={(bin.isClicked)} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                        <BasicWindow isClicked={(net.isClicked)} open={openNet}winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} close={closeNet} contents={<Internet />} />
+                        <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     </div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
                     <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
