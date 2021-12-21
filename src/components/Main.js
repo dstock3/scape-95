@@ -23,8 +23,9 @@ function Main() {
             id: 0,
             value: comp.shortcut,
             open: openComp,
-            className: "min-win-button selected"
+            className: "selected"
         }])
+
     }
 
     const closeComp = () => {
@@ -34,7 +35,12 @@ function Main() {
 
     const minComp = () => {
         setComp({ ...comp, isClicked: false, isMin: true})
-        console.log(minWin)
+        setMinWin([ ...minWin, {
+            id: 4,
+            value: comp.shortcut,
+            open: openComp,
+            className: ""
+        }])
     }
 
     const openDoc = () => {
@@ -43,7 +49,7 @@ function Main() {
             id: 1,
             value: doc.shortcut,
             open: openDoc,
-            className: "min-win-button selected"
+            className: "selected"
         }])
     }
 
@@ -54,6 +60,12 @@ function Main() {
 
     const minDoc = () => {
         setDoc({ ...doc, isClicked: false, isMin: true})
+        setMinWin([ ...minWin, {
+            id: 5,
+            value: doc.shortcut,
+            open: openDoc,
+            className: ""
+        }])
     }
 
     const openNet = () => {
@@ -62,7 +74,7 @@ function Main() {
             id: 2,
             value: net.shortcut,
             open: openNet,
-            className: "min-win-button selected"
+            className: "selected"
         }])
     }
 
@@ -73,6 +85,12 @@ function Main() {
 
     const minNet = () => {
         setNet({ ...net, isClicked: false, isMin: true})
+        setMinWin([ ...minWin, {
+            id: 6,
+            value: net.shortcut,
+            open: openNet,
+            className: ""
+        }])
     }
 
     const openBin = () => {
@@ -81,7 +99,7 @@ function Main() {
             id: 3,
             value: bin.shortcut,
             open: openBin,
-            className: "min-win-button selected"
+            className: "selected"
         }])
     }
 
@@ -92,6 +110,12 @@ function Main() {
 
     const minBin = () => {
         setBin({ ...bin, isClicked: false, isMin: true})
+        setMinWin([ ...minWin, {
+            id: 7,
+            value: bin.shortcut,
+            open: openBin,
+            className: ""
+        }])
     }
 
     return (

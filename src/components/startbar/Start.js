@@ -140,7 +140,7 @@ const Start = (props) => {
             <div className="bar-body">
                 <div className="min-win">
                     {props.windows.map(window => (
-                        <div className={window.className} onClick={window.open} key={window.id} >{window.value}</div>
+                        <div className={`min-win-button ${window.className}`} onClick={window.open} key={window.id} >{window.value}</div>
                     ))}
                 </div>
             </div>
