@@ -45,6 +45,16 @@ function Main() {
         return newArray
     }
 
+    const closeHelper = (shortcutValue) => {
+        let newArray = minWin
+        for (let i = 0; i < newArray.length; i++) {
+            if (newArray[i].value === shortcutValue) {
+                newArray.splice(i, 1)
+            }
+        }
+        return newArray
+    }
+
     const openComp = () => {
         setComp({ ...comp, isClicked: true, isMin: false})
         let compObj = {
@@ -58,7 +68,7 @@ function Main() {
 
     const closeComp = () => {
         setComp({...comp, isClicked: false, isMin: false})
-        setMinWin(minWin => minWin.filter(winButton => winButton.value !== comp.shortcut));
+        setMinWin(closeHelper(comp.shortcut));
     }
 
     const minComp = () => {
@@ -80,7 +90,7 @@ function Main() {
 
     const closeDoc = () => {
         setDoc({...doc, isClicked: false, isMin: false})
-        setMinWin(minWin => minWin.filter(winButton => winButton.value !== doc.shortcut));
+        setMinWin(closeHelper(doc.shortcut));
     }
 
     const minDoc = () => {
@@ -97,12 +107,11 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(newObj))
-
     }
 
     const closeNet = () => {
         setNet({...net, isClicked: false, isMin: false})
-        setMinWin(minWin => minWin.filter(winButton => winButton.value !== net.shortcut));
+        setMinWin(closeHelper(net.shortcut));
     }
 
     const minNet = () => {
@@ -123,7 +132,7 @@ function Main() {
 
     const closeBin = () => {
         setBin({...bin, isClicked: false, isMin: false})
-        setMinWin(minWin => minWin.filter(winButton => winButton.value !== bin.shortcut));
+        setMinWin(closeHelper(bin.shortcut));
     }
 
     const minBin = () => {
