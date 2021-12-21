@@ -19,70 +19,78 @@ function Main() {
 
     const openComp = () => {
         setComp({ ...comp, isClicked: true, isMin: false})
+        setMinWin([ ...minWin, {
+            id: 0,
+            value: comp.shortcut,
+            open: openComp,
+            className: "min-win-button selected"
+        }])
     }
 
     const closeComp = () => {
         setComp({...comp, isClicked: false, isMin: false})
+        setMinWin(minWin => minWin.filter(winButton => winButton.value !== comp.shortcut));
     }
 
     const minComp = () => {
         setComp({ ...comp, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 0,
-            value: comp.shortcut,
-            open: openComp
-        }])
     }
 
     const openDoc = () => {
         setDoc({ ...doc, isClicked: true, isMin: false})
+        setMinWin([ ...minWin, {
+            id: 1,
+            value: doc.shortcut,
+            open: openDoc,
+            className: "min-win-button selected"
+        }])
     }
 
     const closeDoc = () => {
         setDoc({...doc, isClicked: false, isMin: false})
+        setMinWin(minWin => minWin.filter(winButton => winButton.value !== doc.shortcut));
     }
 
     const minDoc = () => {
         setDoc({ ...doc, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 1,
-            value: doc.shortcut,
-            open: openDoc
-        }])
     }
 
     const openNet = () => {
         setNet({ ...net, isClicked: true, isMin: false})
+        setMinWin([ ...minWin, {
+            id: 2,
+            value: net.shortcut,
+            open: openNet,
+            className: "min-win-button selected"
+        }])
     }
 
     const closeNet = () => {
         setNet({...net, isClicked: false, isMin: false})
+        setMinWin(minWin => minWin.filter(winButton => winButton.value !== net.shortcut));
     }
 
     const minNet = () => {
         setNet({ ...net, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 2,
-            value: net.shortcut,
-            open: openNet
-        }])
     }
 
     const openBin = () => {
         setBin({ ...bin, isClicked: true, isMin: false})
+        setMinWin([ ...minWin, {
+            id: 3,
+            value: bin.shortcut,
+            open: openBin,
+            className: "min-win-button selected"
+        }])
     }
 
     const closeBin = () => {
         setBin({...bin, isClicked: false, isMin: false})
+        setMinWin(minWin => minWin.filter(winButton => winButton.value !== bin.shortcut));
     }
 
     const minBin = () => {
         setBin({ ...bin, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 3,
-            value: bin.shortcut,
-            open: openBin
-        }])
     }
 
     return (
