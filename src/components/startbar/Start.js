@@ -4,6 +4,39 @@ import StartMenu from './StartMenu'
 
 const Start = (props) => {
     const [start, setStart] = useState({isStarted: false})
+    /*
+    useEffect(() => {
+        newController.winParent = document.getElementById(props.shortcutId).parentElement
+
+        let closeButtons = Array.from(document.getElementsByClassName("close"))
+
+        for (let i = 0; i < closeButtons.length; i++) {
+            let close = closeButtons[i];
+            let newWindow = close.parentElement.parentElement.parentElement;
+
+            function closeSet() {
+                let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
+                for (let y = 0; y < winButtons.length; y++) {
+                    if (props.shortcut === winButtons[y].innerHTML) {
+                        winButtons[y].remove()
+                    }
+
+                    if (newWindow.id === props.shortcutId + "-window")  {
+                        if (newWindow.parentElement !== newController.winParent) {
+                            newWindow.classList.add("hidden")
+                            newController.winParent.appendChild(newWindow)
+                            newWindow.remove()
+                        } else {
+                            //closeWindow()
+                            newWindow.remove()
+                        }
+                    }
+                }
+            }
+
+            close.addEventListener("click", closeSet)
+        }
+    }) */
     
     useEffect(() => {
         let offStart = document.querySelector(".col-container")
@@ -23,22 +56,8 @@ const Start = (props) => {
         }
     }
 
-    const [minWin, setMinWin] = useState([])
 
-    useEffect(() => {
-        for (let i = 0; i < props.windows.length; i++) {
-            if (props.windows[i].winState.isMin) {
-                setMinWin([ ...minWin, {
-                    id: i,
-                    value: props.windows[i].winState.shortcut,
-                    open: props.windows[i].openMethod
-                }])
-            }
-            console.log(minWin)
-        }
-
-    }, [props.windows])
-
+    /*
     useEffect(() => {
         let winButtons = Array.from(document.getElementsByClassName("min-win-button"))
         let startBar = document.querySelector(".bar-body")
@@ -110,8 +129,8 @@ const Start = (props) => {
                 buttonObjArray[i].element.removeEventListener("click", selectEffect)
             }
         }
-    })
-
+    })*/
+    console.log(props.windows)
     return (
         <div className="start-bar">
             <div className="start-button" onClick={startToggle}>
@@ -120,8 +139,8 @@ const Start = (props) => {
             <StartMenu canStart={start.isStarted} />
             <div className="bar-body">
                 <div className="min-win">
-                    {minWin.map(minWindow => (
-                        <div className="min-win-button" onClick={minWindow.open} key={minWindow.id} >{minWindow.value}</div>
+                    {props.windows.map(window => (
+                        <div className="min-win-button" onClick={window.open} key={window.id} >{window.value}</div>
                     ))}
                 </div>
             </div>

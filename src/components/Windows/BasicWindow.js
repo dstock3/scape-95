@@ -13,7 +13,7 @@ function BasicWindow(props) {
             left: "0",
             top: "0",
             height: "500px",
-            width: "900px",
+            width: "700px",
         }
     })
 
