@@ -2,9 +2,9 @@
     display: flex;
     position: fixed;
     left: 0;
-    bottom: 3.25%;
+    bottom: 3%;
     width: 17%;
-    height: 33%;
+    height: 40%;
     background-color: #b8b8b8;
     border: solid black 1px;
     border-top-right-radius: 5px;
@@ -36,7 +36,7 @@
 
   #shutdown {
     position: relative;
-    top: 35%;
+    top: 50%;
   }
   
   .start-option-container {
