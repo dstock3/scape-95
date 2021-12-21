@@ -1,7 +1,6 @@
 import React from 'react'
 import { newDrag } from '../../DragFunctions'
 
-
 const DesktopIcon = (props) => {
     return (
         <div className="shortcut" onDoubleClick={props.open} id={props.shortcutId} draggable="true" onDragStart={newDrag}>

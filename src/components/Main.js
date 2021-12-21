@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Start from './startbar/Start'
 import compIcon from "../assets/mycomputer.png"
 import binIcon from "../assets/bin.png"
@@ -17,8 +17,8 @@ function Main() {
     const [net, setNet] = useState({shortcut: "Internet", shortcutId: "net", isClicked: false, isRightClicked: false, isMin: false})
     const [minWin, setMinWin] = useState([])
 
-    const selectController = (minArray, obj) => {
-        let newArray = minArray
+    const selectController = (obj) => {
+        let newArray = minWin
         let check = false
         for (let i = 0; i < newArray.length; i++) {
             if (newArray[i].value === obj.value) {
@@ -35,6 +35,16 @@ function Main() {
         return newArray
     }
 
+    const minHelper = (shortcutValue) => {
+        let newArray = minWin
+        for (let i = 0; i < newArray.length; i++) {
+            if ((newArray[i].value === shortcutValue) && (newArray[i].className === "selected")) {
+                newArray[i].className = ""
+            }
+        }
+        return newArray
+    }
+
     const openComp = () => {
         setComp({ ...comp, isClicked: true, isMin: false})
         let compObj = {
@@ -43,9 +53,7 @@ function Main() {
             open: openComp,
             className: "selected"
         }
-        setMinWin(selectController(minWin, compObj))
-
-        
+        setMinWin(selectController(compObj)) 
     }
 
     const closeComp = () => {
@@ -55,6 +63,7 @@ function Main() {
 
     const minComp = () => {
         setComp({ ...comp, isClicked: false, isMin: true})
+        setMinWin(minHelper(comp.shortcut))
     }
 
     const openDoc = () => {
@@ -65,7 +74,7 @@ function Main() {
             open: openDoc,
             className: "selected"
         }
-        setMinWin(selectController(minWin, docObj))
+        setMinWin(selectController(docObj))
 
     }
 
@@ -76,6 +85,7 @@ function Main() {
 
     const minDoc = () => {
         setDoc({ ...doc, isClicked: false, isMin: true})
+        setMinWin(minHelper(doc.shortcut))
     }
 
     const openNet = () => {
@@ -86,7 +96,7 @@ function Main() {
             open: openNet,
             className: "selected"
         }
-        setMinWin(selectController(minWin, newObj))
+        setMinWin(selectController(newObj))
 
     }
 
@@ -97,6 +107,7 @@ function Main() {
 
     const minNet = () => {
         setNet({ ...net, isClicked: false, isMin: true})
+        setMinWin(minHelper(net.shortcut))
     }
 
     const openBin = () => {
@@ -107,8 +118,7 @@ function Main() {
             open: openBin,
             className: "selected"
         }
-        setMinWin(selectController(minWin, binObj))
-
+        setMinWin(selectController(binObj))
     }
 
     const closeBin = () => {
@@ -118,6 +128,7 @@ function Main() {
 
     const minBin = () => {
         setBin({ ...bin, isClicked: false, isMin: true})
+        setMinWin(minHelper(bin.shortcut))
     }
 
     return (
