@@ -17,15 +17,35 @@ function Main() {
     const [net, setNet] = useState({shortcut: "Internet", shortcutId: "net", isClicked: false, isRightClicked: false, isMin: false})
     const [minWin, setMinWin] = useState([])
 
+    const selectController = (minArray, obj) => {
+        let newArray = minArray
+        let check = false
+        for (let i = 0; i < newArray.length; i++) {
+            if (newArray[i].value === obj.value) {
+                newArray.splice(i, 1, obj)
+                check = true 
+            } else {
+                newArray[i].className = ""
+            }
+        }
+        if (!check) {
+            newArray.push(obj)
+        }
+        
+        return newArray
+    }
+
     const openComp = () => {
         setComp({ ...comp, isClicked: true, isMin: false})
-        setMinWin([ ...minWin, {
+        let compObj = {
             id: 0,
             value: comp.shortcut,
             open: openComp,
             className: "selected"
-        }])
+        }
+        setMinWin(selectController(minWin, compObj))
 
+        
     }
 
     const closeComp = () => {
@@ -35,22 +55,18 @@ function Main() {
 
     const minComp = () => {
         setComp({ ...comp, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 4,
-            value: comp.shortcut,
-            open: openComp,
-            className: ""
-        }])
     }
 
     const openDoc = () => {
         setDoc({ ...doc, isClicked: true, isMin: false})
-        setMinWin([ ...minWin, {
+        let docObj =  {
             id: 1,
             value: doc.shortcut,
             open: openDoc,
             className: "selected"
-        }])
+        }
+        setMinWin(selectController(minWin, docObj))
+
     }
 
     const closeDoc = () => {
@@ -60,22 +76,18 @@ function Main() {
 
     const minDoc = () => {
         setDoc({ ...doc, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 5,
-            value: doc.shortcut,
-            open: openDoc,
-            className: ""
-        }])
     }
 
     const openNet = () => {
         setNet({ ...net, isClicked: true, isMin: false})
-        setMinWin([ ...minWin, {
+        let newObj = {
             id: 2,
             value: net.shortcut,
             open: openNet,
             className: "selected"
-        }])
+        }
+        setMinWin(selectController(minWin, newObj))
+
     }
 
     const closeNet = () => {
@@ -85,22 +97,18 @@ function Main() {
 
     const minNet = () => {
         setNet({ ...net, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 6,
-            value: net.shortcut,
-            open: openNet,
-            className: ""
-        }])
     }
 
     const openBin = () => {
         setBin({ ...bin, isClicked: true, isMin: false})
-        setMinWin([ ...minWin, {
+        let binObj = {
             id: 3,
             value: bin.shortcut,
             open: openBin,
             className: "selected"
-        }])
+        }
+        setMinWin(selectController(minWin, binObj))
+
     }
 
     const closeBin = () => {
@@ -110,12 +118,6 @@ function Main() {
 
     const minBin = () => {
         setBin({ ...bin, isClicked: false, isMin: true})
-        setMinWin([ ...minWin, {
-            id: 7,
-            value: bin.shortcut,
-            open: openBin,
-            className: ""
-        }])
     }
 
     return (
