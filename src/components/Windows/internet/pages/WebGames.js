@@ -4,9 +4,9 @@ import '../../../../style/games/ticTacToe.css'
 
 function WebGames() {
     return (
-        <div id="tic-tac-toe">
+        <>
             <TicTacToe />
-        </div>
+        </>
     )
 }
 

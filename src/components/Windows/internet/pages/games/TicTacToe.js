@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 function TicTacToe() {
     const [score, setScore] = useState({ playerCount: 0, computerCount: 0 })
@@ -13,65 +13,114 @@ function TicTacToe() {
         botMid: null, 
         botRight: null,
     })
+    const [round, setRound] = useState(0)
+    const [isStarted, setStart] = useState(false)
 
     const compMove = () => {
         let newSpaceObj = spaces
+        
         let possibleMoves = []
+        
         for (let prop in newSpaceObj) {
-            if (newSpaceObj[prop] !== "x") {
+            if ((newSpaceObj[prop] !== "x") && (newSpaceObj[prop] !== "O")) {
                 possibleMoves.push(prop)
             }
         }
-        console.log(possibleMoves)
-        /*
-        let moveNum = Math.random() * ((possibleMoves.length - 1) - 1) + 1
+        console.log("possible moves " + possibleMoves)
+        let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
+        
         let newMove = possibleMoves[moveNum]
-        console.log(newMove) */
+        console.log("New move " + newMove)
+        for (let prop in newSpaceObj) {
+            if (prop === newMove) {
+                newSpaceObj[prop] = "O"
+            }
+        }
+        return newSpaceObj
+        
     }
+    const moveRef = useRef(null)
+
+    useEffect(() => {
+        if (isStarted) {
+            console.log(round)
+            moveRef.current = compMove()
+            console.log(moveRef.current)
+            
+        }
+
+        
+    })
 
     const topLeftHandler = () => {
         setSpaces({ ...spaces, topLeft: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+        
     }
 
     const topMidHandler = () => {
         setSpaces({ ...spaces, topMid: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     const topRightHandler = () => {
         setSpaces({ ...spaces, topRight: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     const midLeftHandler = () => {
         setSpaces({ ...spaces, midLeft: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
     }
 
     const midMidHandler = () => {
         setSpaces({ ...spaces, midMid: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     const midRightHandler = () => {
         setSpaces({ ...spaces, midRight: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     const botLeftHandler = () => {
         setSpaces({ ...spaces, botLeft: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     const botMidHandler = () => {
         setSpaces({ ...spaces, botMid: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     const botRightHandler = () => {
         setSpaces({ ...spaces, botRight: "x"})
-        compMove()
+        setRound(prevRound => prevRound + 1)
+        setStart(true)
+
+
     }
 
     return (
