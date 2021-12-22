@@ -15,14 +15,16 @@ function TicTacToe() {
     })
     const [round, setRound] = useState(0)
     const [isStarted, setStart] = useState(false)
+    const moveRef = useRef(false)
 
     const compMove = () => {
         let newSpaceObj = spaces
+        console.log(spaces)
         
         let possibleMoves = []
         
         for (let prop in newSpaceObj) {
-            if ((newSpaceObj[prop] !== "x") && (newSpaceObj[prop] !== "O")) {
+            if ((newSpaceObj[prop] !== "X") && (newSpaceObj[prop] !== "O")) {
                 possibleMoves.push(prop)
             }
         }
@@ -31,97 +33,42 @@ function TicTacToe() {
         
         let newMove = possibleMoves[moveNum]
         console.log("New move " + newMove)
-        for (let prop in newSpaceObj) {
-            if (prop === newMove) {
-                newSpaceObj[prop] = "O"
-            }
-        }
-        return newSpaceObj
-        
+        return newMove
     }
-    const moveRef = useRef(null)
 
     useEffect(() => {
-        if (isStarted) {
-            console.log(round)
-            moveRef.current = compMove()
-            console.log(moveRef.current)
-            
+        if (moveRef.current) {
+            let newMove = compMove()
+            for (let prop in spaces) {
+                if (prop === newMove) {
+                    setSpaces({...spaces, [prop]: "O"})
+                }
+            }
+            moveRef.current = false
         }
+    }, [spaces])
 
-        
+    const clickHandler = (position) => {
+        for (let prop in spaces) {
+            if (prop === position) {
+                setSpaces({...spaces, [prop]: "X"})
+                setRound(prevRound => prevRound + 1)
+                moveRef.current = true
+            }
+        }
+    }
+
+    useEffect(()=>{
+        let gameSpaces = Array.from(document.getElementsByClassName("space"));
+        for (let i = 0; i < gameSpaces.length; i++) {
+            if (gameSpaces[i].innerHTML === "O") {
+                gameSpaces[i].classList.add("comp")
+            }
+            if (gameSpaces[i].innerHTML === "X") {
+                gameSpaces[i].classList.add("player")
+            }
+        }
     })
-
-    const topLeftHandler = () => {
-        setSpaces({ ...spaces, topLeft: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-        
-    }
-
-    const topMidHandler = () => {
-        setSpaces({ ...spaces, topMid: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
-
-    const topRightHandler = () => {
-        setSpaces({ ...spaces, topRight: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
-
-    const midLeftHandler = () => {
-        setSpaces({ ...spaces, midLeft: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-    }
-
-    const midMidHandler = () => {
-        setSpaces({ ...spaces, midMid: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
-
-    const midRightHandler = () => {
-        setSpaces({ ...spaces, midRight: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
-
-    const botLeftHandler = () => {
-        setSpaces({ ...spaces, botLeft: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
-
-    const botMidHandler = () => {
-        setSpaces({ ...spaces, botMid: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
-
-    const botRightHandler = () => {
-        setSpaces({ ...spaces, botRight: "x"})
-        setRound(prevRound => prevRound + 1)
-        setStart(true)
-
-
-    }
 
     return (
         <div id="tic-tac-toe">
@@ -137,39 +84,39 @@ function TicTacToe() {
                 </div>
                 <div className="main-container">
                     <div className="game-container">
-                        <div className="space blank" id="position-0" onClick={topLeftHandler}>
+                        <div className="space blank" id="position-0" onClick={()=> clickHandler("topLeft")}>
                             {spaces.topLeft}
                         </div>
 
-                        <div className="space blank" id="position-1" onClick={topMidHandler}>
+                        <div className="space blank" id="position-1" onClick={()=> clickHandler("topMid")}>
                             {spaces.topMid}
                         </div>
 
-                        <div className="space blank" id="position-2" onClick={topRightHandler}>
+                        <div className="space blank" id="position-2" onClick={()=> clickHandler("topRight")}>
                             {spaces.topRight}
                         </div>
 
-                        <div className="space blank" id="position-3" onClick={midLeftHandler}>
+                        <div className="space blank" id="position-3" onClick={()=> clickHandler("midLeft")}>
                             {spaces.midLeft}
                         </div>
 
-                        <div className="space blank" id="position-4" onClick={midMidHandler}>
+                        <div className="space blank" id="position-4" onClick={()=> clickHandler("midMid")}>
                             {spaces.midMid}
                         </div>
 
-                        <div className="space blank" id="position-5" onClick={midRightHandler}>
+                        <div className="space blank" id="position-5" onClick={()=> clickHandler("midRight")}>
                             {spaces.midRight}
                         </div>
 
-                        <div className="space blank" id="position-6" onClick={botLeftHandler}>
+                        <div className="space blank" id="position-6" onClick={()=> clickHandler("botLeft")}>
                             {spaces.botLeft}
                         </div>
 
-                        <div className="space blank" id="position-7" onClick={botMidHandler}>
+                        <div className="space blank" id="position-7" onClick={()=> clickHandler("botMid")}>
                             {spaces.botMid}
                         </div>
 
-                        <div className="space blank" id="position-8" onClick={botRightHandler}>
+                        <div className="space blank" id="position-8" onClick={()=> clickHandler("botRight")}>
                             {spaces.botRight}
                         </div>
                     </div>

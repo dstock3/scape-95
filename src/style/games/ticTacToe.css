@@ -40,6 +40,7 @@
     position: relative;
     bottom: 15px;
     font-size: 3em;
+    margin: 10% 0;
   }
   
   #player-one {
@@ -131,3 +132,6 @@
     align-self: center;
   }
   
+  .comp .player {
+    transition: 750ms;
+  }
