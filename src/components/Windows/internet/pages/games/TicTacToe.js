@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import '../../../../../style/games/ticTacToe.css'
 
 function TicTacToe() {
     const [playerScore, setPlayerScore] = useState(0)
@@ -18,7 +19,7 @@ function TicTacToe() {
 
     const [round, setRound] = useState(0)
     const [isStarted, setStart] = useState(false)
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState("Your Move!")
     const moveRef = useRef(false)
 
     const compMove = () => {

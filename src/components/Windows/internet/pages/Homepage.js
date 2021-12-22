@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import '../../../../style/net-page.css'
-import '../../../../style/homepage.css'
 import NetColList from '../containers/NetColList'
 
 function Homepage(props) {

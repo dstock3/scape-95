@@ -7,6 +7,7 @@ import '../../../style/net.css'
 import Loading from './pages/Loading'
 import NetButtons from './NetButtons'
 import WebGames from './pages/WebGames'
+import TicTacToe from './pages/games/TicTacToe'
 
 function Internet() {
     useEffect(()=> {
@@ -20,16 +21,23 @@ function Internet() {
         }
     })
 
+    const ticTacToe = {current: <TicTacToe />, title: "Tic-Tac-Toe", pageID: "tic-tac-toe", url: "http://www.webgames.com/tictactoe"}
+    
+    const setTic = () => {
+        setPage(ticTacToe)
+    }
+
     const [pageList, setPageList] = useState([
         {component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
-        {component: <WebGames colPosition="col-right" />, title: "Web Games", id: "games", url: "http://www.webgames.com"},
+        {component: <WebGames linkOne={setTic}/>, title: "Web Games", id: "games", url: "http://www.webgames.com"},
         {component: <NewPage colPosition="col-right"/>, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
         {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
         {component: <NotFound />, title: "404 Not Found", id: "not-found", url: ""},
+        {component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url:  "http://www.webgames.com/tictactoe"}
     ])
 
     const homePage = {current: <Homepage colPosition="col-left"/>, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}
-
+    
     const [page, setPage] = useState(homePage)
 
     const [pageTerm, setPageTerm] = useState("http://www.scape.net")

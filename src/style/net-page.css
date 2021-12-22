@@ -1,3 +1,11 @@
+h1, h2 {
+    text-align: center;
+}
+
+p {
+    padding-inline: 5%;
+}
+
 .net-container {
     display: flex;
     justify-content: center;
@@ -89,4 +97,38 @@ section {
 
 .visit-page-button {
     width: 65px;
+}
+
+#homepage {
+    background: rgb(0,26,255);
+    background: linear-gradient(180deg, rgba(0,26,255,1) 88%, rgba(90,110,255,1) 100%);
+    color: white;
+}
+
+#games {
+    background: rgb(93,233,102);
+    background: linear-gradient(180deg, rgba(93,233,102,1) 0%, rgba(0,195,19,1) 35%);
+    color: rgb(133, 2, 2);
+}
+
+#games .net-article {
+    border: 2px dotted rgb(133, 2, 2);
+}
+
+#games a {
+    color: rgb(133, 2, 2);
+}
+
+#games .net-body {
+    width: 65%;
+    border: 2px solid rgb(133, 2, 2);
+}
+
+#newpage {
+    background-color: #5E877D;
+    color: white;
+}
+
+#newpage p {
+    padding-inline: 7%;
 }
