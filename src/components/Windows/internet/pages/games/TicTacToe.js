@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 function TicTacToe() {
-    const [score, setScore] = useState({ playerCount: 0, computerCount: 0 })
+    const [playerScore, setPlayerScore] = useState(0)
+    const [compScore, setCompScore] = useState(0)
+
     const [spaces, setSpaces] = useState({
         topLeft: null, 
         topMid: null, 
@@ -13,14 +15,14 @@ function TicTacToe() {
         botMid: null, 
         botRight: null,
     })
+
     const [round, setRound] = useState(0)
     const [isStarted, setStart] = useState(false)
+    const [message, setMessage] = useState(null)
     const moveRef = useRef(false)
 
     const compMove = () => {
         let newSpaceObj = spaces
-        console.log(spaces)
-        
         let possibleMoves = []
         
         for (let prop in newSpaceObj) {
@@ -28,11 +30,9 @@ function TicTacToe() {
                 possibleMoves.push(prop)
             }
         }
-        console.log("possible moves " + possibleMoves)
+
         let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
-        
         let newMove = possibleMoves[moveNum]
-        console.log("New move " + newMove)
         return newMove
     }
 
@@ -42,18 +42,86 @@ function TicTacToe() {
             for (let prop in spaces) {
                 if (prop === newMove) {
                     setSpaces({...spaces, [prop]: "O"})
+                    win("O")
                 }
             }
             moveRef.current = false
         }
     }, [spaces])
 
+    const reset = () => {
+        setSpaces({
+            topLeft: null, 
+            topMid: null, 
+            topRight: null, 
+            midLeft: null, 
+            midMid: null, 
+            midRight: null, 
+            botLeft: null, 
+            botMid: null, 
+            botRight: null,
+        })
+    }
+
+    const win = (boardPiece) => {
+        let winner = false
+
+        if ((spaces.topLeft === boardPiece) && (spaces.topMid === boardPiece) && (spaces.topRight === boardPiece)) { 
+            winner = true;
+            return winner 
+        } else if ((spaces.midLeft === boardPiece) && (spaces.midMid === boardPiece) && (spaces.midRight === boardPiece)) { 
+            winner = true;
+            return winner 
+        } else if ((spaces.botLeft === boardPiece) && (spaces.botMid === boardPiece) && (spaces.botRight === boardPiece)) { 
+            winner = true;
+            return winner
+        } else if ((spaces.topLeft === boardPiece) && (spaces.midLeft === boardPiece) && (spaces.botLeft === boardPiece)) { 
+            winner = true;
+            return winner
+        } else if ((spaces.topMid === boardPiece) && (spaces.midMid === boardPiece) && (spaces.botMid === boardPiece)) { 
+            winner = true;
+            return winner
+        } else if ((spaces.topRight === boardPiece) && (spaces.midRight === boardPiece) && (spaces.botRight === boardPiece)) { 
+            winner = true;
+            return winner
+        } else if ((spaces.topLeft === boardPiece) && (spaces.midMid === boardPiece) && (spaces.botRight === boardPiece)) { 
+            winner = true;
+            return winner
+        } else if ((spaces.topRight === boardPiece) && (spaces.midMid === boardPiece) && (spaces.botLeft === boardPiece)) { 
+            winner = true;
+            return winner
+        }
+        
+        return winner
+    }
+
+    useEffect(()=> {
+        if (round > 2) {
+            let winnerX = win("X")
+            let winnerO = win("O")
+            if (winnerX) {
+                setPlayerScore(prevScore => prevScore + 1)
+                setMessage("You Won!")
+                setRound(0)
+                reset()
+            }
+            if (winnerO) {
+                setCompScore(prevScore => prevScore + 1)
+                setMessage("The Computer Won!")
+                setRound(0)
+                reset()
+            }
+        }
+    })
+
     const clickHandler = (position) => {
         for (let prop in spaces) {
             if (prop === position) {
-                setSpaces({...spaces, [prop]: "X"})
-                setRound(prevRound => prevRound + 1)
-                moveRef.current = true
+                if (spaces[prop] !== "O") {
+                    setSpaces({...spaces, [prop]: "X"})
+                    setRound(prevRound => prevRound + 1)
+                    moveRef.current = true
+                }
             }
         }
     }
@@ -79,7 +147,7 @@ function TicTacToe() {
                         Player One:
                     </div>
                     <div className="score-number" id="player-one-score">
-                        {score.playerCount}
+                        {playerScore}
                     </div>
                 </div>
                 <div className="main-container">
@@ -126,10 +194,11 @@ function TicTacToe() {
                         Player Two:
                     </div>
                     <div className="score-number" id="player-two-score">
-                        {score.computerCount}
+                        {compScore}
                     </div>
-                </div>
+                </div>    
             </div>
+            <div className="message-window">{message}</div>
         </div>
     )
 }

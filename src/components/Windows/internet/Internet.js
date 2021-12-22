@@ -81,7 +81,6 @@ function Internet() {
     const isLoading = () => {
         setLoading(true)
         let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
-        console.log(loadInterval)
         setInterval(() => {setLoading(false)}, loadInterval);
     }
 
