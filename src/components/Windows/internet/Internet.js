@@ -6,6 +6,7 @@ import NewPage2 from './pages/NewPage2'
 import '../../../style/net.css'
 import Loading from './pages/Loading'
 import NetButtons from './NetButtons'
+import WebGames from './pages/WebGames'
 
 function Internet() {
     useEffect(()=> {
@@ -21,6 +22,7 @@ function Internet() {
 
     const [pageList, setPageList] = useState([
         {component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
+        {component: <WebGames colPosition="col-right" />, title: "Web Games", id: "games", url: "http://www.webgames.com"},
         {component: <NewPage colPosition="col-right"/>, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
         {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
         {component: <NotFound />, title: "404 Not Found", id: "not-found", url: ""},
