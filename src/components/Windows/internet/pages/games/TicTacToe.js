@@ -18,9 +18,15 @@ function TicTacToe() {
     })
 
     const [round, setRound] = useState(0)
-    const [isStarted, setStart] = useState(false)
     const [message, setMessage] = useState("Your Move!")
     const moveRef = useRef(false)
+    const [loading, setLoading] = useState(false)
+
+    const isLoading = () => {
+        setLoading(true)
+        let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
+        setTimeout(() => {setLoading(false)}, loadInterval);
+    }
 
     const compMove = () => {
         let newSpaceObj = spaces
@@ -39,14 +45,21 @@ function TicTacToe() {
 
     useEffect(() => {
         if (moveRef.current) {
-            let newMove = compMove()
-            for (let prop in spaces) {
-                if (prop === newMove) {
-                    setSpaces({...spaces, [prop]: "O"})
-                    win("O")
+            setMessage("Your Opponent is Thinking...")
+            setLoading(true)
+            let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
+            setTimeout(() => {
+                let newMove = compMove()
+                for (let prop in spaces) {
+                    if (prop === newMove) {
+                        setSpaces({...spaces, [prop]: "O"})
+                        win("O")
+                    }
                 }
-            }
-            moveRef.current = false
+                moveRef.current = false
+                setLoading(false)
+                setMessage("Your Move!")
+            }, loadInterval);
         }
     }, [spaces])
 
@@ -61,7 +74,7 @@ function TicTacToe() {
             botLeft: null, 
             botMid: null, 
             botRight: null,
-        })
+        }) 
     }
 
     const win = (boardPiece) => {
@@ -97,22 +110,34 @@ function TicTacToe() {
     }
 
     useEffect(()=> {
+        let clickHere = document.getElementsByClassName("message-window")[0]
+        
+        let resetEvent = () => {
+            reset()
+            setMessage("Your Move!")
+            clickHere.removeEventListener('click', resetEvent);
+        }
+        
         if (round > 2) {
             let winnerX = win("X")
             let winnerO = win("O")
+
             if (winnerX) {
                 setPlayerScore(prevScore => prevScore + 1)
-                setMessage("You Won!")
+                setMessage("You Won! Click Here to Play Again.")
                 setRound(0)
-                reset()
+                clickHere.addEventListener('click', resetEvent);
             }
+
             if (winnerO) {
                 setCompScore(prevScore => prevScore + 1)
-                setMessage("The Computer Won!")
+                setMessage("The Computer Won! Click Here to Play Again.")
                 setRound(0)
-                reset()
+                clickHere.addEventListener('click', resetEvent);
             }
         }
+
+
     })
 
     const clickHandler = (position) => {

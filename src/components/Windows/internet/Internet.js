@@ -24,6 +24,7 @@ function Internet() {
     const ticTacToe = {current: <TicTacToe />, title: "Tic-Tac-Toe", pageID: "tic-tac-toe", url: "http://www.webgames.com/tictactoe"}
     
     const setTic = () => {
+        isLoading()
         setPage(ticTacToe)
     }
 
