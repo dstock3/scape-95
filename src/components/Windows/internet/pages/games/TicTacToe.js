@@ -20,13 +20,6 @@ function TicTacToe() {
     const [round, setRound] = useState(0)
     const [message, setMessage] = useState("Your Move!")
     const moveRef = useRef(false)
-    const [loading, setLoading] = useState(false)
-
-    const isLoading = () => {
-        setLoading(true)
-        let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
-        setTimeout(() => {setLoading(false)}, loadInterval);
-    }
 
     const compMove = () => {
         let newSpaceObj = spaces
@@ -37,16 +30,25 @@ function TicTacToe() {
                 possibleMoves.push(prop)
             }
         }
-
-        let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
-        let newMove = possibleMoves[moveNum]
-        return newMove
+        let optimalMove
+        for (let i = 0; i < possibleMoves.length; i++) {
+            if ((possibleMoves[i] === "midMid")) {
+                optimalMove = "midMid"
+            }
+        }
+        
+        if (optimalMove) {
+            return optimalMove
+        } else {
+            let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
+            let newMove = possibleMoves[moveNum]
+            return newMove
+        }
     }
 
     useEffect(() => {
-        if (moveRef.current) {
+        if (moveRef.current && (!(win("X") || win("O")))) {
             setMessage("Your Opponent is Thinking...")
-            setLoading(true)
             let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
             setTimeout(() => {
                 let newMove = compMove()
@@ -57,7 +59,6 @@ function TicTacToe() {
                     }
                 }
                 moveRef.current = false
-                setLoading(false)
                 setMessage("Your Move!")
             }, loadInterval);
         }
