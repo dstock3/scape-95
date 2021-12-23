@@ -20,25 +20,162 @@ function TicTacToe() {
     const [round, setRound] = useState(0)
     const [message, setMessage] = useState("Your Move!")
     const moveRef = useRef(false)
+    const [messageButton, setMessageButton] = useState(null)
 
     const compMove = () => {
         let newSpaceObj = spaces
         let possibleMoves = []
+        let compMoves = []
+        let playerMoves = []
         
         for (let prop in newSpaceObj) {
             if ((newSpaceObj[prop] !== "X") && (newSpaceObj[prop] !== "O")) {
                 possibleMoves.push(prop)
             }
-        }
-        let optimalMove
-        for (let i = 0; i < possibleMoves.length; i++) {
-            if ((possibleMoves[i] === "midMid")) {
-                optimalMove = "midMid"
+            if (newSpaceObj[prop] === "O") {
+                compMoves.push(prop)
+            }
+            if (newSpaceObj[prop] === "X") {
+                playerMoves.push(prop)
             }
         }
-        
+
+        let optimalMove
+        if ((possibleMoves.includes("midMid")) && (!playerMoves.includes("midMid"))) {
+            optimalMove = "midMid"
+        }
+
+        function moveController(array) {
+            let moveResult
+            if (array.includes("topLeft") &&
+                array.includes("topMid")) {
+                if (possibleMoves.includes("topRight")) {
+                    moveResult = "topRight"
+                    return moveResult
+                }        
+            } else if (array.includes("topRight") &&
+                array.includes("topMid")) {
+                if (possibleMoves.includes("topLeft")) {
+                    moveResult = "topLeft"
+                    return moveResult
+                }
+            } else if (array.includes("topLeft") &&
+                array.includes("topRight")) {
+                if (possibleMoves.includes("topMid")) {
+                    moveResult = "topMid"
+                    return moveResult
+                }
+            } else if (array.includes("midLeft") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("midRight")) {
+                    moveResult = "midRight"
+                    return moveResult
+                }   
+            } else if (array.includes("midRight") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("midLeft")) {
+                    moveResult = "midLeft"
+                    return moveResult
+                }   
+            } else if (array.includes("botLeft") &&
+                array.includes("botMid")) {
+                if (possibleMoves.includes("botRight")) {
+                    moveResult = "botRight"
+                    return moveResult
+                } 
+            } else if (array.includes("botRight") &&
+                array.includes("botMid")) {
+                if (possibleMoves.includes("botLeft")) {
+                    moveResult = "botLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("botRight") &&
+                array.includes("botLeft")) {
+                if (possibleMoves.includes("botMid")) {
+                    moveResult = "botMid"
+                    return moveResult
+                } 
+            } else if (array.includes("topLeft") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("botRight")) {
+                    moveResult = "botRight"
+                    return moveResult
+                } 
+            } else if (array.includes("topRight") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("botLeft")) {
+                    moveResult = "botLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("topRight") &&
+                array.includes("midRight")) {
+                if (possibleMoves.includes("botRight")) {
+                    moveResult = "botRight"
+                    return moveResult
+                } 
+            } else if (array.includes("topRight") &&
+                array.includes("botRight")) {
+                if (possibleMoves.includes("midRight")) {
+                    moveResult = "midRight"
+                    return moveResult
+                } 
+            } else if (array.includes("topLeft") &&
+                array.includes("midLeft")) {
+                if (possibleMoves.includes("botLeft")) {
+                    moveResult = "botLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("topLeft") &&
+                array.includes("botLeft")) {
+                if (possibleMoves.includes("midLeft")) {
+                    moveResult = "midLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("topMid") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("botMid")) {
+                    moveResult = "botMid"
+                    return moveResult
+                } 
+            } else if (array.includes("botMid") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("topMid")) {
+                    moveResult = "topMid"
+                    return moveResult
+                }   
+            } else if (array.includes("botLeft") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("topRight")) {
+                    moveResult = "topRight"
+                    return moveResult
+                }
+            } else if (array.includes("botLeft") &&
+                array.includes("midLeft")) {
+                    if (possibleMoves.includes("topLeft")) {
+                        moveResult = "topLeft"
+                        return moveResult
+                    }
+            } else if (array.includes("botRight") &&
+                array.includes("midMid")) {
+                    if (possibleMoves.includes("topLeft")) {
+                        moveResult = "topLeft"
+                        return moveResult
+                    }
+            } else {
+                moveResult = false
+                return moveResult
+            }
+        }
+
+        let offensiveMove = moveController(compMoves)
+        let defensiveMove = moveController(playerMoves)
+
         if (optimalMove) {
             return optimalMove
+        } else if (offensiveMove) {
+            return offensiveMove
+        } else if (defensiveMove) {
+            return defensiveMove
         } else {
             let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
             let newMove = possibleMoves[moveNum]
@@ -126,6 +263,7 @@ function TicTacToe() {
             if (winnerX) {
                 setPlayerScore(prevScore => prevScore + 1)
                 setMessage("You Won! Click Here to Play Again.")
+                setMessageButton({cursor: "pointer"})
                 setRound(0)
                 clickHere.addEventListener('click', resetEvent);
             }
@@ -133,6 +271,7 @@ function TicTacToe() {
             if (winnerO) {
                 setCompScore(prevScore => prevScore + 1)
                 setMessage("The Computer Won! Click Here to Play Again.")
+                setMessageButton({cursor: "pointer"})
                 setRound(0)
                 clickHere.addEventListener('click', resetEvent);
             }
@@ -225,7 +364,7 @@ function TicTacToe() {
                     </div>
                 </div>    
             </div>
-            <div className="message-window">{message}</div>
+            <div className="message-window" style={messageButton}>{message}</div>
         </div>
     )
 }
