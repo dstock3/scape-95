@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import NetColList from '../containers/NetColList'
-import '../../../../style/newpage.css'
 
 function NewPage(props) {
     const [netList, setNetList] = useState([

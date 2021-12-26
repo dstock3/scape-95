@@ -12,8 +12,8 @@ function BasicWindow(props) {
             position: "relative",
             left: "0",
             top: "0",
-            height: "500px",
-            width: "700px",
+            height: "600px",
+            width: "800px",
         }
     })
 
@@ -50,8 +50,8 @@ function BasicWindow(props) {
             position: "relative",
             left: "0",
             top: "0",
-            height: "500px",
-            width: "700px",
+            height: "600px",
+            width: "800px",
             zIndex: 1
         }
     

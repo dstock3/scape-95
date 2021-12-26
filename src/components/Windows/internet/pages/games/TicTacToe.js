@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import '../../../../../style/games/ticTacToe.css'
 
 function TicTacToe() {
     const [playerScore, setPlayerScore] = useState(0)
@@ -17,35 +18,195 @@ function TicTacToe() {
     })
 
     const [round, setRound] = useState(0)
-    const [isStarted, setStart] = useState(false)
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState("Your Move!")
     const moveRef = useRef(false)
+    const [messageButton, setMessageButton] = useState(null)
+    const [tie, setTie] = useState(false)
 
     const compMove = () => {
+        if (tie) {
+            return null 
+        }
         let newSpaceObj = spaces
         let possibleMoves = []
+        let compMoves = []
+        let playerMoves = []
         
         for (let prop in newSpaceObj) {
             if ((newSpaceObj[prop] !== "X") && (newSpaceObj[prop] !== "O")) {
                 possibleMoves.push(prop)
             }
+            if (newSpaceObj[prop] === "O") {
+                compMoves.push(prop)
+            }
+            if (newSpaceObj[prop] === "X") {
+                playerMoves.push(prop)
+            }
         }
 
-        let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
-        let newMove = possibleMoves[moveNum]
-        return newMove
+        let optimalMove
+        if ((possibleMoves.includes("midMid")) && (!playerMoves.includes("midMid"))) {
+            optimalMove = "midMid"
+        }
+
+        function moveController(array) {
+            let moveResult
+            if (array.includes("topLeft") &&
+                array.includes("topMid")) {
+                if (possibleMoves.includes("topRight")) {
+                    moveResult = "topRight"
+                    return moveResult
+                }        
+            } else if (array.includes("topRight") &&
+                array.includes("topMid")) {
+                if (possibleMoves.includes("topLeft")) {
+                    moveResult = "topLeft"
+                    return moveResult
+                }
+            } else if (array.includes("topLeft") &&
+                array.includes("topRight")) {
+                if (possibleMoves.includes("topMid")) {
+                    moveResult = "topMid"
+                    return moveResult
+                }
+            } else if (array.includes("midLeft") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("midRight")) {
+                    moveResult = "midRight"
+                    return moveResult
+                }   
+            } else if (array.includes("midRight") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("midLeft")) {
+                    moveResult = "midLeft"
+                    return moveResult
+                }   
+            } else if (array.includes("botLeft") &&
+                array.includes("botMid")) {
+                if (possibleMoves.includes("botRight")) {
+                    moveResult = "botRight"
+                    return moveResult
+                } 
+            } else if (array.includes("botRight") &&
+                array.includes("botMid")) {
+                if (possibleMoves.includes("botLeft")) {
+                    moveResult = "botLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("botRight") &&
+                array.includes("botLeft")) {
+                if (possibleMoves.includes("botMid")) {
+                    moveResult = "botMid"
+                    return moveResult
+                } 
+            } else if (array.includes("topLeft") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("botRight")) {
+                    moveResult = "botRight"
+                    return moveResult
+                } 
+            } else if (array.includes("topRight") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("botLeft")) {
+                    moveResult = "botLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("topRight") &&
+                array.includes("midRight")) {
+                if (possibleMoves.includes("botRight")) {
+                    moveResult = "botRight"
+                    return moveResult
+                } 
+            } else if (array.includes("topRight") &&
+                array.includes("botRight")) {
+                if (possibleMoves.includes("midRight")) {
+                    moveResult = "midRight"
+                    return moveResult
+                } 
+            } else if (array.includes("topLeft") &&
+                array.includes("midLeft")) {
+                if (possibleMoves.includes("botLeft")) {
+                    moveResult = "botLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("topLeft") &&
+                array.includes("botLeft")) {
+                if (possibleMoves.includes("midLeft")) {
+                    moveResult = "midLeft"
+                    return moveResult
+                } 
+            } else if (array.includes("topMid") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("botMid")) {
+                    moveResult = "botMid"
+                    return moveResult
+                } 
+            } else if (array.includes("botMid") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("topMid")) {
+                    moveResult = "topMid"
+                    return moveResult
+                }   
+            } else if (array.includes("botLeft") &&
+                array.includes("midMid")) {
+                if (possibleMoves.includes("topRight")) {
+                    moveResult = "topRight"
+                    return moveResult
+                }
+            } else if (array.includes("botLeft") &&
+                array.includes("midLeft")) {
+                    if (possibleMoves.includes("topLeft")) {
+                        moveResult = "topLeft"
+                        return moveResult
+                    }
+            } else if (array.includes("botRight") &&
+                array.includes("midMid")) {
+                    if (possibleMoves.includes("topLeft")) {
+                        moveResult = "topLeft"
+                        return moveResult
+                    }
+            } else {
+                moveResult = false
+                return moveResult
+            }
+        }
+
+        let offensiveMove = moveController(compMoves)
+        let defensiveMove = moveController(playerMoves)
+
+        if (optimalMove) {
+            return optimalMove
+        } else if (offensiveMove) {
+            return offensiveMove
+        } else if (defensiveMove) {
+            return defensiveMove
+        } else {
+            let moveNum = Math.floor(Math.random() * ((possibleMoves.length - 1)  - 0) + 0);
+            let newMove = possibleMoves[moveNum]
+            return newMove
+        }
     }
 
     useEffect(() => {
-        if (moveRef.current) {
-            let newMove = compMove()
-            for (let prop in spaces) {
-                if (prop === newMove) {
-                    setSpaces({...spaces, [prop]: "O"})
-                    win("O")
+        if ((round >= 5) && 
+            (!(win("X") || (win("O"))))
+        ) {
+            setTie(true)
+        }
+        if (moveRef.current && (!(win("X") || win("O") || (tie)))) {
+            setMessage("Your Opponent is Thinking...")
+            let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
+            setTimeout(() => {
+                let newMove = compMove()
+                for (let prop in spaces) {
+                    if (prop === newMove) {
+                        setSpaces({...spaces, [prop]: "O"})
+                        win("O")
+                    }
                 }
-            }
-            moveRef.current = false
+                moveRef.current = false
+                setMessage("Your Move!")
+            }, loadInterval);
         }
     }, [spaces])
 
@@ -61,6 +222,9 @@ function TicTacToe() {
             botMid: null, 
             botRight: null,
         })
+        setTie(false)
+        setMessage("Your Move!")
+        setMessageButton(null)
     }
 
     const win = (boardPiece) => {
@@ -96,28 +260,53 @@ function TicTacToe() {
     }
 
     useEffect(()=> {
-        if (round > 2) {
+        let clickHere = document.getElementsByClassName("message-window")[0]
+        
+        let resetEvent = () => {
+            reset()
+            clickHere.removeEventListener('click', resetEvent);
+        }
+        console.log(round)
+        if (round > 1) {
             let winnerX = win("X")
             let winnerO = win("O")
+
+            if (tie) {
+                setMessage("It's a tie! Click Here to Play Again.")
+                setMessageButton({cursor: "pointer"})
+                setRound(0)
+                clickHere.addEventListener('click', resetEvent);
+            }
+
             if (winnerX) {
                 setPlayerScore(prevScore => prevScore + 1)
-                setMessage("You Won!")
+                setMessage("You Won! Click Here to Play Again.")
+                setMessageButton({cursor: "pointer"})
                 setRound(0)
-                reset()
+                clickHere.addEventListener('click', resetEvent);
             }
+
             if (winnerO) {
                 setCompScore(prevScore => prevScore + 1)
-                setMessage("The Computer Won!")
+                setMessage("The Computer Won! Click Here to Play Again.")
+                setMessageButton({cursor: "pointer"})
                 setRound(0)
-                reset()
+                clickHere.addEventListener('click', resetEvent);
             }
         }
     })
 
     const clickHandler = (position) => {
+        if ((round === 5) && 
+            (!(win("X") || (win("O"))))) {
+            setTie(true)
+        }
         for (let prop in spaces) {
             if (prop === position) {
-                if (spaces[prop] !== "O") {
+                if (
+                    (spaces[prop] !== "O") && 
+                    (!(win("X") || (win("O"))))
+                ) {
                     setSpaces({...spaces, [prop]: "X"})
                     setRound(prevRound => prevRound + 1)
                     moveRef.current = true
@@ -198,7 +387,7 @@ function TicTacToe() {
                     </div>
                 </div>    
             </div>
-            <div className="message-window">{message}</div>
+            <div className="message-window" style={messageButton}>{message}</div>
         </div>
     )
 }
