@@ -38,6 +38,14 @@ function Internet() {
         {component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url:  "http://www.webgames.com/tictactoe"}
     ])
 
+    const bookmarks = [
+        {component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
+        {component: <WebGames linkOne={setTic}/>, title: "Web Games", id: "games", url: "http://www.webgames.com"},
+        {component: <NewPage colPosition="col-right"/>, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
+        {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
+        {component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url:  "http://www.webgames.com/tictactoe"}
+    ]
+
     const homePage = {current: <Homepage colPosition="col-left"/>, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}
     
     const [page, setPage] = useState(homePage)
@@ -155,7 +163,11 @@ function Internet() {
         return (
             <div className="internet">
                 <div className="net-header">
-                    <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
+                    <div className="net-options">
+                        <div className="file-button">File</div>
+                        <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
+                    </div>
+
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
                     <div className="net-input-container">
@@ -172,7 +184,10 @@ function Internet() {
         return (
             <div className="internet">
                 <div className="net-header">
-                <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
+                    <div className="net-options">
+                        <div className="file-button">File</div>
+                        <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
+                    </div>
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
                     <div className="net-input-container">
