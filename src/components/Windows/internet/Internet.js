@@ -155,7 +155,7 @@ function Internet() {
         return (
             <div className="internet">
                 <div className="net-header">
-                    <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} loading={isLoading} />
+                    <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
                     <div className="net-input-container">
@@ -172,7 +172,7 @@ function Internet() {
         return (
             <div className="internet">
                 <div className="net-header">
-                    <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} loading={isLoading} />
+                <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
                     <div className="net-input-container">

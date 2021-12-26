@@ -10,7 +10,7 @@ function Bookmarks(props) {
     const openBookmark = (pageItem) => {
         setIsOpen(false)
         props.loading()
-        console.log(pageItem)
+        props.prevPageSetter([...props.prevPage, props.page])
         props.pageSetter({...props.page, current: pageItem.component, title: pageItem.title, pageID: pageItem.id, url: pageItem.url})
     }
 
