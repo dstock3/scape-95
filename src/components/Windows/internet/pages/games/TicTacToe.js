@@ -21,8 +21,12 @@ function TicTacToe() {
     const [message, setMessage] = useState("Your Move!")
     const moveRef = useRef(false)
     const [messageButton, setMessageButton] = useState(null)
+    const [tie, setTie] = useState(false)
 
     const compMove = () => {
+        if (tie) {
+            return null 
+        }
         let newSpaceObj = spaces
         let possibleMoves = []
         let compMoves = []
@@ -184,7 +188,12 @@ function TicTacToe() {
     }
 
     useEffect(() => {
-        if (moveRef.current && (!(win("X") || win("O")))) {
+        if ((round >= 5) && 
+            (!(win("X") || (win("O"))))
+        ) {
+            setTie(true)
+        }
+        if (moveRef.current && (!(win("X") || win("O") || (tie)))) {
             setMessage("Your Opponent is Thinking...")
             let loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
             setTimeout(() => {
@@ -212,7 +221,10 @@ function TicTacToe() {
             botLeft: null, 
             botMid: null, 
             botRight: null,
-        }) 
+        })
+        setTie(false)
+        setMessage("Your Move!")
+        setMessageButton(null)
     }
 
     const win = (boardPiece) => {
@@ -252,13 +264,19 @@ function TicTacToe() {
         
         let resetEvent = () => {
             reset()
-            setMessage("Your Move!")
             clickHere.removeEventListener('click', resetEvent);
         }
-        
-        if (round > 2) {
+        console.log(round)
+        if (round > 1) {
             let winnerX = win("X")
             let winnerO = win("O")
+
+            if (tie) {
+                setMessage("It's a tie! Click Here to Play Again.")
+                setMessageButton({cursor: "pointer"})
+                setRound(0)
+                clickHere.addEventListener('click', resetEvent);
+            }
 
             if (winnerX) {
                 setPlayerScore(prevScore => prevScore + 1)
@@ -276,14 +294,19 @@ function TicTacToe() {
                 clickHere.addEventListener('click', resetEvent);
             }
         }
-
-
     })
 
     const clickHandler = (position) => {
+        if ((round === 5) && 
+            (!(win("X") || (win("O"))))) {
+            setTie(true)
+        }
         for (let prop in spaces) {
             if (prop === position) {
-                if (spaces[prop] !== "O") {
+                if (
+                    (spaces[prop] !== "O") && 
+                    (!(win("X") || (win("O"))))
+                ) {
                     setSpaces({...spaces, [prop]: "X"})
                     setRound(prevRound => prevRound + 1)
                     moveRef.current = true
