@@ -3,7 +3,6 @@
   width: 100%;
   height: 100%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
 }
   
 .internet > .net-page {
@@ -68,5 +67,29 @@
   align-items: center;
   font-size: .85em;
 }
+
+.bookmarks-button {
+  font-size: .75em;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.bookmarks-list {
+  width: 95px;
+  position: absolute;
+  top: 80%;
+  background-color: rgb(184,184,184);
+  border: 1px solid black;
+  padding-bottom: 5px;
+  padding-inline: 25px;
+  list-style-type: none;
+}
+
+.bookmarks-list > li {
+  margin: 7% 0;
+  cursor: pointer;
+}
+
+
   
   

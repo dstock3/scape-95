@@ -4,19 +4,28 @@ function Bookmarks(props) {
     const [isOpen, setIsOpen] = useState(false)
 
     const reveal = () => {
-        setIsOpen(true)
+        setIsOpen(prevState => !prevState)
+    }
+
+    const openBookmark = (pageItem) => {
+        setIsOpen(false)
+        props.loading()
+        console.log(pageItem)
+        props.pageSetter({...props.page, current: pageItem.component, title: pageItem.title, pageID: pageItem.id, url: pageItem.url})
     }
 
     if (isOpen) {
         return (
             <div className="bookmarks">
-                <div className="bookmarks-button" onClick={reveal}>
+                <div className="bookmarks-button" onClick={reveal} style={{cursor: "pointer"}}>
                     Bookmarks
                 </div>
                 <ul className="bookmarks-list">
-                    {props.bookmarks.map(item => (
-                        <li className="net-list-item" key={item.key}>
-                            <a href={item.link}>{item.linkTitle}</a>
+                    {props.bookmarks.map(pageItem => (
+                        <li className="bookmark-list-item" key={pageItem.id}>
+                            <div onClick={() => {
+                                openBookmark(pageItem)
+                            }}>{pageItem.title}</div>
                         </li>
                     ))}
                 </ul>
@@ -25,7 +34,7 @@ function Bookmarks(props) {
     } else {
         return (
             <div className="bookmarks">
-                <div className="bookmarks-button" onClick={reveal}>
+                <div className="bookmarks-button" onClick={reveal} style={{cursor: "pointer"}}>
                     Bookmarks
                 </div>
             </div>

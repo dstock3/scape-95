@@ -8,6 +8,7 @@ import Loading from './pages/Loading'
 import NetButtons from './NetButtons'
 import WebGames from './pages/WebGames'
 import TicTacToe from './pages/games/TicTacToe'
+import Bookmarks from './Bookmarks'
 
 function Internet() {
     useEffect(()=> {
@@ -154,6 +155,7 @@ function Internet() {
         return (
             <div className="internet">
                 <div className="net-header">
+                    <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} loading={isLoading} />
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
                     <div className="net-input-container">
@@ -170,6 +172,7 @@ function Internet() {
         return (
             <div className="internet">
                 <div className="net-header">
+                    <Bookmarks bookmarks={pageList} page={page} pageSetter={setPage} loading={isLoading} />
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
     
                     <div className="net-input-container">
