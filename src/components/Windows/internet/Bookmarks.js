@@ -1,7 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function Bookmarks(props) {
     const [isOpen, setIsOpen] = useState(false)
+
+    useEffect(() => {
+        let offPosition = document.querySelector(".net-page")
+        if (isOpen) {
+            offPosition.addEventListener("click", reveal)
+        }
+        return () => {
+            offPosition.removeEventListener("click", reveal)
+        }
+    })
 
     const reveal = () => {
         setIsOpen(prevState => !prevState)
