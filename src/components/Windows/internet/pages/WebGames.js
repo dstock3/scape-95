@@ -3,7 +3,7 @@ import ticPic from '../../../../assets/internet/games/tictactoe.png'
 import '../../../../style/net-page.css'
 
 function WebGames(props) {
-
+    
     return (
         <>
             <h1>Web Games</h1>

@@ -10,7 +10,7 @@ function Homepage(props) {
         {key: 4, link: "#", linkTitle: "Lorem Ipsum"},
         {key: 5, link: "#", linkTitle: "Lorem Ipsum"},
     ])
-    console.log(props.colPosition)
+    
     return (
         <>
             <h1>Welcome Home</h1>

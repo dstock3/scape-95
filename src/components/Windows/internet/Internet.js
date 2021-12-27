@@ -9,6 +9,7 @@ import NetButtons from './NetButtons'
 import WebGames from './pages/WebGames'
 import TicTacToe from './pages/games/TicTacToe'
 import Bookmarks from './Bookmarks'
+import InputContainer from './InputContainer'
 
 function Internet() {
     useEffect(()=> {
@@ -21,14 +22,7 @@ function Internet() {
             }
         }
     })
-
-    const ticTacToe = {current: <TicTacToe />, title: "Tic-Tac-Toe", pageID: "tic-tac-toe", url: "http://www.webgames.com/tictactoe"}
     
-    const setTic = () => {
-        isLoading()
-        setPage(ticTacToe)
-    }
-
     const [pageList, setPageList] = useState([
         {component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net"},
         {component: <WebGames linkOne={setTic}/>, title: "Web Games", id: "games", url: "http://www.webgames.com"},
@@ -47,8 +41,16 @@ function Internet() {
     ]
 
     const homePage = {current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}
-    
+    const ticTacToe = {current: <TicTacToe />, title: "Tic-Tac-Toe", pageID: "tic-tac-toe", url: "http://www.webgames.com/tictactoe"}
+
+
     const [page, setPage] = useState(homePage)
+    
+    function setTic() {
+        isLoading()
+        setPrevPage([...prevPage, page])
+        setPage(ticTacToe)
+    }
 
     const [pageTerm, setPageTerm] = useState("http://www.scape.net")
 
@@ -169,11 +171,8 @@ function Internet() {
                     </div>
 
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
-    
-                    <div className="net-input-container">
-                        <div className="net-location">Location:</div>
-                        <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
-                    </div>
+                    
+                    <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit}/>
                 </div>
                 <div className="net-page" id={page.pageID}>
                     <Loading />
@@ -189,12 +188,8 @@ function Internet() {
                         <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
                     </div>
                     <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
-    
-                    <div className="net-input-container">
-                        <div className="net-location">Location:</div>
-                        <input className="net-input" type="text" defaultValue={page.url} onChange={searchPageTerm} />
-                        <button className="visit-page-button" onClick={handleVisit}>Enter</button>
-                    </div>
+                    <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit}/>
+
                 </div>
                 <div className="net-page" id={page.pageID}>
                     {page.current}
