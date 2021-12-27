@@ -10,14 +10,14 @@ function Homepage(props) {
         {key: 4, link: "#", linkTitle: "Lorem Ipsum"},
         {key: 5, link: "#", linkTitle: "Lorem Ipsum"},
     ])
-
+    console.log(props.colPosition)
     return (
         <>
             <h1>Welcome Home</h1>
             <h2>The frontpage of the entire internet.</h2>
             <div className="net-container">
                 <div className={`net-col ${props.colPosition}`}>
-                    <NetColList list={netList} />
+                    <NetColList list={netList} image={"https://picsum.photos/seed/picsum/200/200"}/>
                 </div>
                 <div className="net-body">
                     <section>

@@ -14,7 +14,7 @@ function NewPage(props) {
             <h1>New Page</h1>
             <div className="net-container">
                 <div className={`net-col ${props.colPosition}`}>
-                    <NetColList list={netList} />
+                    <NetColList list={netList} image={"https://picsum.photos/seed/picsum/200/200"}/>
                 </div>
                 <div className="net-body">
                     <section>

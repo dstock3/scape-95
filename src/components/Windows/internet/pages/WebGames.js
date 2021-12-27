@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ticPic from '../../../../assets/internet/games/tictactoe.png'
 import '../../../../style/net-page.css'
-
 
 function WebGames(props) {
 

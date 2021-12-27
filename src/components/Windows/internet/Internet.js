@@ -46,7 +46,7 @@ function Internet() {
         {component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url:  "http://www.webgames.com/tictactoe"}
     ]
 
-    const homePage = {current: <Homepage colPosition="col-left"/>, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}
+    const homePage = {current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}
     
     const [page, setPage] = useState(homePage)
 
@@ -105,7 +105,7 @@ function Internet() {
     const setHome = () => {
         isLoading()
         setPrevPage([...prevPage, page])
-        setPage({...page, current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
+        setPage({...page, current: <Homepage colPosition="col-left" />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"})
     }
     
     const refresh = () => {

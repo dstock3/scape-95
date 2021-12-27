@@ -12,6 +12,8 @@ p {
 }
 
 .net-col {
+    display: flex;
+    flex-direction: column;
     width: 15%;
     border: 2px solid white;
 }
@@ -27,7 +29,13 @@ p {
 .net-col > ul {
     list-style: none;
     margin: 5% 0;
+}
 
+.net-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline-start: 0;
 }
 
 .net-list-item {
@@ -131,4 +139,10 @@ section {
 
 #newpage p {
     padding-inline: 7%;
+}
+
+.profile-image {
+    width: 75%;
+    align-self: center;
+    padding-top: 5%;
 }
