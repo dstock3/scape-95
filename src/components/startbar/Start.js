@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Clock from './Clock'
 import StartMenu from './StartMenu'
+import windowsIcon from "../../assets/windows.png"
 
 const Start = (props) => {
     const [start, setStart] = useState({isStarted: false})
@@ -15,6 +16,15 @@ const Start = (props) => {
         }
     })
 
+    useEffect(() => {
+        let startButton = document.querySelector(".start-button")
+        if (start.isStarted) {
+            startButton.classList.add("started")
+        } else {
+            startButton.classList.remove("started")
+        }
+    }, [start])
+
     const startToggle = () => {
         if (start.isStarted) {
             setStart({ ...start, isStarted: false })
@@ -24,9 +34,11 @@ const Start = (props) => {
     }
 
     return (
-        <div className="start-bar">
+        <div className="start-bar"> 
             <div className="start-button" onClick={startToggle}>
-                Start
+                <img src={windowsIcon} className="windows-icon" alt="windows icon"></img>
+
+                <div className="start-text">Start</div>
             </div>
             <StartMenu canStart={start.isStarted} />
             <div className="bar-body">

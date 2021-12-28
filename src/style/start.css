@@ -1,18 +1,20 @@
 .start-menu {
     display: flex;
-    position: fixed;
+    position: absolute;
     left: 0;
-    bottom: 3%;
+    bottom: 100%;
+    height: 400px;
     width: 17%;
-    height: 40%;
     background-color: #b8b8b8;
-    border: solid black 1px;
+    border-top: solid black 1px;
+    border-right: solid black 1px;
+    border-bottom: solid black 1px;
     border-top-right-radius: 5px;
   }
   
   .start-title-container {
     display: flex;
-    width: 25%;
+    width: 18%;
     height: 100%;
     background-color: blue;
     align-self: center;
@@ -21,11 +23,10 @@
   }
   
   .start-option-list {
-    margin: 5% 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    width: 75%;
+    justify-content: space-between;
+    width: 82%;
     height: 100%;
   }
 
@@ -33,20 +34,20 @@
     width: 100%;
     display: flex;
   }
-
-  #shutdown {
-    position: relative;
-    top: 45%;
-  }
   
   .start-option-container {
     display: flex;
-    justify-content: flex-start;
-    margin: 2% 9%;
-    width: 75%;
+    justify-content: center;
+    width: 99.25%;
+    margin: 1.5% 0;
+  }
+
+  #shutdown {
+    margin: 0;
   }
 
   .start-option-arrow {
+    font-size: .75em;
     margin: 5%;
     align-self: center;
   }
@@ -57,7 +58,9 @@
     color: white;
     font-weight: bold;
     font-family: Cambria;
-    font-size: 2.5em;
+    font-size: 2em;
+    align-self: flex-end;
+    margin: 15% 0;
   }
   
   .start-item {
@@ -93,9 +96,11 @@
   
   .selected {
     font-weight: bold;
-    background-color: #d3d3d3;
+    background: rgb(172,172,172);
+    background: linear-gradient(180deg, rgba(172,172,172,1) 0%, rgba(205,205,205,1) 18%);
   }
   
   .start-item-icon {
+    margin: 0 5%;
     width: 40px;
   }
