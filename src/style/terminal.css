@@ -1,35 +1,70 @@
 .terminal {
+    font-size: 1.25em;
     height: 100%;
     width: 100%;
     background-color: black;
     color: rgb(245, 244, 244);
 }
 
-.line-input {
+.line-item {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+}
+
+.line-input {
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    width: 95%;
 }
 
 .dir {
-    width: fit-content;
+    width: 20.5%;
 }
 
 .terminal-input {
     font-size: 1em;
-    color: white;
+    color: rgb(245, 244, 244);
     width: fit-content;
     padding: none;
-    display: inline;
+    display: block;
     border: none;
     border-style: none;
     border-width: none;
     border-image: none;
-    background-color:transparent;
+    background-color: transparent;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    width: 70%;
+    height: fit-content;
+    overflow: visible;
+    caret-color: transparent;
 }
 
 .terminal-input:focus {
     outline: none;
 }
 
+.line-input > .caret {
+    margin-left: 5px;
+    width: .75em;
+    height: 1em;
+    background-color: rgb(245, 244, 244);
+    color: transparent;
+    animation: caret 1.33s step-end infinite;
+}
+
+@keyframes caret {
+        from,
+        to {
+            background-color: transparent;
+        }
+        50% {
+            background-color: rgb(245, 244, 244);
+        }
+    }

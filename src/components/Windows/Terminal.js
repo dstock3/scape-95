@@ -6,12 +6,15 @@ function Terminal() {
     const [dir, setDir] = useState(`C:\\scape-95>`)
     return (
         <div className="terminal">
-            <div className="line-input">
-                <div className="dir">{dir}</div>
-                <input className="terminal-input"></input>
+            <div className="line-item">
+                <div className="line-input">
+                    <div className="dir">{dir}</div>                    
+                    <div className="caret"></div>
+                    <input className="terminal-input">
+                        
+                    </input>
+                </div>
             </div>
-            
-            
         </div>
     )
 }
