@@ -182,7 +182,7 @@ function Main() {
                         <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     }
                     slotFive={
-                        <BasicWindow isClicked={true} open={openNet} winTitle={"Terminal"} winId={'new-terminal'} min={minNet} minState={net.isMin} close={closeNet} contents={<Terminal />} />
+                        <BasicWindow isClicked={true} open={openNet} winTitle={"Scape-CLI Prompt"} winId={'new-terminal'} min={minNet} minState={net.isMin} close={closeNet} contents={<Terminal />} />
                     }
                 />
 

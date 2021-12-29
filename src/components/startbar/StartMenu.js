@@ -59,14 +59,12 @@ function StartMenu(props) {
                                 <img src={helpIcon} alt="help icon" className="start-item-icon"></img>
                                 <div className="start-item">Help</div>
                             </div>
-                            <div className="start-option-arrow">▶</div>
                         </div>
                         <div className="start-option-container">
                             <div className="start-option">
                                 <img src={runIcon} alt="suspend icon" className="start-item-icon"></img>
                                 <div className="start-item">Run...</div>
                             </div>
-                            <div className="start-option-arrow">▶</div>
                         </div>
                     </div>
 

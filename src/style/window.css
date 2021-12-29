@@ -19,7 +19,8 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid black;
-    background: blue;
+    background: rgb(26,0,195);
+    background: linear-gradient(90deg, rgba(26,0,195,1) 53%, rgba(93,133,233,1) 100%);
     z-index: 5;
   }
   
