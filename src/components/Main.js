@@ -9,6 +9,7 @@ import { letDrop, newDrop } from '../DragFunctions'
 import Internet from './Windows/internet/Internet'
 import '../style/main.css'
 import BasicWindow from './Windows/BasicWindow'
+import Col from '../Interface/Col'
 
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
@@ -143,200 +144,62 @@ function Main() {
     return (
         <div className="main">
             <div className="col-container">
-                <div className="col" id="one">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                <Col colId="one"
+                    slotOne={
                         <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    }
+
+                    slotTwo={
                         <DesktopIcon open={openDoc} shortcutId={doc.shortcutId} shortcutIconId={`${doc.shortcutId}-icon`} imgSrc={docIcon} shortcut={doc.shortcut} />
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    }
+
+                    slotThree={
                         <DesktopIcon open={openBin} shortcutId={bin.shortcutId} shortcutIconId={`${bin.shortcutId}-icon`} imgSrc={binIcon} shortcut={bin.shortcut}/>
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    }
+                    slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                    }
+                />
 
-                <div className="col" id="two">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="two" />
 
-                <div className="col" id="three">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="three" />
 
-                <div className="col" id="four">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="four" />
 
-                <div className="col" id="five">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                <Col colId="five" 
+                    slotOne={
                         <BasicWindow isClicked={(comp.isClicked)} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    }
+                    slotTwo={
                         <BasicWindow isClicked={(doc.isClicked)} open={openDoc}winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    }
+                    slotThree={
                         <BasicWindow isClicked={(bin.isClicked)} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
+                    }
+                    slotFour={
                         <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
-                    </div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                    }
+                
+                />
 
-                <div className="col" id="six">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="six" />
 
-                <div className="col" id="seven">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="seven" />
 
-                <div className="col" id="eight">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="eight" />
 
-                <div className="col" id="nine">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="nine" />
 
-                <div className="col" id="ten">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
-                <div className="col" id="eleven">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
-                <div className="col" id="twelve">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
-                <div className="col" id="thirteen">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
-                <div className="col" id="fourteen">
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                    <div className="slot" onDrop={newDrop} onDragOver={letDrop}></div>
-                </div>
+                <Col colId="ten" />
+
+                <Col colId="eleven" />
+
+                <Col colId="twelve" />
+
+                <Col colId="thirteen" />
+
+                <Col colId="fourteen" />
             </div>
             
             <div className="bottom">
