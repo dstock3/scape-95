@@ -9,7 +9,7 @@ import { letDrop, newDrop } from '../DragFunctions'
 import Internet from './Windows/internet/Internet'
 import '../style/main.css'
 import BasicWindow from './Windows/BasicWindow'
-import Col from '../Interface/Col'
+import Col from '../components/Interface/Col'
 
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
@@ -180,7 +180,6 @@ function Main() {
                     slotFour={
                         <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     }
-                
                 />
 
                 <Col colId="six" />

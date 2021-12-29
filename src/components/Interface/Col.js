@@ -1,5 +1,5 @@
 import React from 'react'
-import { letDrop, newDrop } from '../DragFunctions'
+import { letDrop, newDrop } from '../../DragFunctions'
 
 function Col(props) {
     return (
