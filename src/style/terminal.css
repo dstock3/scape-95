@@ -1,0 +1,35 @@
+.terminal {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: rgb(245, 244, 244);
+}
+
+.line-input {
+    display: flex;
+}
+
+.dir {
+    width: fit-content;
+}
+
+.terminal-input {
+    font-size: 1em;
+    color: white;
+    width: fit-content;
+    padding: none;
+    display: inline;
+    border: none;
+    border-style: none;
+    border-width: none;
+    border-image: none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.terminal-input:focus {
+    outline: none;
+}
+

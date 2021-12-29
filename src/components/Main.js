@@ -10,6 +10,7 @@ import Internet from './Windows/internet/Internet'
 import '../style/main.css'
 import BasicWindow from './Windows/BasicWindow'
 import Col from '../components/Interface/Col'
+import Terminal from './Windows/Terminal'
 
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
@@ -179,6 +180,9 @@ function Main() {
                     }
                     slotFour={
                         <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
+                    }
+                    slotFive={
+                        <BasicWindow isClicked={true} open={openNet} winTitle={"Terminal"} winId={'new-terminal'} min={minNet} minState={net.isMin} close={closeNet} contents={<Terminal />} />
                     }
                 />
 
