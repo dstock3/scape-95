@@ -1,8 +1,8 @@
 import React from 'react'
-import refreshIcon from '../../../assets/internet/refresh.svg'
-import homeIcon from '../../../assets/internet/home.svg'
-import backIcon from '../../../assets/internet/back.svg'
-import forwardIcon from '../../../assets/internet/forward.svg'
+import refreshIcon from '../../../../assets/internet/refresh.svg'
+import homeIcon from '../../../../assets/internet/home.svg'
+import backIcon from '../../../../assets/internet/back.svg'
+import forwardIcon from '../../../../assets/internet/forward.svg'
 
 function NetButtons(props) {
     return (

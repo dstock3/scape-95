@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Clock from './Clock'
 import StartMenu from './StartMenu'
-import windowsIcon from "../../assets/windows.png"
+import windowsIcon from "../../assets/icons/windows.png"
 
 const Start = (props) => {
     const [start, setStart] = useState({isStarted: false})

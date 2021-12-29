@@ -9,11 +9,11 @@ function BasicWindow(props) {
         isDraggable: true,
         isSelected: true,
         style: {
-            position: "relative",
+            position: "sticky",
             left: "0",
             top: "0",
-            height: "600px",
-            width: "800px",
+            height: "550px",
+            width: "600px",
         }
     })
 
@@ -47,11 +47,11 @@ function BasicWindow(props) {
         const maxWidth = main.offsetWidth
 
         const defaultStyle = {
-            position: "relative",
+            position: "sticky",
             left: "0",
             top: "0",
-            height: "600px",
-            width: "800px",
+            height: "550px",
+            width: "600px",
             zIndex: 1
         }
     

@@ -5,11 +5,11 @@ import NewPage from './pages/NewPage'
 import NewPage2 from './pages/NewPage2'
 import '../../../style/net.css'
 import Loading from './pages/Loading'
-import NetButtons from './NetButtons'
+import NetButtons from './containers/NetButtons'
 import WebGames from './pages/WebGames'
 import TicTacToe from './pages/games/TicTacToe'
-import Bookmarks from './Bookmarks'
-import InputContainer from './InputContainer'
+import Bookmarks from './containers/Bookmarks'
+import InputContainer from './containers/InputContainer'
 
 function Internet() {
     useEffect(()=> {

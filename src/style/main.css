@@ -45,6 +45,7 @@ html, body {
   }
   
   .folder-name {
+    width: fit-content;
     margin: 5px;
   }
   
@@ -82,15 +83,12 @@ html, body {
     background: rgb(172,172,172);
     background: linear-gradient(180deg, rgba(172,172,172,1) 0%, rgba(205,205,205,1) 18%);
   }
-
-  .started > .start-text {
-    margin: 25% 10%;
-  }
-
+  
   .windows-icon {
     height: 30px;
+    margin: 0 3%;
   }
-
+  
   .start-text {
     margin: 0 7%;
   }

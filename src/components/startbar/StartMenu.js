@@ -1,13 +1,12 @@
 import React from 'react'
-import docIcon from "../../assets/doc.png"
-import runIcon from "../../assets/run.png"
-import settingsIcon from "../../assets/settings.png"
-
-import suspendIcon from "../../assets/suspend.png"
-import findIcon from "../../assets/find.png"
-import helpIcon from "../../assets/help.png"
-import programsIcon from "../../assets/programs.png"
-import shutdownIcon from "../../assets/shutdown.png"
+import docIcon from "../../assets/icons/doc.png"
+import runIcon from "../../assets/icons/run.png"
+import settingsIcon from "../../assets/icons/settings.png"
+import suspendIcon from "../../assets/icons/suspend.png"
+import findIcon from "../../assets/icons/find.png"
+import helpIcon from "../../assets/icons/help.png"
+import programsIcon from "../../assets/icons/programs.png"
+import shutdownIcon from "../../assets/icons/shutdown.png"
 
 
 import '../../style/start.css'
