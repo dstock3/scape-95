@@ -28,16 +28,19 @@ html, body {
   }
   
   .slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 10%;
   }
   
   .shortcut {
-    margin: 5% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
     z-index: 0;
+    width: fit-content;
   }
   
   .desktop-icon {
@@ -45,7 +48,8 @@ html, body {
   }
   
   .folder-name {
-    width: fit-content;
+    text-align: center;
+    width: 100%;
     margin: 5px;
   }
   

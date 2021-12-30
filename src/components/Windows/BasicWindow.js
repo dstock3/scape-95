@@ -9,11 +9,11 @@ function BasicWindow(props) {
         isDraggable: false,
         isSelected: true,
         style: {
-            position: "sticky",
-            left: "0",
-            top: "0",
-            height: "550px",
-            width: "600px",
+            position: "relative",
+            left: "100px",
+            top: "300px",
+            minHeight: "650px",
+            minWidth: "650px",
         }
     })
 
@@ -47,18 +47,18 @@ function BasicWindow(props) {
         const maxWidth = main.offsetWidth
 
         const defaultStyle = {
-            position: "sticky",
-            left: "0",
-            top: "0",
-            height: "550px",
-            width: "600px",
+            position: "relative",
+            left: "100px",
+            top: "300px",
+            minHeight: "650px",
+            minWidth: "650px",
             zIndex: 1
         }
     
         const maxStyle = {
             position: "fixed",
-            height: maxHeight + "px",
-            width: maxWidth + "px",
+            minHeight: maxHeight + "px",
+            minWidth: maxWidth + "px",
             left: "0",
             top: "0",
             zIndex: 2
@@ -85,11 +85,17 @@ function BasicWindow(props) {
         }
     }
 
+    const setDraggableTrue = () => {
+        if (!win.isMax) {
+            setWin({...win, isDraggable: true})
+        }
+    }
+
     if (props.isClicked) {
         return (
             <>
                 <div className={`basic-window ${isHidden}`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
-                    <div className="window-top" onMouseEnter={()=> setWin({...win, isDraggable: true})} onMouseLeave={()=> setWin({...win, isDraggable: false})} onDoubleClick={maxToggle}>
+                    <div className="window-top" onMouseEnter={setDraggableTrue} onMouseLeave={()=> setWin({...win, isDraggable: false})} onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
                         <WindowsButtons min={props.min} max={maxToggle} close={closeSet} />
                     </div>
@@ -101,7 +107,7 @@ function BasicWindow(props) {
         )
     } else if (!props.isClicked) {
         return(
-            <div className={`basic-window hidden`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+            <div className={`basic-window hidden`} id={props.winId} draggable={false} onDragStart={newDrag} style={win.style}>
 
             </div>
         )
