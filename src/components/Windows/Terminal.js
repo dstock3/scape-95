@@ -4,6 +4,7 @@ import '../../style/terminal.css'
 function Terminal(props) {
     const [dir, setDir] = useState(`C:\\SCAPE-95>`)
     const [dirInput, setDirInput] = useState("")
+    const [dirArray, setDirArray] = useState([])
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -13,6 +14,8 @@ function Terminal(props) {
                 props.openApps[prop]()
             }
         }
+        setDirArray([...dirArray, dirInput])
+        console.log(dirArray)
     }
 
     return (

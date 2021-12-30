@@ -191,7 +191,10 @@ function Main() {
 
     const openApps = {
         command: openCli,
-        browser: openNet
+        browser: openNet,
+        comp: openComp,
+        docs: openDoc,
+        bin: openBin,
     }
 
     return (
