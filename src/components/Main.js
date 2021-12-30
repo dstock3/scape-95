@@ -13,6 +13,8 @@ import Col from '../components/Interface/Col'
 import Terminal from './Windows/Terminal'
 import Run from './Windows/Run'
 
+
+
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
     const [doc, setDoc] = useState({shortcut: "My Documents", shortcutId: "doc", isClicked: false, isRightClicked: false, isMin: false})
@@ -187,6 +189,10 @@ function Main() {
         setMinWin(minHelper(cli.shortcut))
     }
 
+    const openApps = {
+        command: openCli,
+        browser: openNet
+    }
 
     return (
         <div className="main">
@@ -207,12 +213,15 @@ function Main() {
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
                     }
                 />
-
+                
                 <Col colId="two"
                     slotFour={
-                        <BasicWindow isClicked={(run.isClicked)} open={openRun} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} min={minRun} minState={run.isMin} close={closeRun} contents={<Run runCli={openCli} />} />
+                        <BasicWindow isClicked={(run.isClicked)} open={openRun} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} min={minRun} minState={run.isMin} close={closeRun} contents={
+                            <Run openApps={openApps}/>
+                        } />
                     } 
                 />
+               
 
                 <Col colId="three" />
 
@@ -232,7 +241,9 @@ function Main() {
                         <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     }
                     slotFive={
-                        <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={<Terminal />} />
+                        <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
+                            <Terminal openApps={openApps}/>
+                        } />
                     }
                 />
 

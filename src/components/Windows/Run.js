@@ -4,10 +4,13 @@ import '../../style/run.css'
 function Run(props) {
     const [runInput, setRunInput] = useState("")
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
-        if (runInput === "command") {
-            props.runCli()
+
+        for (let prop in props.openApps) {
+            if (runInput === prop) {
+                props.openApps[prop]()
+            }
         }
     }
 

@@ -42,6 +42,7 @@
 }
 
 .terminal-input {
+    float: left;
     font-size: 1em;
     color: rgb(245, 244, 244);
     width: fit-content;
@@ -55,19 +56,19 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    width: 70%;
+    width: fit-content;
     height: fit-content;
     overflow: visible;
     caret-color: transparent;
+    outline: none;
 }
 
 .terminal-input:focus {
     outline: none;
 }
 
-.line-input > .caret {
-    margin-left: 5px;
-    width: .75em;
+.caret {
+    width: .66em;
     height: 1em;
     background-color: rgb(245, 244, 244);
     color: transparent;

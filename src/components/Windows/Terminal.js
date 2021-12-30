@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
 import '../../style/terminal.css'
 
-function Terminal() {
-    const [input, setInput] = useState(null)
+function Terminal(props) {
     const [dir, setDir] = useState(`C:\\SCAPE-95>`)
+    const [dirInput, setDirInput] = useState("")
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        for (let prop in props.openApps) {
+            if (dirInput === prop) {
+                props.openApps[prop]()
+            }
+        }
+    }
+
     return (
         <div className="terminal">
             <div className="copy-95">
@@ -12,13 +23,13 @@ function Terminal() {
                 <div className="copyright">(C)ScapeNet Corp 1981-1999.</div>
             </div>
             <div className="line-item">
-                <div className="line-input">
-                    <div className="dir">{dir}</div>                    
-                    <div className="caret"></div>
-                    <input className="terminal-input">
-                        
+                <form className="line-input" onSubmit={handleSubmit}>
+                    <label className="dir">{dir}</label>   
+                    <span className="caret"></span>                 
+                    
+                    <input className="terminal-input" value={dirInput} onChange={e => setDirInput(e.target.value)} > 
                     </input>
-                </div>
+                </form>
             </div>
         </div>
     )
