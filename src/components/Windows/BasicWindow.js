@@ -89,7 +89,7 @@ function BasicWindow(props) {
         return (
             <>
                 <div className={`basic-window ${isHidden}`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
-                    <div className="window-top" onMouseEnter={()=> setWin({...win, isDraggable: true})} onMouseLeave={()=> setWin({...win, isDraggable: false})}onDoubleClick={maxToggle}>
+                    <div className="window-top" onMouseEnter={()=> setWin({...win, isDraggable: true})} onMouseLeave={()=> setWin({...win, isDraggable: false})} onDoubleClick={maxToggle}>
                         <div className="window-title">{props.winTitle}</div>
                         <WindowsButtons min={props.min} max={maxToggle} close={closeSet} />
                     </div>
