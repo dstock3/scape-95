@@ -40,7 +40,7 @@ const Start = (props) => {
 
                 <div className="start-text">Start</div>
             </div>
-            <StartMenu canStart={start.isStarted} />
+            <StartMenu canStart={start.isStarted} openRun={props.openRun} />
             <div className="bar-body">
                 <div className="min-win">
                     {props.windows.map(window => (

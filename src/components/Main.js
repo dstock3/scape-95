@@ -11,12 +11,15 @@ import '../style/main.css'
 import BasicWindow from './Windows/BasicWindow'
 import Col from '../components/Interface/Col'
 import Terminal from './Windows/Terminal'
+import Run from './Windows/Run'
 
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
     const [doc, setDoc] = useState({shortcut: "My Documents", shortcutId: "doc", isClicked: false, isRightClicked: false, isMin: false})
     const [bin, setBin] = useState({shortcut: "Recycle Bin", shortcutId: "bin", isClicked: false, isRightClicked: false, isMin: false})
     const [net, setNet] = useState({shortcut: "Internet", shortcutId: "net", isClicked: false, isRightClicked: false, isMin: false})
+    const [cli, setCli] = useState({shortcut: "Scape-CLI Prompt", shortcutId: "cli", isClicked: false, isRightClicked: false, isMin: false })
+    const [run, setRun] = useState({shortcut: "Run", shortcutId: "run", isClicked: false, isRightClicked: false, isMin: false })
     const [minWin, setMinWin] = useState([])
 
     const selectController = (obj) => {
@@ -142,6 +145,49 @@ function Main() {
         setMinWin(minHelper(bin.shortcut))
     }
 
+    const openRun = () => {
+        setRun({ ...run, isClicked: true, isMin: false})
+        let runObj = {
+            id: 4,
+            value: run.shortcut,
+            open: openRun,
+            className: "selected"
+        }
+        setMinWin(selectController(runObj))
+    }
+
+    const closeRun = () => {
+        setRun({...run, isClicked: false, isMin: false})
+        setMinWin(closeHelper(run.shortcut));
+    }
+
+    const minRun = () => {
+        setRun({ ...run, isClicked: true, isMin: true})
+        setMinWin(minHelper(run.shortcut))
+    }
+
+    const openCli = () => {
+        setCli({ ...cli, isClicked: true, isMin: false})
+        let cliObj = {
+            id: 5,
+            value: cli.shortcut,
+            open: openCli,
+            className: "selected"
+        }
+        setMinWin(selectController(cliObj))
+    }
+
+    const closeCli = () => {
+        setCli({...cli, isClicked: false, isMin: false})
+        setMinWin(closeHelper(cli.shortcut));
+    }
+
+    const minCli = () => {
+        setCli({ ...cli, isClicked: true, isMin: true})
+        setMinWin(minHelper(cli.shortcut))
+    }
+
+
     return (
         <div className="main">
             <div className="col-container">
@@ -162,7 +208,11 @@ function Main() {
                     }
                 />
 
-                <Col colId="two" />
+                <Col colId="two"
+                    slotFour={
+                        <BasicWindow isClicked={(run.isClicked)} open={openRun} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} min={minRun} minState={run.isMin} close={closeRun} contents={<Run runCli={openCli} />} />
+                    } 
+                />
 
                 <Col colId="three" />
 
@@ -182,7 +232,7 @@ function Main() {
                         <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     }
                     slotFive={
-                        <BasicWindow isClicked={true} open={openNet} winTitle={"Scape-CLI Prompt"} winId={'new-terminal'} min={minNet} minState={net.isMin} close={closeNet} contents={<Terminal />} />
+                        <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={<Terminal />} />
                     }
                 />
 
@@ -206,7 +256,7 @@ function Main() {
             </div>
             
             <div className="bottom">
-                <Start windows={minWin} />
+                <Start windows={minWin} openRun={openRun} />
             </div>
 
         </div>

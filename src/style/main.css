@@ -69,8 +69,7 @@ html, body {
     cursor: pointer;
     display: flex;
     font-weight: bold;
-    width: 4.5%;
-    min-width: 75px;
+    width: 90px;
     height: 100%;
     justify-content: space-between;
     align-items: center;

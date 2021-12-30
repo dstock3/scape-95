@@ -7,8 +7,6 @@ import findIcon from "../../assets/icons/find.png"
 import helpIcon from "../../assets/icons/help.png"
 import programsIcon from "../../assets/icons/programs.png"
 import shutdownIcon from "../../assets/icons/shutdown.png"
-
-
 import '../../style/start.css'
 
 function StartMenu(props) {
@@ -60,7 +58,7 @@ function StartMenu(props) {
                                 <div className="start-item">Help</div>
                             </div>
                         </div>
-                        <div className="start-option-container">
+                        <div className="start-option-container" onClick={props.openRun} >
                             <div className="start-option">
                                 <img src={runIcon} alt="suspend icon" className="start-item-icon"></img>
                                 <div className="start-item">Run...</div>

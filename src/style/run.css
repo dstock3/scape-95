@@ -1,0 +1,15 @@
+.run {
+    display: flex;
+    background-color: #cccccc;
+    height: 100%;
+    width: 100%;
+}
+
+.run-prompt {
+    display: flex;
+}
+
+.run-input {
+    height: 1em;
+
+}
