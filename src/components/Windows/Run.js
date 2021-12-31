@@ -3,7 +3,6 @@ import runIcon from '../../assets/icons/run.png'
 import '../../style/run.css'
 
 function Run(props) {
-
     const handleSubmit = e => {
         e.preventDefault();
         let match = false
@@ -17,8 +16,10 @@ function Run(props) {
 
         if (match) {
             openApps()
+            props.closeRun()
         } else {
             props.throwError(props.runInput.value)
+            props.closeRun()
         }
     }
 

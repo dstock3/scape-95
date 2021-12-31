@@ -13,6 +13,7 @@ import Col from '../components/Interface/Col'
 import Terminal from './Windows/Terminal'
 import Run from './Windows/Run'
 import RunError from './Windows/RunError'
+import SpecialWindow from './Windows/SpecialWindow'
 
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
@@ -220,23 +221,17 @@ function Main() {
                     slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
                     }
-                />
-                
-                <Col colId="two"
-                    slotTwo={
-                        <BasicWindow isClicked={(run.isClicked)} open={openRun} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} min={minRun} minState={run.isMin} close={closeRun} size={{width: "400px", height: "175px"}} contents={
+
+                    slotSix={
+                        <SpecialWindow isClicked={(run.isClicked)} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} contents={
                             <Run closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError}/>
-                        } />
-                    } 
-                />
-               
-                <Col colId="three"
-                    slotThree={
-                        <BasicWindow isClicked={(runError.isClicked)} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} size={{width: "750px", height: "125px"}} contents={
-                            <RunError term={runInput} close={closeRunError} />
                         } />
                     }
                 />
+                
+                <Col colId="two" />
+               
+                <Col colId="three" />
 
                 <Col colId="four" />
 
@@ -264,7 +259,13 @@ function Main() {
                     }
                 />
 
-                <Col colId="seven" />
+                <Col colId="seven" 
+                    slotTwo={
+                        <SpecialWindow isClicked={(runError.isClicked)} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} close={closeRunError} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
+                            <RunError term={runInput} close={closeRunError} />
+                        } />
+                    }
+                />
 
                 <Col colId="eight" />
 

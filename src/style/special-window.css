@@ -1,0 +1,9 @@
+.special-window {
+    z-index: 1;
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    resize: both;
+    border: 1px solid black;
+    overflow: visible;
+}

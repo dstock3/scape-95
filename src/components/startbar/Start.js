@@ -33,6 +33,22 @@ const Start = (props) => {
         }
     }
 
+    useEffect(()=> {
+        let runWindow = document.getElementById("run-window")
+
+        console.log(runWindow)
+        
+        if (!runWindow.classList.contains("hidden")) {
+            setStart({ ...start, isStarted: false })
+        }
+    }, [start.isStarted])
+
+    const openAppCloseMenu = (openApp) => {
+        setStart({ ...start, isStarted: false })
+        openApp()
+        
+    }
+
     return (
         <div className="start-bar"> 
             <div className="start-button" onClick={startToggle}>
@@ -40,7 +56,7 @@ const Start = (props) => {
 
                 <div className="start-text">Start</div>
             </div>
-            <StartMenu canStart={start.isStarted} openRun={props.openRun} />
+            <StartMenu canStart={start.isStarted} openRun={()=> openAppCloseMenu(props.openRun)} />
             <div className="bar-body">
                 <div className="min-win">
                     {props.windows.map(window => (
