@@ -161,9 +161,21 @@ function Internet() {
         }
     }
 
+    const [isMaxed, setIsMaxed] = useState(false)
+    
+    useEffect(()=> {
+        let window = document.querySelector(".internet").parentElement.parentElement
+
+        if (window.classList.contains("max")) {
+            setIsMaxed(true)
+        } else {
+            setIsMaxed(false)
+        }
+    }, [isMaxed])
+
     if (loading) {
         return (
-            <div className="internet">
+            <div className="internet" style={{height: "87.5%"}}>
                 <div className="net-header">
                     <div className="net-options">
                         <div className="file-button">File</div>
@@ -181,7 +193,7 @@ function Internet() {
         )
     } else {
         return (
-            <div className="internet">
+            <div className="internet" style={{height: "87.5%"}}>
                 <div className="net-header">
                     <div className="net-options">
                         <div className="file-button">File</div>

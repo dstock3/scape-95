@@ -4,6 +4,17 @@ import '../../style/window.css'
 import WindowsButtons from './WindowsButtons'
 
 function BasicWindow(props) {
+    let defaultWidth
+    let defaultHeight
+
+    if (props.size) {
+        defaultWidth = props.size.width
+        defaultHeight = props.size.height
+    } else {
+        defaultWidth = "650px"
+        defaultHeight ="650px"
+    }
+
     const [win, setWin] = useState({
         isMax: false, 
         isDraggable: false,
@@ -12,9 +23,13 @@ function BasicWindow(props) {
             position: "relative",
             left: "100px",
             top: "300px",
-            minHeight: "650px",
-            minWidth: "650px",
+            minHeight: defaultHeight,
+            minWidth: defaultWidth,
+        },
+        bodyStyle: {
+            height: parseInt(defaultHeight.replace("px", "") - 25)
         }
+
     })
 
     const [isHidden, setHidden] = useState(props.minState)
@@ -33,25 +48,18 @@ function BasicWindow(props) {
         setClosed(true)
         props.close()
     }
-
+    
     const styleController = () => {
         const main = document.querySelector(".main")
-        
-        let maxHeight
-        if (props.winId === "net-window") {
-            maxHeight = main.offsetHeight - 145
-        } else {
-            maxHeight = main.offsetHeight
-        }
-
+        let maxHeight = main.offsetHeight - 40
         const maxWidth = main.offsetWidth
 
         const defaultStyle = {
             position: "relative",
             left: "100px",
             top: "300px",
-            minHeight: "650px",
-            minWidth: "650px",
+            minHeight: defaultHeight,
+            minWidth: defaultWidth,
             zIndex: 1
         }
     
@@ -63,7 +71,16 @@ function BasicWindow(props) {
             top: "0",
             zIndex: 2
         }
-        return { defaultStyle, maxStyle }
+
+        const defaultBody = {
+            height: parseInt(defaultHeight.replace("px", "") - 25) + "px"
+        }
+
+        const maxBody = {
+            height: main.offsetHeight - 15
+        }
+
+        return { defaultStyle, maxStyle, defaultBody, maxBody }
     }
 
     const maxToggle = () => {
@@ -74,16 +91,29 @@ function BasicWindow(props) {
                 isMax: false, 
                 isDraggable: false,
                 style: newStyle.defaultStyle,
+                bodyStyle: newStyle.defaultBody
             })
         } else {
             setWin({ ...win, 
                 isMin: false, 
                 isMax: true, 
                 isDraggable: false,
-                style: newStyle.maxStyle
+                style: newStyle.maxStyle,
+                bodyStyle: newStyle.maxBody
             })
         }
     }
+
+    useEffect(()=> {
+        let window = document.getElementById(props.winId)
+        if (win.isMax) {
+            window.classList.add("max")
+            window.classList.remove("def")
+        } else {
+            window.classList.add("def")
+            window.classList.remove("max")
+        }
+    })
 
     const setDraggableTrue = () => {
         if (!win.isMax) {
@@ -99,7 +129,7 @@ function BasicWindow(props) {
                         <div className="window-title">{props.winTitle}</div>
                         <WindowsButtons min={props.min} max={maxToggle} close={closeSet} />
                     </div>
-                    <div className="window-body">
+                    <div className="window-body" style={win.bodyStyle}>
                         {props.contents}             
                     </div>
                 </div>

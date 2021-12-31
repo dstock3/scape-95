@@ -12,8 +12,7 @@ import BasicWindow from './Windows/BasicWindow'
 import Col from '../components/Interface/Col'
 import Terminal from './Windows/Terminal'
 import Run from './Windows/Run'
-
-
+import RunError from './Windows/RunError'
 
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
@@ -22,6 +21,7 @@ function Main() {
     const [net, setNet] = useState({shortcut: "Internet", shortcutId: "net", isClicked: false, isRightClicked: false, isMin: false})
     const [cli, setCli] = useState({shortcut: "Scape-CLI Prompt", shortcutId: "cli", isClicked: false, isRightClicked: false, isMin: false })
     const [run, setRun] = useState({shortcut: "Run", shortcutId: "run", isClicked: false, isRightClicked: false, isMin: false })
+    const [runError, setRunError] = useState({shortcut: "Run Error", shortcutId: "run-error", isClicked: false })
     const [minWin, setMinWin] = useState([])
 
     const selectController = (obj) => {
@@ -147,15 +147,10 @@ function Main() {
         setMinWin(minHelper(bin.shortcut))
     }
 
+    const [runInput, setRunInput] = useState("")
+
     const openRun = () => {
         setRun({ ...run, isClicked: true, isMin: false})
-        let runObj = {
-            id: 4,
-            value: run.shortcut,
-            open: openRun,
-            className: "selected"
-        }
-        setMinWin(selectController(runObj))
     }
 
     const closeRun = () => {
@@ -170,13 +165,14 @@ function Main() {
 
     const openCli = () => {
         setCli({ ...cli, isClicked: true, isMin: false})
+        
         let cliObj = {
             id: 5,
             value: cli.shortcut,
             open: openCli,
             className: "selected"
         }
-        setMinWin(selectController(cliObj))
+        setMinWin(selectController(cliObj)) 
     }
 
     const closeCli = () => {
@@ -187,6 +183,15 @@ function Main() {
     const minCli = () => {
         setCli({ ...cli, isClicked: true, isMin: true})
         setMinWin(minHelper(cli.shortcut))
+    }
+
+    const openRunError = () => {
+        setRunError({...runError, shortcut: runInput, isClicked: true})
+    }
+
+    const closeRunError = () => {
+        setRunError({...runError, isClicked: false})
+        setMinWin(closeHelper(runError.shortcut));
     }
 
     const openApps = {
@@ -218,15 +223,20 @@ function Main() {
                 />
                 
                 <Col colId="two"
-                    slotFour={
-                        <BasicWindow isClicked={(run.isClicked)} open={openRun} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} min={minRun} minState={run.isMin} close={closeRun} contents={
-                            <Run openApps={openApps}/>
+                    slotTwo={
+                        <BasicWindow isClicked={(run.isClicked)} open={openRun} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} min={minRun} minState={run.isMin} close={closeRun} size={{width: "400px", height: "175px"}} contents={
+                            <Run closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError}/>
                         } />
                     } 
                 />
                
-
-                <Col colId="three" />
+                <Col colId="three"
+                    slotThree={
+                        <BasicWindow isClicked={(runError.isClicked)} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} size={{width: "750px", height: "125px"}} contents={
+                            <RunError term={runInput} close={closeRunError} />
+                        } />
+                    }
+                />
 
                 <Col colId="four" />
 
@@ -235,22 +245,24 @@ function Main() {
                         <BasicWindow isClicked={(comp.isClicked)} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
                     }
                     slotTwo={
-                        <BasicWindow isClicked={(doc.isClicked)} open={openDoc}winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
+                        <BasicWindow isClicked={(doc.isClicked)} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
                     }
                     slotThree={
                         <BasicWindow isClicked={(bin.isClicked)} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
                     }
-                    slotFour={
-                        <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
-                    }
-                    slotFive={
+
+                />
+
+                <Col colId="six" 
+                    slotOne={
                         <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
                             <Terminal openApps={openApps}/>
                         } />
                     }
+                    slotTwo={
+                        <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
+                    }
                 />
-
-                <Col colId="six" />
 
                 <Col colId="seven" />
 

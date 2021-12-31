@@ -1,15 +1,52 @@
 .run {
     display: flex;
+    flex-direction: column;
     background-color: #cccccc;
     height: 100%;
     width: 100%;
 }
 
-.run-prompt {
+.run-prompt-container {
     display: flex;
+    margin-inline: 20px;
+    margin-top: 15px;
+}
+
+.win-run-icon {
+    height: 50px;
+}
+
+.run-prompt {
+    margin-left: 15px;
+}
+
+.run-input-container {
+    width: 100%;
+    display: flex;
+    margin-top: 15px;  
+}
+
+.run-text {
+    width: 25%;
+    margin-left: 20px;
 }
 
 .run-input {
+    margin-left: 10px;
     height: 1em;
+    width: 100%;
+    margin-right: 20px;
+}
 
+.run-button-container {
+    margin-top: 10px;  
+    margin-inline-start: 35%;
+    width: 65%;
+}
+
+.run-button-container > button {
+    border-radius: 0px;
+    margin-right: 5px;
+    width: 75px;
+    box-shadow: 1px 1px 1px rgb(58, 58, 58);
 }
