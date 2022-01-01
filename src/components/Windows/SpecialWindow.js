@@ -50,6 +50,7 @@ function SpecialWindow(props) {
                     <div className="window-top">
                         <div className="window-title">{props.winTitle}</div>
                         <div className="window-buttons" style={{width: "fit-content", marginRight: "1px"}}>
+                            {props.help}
                             <button className="windows-button close" onClick={closeSet} style={buttonStyle}>X</button>
                         </div>
                     </div>

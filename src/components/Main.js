@@ -14,6 +14,7 @@ import Terminal from './Windows/Terminal'
 import Run from './Windows/Run'
 import RunError from './Windows/RunError'
 import SpecialWindow from './Windows/SpecialWindow'
+import HelpButton from './Windows/HelpButton'
 
 const StartContext = React.createContext()
 
@@ -205,6 +206,8 @@ function Main() {
         bin: openBin,
     }
 
+    const [help, setHelp] = useState(false)
+
     return (
         <div className="main">
             <div className="col-container">
@@ -225,8 +228,8 @@ function Main() {
                     }
 
                     slotSix={
-                        <SpecialWindow isClicked={(run.isClicked)} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} contents={
-                            <Run closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError}/>
+                        <SpecialWindow isClicked={(run.isClicked)} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
+                            <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
                         } />
                     }
                 />
