@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import '../../style/window.css'
-import '../../style/special-window.css'
 
 function SpecialWindow(props) {
 

@@ -15,6 +15,8 @@ import Run from './Windows/Run'
 import RunError from './Windows/RunError'
 import SpecialWindow from './Windows/SpecialWindow'
 
+const StartContext = React.createContext()
+
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
     const [doc, setDoc] = useState({shortcut: "My Documents", shortcutId: "doc", isClicked: false, isRightClicked: false, isMin: false})
@@ -261,7 +263,7 @@ function Main() {
 
                 <Col colId="seven" 
                     slotTwo={
-                        <SpecialWindow isClicked={(runError.isClicked)} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} close={closeRunError} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
+                        <SpecialWindow isClicked={(runError.isClicked)} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
                             <RunError term={runInput} close={closeRunError} />
                         } />
                     }
@@ -282,12 +284,14 @@ function Main() {
                 <Col colId="fourteen" />
             </div>
             
-            <div className="bottom">
-                <Start windows={minWin} openRun={openRun} />
-            </div>
+            <StartContext.Provider value={{internet: openNet, terminal: openCli}}>
+                <div className="bottom">
+                    <Start windows={minWin} openRun={openRun} />
+                </div>
+            </StartContext.Provider>
 
         </div>
     )
 }
-
+export {StartContext}
 export default Main

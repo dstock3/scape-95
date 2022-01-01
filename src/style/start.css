@@ -33,6 +33,7 @@
   .start-option {
     width: 100%;
     display: flex;
+    height: 40px;
   }
   
   .start-option-container {
@@ -103,4 +104,22 @@
   .start-item-icon {
     margin: 0 5%;
     width: 40px;
+  }
+
+  #online-programs-icon {
+    width: 80px;
+    height: 50px;
+    position: relative;
+    right: 23px;
+    bottom: 5px;
+  }
+
+  #cli-programs-icon{
+    width: 35px;
+    height: 35px;
+  }
+
+  #net-item{
+    margin: -45px;
+
   }
