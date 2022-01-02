@@ -4,23 +4,35 @@ import HelpMsg from './HelpMsg'
 import '../../style/run.css'
 
 function Run(props) {
-    const runWindow = document.querySelector(".run")
+    
 
     const [span, setSpan] = useState({ok: "", cancel: "", browse: "", input: ""})
     const [helpMsg, setHelpMsg] = useState({ok: false, cancel: false, browse: false, input: false})
     
     useEffect(()=> {
-        let tips = Array.from(document.querySelectorAll(".tip"))
+        let runWindow = document.querySelector(".run")
+        let runButtons = Array.from(document.getElementsByClassName("run-button"))
+        let runInput = document.querySelector(".run-input")
 
         if (props.helpPrompt) {
-            let runButtons = Array.from(document.getElementsByClassName("run-button"))
-            let runInput = document.querySelector(".run-input")
+
             for (let i = 0; i < runButtons.length; i++) {
                 runButtons[i].style.cursor = "help"
             }
             runWindow.style.cursor = "help"
             runInput.style.cursor = "help"
-        } 
+        } else {
+            if (runButtons) {
+                for (let i = 0; i < runButtons.length; i++) {
+                    runButtons[i].style.cursor = "default"
+                }
+            } 
+
+            if (runInput) {
+                runWindow.style.cursor = "default"
+                runInput.style.cursor = "text"
+            }
+        }
     }, [props.helpPrompt])
     
 
@@ -69,23 +81,13 @@ function Run(props) {
         }
     }
 
-    const [inputHelp, setInputHelp] = useState({content: ""}) 
+    const [inputHelp, setInputHelp] = useState({content: null}) 
 
     const clickInput = () => {
         if (props.helpPrompt) {
             setSpan({...span, input: "visible"})
-
-
         }
     }
-    /*
-    useEffect(()=> {
-        if (span.input === "visible") {
-            setInputHelp({...inputHelp, content: 
-                <HelpMsg setMsgState={()=>setHelpMsg({...helpMsg, input: true})} span={span.input} content={"Provides a place for you to type the location and filename of a the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
-            })
-        }
-    })*/
 
     return (
         <div className="run">
@@ -101,7 +103,7 @@ function Run(props) {
                 { inputHelp.content }
 
                 <div className="tip">
-                    <HelpMsg setMsgState={()=>setHelpMsg({...helpMsg, input: true})} helpId="run-input-help" span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
+                    <HelpMsg helpState={props.helpPrompt} setHelp={props.setHelp} setMsgState={()=>setHelpMsg({...helpMsg, input: true})} helpId="run-input-help" span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
                 </div>
             </div>
             
@@ -109,17 +111,17 @@ function Run(props) {
             <div className="run-button-container">
                 <button onClick={runProgram} className="run-button tip">
                     OK
-                    <HelpMsg helpId="run-program-help" setMsgState={()=>setHelpMsg({...helpMsg, ok: true})} span={span.ok} content={"Closes this dialog box and saves any changes you have made."}/>
+                    <HelpMsg helpState={props.helpPrompt} setHelp={props.setHelp} helpId="run-program-help" setMsgState={()=>setHelpMsg({...helpMsg, ok: true})} span={span.ok} content={"Closes this dialog box and saves any changes you have made."}/>
                 </button>
 
                 <button onClick={closeWindow} className="run-button tip">
                     Cancel
-                    <HelpMsg helpId="close-run-help" setMsgState={()=>setHelpMsg({...helpMsg, cancel: true})} span={span.cancel} content={"Closes this dialog box without saving any changes you have made."}/>
+                    <HelpMsg helpState={props.helpPrompt} setHelp={props.setHelp} helpId="close-run-help" setMsgState={()=>setHelpMsg({...helpMsg, cancel: true})} span={span.cancel} content={"Closes this dialog box without saving any changes you have made."}/>
                 </button>
 
                 <button onClick={browse} className="run-button tip" >
                     Browse...
-                    <HelpMsg helpId="run-browse-help" setMsgState={()=>setHelpMsg({...helpMsg, browse: true})} span={span.browse} content={"Click this to browse through folders to find the file you want."}/>
+                    <HelpMsg helpState={props.helpPrompt} setHelp={props.setHelp} helpId="run-browse-help" setMsgState={()=>setHelpMsg({...helpMsg, browse: true})} span={span.browse} content={"Click this to browse through folders to find the file you want."}/>
                 </button>
             </div>
         </div>

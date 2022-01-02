@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function HelpMsg(props) {
-    return <span onClick={props.setMsgState} id={props.helpId} className={`tip-text ${props.span}`}>{props.content}</span>
+    useEffect(()=> {
+
+    }, [props.helpState])
+
+    const clickHandler = () => {
+        props.setHelp(false)
+        props.setMsgState()
+
+    }
+    if (props.helpState) {
+        return(
+            <span onClick={clickHandler} id={props.helpId} className={`tip-text ${props.span}`}>{props.content}</span>
+        )
+    } return null
+
 }
 
 export default HelpMsg
