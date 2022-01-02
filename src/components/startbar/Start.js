@@ -44,7 +44,6 @@ const Start = (props) => {
     const openAppCloseMenu = (openApp) => {
         setStart({ ...start, isStarted: false })
         openApp()
-        
     }
 
     return (
@@ -54,7 +53,7 @@ const Start = (props) => {
 
                 <div className="start-text">Start</div>
             </div>
-            <StartMenu canStart={start.isStarted} setStart={setStart} openRun={()=> openAppCloseMenu(props.openRun)} />
+            <StartMenu canStart={start.isStarted} setStart={setStart} setFalse={()=>setStart({ ...start, isStarted: false })}/>
             <div className="bar-body">
                 <div className="min-win">
                     {props.windows.map(window => (

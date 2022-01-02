@@ -2,6 +2,17 @@ import React, { useState, useEffect } from 'react'
 import '../../style/window.css'
 
 function SpecialWindow(props) {
+    useEffect(()=> {
+        const main = document.querySelector(".main")
+        if (props.isClicked && props.fade) {
+            main.style.opacity = ".25"
+            main.style.background = "rgb(128, 128, 128)"
+        } else {
+            main.style.opacity = "1"
+            main.style.background = null
+        }
+
+    }, [props.isClicked])
 
     const [win, setWin] = useState({
         isDraggable: false,

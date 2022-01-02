@@ -15,6 +15,8 @@ import Run from './Windows/Run'
 import RunError from './Windows/RunError'
 import SpecialWindow from './Windows/SpecialWindow'
 import HelpButton from './Windows/HelpButton'
+import Shutdown from './Windows/Shutdown'
+import ShutdownPortal from './ShutdownPortal'
 
 const StartContext = React.createContext()
 
@@ -24,8 +26,9 @@ function Main() {
     const [bin, setBin] = useState({shortcut: "Recycle Bin", shortcutId: "bin", isClicked: false, isRightClicked: false, isMin: false})
     const [net, setNet] = useState({shortcut: "Internet", shortcutId: "net", isClicked: false, isRightClicked: false, isMin: false})
     const [cli, setCli] = useState({shortcut: "Scape-CLI Prompt", shortcutId: "cli", isClicked: false, isRightClicked: false, isMin: false })
-    const [run, setRun] = useState({shortcut: "Run", shortcutId: "run", isClicked: false, isRightClicked: false, isMin: false })
+    const [run, setRun] = useState({shortcut: "Run", shortcutId: "run", isClicked: false })
     const [runError, setRunError] = useState({shortcut: "Run Error", shortcutId: "run-error", isClicked: false })
+    const [shutdown, setShutdown] = useState({shortcut: "Shut Down Windows", shortcutId: "shutdown", isClicked: false})
     const [minWin, setMinWin] = useState([])
 
     const selectController = (obj) => {
@@ -159,12 +162,6 @@ function Main() {
 
     const closeRun = () => {
         setRun({...run, isClicked: false, isMin: false})
-        setMinWin(closeHelper(run.shortcut));
-    }
-
-    const minRun = () => {
-        setRun({ ...run, isClicked: true, isMin: true})
-        setMinWin(minHelper(run.shortcut))
     }
 
     const openCli = () => {
@@ -195,7 +192,6 @@ function Main() {
 
     const closeRunError = () => {
         setRunError({...runError, isClicked: false})
-        setMinWin(closeHelper(runError.shortcut));
     }
 
     const openApps = {
@@ -207,6 +203,17 @@ function Main() {
     }
 
     const [help, setHelp] = useState(false)
+
+    const openShutdown = () => {
+        setShutdown({...shutdown, isClicked: true})
+    }
+
+    const closeShutdown = () => {
+        setShutdown({...shutdown, isClicked: false})
+
+    }
+
+
 
     return (
         <div className="main">
@@ -228,7 +235,7 @@ function Main() {
                     }
 
                     slotSix={
-                        <SpecialWindow isClicked={(run.isClicked)} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
+                        <SpecialWindow isClicked={run.isClicked} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
                             <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
                         } />
                     }
@@ -242,13 +249,13 @@ function Main() {
 
                 <Col colId="five" 
                     slotOne={
-                        <BasicWindow isClicked={(comp.isClicked)} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
+                        <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
                     }
                     slotTwo={
-                        <BasicWindow isClicked={(doc.isClicked)} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
+                        <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
                     }
                     slotThree={
-                        <BasicWindow isClicked={(bin.isClicked)} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
+                        <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
                     }
 
                 />
@@ -260,15 +267,22 @@ function Main() {
                         } />
                     }
                     slotTwo={
-                        <BasicWindow isClicked={(net.isClicked)} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
+                        <BasicWindow isClicked={net.isClicked} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     }
                 />
 
                 <Col colId="seven" 
                     slotTwo={
-                        <SpecialWindow isClicked={(runError.isClicked)} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
+                        <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
                             <RunError term={runInput} close={closeRunError} />
                         } />
+                    }
+                    slotThree={
+                        <ShutdownPortal window={
+                            <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
+                                <Shutdown  closeButton={closeShutdown} />
+                            } />
+                        }/>
                     }
                 />
 
@@ -287,9 +301,9 @@ function Main() {
                 <Col colId="fourteen" />
             </div>
             
-            <StartContext.Provider value={{internet: openNet, terminal: openCli}}>
+            <StartContext.Provider value={{shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
                 <div className="bottom">
-                    <Start windows={minWin} openRun={openRun} />
+                    <Start windows={minWin} />
                 </div>
             </StartContext.Provider>
 

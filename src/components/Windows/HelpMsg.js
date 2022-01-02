@@ -8,12 +8,11 @@ function HelpMsg(props) {
         setMsgState(false)
     }
 
-    if (props.helpState && msgState) {
+    if (props.helpState && msgState && (props.span === "visible")) {
         return(
             <span onClick={clickHandler} id={props.helpId} className={`tip-text ${props.span}`}>{props.content}</span>
         )
     } return null
-
 }
 
 export default HelpMsg

@@ -13,7 +13,6 @@ function Run(props) {
         let runInput = document.querySelector(".run-input")
 
         if (props.helpPrompt) {
-
             for (let i = 0; i < runButtons.length; i++) {
                 runButtons[i].style.cursor = "help"
             }
@@ -24,7 +23,7 @@ function Run(props) {
                 for (let i = 0; i < runButtons.length; i++) {
                     runButtons[i].style.cursor = "default"
                 }
-            } 
+            }
 
             if (runInput) {
                 runWindow.style.cursor = "default"
@@ -61,7 +60,6 @@ function Run(props) {
                 props.throwError(props.runInput.value)
                 closeWindow()
             }
-
             setSpan({...span, ok: ""})  
         } else {
             setSpan({...span, ok: "visible"})

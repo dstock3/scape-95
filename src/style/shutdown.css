@@ -1,0 +1,55 @@
+#shutdown-modal {
+    position: fixed;
+    left: 37%;
+    bottom: 40%;
+}
+
+.system-menu {
+    background-color: #cccccc;
+    height: 100%;
+    width: 100%;
+    font-size: .85em;
+}
+
+.shutdown-container {
+    display: flex;
+    justify-content: center;
+}
+
+.shutdown-prompt {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.shutdown-query {
+    margin-bottom: 15px;;
+}
+
+.options-container {
+    margin-top: 5px;
+}
+
+.shutdown-buttons {
+    margin-top: 40px;
+    align-self: flex-end;
+}
+
+.shutdown-button {
+    border-radius: 0px;
+    margin-right: 5px;
+    width: 85px;
+    height: 25px;
+    box-shadow: 1px 1px 1px rgb(58, 58, 58);
+}
+
+.shutdown-icon {
+    height: 45px;
+    width: 45px;
+    margin-top: 15px;
+}
+
+.shutdown-text {
+    margin-left: 5px;
+}
