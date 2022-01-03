@@ -250,6 +250,7 @@ function Main() {
         comp: openComp,
         docs: openDoc,
         bin: openBin,
+        calc: openCalc
     }
 
     const [help, setHelp] = useState(false)

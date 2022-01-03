@@ -15,7 +15,12 @@ function Calc(props) {
             setResult(prevResult => {
                 let str = String(prevResult)
                 let newStr = str.substring(0, str.length - 1)
-                return parseInt(newStr)
+                if (newStr === "") {
+                    return 0
+                } else {
+                    return parseInt(newStr)
+                }
+                
                 }
             )
         }
