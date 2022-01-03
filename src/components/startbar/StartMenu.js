@@ -111,7 +111,6 @@ function StartMenu(props) {
                         )
                     }
                 }
-
             </StartContext.Consumer>
         )
     } else {

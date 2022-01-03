@@ -29,6 +29,8 @@ function Main() {
     const [run, setRun] = useState({shortcut: "Run", shortcutId: "run", isClicked: false })
     const [runError, setRunError] = useState({shortcut: "Run Error", shortcutId: "run-error", isClicked: false })
     const [shutdown, setShutdown] = useState({shortcut: "Shut Down Windows", shortcutId: "shutdown", isClicked: false})
+    const [minesweeper, setMinesweeper] = useState({shortcut: "Minesweeper", shortcutId: "mine", isClicked: false, isRightClicked: false, isMin: false})
+
     const [minWin, setMinWin] = useState([])
 
     const selectController = (obj) => {
@@ -186,6 +188,19 @@ function Main() {
         setMinWin(minHelper(cli.shortcut))
     }
 
+    const openMine = () => {
+        setMinesweeper({...minesweeper, isClicked: true, isMin: false})
+    }
+
+    const closeMine = () => {
+        setMinesweeper({...minesweeper, isClicked: false, isMin: false})
+    }
+
+    const minMine = () => {
+        setMinesweeper({ ...minesweeper, isClicked: true, isMin: true})
+        setMinWin(minHelper(minesweeper.shortcut))
+    }
+
     const openRunError = () => {
         setRunError({...runError, shortcut: runInput, isClicked: true})
     }
@@ -304,7 +319,7 @@ function Main() {
                 <Col colId="fourteen" />
             </div>
             
-            <StartContext.Provider value={{shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
+            <StartContext.Provider value={{mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
                 <div className="bottom">
                     <Start windows={minWin} />
                 </div>
