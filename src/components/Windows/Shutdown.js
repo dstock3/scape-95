@@ -4,6 +4,11 @@ import shutdownIcon from '../../assets/icons/shutdown-menu-icon.png'
 function Shutdown(props) {
     const [option, setOption] = useState("shutdown")
 
+    const handleConfirm = () => {
+        console.log(option)
+        //Add functionality here to mimic shutdown procedure
+    }
+
     return (
         <div className="system-menu">
             <div className="shutdown-container">
@@ -17,9 +22,9 @@ function Shutdown(props) {
                                 type="radio" 
                                 value={option} 
                                 checked={option === "shutdown"}
-                                onClick={()=> {
+                                onChange={()=> {
                                     setOption("shutdown")
-                                    }} 
+                                    }}
                                 />
                             <label className="shutdown-text">Shutdown the computer?</label>
                         </div>
@@ -28,9 +33,9 @@ function Shutdown(props) {
                                 type="radio" 
                                 value={option} 
                                 checked={option === "restart"}
-                                onClick={()=> {
+                                onChange={()=> {
                                     setOption("restart")
-                                    }} 
+                                    }}
                                 />
                             <label className="shutdown-text">Restart the computer?</label>
                         </div>
@@ -39,7 +44,7 @@ function Shutdown(props) {
                                 type="radio" 
                                 value={option} 
                                 checked={option === "cli"}
-                                onClick={()=> {
+                                onChange={()=> {
                                     setOption("cli")
                                     }} 
                                 />
@@ -50,7 +55,7 @@ function Shutdown(props) {
                                 type="radio" 
                                 value={option} 
                                 checked={option === "log"}
-                                onClick={()=> {
+                                onChange={()=> {
                                     setOption("log")
                                     }} 
                                 />
@@ -58,7 +63,7 @@ function Shutdown(props) {
                         </div>
                     </form>
                     <div className="shutdown-buttons">
-                        <button className="shutdown-button">Yes</button>
+                        <button className="shutdown-button" onClick={handleConfirm}>Yes</button>
                         <button className="shutdown-button" onClick={props.closeButton}>No</button>
                         <button className="shutdown-button">Help</button>
                     </div>
