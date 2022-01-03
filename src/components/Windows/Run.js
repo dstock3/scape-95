@@ -40,19 +40,27 @@ function Run(props) {
 
 
     const setOk = () => {
-        setHelpMsg({...helpMsg, ok: true})
+        if (!(helpMsg.cancel || helpMsg.browse || helpMsg.input)) {
+            setHelpMsg({...helpMsg, ok: true})
+        }
     }
 
     const setCancel = () => {
-        setHelpMsg({...helpMsg, cancel: true})
+        if (!(helpMsg.ok || helpMsg.browse || helpMsg.input)) {
+            setHelpMsg({...helpMsg, cancel: true})
+        }
     }
 
     const setBrowse = () => {
-        setHelpMsg({...helpMsg, browse: true})
+        if (!(helpMsg.ok || helpMsg.cancel || helpMsg.input)) {
+            setHelpMsg({...helpMsg, browse: true})
+        }
     }
 
     const setInput = () => {
-        setHelpMsg({...helpMsg, input: true})
+        if (!(helpMsg.ok || helpMsg.cancel || helpMsg.browse)) {
+            setHelpMsg({...helpMsg, input: true})
+        }
     }
 
     const runProgram = e => {
