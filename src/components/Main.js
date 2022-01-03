@@ -275,7 +275,7 @@ function Main() {
                 <Col colId="seven" 
                     slotTwo={
                         <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
-                            <RunError term={runInput} close={closeRunError} />
+                            <RunError openRun={openRun} term={runInput} close={closeRunError} />
                         } />
                     }
 
