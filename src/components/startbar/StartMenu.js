@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import docIcon from "../../assets/icons/doc.png"
 import runIcon from "../../assets/icons/run.png"
 import settingsIcon from "../../assets/icons/settings.png"
@@ -38,8 +38,8 @@ function StartMenu(props) {
                                     
                                     <div className="start-option-list">
                                         <div className="start-options-top">
-                                            <div className="start-option-container">
-                                                <div className="start-option" onClick={()=> setPrograms({...programs, isClicked: true})}>
+                                            <div className="start-option-container" onClick={()=> setPrograms({...programs, isClicked: true})}>
+                                                <div className="start-option">
                                                     <img src={programsIcon} alt="programs icon" className="start-item-icon"></img>
                                                     <div className="start-item">Programs</div>
                                                 </div>

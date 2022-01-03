@@ -30,6 +30,7 @@ function Main() {
     const [runError, setRunError] = useState({shortcut: "Run Error", shortcutId: "run-error", isClicked: false })
     const [shutdown, setShutdown] = useState({shortcut: "Shut Down Windows", shortcutId: "shutdown", isClicked: false})
     const [minesweeper, setMinesweeper] = useState({shortcut: "Minesweeper", shortcutId: "mine", isClicked: false, isRightClicked: false, isMin: false})
+    const [calc, setCalc] = useState({shortcut: "Calculator", shortcutId: "calc", isClicked: false, isRightClicked: false, isMin: false})
 
     const [minWin, setMinWin] = useState([])
 
@@ -190,6 +191,14 @@ function Main() {
 
     const openMine = () => {
         setMinesweeper({...minesweeper, isClicked: true, isMin: false})
+
+        let mineObj = {
+            id: 6,
+            value: minesweeper.shortcut,
+            open: openMine,
+            className: "selected"
+        }
+        setMinWin(selectController(mineObj)) 
     }
 
     const closeMine = () => {
@@ -198,6 +207,27 @@ function Main() {
 
     const minMine = () => {
         setMinesweeper({ ...minesweeper, isClicked: true, isMin: true})
+        setMinWin(minHelper(minesweeper.shortcut))
+    }
+
+    const openCalc = () => {
+        setCalc({...calc, isClicked: true, isMin: false})
+
+        let calcObj = {
+            id: 7,
+            value: calc.shortcut,
+            open: openCalc,
+            className: "selected"
+        }
+        setMinWin(selectController(calcObj)) 
+    }
+
+    const closeCalc = () => {
+        setCalc({...calc, isClicked: false, isMin: false})
+    }
+
+    const minCalc = () => {
+        setCalc({ ...calc, isClicked: true, isMin: true})
         setMinWin(minHelper(minesweeper.shortcut))
     }
 
@@ -319,7 +349,7 @@ function Main() {
                 <Col colId="fourteen" />
             </div>
             
-            <StartContext.Provider value={{mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
+            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
                 <div className="bottom">
                     <Start windows={minWin} />
                 </div>

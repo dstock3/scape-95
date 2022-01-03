@@ -40,8 +40,8 @@ function ProgramsMenu(props) {
                                 <AccMenu isClicked={acc.isClicked} canStart={props.canStart} setStart={props.setStart} />
 
                                 <div className="start-menu" style={progStyle}>
-                                    <div className="start-option-container">
-                                        <div className="start-option" onClick={openAcc}>
+                                    <div className="start-option-container" onClick={openAcc}>
+                                        <div className="start-option">
                                             <img src={accIcon} alt="accessories icon" className="start-item-icon"></img>
                                             <div className="start-item">Accessories</div>
                                         </div>
@@ -63,14 +63,14 @@ function ProgramsMenu(props) {
                                         <div className="start-option-arrow">▶</div>
                                         {/*<Accessories isClicked={acc.isClicked}/>*/}
                                     </div>             
-                                    <div className="start-option-container">
-                                        <div className="start-option" onClick={()=> openNewApp(openApps.internet)}>
+                                    <div className="start-option-container" onClick={()=> openNewApp(openApps.internet)}>
+                                        <div className="start-option">
                                             <img src={netIcon} id="online-programs-icon" alt="internet icon" className="start-item-icon"></img>
                                             <div className="start-item" id="net-item">Internet</div>
                                         </div>
                                     </div>
-                                    <div className="start-option-container">
-                                        <div className="start-option" onClick={()=> openNewApp(openApps.terminal)}>
+                                    <div className="start-option-container" onClick={()=> openNewApp(openApps.terminal)}>
+                                        <div className="start-option">
                                             <img src={dosIcon} id="cli-programs-icon" alt="internet icon" className="start-item-icon"></img>
                                             <div className="start-item">CLI-Prompt</div>
                                         </div>
