@@ -17,6 +17,8 @@ import SpecialWindow from './Windows/SpecialWindow'
 import HelpButton from './Windows/HelpButton'
 import Shutdown from './Windows/Shutdown'
 import ShutdownPortal from './ShutdownPortal'
+import Calc from './Accessories/Calc'
+import MinMaxSpec from './Windows/MinMaxSpec'
 
 const StartContext = React.createContext()
 
@@ -203,6 +205,7 @@ function Main() {
 
     const closeMine = () => {
         setMinesweeper({...minesweeper, isClicked: false, isMin: false})
+        setMinWin(closeHelper(minesweeper.shortcut));
     }
 
     const minMine = () => {
@@ -224,11 +227,13 @@ function Main() {
 
     const closeCalc = () => {
         setCalc({...calc, isClicked: false, isMin: false})
+        setMinWin(closeHelper(calc.shortcut));
+        
     }
 
     const minCalc = () => {
         setCalc({ ...calc, isClicked: true, isMin: true})
-        setMinWin(minHelper(minesweeper.shortcut))
+        setMinWin(minHelper(calc.shortcut))
     }
 
     const openRunError = () => {
@@ -327,7 +332,7 @@ function Main() {
                     slotThree={
                         <ShutdownPortal window={
                             <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
-                                <Shutdown  closeButton={closeShutdown} />
+                                <Shutdown closeButton={closeShutdown} />
                             } />
                         }/>
                     }
@@ -336,7 +341,14 @@ function Main() {
 
                 <Col colId="eight" />
 
-                <Col colId="nine" />
+                <Col colId="nine" 
+                    slotTwo={
+                        <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "400px", height: "400px"}} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
+                            <Calc />
+                        } />
+                    }
+                
+                />
 
                 <Col colId="ten" />
 
