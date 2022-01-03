@@ -35,9 +35,10 @@ const Start = (props) => {
 
     useEffect(()=> {
         let runWindow = document.getElementById("run-window")
-
-        if (!runWindow.classList.contains("hidden")) {
-            setStart({ ...start, isStarted: false })
+        if (runWindow) {
+            if (!runWindow.classList.contains("hidden")) {
+                setStart({ ...start, isStarted: false })
+            }
         }
     }, [start.isStarted])
 

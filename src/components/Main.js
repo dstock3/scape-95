@@ -210,10 +210,7 @@ function Main() {
 
     const closeShutdown = () => {
         setShutdown({...shutdown, isClicked: false})
-
     }
-
-
 
     return (
         <div className="main">
@@ -222,18 +219,19 @@ function Main() {
                     slotOne={
                         <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
                     }
-
+                    
                     slotTwo={
                         <DesktopIcon open={openDoc} shortcutId={doc.shortcutId} shortcutIconId={`${doc.shortcutId}-icon`} imgSrc={docIcon} shortcut={doc.shortcut} />
                     }
-
+                    
                     slotThree={
                         <DesktopIcon open={openBin} shortcutId={bin.shortcutId} shortcutIconId={`${bin.shortcutId}-icon`} imgSrc={binIcon} shortcut={bin.shortcut}/>
                     }
+                    
                     slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
                     }
-
+                    
                     slotSix={
                         <SpecialWindow isClicked={run.isClicked} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
                             <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
@@ -251,9 +249,11 @@ function Main() {
                     slotOne={
                         <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
                     }
+
                     slotTwo={
                         <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
                     }
+
                     slotThree={
                         <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
                     }
@@ -266,6 +266,7 @@ function Main() {
                             <Terminal openApps={openApps}/>
                         } />
                     }
+
                     slotTwo={
                         <BasicWindow isClicked={net.isClicked} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
                     }
@@ -277,6 +278,7 @@ function Main() {
                             <RunError term={runInput} close={closeRunError} />
                         } />
                     }
+
                     slotThree={
                         <ShutdownPortal window={
                             <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
@@ -284,6 +286,7 @@ function Main() {
                             } />
                         }/>
                     }
+
                 />
 
                 <Col colId="eight" />

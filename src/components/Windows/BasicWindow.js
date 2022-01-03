@@ -24,15 +24,14 @@ function BasicWindow(props) {
             left: "100px",
             top: "300px",
             minHeight: defaultHeight,
-            minWidth: defaultWidth,
+            minWidth: defaultHeight,
         },
         bodyStyle: {
             height: parseInt(defaultHeight.replace("px", "") - 25)
         }
-
     })
 
-    const [isHidden, setHidden] = useState(props.minState)
+    const [isHidden, setHidden] = useState("hidden")
 
     useEffect(() => {
         if (props.minState) {

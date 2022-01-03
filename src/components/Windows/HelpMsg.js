@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
 function HelpMsg(props) {
-    const [msgState, setMsgState] = useState(true)
+    //const [msgState, setMsgState] = useState(true)
 
     const clickHandler = () => {
         props.setHelp(false)
-        setMsgState(false)
+        //setMsgState(false)
+        props.spanSet()
     }
 
-    if (props.helpState && msgState && (props.span === "visible")) {
+    if (props.span === "visible") {
         return(
             <span onClick={clickHandler} id={props.helpId} className={`tip-text ${props.span}`}>{props.content}</span>
         )
