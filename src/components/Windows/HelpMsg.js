@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react'
 function HelpMsg(props) {
     const clickHandler = () => {
         props.setHelp(false)
-        props.setFalse()
-        
+        props.setFalse()   
     }
 
     if (props.optionState) {

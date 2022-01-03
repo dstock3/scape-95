@@ -8,10 +8,6 @@ function Run(props) {
     const [helpMsg, setHelpMsg] = useState({ok: false, cancel: false, browse: false, input: false})
 
     useEffect(()=> {
-
-    }, [props.helpPrompt])
-
-    useEffect(()=> {
         let runWindow = document.querySelector(".run")
         let runButtons = Array.from(document.getElementsByClassName("run-button"))
         let runInput = document.querySelector(".run-input")
@@ -36,9 +32,6 @@ function Run(props) {
         }
     }, [props.helpPrompt])
     
-
-
-
     const setOk = () => {
         if (!(helpMsg.cancel || helpMsg.browse || helpMsg.input)) {
             setHelpMsg({...helpMsg, ok: true})
@@ -116,6 +109,22 @@ function Run(props) {
         }
     }
 
+    useEffect(()=> {
+        let runWindow = document.querySelector(".run")
+
+        function enterEvent(e) {
+            if (e.key === "Enter") {
+                runProgram()
+            }
+        }
+
+        runWindow.addEventListener("keypress", enterEvent)
+
+        return () => {
+            runWindow.removeEventListener("keypress", enterEvent)
+        }
+    })
+
     if (!props.helpPrompt) {
         return (
             <div className="run">
@@ -127,8 +136,7 @@ function Run(props) {
                 <div className="run-input-container">
                     <label className="run-text">Open: </label>
     
-                    <input onClick={clickInput} type="text" value={props.runInput.value} onChange={e => props.runInput.setter(e.target.value)} className="run-input"></input>
-                    { inputHelp.content }
+                    <input onClick={clickInput} autoFocus type="text" value={props.runInput.value} onChange={e => props.runInput.setter(e.target.value)} className="run-input"></input>
                 </div>
     
                 <div className="master-button-container">
@@ -162,8 +170,7 @@ function Run(props) {
                     <label className="run-text">Open: </label>
 
                     <input onClick={clickInput} type="text" value={props.runInput.value} onChange={e => props.runInput.setter(e.target.value)} className="run-input"></input>
-                    { inputHelp.content }
-
+                    
                     <div className="tip">
                         <HelpMsg optionState={helpMsg.input} setFalse={()=>setHelpMsg({...helpMsg, input: false})} setHelp={props.setHelp} helpId="run-input-help" spanSet={()=>setSpan({...span, input: ""})} span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
                     </div>
