@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {StartContext} from '../Main'
 import defIcon from '../../assets/icons/programs.png'
 import calcIcon from '../../assets/icons/calc.png'
@@ -20,6 +20,9 @@ function AccMenu(props) {
         flexDirection: "column",
         margin: "none",
     })
+
+    const openApps = useContext(StartContext)
+
     const openNewApp = (openApp) => {
         openApp()
         props.setStart({...props.canStart, isStarted: false})
@@ -39,46 +42,38 @@ function AccMenu(props) {
 
     if (props.isClicked) {
         return (
-            <StartContext.Consumer>
-                {
-                    openApps => {
-                        return (
-                            <>
-                                <GamesMenu isClicked={games.isClicked} canStart={props.canStart} setStart={props.setStart}/>
-                                <div className="start-menu" style={accStyle}>
-                                    <div className="start-option-container" onClick={openGames}>
-                                        <div className="start-option">
-                                            <img src={defIcon} alt="games icon" className="start-item-icon"></img>
-                                            <div className="start-item">Games</div>
-                                        </div>
-                                        <div className="start-option-arrow">▶</div>
-                                    </div>
-                                    <div className="start-option-container" onClick={openNetTools}>
-                                        <div className="start-option">
-                                            <img src={defIcon} alt="internet tools icon" className="start-item-icon"></img>
-                                            <div className="start-item">Internet Tools</div>
-                                        </div>
-                                        <div className="start-option-arrow">▶</div>
-                                    </div>
-                                    <div className="start-option-container" onClick={openMedia}>
-                                        <div className="start-option">
-                                            <img src={defIcon} alt="multimedia icon" className="start-item-icon"></img>
-                                            <div className="start-item">Multimedia</div>
-                                        </div>
-                                        <div className="start-option-arrow">▶</div>
-                                    </div>
-                                    <div className="start-option-container">
-                                        <div className="start-option" onClick={()=> openNewApp(openApps.calc)}>
-                                            <img src={calcIcon} id="calc-icon" alt="calculator icon" className="start-item-icon"></img>
-                                            <div className="start-item" id="calc-start-text">Calculator</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    }
-                }
-            </StartContext.Consumer>
+            <>
+                <GamesMenu isClicked={games.isClicked} canStart={props.canStart} setStart={props.setStart}/>
+                <div className="start-menu" style={accStyle}>
+                    <div className="start-option-container" onClick={openGames}>
+                        <div className="start-option">
+                            <img src={defIcon} alt="games icon" className="start-item-icon"></img>
+                            <div className="start-item">Games</div>
+                        </div>
+                        <div className="start-option-arrow">▶</div>
+                    </div>
+                    <div className="start-option-container" onClick={openNetTools}>
+                        <div className="start-option">
+                            <img src={defIcon} alt="internet tools icon" className="start-item-icon"></img>
+                            <div className="start-item">Internet Tools</div>
+                        </div>
+                        <div className="start-option-arrow">▶</div>
+                    </div>
+                    <div className="start-option-container" onClick={openMedia}>
+                        <div className="start-option">
+                            <img src={defIcon} alt="multimedia icon" className="start-item-icon"></img>
+                            <div className="start-item">Multimedia</div>
+                        </div>
+                        <div className="start-option-arrow">▶</div>
+                    </div>
+                    <div className="start-option-container">
+                        <div className="start-option" onClick={()=> openNewApp(openApps.calc)}>
+                            <img src={calcIcon} id="calc-icon" alt="calculator icon" className="start-item-icon"></img>
+                            <div className="start-item" id="calc-start-text">Calculator</div>
+                        </div>
+                    </div>
+                </div>
+            </>
         )
     } else {
         return null

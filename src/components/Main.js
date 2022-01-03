@@ -5,7 +5,6 @@ import binIcon from "../assets/icons/bin.png"
 import docIcon from "../assets/icons/documents.png"
 import DesktopIcon from './desktop_shortcuts/DesktopIcon'
 import netIcon from "../assets/icons/internet.png"
-import { letDrop, newDrop } from '../DragFunctions'
 import Internet from './Windows/internet/Internet'
 import '../style/main.css'
 import BasicWindow from './Windows/BasicWindow'
