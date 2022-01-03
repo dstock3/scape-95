@@ -5,12 +5,12 @@ import '../../style/run.css'
 
 function Run(props) {
     const [span, setSpan] = useState({ok: "", cancel: "", browse: "", input: ""})
-    const [helpMsg, setHelpMsg] = useState({ok: true, cancel: true, browse: true, input: true})
+    const [helpMsg, setHelpMsg] = useState({ok: false, cancel: false, browse: false, input: false})
 
     useEffect(()=> {
 
     }, [props.helpPrompt])
-    
+
     useEffect(()=> {
         let runWindow = document.querySelector(".run")
         let runButtons = Array.from(document.getElementsByClassName("run-button"))
@@ -37,13 +37,22 @@ function Run(props) {
     }, [props.helpPrompt])
     
 
-    const closeWindow = () => {
-        if (!props.helpPrompt) {
-            props.closeRun()
-            setSpan({...span, cancel: ""})
-        } else {
-            setSpan({...span, cancel: "visible"})
-        }
+
+
+    const setOk = () => {
+        setHelpMsg({...helpMsg, ok: true})
+    }
+
+    const setCancel = () => {
+        setHelpMsg({...helpMsg, cancel: true})
+    }
+
+    const setBrowse = () => {
+        setHelpMsg({...helpMsg, browse: true})
+    }
+
+    const setInput = () => {
+        setHelpMsg({...helpMsg, input: true})
     }
 
     const runProgram = e => {
@@ -67,6 +76,17 @@ function Run(props) {
             setSpan({...span, ok: ""})  
         } else {
             setSpan({...span, ok: "visible"})
+            setOk()
+        }
+    }
+
+    const closeWindow = () => {
+        if (!props.helpPrompt) {
+            props.closeRun()
+            setSpan({...span, cancel: ""})
+        } else {
+            setSpan({...span, cancel: "visible"})
+            setCancel()
         }
     }
 
@@ -75,6 +95,7 @@ function Run(props) {
             setSpan({...span, browse: ""})            
         } else {
             setSpan({...span, browse: "visible"})
+            setBrowse()
         }
     }
 
@@ -83,6 +104,7 @@ function Run(props) {
     const clickInput = () => {
         if (props.helpPrompt) {
             setSpan({...span, input: "visible"})
+            setInput()
         }
     }
 
@@ -101,18 +123,22 @@ function Run(props) {
                     { inputHelp.content }
                 </div>
     
-                <div className="run-button-container">
-                    <button onClick={runProgram} className="run-button">
-                        OK
-                    </button>
-    
-                    <button onClick={closeWindow} className="run-button">
-                        Cancel
-                    </button>
-    
-                    <button onClick={browse} className="run-button" >
-                        Browse...
-                    </button>
+                <div className="master-button-container">
+                    <div className="run-button-container">
+                        <button onClick={runProgram} className="run-button">
+                            OK
+                        </button>
+                    </div>
+                    <div className="run-button-container">
+                        <button onClick={closeWindow} className="run-button">
+                            Cancel
+                        </button>
+                    </div>
+                    <div className="run-button-container">
+                        <button onClick={browse} className="run-button" >
+                            Browse...
+                        </button>
+                    </div>
                 </div>
             </div>
         )
@@ -131,26 +157,36 @@ function Run(props) {
                     { inputHelp.content }
 
                     <div className="tip">
-                        <HelpMsg setHelp={props.setHelp} helpId="run-input-help" spanSet={()=>setSpan({...span, input: ""})} span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
+                        <HelpMsg optionState={helpMsg.input} setFalse={()=>setHelpMsg({...helpMsg, input: false})} setHelp={props.setHelp} helpId="run-input-help" spanSet={()=>setSpan({...span, input: ""})} span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
                     </div>
                 </div>
-                
 
-                <div className="run-button-container">
-                    <button onClick={runProgram} className="run-button tip">
-                        OK
-                        <HelpMsg setHelp={props.setHelp} helpId="run-program-help" spanSet={()=>setSpan({...span, ok: ""})} span={span.ok} content={"Closes this dialog box and saves any changes you have made."}/>
-                    </button>
+                <div className="master-button-container">
+                    <div className="run-button-container">
+                        <button onClick={runProgram} className="run-button tip">
+                            OK
+                        </button>
+                        <div className="tip">
+                            <HelpMsg optionState={helpMsg.ok} setFalse={()=>setHelpMsg({...helpMsg, ok: false})} setHelp={props.setHelp} helpId="run-program-help" spanSet={()=>setSpan({...span, ok: ""})} span={span.ok} content={"Closes this dialog box and saves any changes you have made."}/>
+                        </div>
+                    </div>
+                    <div className="run-button-container">
+                        <button onClick={closeWindow} className="run-button tip">
+                            Cancel
+                        </button>
+                        <div className="tip">
+                            <HelpMsg optionState={helpMsg.cancel} setFalse={()=> setHelpMsg({...helpMsg, cancel: false})} setHelp={props.setHelp} helpId="close-run-help" spanSet={()=>setSpan({...span, cancel: ""})} span={span.cancel} content={"Closes this dialog box without saving any changes you have made."}/>
+                        </div>
+                    </div>
+                    <div className="run-button-container">
+                        <button onClick={browse} className="run-button tip" >
+                            Browse...
+                        </button>
+                        <div className="tip">
+                            <HelpMsg optionState={helpMsg.browse} setFalse={()=>setHelpMsg({...helpMsg, browse: false})} setHelp={props.setHelp} helpId="run-browse-help" spanSet={()=>setSpan({...span, browse: ""})} span={span.browse} content={"Click this to browse through folders to find the file you want."}/>
+                        </div>
+                    </div>
 
-                    <button onClick={closeWindow} className="run-button tip">
-                        Cancel
-                        <HelpMsg setHelp={props.setHelp} helpId="close-run-help" spanSet={()=>setSpan({...span, cancel: ""})} span={span.cancel} content={"Closes this dialog box without saving any changes you have made."}/>
-                    </button>
-
-                    <button onClick={browse} className="run-button tip" >
-                        Browse...
-                        <HelpMsg setHelp={props.setHelp} helpId="run-browse-help" spanSet={()=>setSpan({...span, browse: ""})} span={span.browse} content={"Click this to browse through folders to find the file you want."}/>
-                    </button>
                 </div>
             </div>
         )

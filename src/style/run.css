@@ -38,17 +38,27 @@
     margin-right: 20px;
 }
 
-.run-button-container {
+.master-button-container {
+    display: flex;
     margin-top: 10px;  
-    margin-inline-start: 35%;
+    margin-inline-start: 33%;
     width: 65%;
 }
 
-.run-button-container > button {
+.master-button-container > button {
     border-radius: 0px;
-    margin-right: 5px;
-    width: 75px;
+    margin-right: 7px;
+    
     box-shadow: 1px 1px 1px rgb(58, 58, 58);
+}
+
+.run-button-container {
+    margin-right: 7px;
+}
+
+.run-button-container > button{
+    box-shadow: 1px 1px 1px rgb(58, 58, 58);
+    width: 75px;
 }
 
 .tip {
@@ -59,7 +69,8 @@
 
 .tip .tip-text {
     position: fixed;
-    z-index: 2;
+    z-index: 4;
+    width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,5 +94,16 @@
     bottom: 4.5%;
     height: 9%;
     width: 650px;
+}
 
+#run-program-help {
+    left: 8%;
+}
+
+#close-run-help {
+    left: 12%;
+}
+
+#run-browse-help {
+    left: 16%;
 }
