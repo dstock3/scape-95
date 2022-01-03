@@ -1,0 +1,21 @@
+.calc {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.display {
+    background: white;
+    border: 1px black solid;
+    width: 88%;
+}
+
+.buttons {
+    display: flex;
+}
+
+.spec-buttons-col {
+    display: flex;
+    flex-direction: column;
+}

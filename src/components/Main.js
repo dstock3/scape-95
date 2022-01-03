@@ -343,7 +343,7 @@ function Main() {
 
                 <Col colId="nine" 
                     slotTwo={
-                        <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "400px", height: "400px"}} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
+                        <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "0px", top: "250px"}} size={{width: "400px", height: "400px"}} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
                             <Calc />
                         } />
                     }
