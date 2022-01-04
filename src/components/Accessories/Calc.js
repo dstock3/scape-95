@@ -36,12 +36,13 @@ function Calc(props) {
         } else if (firstNum) {
             setDisplay(firstNum)
         }
-        
     })
 
     const newOp = (op) => {
         if (result) {
             setFirstNum(result)
+            setResult()
+            setSecondNum()
             setDisplay(firstNum)
         }
         setOperator(op)
