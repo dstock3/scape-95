@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../style/window.css'
+import { newDrag } from '../../DragFunctions'
 
 function SpecialWindow(props) {
     useEffect(()=> {
@@ -53,12 +54,16 @@ function SpecialWindow(props) {
             fontWeight: "bold"
         }
     }
+
+    const setDraggableTrue = () => {
+        setWin({...win, isDraggable: true})
+    }
     
     if (props.isClicked) {
         return (
             <>
-                <div className={`special-window ${isHidden}`} id={props.winId} draggable="false" style={win.style}>
-                    <div className="window-top">
+                <div className={`special-window ${isHidden}`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+                    <div className="window-top" onMouseEnter={setDraggableTrue} onMouseLeave={()=> setWin({...win, isDraggable: false})}>
                         <div className="window-title">{props.winTitle}</div>
                         <div className="window-buttons" style={{width: "fit-content", marginRight: "1px"}}>
                             {props.help}

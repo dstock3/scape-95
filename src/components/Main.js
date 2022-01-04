@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable default-case */
+import React, { useState, useReducer } from 'react'
 import Start from './startbar/Start'
 import compIcon from "../assets/icons/mycomputer.png"
 import binIcon from "../assets/icons/bin.png"
@@ -34,7 +35,7 @@ function Main() {
     const [calc, setCalc] = useState({shortcut: "Calculator", shortcutId: "calc", isClicked: false, isRightClicked: false, isMin: false})
 
     const [minWin, setMinWin] = useState([])
-
+    
     const selectController = (obj) => {
         let newArray = minWin
         let check = false
@@ -268,7 +269,8 @@ function Main() {
                 <Col colId="one"
                     slotOne={
                         <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
-                    }
+                    } 
+                    
                     
                     slotTwo={
                         <DesktopIcon open={openDoc} shortcutId={doc.shortcutId} shortcutIconId={`${doc.shortcutId}-icon`} imgSrc={docIcon} shortcut={doc.shortcut} />
@@ -295,10 +297,11 @@ function Main() {
 
                 <Col colId="four" />
 
-                <Col colId="five" 
+                <Col colId="five"
                     slotOne={
                         <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
                     }
+                    
 
                     slotTwo={
                         <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />

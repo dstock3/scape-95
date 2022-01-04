@@ -1,20 +1,57 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function Calc(props) {
-    const [result, setResult] = useState(0)
+    const [display, setDisplay] = useState(0)
+    const [firstNum, setFirstNum] = useState(0)
+    const [operator, setOperator] = useState()
+    const [secondNum, setSecondNum] = useState(0)
+    const [result, setResult] = useState()
+
     const displayNum = (num) => {
-        if (result) {
-            setResult(prevResult => prevResult + `${num}`)
-        } else {
-            setResult(num)
+        if (!operator) {
+            if (firstNum) {
+                setFirstNum(prevResult => prevResult + `${num}`)
+            } else {
+                setFirstNum(num)
+            }
+        }
+
+        if (operator) {
+            if (secondNum) {
+                setSecondNum(prevResult => prevResult + `${num}`)
+            } else {
+                setSecondNum(num)
+            }
         }
     }
 
-    const back = () => {
+    useEffect(()=> {
         if (result) {
-            setResult(prevResult => {
-                let str = String(prevResult)
+            setDisplay(result)
+        } else if (secondNum) {
+            setDisplay(secondNum)
+        } else if (operator) {
+            setDisplay(operator)
+        } else if (firstNum) {
+            setDisplay(firstNum)
+        }
+        
+    })
+
+    const newOp = (op) => {
+        if (result) {
+            setFirstNum(result)
+            setDisplay(firstNum)
+        }
+        setOperator(op)
+    }
+
+    const back = () => {
+        if (display) {
+            setDisplay(prevResult => {
+                let str = prevResult
                 let newStr = str.substring(0, str.length - 1)
+                console.log(newStr)
                 if (newStr === "") {
                     return 0
                 } else {
@@ -26,16 +63,37 @@ function Calc(props) {
         }
     }
     
+    const performOp = () => {
+        console.log(firstNum, operator, secondNum)
+        if (operator === '+') {
+            setResult(parseInt(firstNum) + parseInt(secondNum))
+        }
+        if (operator === "-") {
+            setResult(parseInt(firstNum) - parseInt(secondNum))
+        }
+        if (operator === "*") {
+            setResult(parseInt(firstNum) * parseInt(secondNum))
+        }
+    }
+
+    const clear = () => {
+        setDisplay(0)
+        setFirstNum(0)
+        setOperator(null)
+        setSecondNum(0)
+        setResult(null)
+    }
+
     return (
         <div className="calc">
             <div className="display">
-                {result}
+                {display}
             </div>
             <div className="spec-buttons-row">
                 <div className="dec-square"></div>
                 <button onClick={back}>Back</button>
                 <button>CE</button>
-                <button>C</button>
+                <button onClick={clear}>C</button>
             </div>
             <div className="buttons">
                 <div className="spec-buttons-col" style={{color: "red"}}>
@@ -63,12 +121,13 @@ function Calc(props) {
                     <button>.</button>
                 </div>
                 <div className="op-buttons-col-one" style={{color: "red"}}>
-                    <button>/</button>
-                    <button>*</button>
-                    <button>-</button>
-                    <button>+</button>
+                    {/*<buttonn onClick={()=>newOp("/")}>/</button>*/}
+                    <button onClick={()=>newOp("*")}>*</button>
+                    <button onClick={()=>newOp("-")}>-</button>
+                    <button onClick={()=>newOp("+")}>+</button>
                 </div>
                 <div className="op-buttons-col-two">
+                    <button onClick={()=>performOp("=")}>=</button>
 
                 </div>
             </div>
