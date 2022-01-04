@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/scape-95/static/css/main.8cb43ba2.chunk.css",
-    "main.js": "/scape-95/static/js/main.3fe7f7f3.chunk.js",
-    "main.js.map": "/scape-95/static/js/main.3fe7f7f3.chunk.js.map",
-    "runtime-main.js": "/scape-95/static/js/runtime-main.723864ae.js",
-    "runtime-main.js.map": "/scape-95/static/js/runtime-main.723864ae.js.map",
-    "static/js/2.f1e70b2d.chunk.js": "/scape-95/static/js/2.f1e70b2d.chunk.js",
-    "static/js/2.f1e70b2d.chunk.js.map": "/scape-95/static/js/2.f1e70b2d.chunk.js.map",
-    "static/js/3.92794aa1.chunk.js": "/scape-95/static/js/3.92794aa1.chunk.js",
-    "static/js/3.92794aa1.chunk.js.map": "/scape-95/static/js/3.92794aa1.chunk.js.map",
+    "main.css": "/scape-95/static/css/main.972998be.chunk.css",
+    "main.js": "/scape-95/static/js/main.e1fa59e3.chunk.js",
+    "main.js.map": "/scape-95/static/js/main.e1fa59e3.chunk.js.map",
+    "runtime-main.js": "/scape-95/static/js/runtime-main.b779b319.js",
+    "runtime-main.js.map": "/scape-95/static/js/runtime-main.b779b319.js.map",
+    "static/js/2.e75b8e8a.chunk.js": "/scape-95/static/js/2.e75b8e8a.chunk.js",
+    "static/js/2.e75b8e8a.chunk.js.map": "/scape-95/static/js/2.e75b8e8a.chunk.js.map",
+    "static/js/3.e2df01c8.chunk.js": "/scape-95/static/js/3.e2df01c8.chunk.js",
+    "static/js/3.e2df01c8.chunk.js.map": "/scape-95/static/js/3.e2df01c8.chunk.js.map",
     "index.html": "/scape-95/index.html",
-    "static/css/main.8cb43ba2.chunk.css.map": "/scape-95/static/css/main.8cb43ba2.chunk.css.map",
-    "static/js/2.f1e70b2d.chunk.js.LICENSE.txt": "/scape-95/static/js/2.f1e70b2d.chunk.js.LICENSE.txt",
+    "static/css/main.972998be.chunk.css.map": "/scape-95/static/css/main.972998be.chunk.css.map",
+    "static/js/2.e75b8e8a.chunk.js.LICENSE.txt": "/scape-95/static/js/2.e75b8e8a.chunk.js.LICENSE.txt",
     "static/media/back.ceecbfa5.svg": "/scape-95/static/media/back.ceecbfa5.svg",
     "static/media/documents.b22a8f50.png": "/scape-95/static/media/documents.b22a8f50.png",
     "static/media/forward.c1815b0c.svg": "/scape-95/static/media/forward.c1815b0c.svg",
@@ -22,9 +22,9 @@
     "static/media/tictactoe.de78ee72.png": "/scape-95/static/media/tictactoe.de78ee72.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.723864ae.js",
-    "static/js/2.f1e70b2d.chunk.js",
-    "static/css/main.8cb43ba2.chunk.css",
-    "static/js/main.3fe7f7f3.chunk.js"
+    "static/js/runtime-main.b779b319.js",
+    "static/js/2.e75b8e8a.chunk.js",
+    "static/css/main.972998be.chunk.css",
+    "static/js/main.e1fa59e3.chunk.js"
   ]
 }
