@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable default-case */
+import React, { useState, useReducer } from 'react'
 import Start from './startbar/Start'
 import compIcon from "../assets/icons/mycomputer.png"
 import binIcon from "../assets/icons/bin.png"
@@ -21,6 +22,36 @@ import MinMaxSpec from './Windows/MinMaxSpec'
 
 const StartContext = React.createContext()
 
+const initialState = {
+    isClicked: false,
+    isRightClicked: false,
+    isMin: false
+}
+const reducer = (state, action) => {
+
+    switch(action.type) {
+        case 'open' :
+            return { 
+                isClicked: true,
+                isRightClicked: false,
+                isMin: false
+            }
+        case 'close' :
+            return {
+                isClicked: false,
+                isRightClicked: false,
+                isMin: false
+            }
+        case 'min' :
+            return {
+                isClicked: false,
+                isRightClicked: false,
+                isMin: true
+            }
+    }
+
+}
+
 function Main() {
     const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
     const [doc, setDoc] = useState({shortcut: "My Documents", shortcutId: "doc", isClicked: false, isRightClicked: false, isMin: false})
@@ -34,6 +65,8 @@ function Main() {
     const [calc, setCalc] = useState({shortcut: "Calculator", shortcutId: "calc", isClicked: false, isRightClicked: false, isMin: false})
 
     const [minWin, setMinWin] = useState([])
+    
+    const [newComp, dispatch ] = useReducer(reducer, initialState)
 
     const selectController = (obj) => {
         let newArray = minWin
@@ -267,8 +300,15 @@ function Main() {
             <div className="col-container">
                 <Col colId="one"
                     slotOne={
-                        <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
+                        <DesktopIcon open={()=> dispatch({ type: 'open' })} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
                     }
+
+                    
+                    /*
+                    slotOne={
+                        <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
+                    } 
+                    */
                     
                     slotTwo={
                         <DesktopIcon open={openDoc} shortcutId={doc.shortcutId} shortcutIconId={`${doc.shortcutId}-icon`} imgSrc={docIcon} shortcut={doc.shortcut} />
@@ -295,10 +335,15 @@ function Main() {
 
                 <Col colId="four" />
 
-                <Col colId="five" 
+                <Col colId="five"
+                    slotOne={
+                        <BasicWindow isClicked={newComp.isClicked} open={()=> dispatch({ type: 'open' })} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={()=> dispatch({ type: 'min' })} minState={newComp.isMin} close={()=> dispatch({ type: 'close' })} contents={"contents"} />
+                    }
+                    /* 
                     slotOne={
                         <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
                     }
+                    */
 
                     slotTwo={
                         <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
