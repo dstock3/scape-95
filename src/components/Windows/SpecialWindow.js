@@ -56,7 +56,9 @@ function SpecialWindow(props) {
     }
 
     const setDraggableTrue = () => {
-        setWin({...win, isDraggable: true})
+        if (props.canDrag) {
+            setWin({...win, isDraggable: true})
+        }
     }
     
     if (props.isClicked) {
