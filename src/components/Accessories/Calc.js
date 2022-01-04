@@ -75,6 +75,9 @@ function Calc(props) {
         if (operator === "*") {
             setResult(parseInt(firstNum) * parseInt(secondNum))
         }
+        if (operator === '/') {
+            setResult(parseInt(firstNum) / parseInt(secondNum))
+        }
     }
 
     const clear = () => {
@@ -128,7 +131,7 @@ function Calc(props) {
                         <button>.</button>
                     </div>
                     <div className="op-buttons-col-one" style={{color: "red"}}>
-                        {/*<buttonn onClick={()=>newOp("/")}>/</button>*/}
+                        <button onClick={()=>newOp("/")}>/</button>
                         <button onClick={()=>newOp("*")}>*</button>
                         <button onClick={()=>newOp("-")}>-</button>
                         <button onClick={()=>newOp("+")}>+</button>
