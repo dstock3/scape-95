@@ -27,7 +27,10 @@ const initialState = {
     isRightClicked: false,
     isMin: false
 }
+
 const reducer = (state, action) => {
+    let newObj = action.value
+    console.log(newObj)
 
     switch(action.type) {
         case 'open' :
@@ -66,7 +69,7 @@ function Main() {
 
     const [minWin, setMinWin] = useState([])
     
-    const [newComp, dispatch ] = useReducer(reducer, initialState)
+    const [newComp, dispatchComp ] = useReducer(reducer, initialState)
 
     const selectController = (obj) => {
         let newArray = minWin
@@ -105,6 +108,7 @@ function Main() {
         }
         return newArray
     }
+
 
     const openComp = () => {
         setComp({ ...comp, isClicked: true, isMin: false})
@@ -300,10 +304,9 @@ function Main() {
             <div className="col-container">
                 <Col colId="one"
                     slotOne={
-                        <DesktopIcon open={()=> dispatch({ type: 'open' })} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
+                        <DesktopIcon open={()=> dispatchComp({ type: 'open', value: {id: 0, value: comp.shortcut, open: dispatchComp, className: "selected"} })} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
                     }
 
-                    
                     /*
                     slotOne={
                         <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
@@ -337,7 +340,7 @@ function Main() {
 
                 <Col colId="five"
                     slotOne={
-                        <BasicWindow isClicked={newComp.isClicked} open={()=> dispatch({ type: 'open' })} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={()=> dispatch({ type: 'min' })} minState={newComp.isMin} close={()=> dispatch({ type: 'close' })} contents={"contents"} />
+                        <BasicWindow isClicked={newComp.isClicked} open={()=> dispatchComp({ type: 'open' })} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={()=> dispatchComp({ type: 'min' })} minState={newComp.isMin} close={()=> dispatchComp({ type: 'close' })} contents={"contents"} />
                     }
                     /* 
                     slotOne={
