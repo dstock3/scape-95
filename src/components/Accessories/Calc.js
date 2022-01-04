@@ -63,13 +63,13 @@ function Calc(props) {
     const back = () => {
         if (display) {
             setDisplay(prevResult => {
-                let str = prevResult
+                let str = String(prevResult)
                 let newStr = str.substring(0, str.length - 1)
                 console.log(newStr)
                 if (newStr === "") {
-                    return 0
+                    setDisplay(0)
                 } else {
-                    return parseInt(newStr)
+                    setDisplay(parseInt(newStr))
                 }
                 
                 }
@@ -96,6 +96,11 @@ function Calc(props) {
     const sqrRoot = () => {
         let solution = Math.sqrt(display)
         setResult(solution)
+    }
+
+    const fract = () => {
+        let newFract = 1 / display
+        setResult(newFract)
     }
 
     const clear = () => {
@@ -146,7 +151,7 @@ function Calc(props) {
                         <button onClick={()=>displayNum(9)}>9</button>
                         <button onClick={()=>displayNum(6)}>6</button>
                         <button onClick={()=>displayNum(3)}>3</button>
-                        <button>.</button>
+                        <button onClick={()=>displayNum('.')}>.</button>
                     </div>
                     <div className="op-buttons-col-one" style={{color: "red"}}>
                         <button onClick={()=>newOp("/")}>/</button>
@@ -157,8 +162,8 @@ function Calc(props) {
                     <div className="op-buttons-col-two">
                         <button onClick={()=>sqrRoot()}>sqrt</button>
                         <button>%</button>
-                        <button>1/x</button>
-                        <button id="equal" onClick={()=>performOp("=")}>=</button>
+                        <button onClick={()=>fract()}>1/x</button>
+                        <button id="equal" onClick={()=>performOp()}>=</button>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,12 @@ function Shutdown(props) {
         //Add functionality here to mimic shutdown procedure
     }
 
+    const optionSelected = (opt) => {
+        if (opt === option) {
+            return "shutdown-selected"
+        }
+    }
+
     return (
         <div className="system-menu">
             <div className="shutdown-container">
@@ -26,7 +32,7 @@ function Shutdown(props) {
                                     setOption("shutdown")
                                     }}
                                 />
-                            <label className="shutdown-text">Shutdown the computer?</label>
+                            <label className={`shutdown-text ${optionSelected("shutdown")}`}>Shutdown the computer?</label>
                         </div>
                         <div className="options-container">
                             <input 
@@ -37,7 +43,7 @@ function Shutdown(props) {
                                     setOption("restart")
                                     }}
                                 />
-                            <label className="shutdown-text">Restart the computer?</label>
+                            <label className={`shutdown-text ${optionSelected("restart")}`}>Restart the computer?</label>
                         </div>
                         <div className="options-container">
                             <input 
@@ -48,7 +54,7 @@ function Shutdown(props) {
                                     setOption("cli")
                                     }} 
                                 />
-                            <label className="shutdown-text">Restart the computer in Scape-CLI mode?</label>
+                            <label className={`shutdown-text ${optionSelected("cli")}`}>Restart the computer in Scape-CLI mode?</label>
                         </div>
                         <div className="options-container">
                             <input 
@@ -59,7 +65,7 @@ function Shutdown(props) {
                                     setOption("log")
                                     }} 
                                 />
-                            <label className="shutdown-text">Close all programs and log on as a different user?</label>
+                            <label className={`shutdown-text ${optionSelected("log")}`}>Close all programs and log on as a different user?</label>
                         </div>
                     </form>
                     <div className="shutdown-buttons">
