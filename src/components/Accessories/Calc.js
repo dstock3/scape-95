@@ -39,6 +39,18 @@ function Calc(props) {
     })
 
     const newOp = (op) => {
+        if (secondNum && !result) {
+            performOp()
+            setOperator(op)
+            setFirstNum(result)
+            setSecondNum()
+            /*
+            setDisplay(result)
+            setResult()
+            setSecondNum()
+            setOperator(op)
+            setDisplay(operator) */
+        }
         if (result) {
             setFirstNum(result)
             setResult()
@@ -79,6 +91,11 @@ function Calc(props) {
         if (operator === '/') {
             setResult(parseInt(firstNum) / parseInt(secondNum))
         }
+    }
+
+    const sqrRoot = () => {
+        let solution = Math.sqrt(display)
+        setResult(solution)
     }
 
     const clear = () => {
@@ -138,7 +155,7 @@ function Calc(props) {
                         <button onClick={()=>newOp("+")}>+</button>
                     </div>
                     <div className="op-buttons-col-two">
-                        <button>sqrt</button>
+                        <button onClick={()=>sqrRoot()}>sqrt</button>
                         <button>%</button>
                         <button>1/x</button>
                         <button id="equal" onClick={()=>performOp("=")}>=</button>
