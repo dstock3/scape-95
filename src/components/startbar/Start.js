@@ -5,6 +5,7 @@ import windowsIcon from "../../assets/icons/windows.png"
 
 const Start = (props) => {
     const [start, setStart] = useState({isStarted: false})
+    const [isBorder, setBorder] = useState("")
 
     useEffect(() => {
         let offStart = document.querySelector(".col-container")
@@ -28,8 +29,10 @@ const Start = (props) => {
     const startToggle = () => {
         if (start.isStarted) {
             setStart({ ...start, isStarted: false })
+            setBorder("")
         } else {
             setStart({ ...start, isStarted: true })
+            setBorder("active-border")
         }
     }
 
@@ -38,21 +41,32 @@ const Start = (props) => {
         if (runWindow) {
             if (!runWindow.classList.contains("hidden")) {
                 setStart({ ...start, isStarted: false })
+                setBorder("")
             }
         }
     }, [start.isStarted])
 
     const openAppCloseMenu = (openApp) => {
         setStart({ ...start, isStarted: false })
+        setBorder("")
         openApp()
     }
+
+    useEffect(()=> {
+        if (!start.isStarted) {
+            setBorder("")
+        }
+        
+    }, [start.isStarted])
 
     return (
         <div className="start-bar"> 
             <div className="start-button" onClick={startToggle}>
-                <img src={windowsIcon} className="windows-icon" alt="windows icon"></img>
+                <div className={`start-border ${isBorder}`}>
+                    <img src={windowsIcon} className="windows-icon" alt="windows icon"></img>
 
-                <div className="start-text">Start</div>
+                    <div className="start-text">Start</div>
+                </div>
             </div>
             <StartMenu canStart={start.isStarted} setStart={setStart} setFalse={()=>setStart({ ...start, isStarted: false })}/>
             <div className="bar-body">
