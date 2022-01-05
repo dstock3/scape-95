@@ -59,7 +59,7 @@ function BasicWindow(props) {
             top: "300px",
             minHeight: defaultHeight,
             minWidth: defaultWidth,
-            zIndex: 1
+            zIndex: 1,
         }
     
         const maxStyle = {

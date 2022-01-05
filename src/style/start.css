@@ -61,7 +61,7 @@
     font-family: Cambria;
     font-size: 2em;
     align-self: flex-end;
-    margin: 15% 0;
+    margin: 33% 0;
   }
   
   .start-item {
@@ -143,4 +143,12 @@
 
   #calc-start-text {
     margin-left: -15px;
+  }
+
+  .start-dec-line {
+    height: 0;
+    width: 97%;
+    border-top: black 1px solid;
+    border-bottom: white 1px solid;
+    margin-left: 2.5%;
   }
