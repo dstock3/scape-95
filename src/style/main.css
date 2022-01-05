@@ -60,6 +60,14 @@ html, body {
     width: 100%;
     z-index: 3;
   }
+
+  .dec-bottom-line {
+    height: 0;
+    width: 100%;
+    border-top: 2px solid rgb(177, 177, 177);
+    border-bottom: 2px solid white;
+
+  }
   
   .start-bar {
     display: flex;

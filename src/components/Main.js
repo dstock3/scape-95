@@ -366,6 +366,7 @@ function Main() {
             
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
                 <div className="bottom">
+                    <div className="dec-bottom-line"></div>
                     <Start windows={minWin} />
                 </div>
             </StartContext.Provider>
