@@ -1,5 +1,4 @@
 import React from 'react'
-import BasicWindow from './BasicWindow'
 import '../../style/run-error.css'
 import runErrorIcon from '../../assets/icons/error.png'
 

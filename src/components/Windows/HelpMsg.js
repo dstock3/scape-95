@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 function HelpMsg(props) {
+    console.log("rendering")
     const clickHandler = () => {
         props.setHelp(false)
         props.setFalse()   
