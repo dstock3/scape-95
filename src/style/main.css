@@ -110,12 +110,16 @@ html, body {
   
   .clock {
     width: 3.5%;
-    min-width: 75px;
+    min-width: 70px;
     cursor: pointer;
     display: flex;
     align-items: center;
     padding-inline: 1%;
-    border: 1px solid black;
+    height: 75%;
+    border-left: black 1px solid;
+    border-top: black 1px solid;
+    border-right: white 1px solid;
+    border-bottom: white 1px solid;
   }
   
   #net-icon {

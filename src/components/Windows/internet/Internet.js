@@ -203,7 +203,7 @@ function Internet() {
             <div className="internet" style={{height: "87.5%"}}>
                 <div className="net-header">
                     <div className="net-options">
-                        <div className="file-button">File</div>
+                        <div className="file-button"><span style={{textDecoration: "underline"}}>F</span>ile</div>
                         <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
                     </div>
 

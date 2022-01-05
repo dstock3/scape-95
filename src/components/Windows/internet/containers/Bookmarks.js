@@ -45,7 +45,7 @@ function Bookmarks(props) {
         return (
             <div className="bookmarks">
                 <div className="bookmarks-button" onClick={reveal} style={{cursor: "pointer"}}>
-                    Bookmarks
+                    <span style={{textDecoration: "underline"}}>B</span>ookmarks
                 </div>
             </div>
         )
