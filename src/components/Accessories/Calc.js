@@ -44,12 +44,6 @@ function Calc(props) {
             setOperator(op)
             setFirstNum(result)
             setSecondNum()
-            /*
-            setDisplay(result)
-            setResult()
-            setSecondNum()
-            setOperator(op)
-            setDisplay(operator) */
         }
         if (result) {
             setFirstNum(result)
@@ -60,21 +54,26 @@ function Calc(props) {
         setOperator(op)
     }
 
-    const back = () => {
-        if (display) {
-            setDisplay(prevResult => {
-                let str = String(prevResult)
-                let newStr = str.substring(0, str.length - 1)
-                console.log(newStr)
-                if (newStr === "") {
-                    setDisplay(0)
-                } else {
-                    setDisplay(parseInt(newStr))
-                }
-                
-                }
-            )
+    const back = (dis) => {
+        let str = String(dis)
+        let newVal = str.substring(0, str.length - 1)
+
+        if (newVal.length === 0) {
+            newVal = 0
+            setDisplay(0)
         }
+        
+        if (firstNum) {
+            setFirstNum(newVal)
+        }
+        if (secondNum) {
+            setSecondNum(newVal)
+        }
+        if (result) {
+            setResult(newVal)
+        }
+
+
     }
     
     const performOp = () => {
@@ -103,6 +102,11 @@ function Calc(props) {
         setResult(newFract)
     }
 
+    const percent = () => {
+        let newVal = (1 / display) * 100
+
+    }
+
     const clear = () => {
         setDisplay(0)
         setFirstNum(0)
@@ -113,6 +117,7 @@ function Calc(props) {
 
     return (
         <div className="calc">
+            <div className="dec-line"></div>
             <div className="display">
                 <div className="num">
                     {display}
@@ -121,7 +126,7 @@ function Calc(props) {
             <div className="spec-buttons-row">
                 <div className="dec-square"></div>
                 <div className="spec-button-container">
-                    <button onClick={back}>Back</button>
+                    <button onClick={()=> back(display)}>Back</button>
                     <button>CE</button>
                     <button onClick={clear}>C</button>
                 </div>
@@ -161,7 +166,7 @@ function Calc(props) {
                     </div>
                     <div className="op-buttons-col-two">
                         <button onClick={()=>sqrRoot()}>sqrt</button>
-                        <button>%</button>
+                        <button onClick={()=>percent()}>%</button>
                         <button onClick={()=>fract()}>1/x</button>
                         <button id="equal" onClick={()=>performOp()}>=</button>
                     </div>

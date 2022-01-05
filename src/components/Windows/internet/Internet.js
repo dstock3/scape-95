@@ -182,9 +182,16 @@ function Internet() {
                         <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
                     </div>
 
-                    <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
-                    
-                    <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit}/>
+                    <div className="net-row">
+                        <div className="net-line head"></div>
+                        <div className="net-head-container">
+                            <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
+                            <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit}/>
+                        </div>
+                        <div className="net-line end"></div>
+                    </div>
+
+
                 </div>
                 <div className="net-page" id={page.pageID}>
                     <Loading />
@@ -199,9 +206,15 @@ function Internet() {
                         <div className="file-button">File</div>
                         <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
                     </div>
-                    <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
-                    <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit}/>
 
+                    <div className="net-row">
+                        <div className="net-line head"></div>
+                        <div className="net-head-container">
+                            <NetButtons setHome={setHome} goBack={goBack} goForward={goForward} refresh={refresh}/>
+                            <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit}/>
+                        </div>
+                        <div className="net-line end"></div>
+                    </div>
                 </div>
                 <div className="net-page" id={page.pageID}>
                     {page.current}
