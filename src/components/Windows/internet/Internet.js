@@ -224,4 +224,4 @@ function Internet() {
     }
 }
 
-export default Internet
+export default React.memo(Internet)

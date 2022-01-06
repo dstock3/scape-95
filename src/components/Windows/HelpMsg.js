@@ -1,7 +1,6 @@
 import React from 'react'
 
 function HelpMsg(props) {
-    console.log("rendering")
     const clickHandler = () => {
         props.setHelp(false)
         props.setFalse()   
@@ -14,4 +13,4 @@ function HelpMsg(props) {
     } return null
 }
 
-export default HelpMsg
+export default React.memo(HelpMsg)

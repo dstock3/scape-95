@@ -182,4 +182,4 @@ function Run(props) {
     )
 }
 
-export default Run
+export default React.memo(Run)

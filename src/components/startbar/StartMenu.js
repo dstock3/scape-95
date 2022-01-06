@@ -114,4 +114,4 @@ function StartMenu(props) {
     }
 }
 
-export default StartMenu
+export default React.memo(StartMenu)

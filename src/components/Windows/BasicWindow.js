@@ -4,6 +4,7 @@ import '../../style/window.css'
 import WindowsButtons from './WindowsButtons'
 
 function BasicWindow(props) {
+    console.log("Basic Window", props.winId)
     let defaultWidth
     let defaultHeight
 
@@ -136,7 +137,7 @@ function BasicWindow(props) {
         )
     } else if (!props.isClicked) {
         return(
-            <div className={`basic-window hidden`} id={props.winId} draggable={false} onDragStart={newDrag} style={win.style}>
+            <div className={`basic-window hidden`} id={props.winId} draggable={false} onDragStart={newDrag} style={{height: "0", width: "0"}}>
 
             </div>
         )
@@ -145,4 +146,4 @@ function BasicWindow(props) {
     }
 }
 
-export default BasicWindow
+export default React.memo(BasicWindow)
