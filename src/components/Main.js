@@ -281,88 +281,73 @@ function Main() {
                     
                     slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
-                    }
-                    
-                    slotSix={
-                        <SpecialWindow isClicked={run.isClicked} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
-                            <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
-                        } />
-                    }
+                    }   
                 />
                 
                 <Col colId="two" />
-               
                 <Col colId="three" />
-
                 <Col colId="four" />
-
-                <Col colId="five"
-                    slotOne={
-                        <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
-                    }
-                    
-
-                    slotTwo={
-                        <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
-                    }
-
-                    slotThree={
-                        <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
-                    }
-
-                />
-
-                <Col colId="six" 
-                    slotOne={
-                        <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
-                            <Terminal openApps={openApps}/>
-                        } />
-                    }
-
-                    slotTwo={
-                        <BasicWindow isClicked={net.isClicked} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
-                    }
-                />
-
-                <Col colId="seven" 
-                    slotTwo={
-                        <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
-                            <RunError openRun={openRun} term={runInput} close={closeRunError} />
-                        } />
-                    }
-
-                    slotThree={
-                        <ShutdownPortal window={
-                            <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
-                                <Shutdown closeButton={closeShutdown} />
-                            } />
-                        }/>
-                    }
-
-                />
-
+                <Col colId="five"/>
+                <Col colId="six" />
+                <Col colId="seven" />
                 <Col colId="eight" />
-
-                <Col colId="nine" 
-                    slotTwo={
-                        <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "0px", top: "250px"}} size={{width: "375px", height: "300px"}} canDrag={true} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
-                            <Calc />
-                        } />
-                    }
-                
-                />
-
+                <Col colId="nine" />
                 <Col colId="ten" />
-
                 <Col colId="eleven" />
-
                 <Col colId="twelve" />
-
                 <Col colId="thirteen" />
-
                 <Col colId="fourteen" />
             </div>
-            
+            <Col colId="end" isConcealed="true"
+                slotOne={
+                    <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "600px", bottom: "525px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
+                        <RunError openRun={openRun} term={runInput} close={closeRunError} />
+                    } />
+                }
+
+                slotTwo={
+                    <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "0px", bottom: "525px"}} size={{width: "375px", height: "300px"}} canDrag={true} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
+                        <Calc />
+                    } />
+                }
+
+                slotThree={
+                    shutdown.isClicked ? 
+                    <ShutdownPortal window={
+                        <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
+                            <Shutdown closeButton={closeShutdown} />
+                        } />
+                    }/> : null
+                }
+                slotFour={
+                    <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
+                        <Terminal openApps={openApps}/>
+                    } />
+                }
+
+                slotFive={
+                    <BasicWindow isClicked={net.isClicked} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
+                }
+
+                slotSix={
+                    <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
+                }
+                
+                slotEight={
+                    <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
+                }
+
+                slotNine={
+                    <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
+                }
+
+                slotTen={
+                    <SpecialWindow isClicked={run.isClicked} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "-1125px", bottom: "150px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
+                        <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
+                    } />
+                }
+            />
+
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
                 <div className="bottom">
                     <div className="dec-bottom-line"></div>

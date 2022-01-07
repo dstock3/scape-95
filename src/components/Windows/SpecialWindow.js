@@ -23,7 +23,8 @@ function SpecialWindow(props) {
             minHeight: props.size.height,
             minWidth:  props.size.width,
             left: props.position.left,
-            top: props.position.top
+            bottom: props.position.bottom,
+            right: props.position.right,
         },
         bodyStyle: {
             height: props.size.height

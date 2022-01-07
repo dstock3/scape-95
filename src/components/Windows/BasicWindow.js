@@ -22,8 +22,8 @@ function BasicWindow(props) {
         isSelected: true,
         style: {
             position: "relative",
-            left: "100px",
-            top: "300px",
+            right: "550px",
+            bottom: "500px",
             minHeight: defaultHeight,
             minWidth: defaultHeight,
         },
@@ -33,6 +33,7 @@ function BasicWindow(props) {
     })
 
     const [isHidden, setHidden] = useState("hidden")
+    const [isMoved, setMoved] = useState(false)
 
     useEffect(() => {
         if (props.minState) {
@@ -56,13 +57,14 @@ function BasicWindow(props) {
 
         const defaultStyle = {
             position: "relative",
-            left: "100px",
-            top: "300px",
+            left: "0",
+            top: "350px",
+            bottom: "0",
             minHeight: defaultHeight,
             minWidth: defaultWidth,
             zIndex: 1,
         }
-    
+
         const maxStyle = {
             position: "fixed",
             minHeight: maxHeight + "px",
@@ -113,13 +115,34 @@ function BasicWindow(props) {
             window.classList.add("def")
             window.classList.remove("max")
         }
-    })
+    }, [win.isMax])
 
     const setDraggableTrue = () => {
         if (!win.isMax) {
             setWin({...win, isDraggable: true})
+            setMoved(true)
         }
     }
+
+    useEffect(()=> {
+        let win = document.querySelector(`#${props.winId}`)
+        if (isMoved) {
+            function dragSet() {
+                win.style.position = "relative"
+                win.style.left = "0"
+                win.style.top = "350px"
+                win.style.bottom = "0"
+            }
+            if (win) {
+                win.addEventListener("dragend", dragSet)
+
+                return () => {
+                    win.removeEventListener("dragend", dragSet)
+                }
+            }
+        }
+
+    }, [isMoved])
 
     if (props.isClicked) {
         return (
