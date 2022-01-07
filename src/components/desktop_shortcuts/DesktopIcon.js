@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { newDrag } from '../../DragFunctions'
 
 const DesktopIcon = (props) => {
     const [border, setBorder] = useState("")
     const [imageScreen, setScreen ] = useState("")
+
 
     const clickHandler = () => {
         setBorder("active-border-shortcut")
@@ -26,4 +27,4 @@ const DesktopIcon = (props) => {
     )
 }
 
-export default DesktopIcon
+export default React.memo(DesktopIcon)

@@ -79,4 +79,4 @@ function Shutdown(props) {
     )
 }
 
-export default Shutdown
+export default React.memo(Shutdown)

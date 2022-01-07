@@ -3,6 +3,7 @@ import '../../style/window.css'
 import { newDrag } from '../../DragFunctions'
 
 function SpecialWindow(props) {
+    console.log("Special Window ", props.winId)
     useEffect(()=> {
         const main = document.querySelector(".main")
         if (props.isClicked && props.fade) {
@@ -22,7 +23,8 @@ function SpecialWindow(props) {
             minHeight: props.size.height,
             minWidth:  props.size.width,
             left: props.position.left,
-            top: props.position.top
+            bottom: props.position.bottom,
+            right: props.position.right,
         },
         bodyStyle: {
             height: props.size.height
@@ -90,4 +92,4 @@ function SpecialWindow(props) {
     }
 }
 
-export default SpecialWindow
+export default React.memo(SpecialWindow)

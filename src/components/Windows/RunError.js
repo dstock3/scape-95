@@ -22,4 +22,4 @@ function RunError(props) {
     )
 }
 
-export default RunError
+export default React.memo(RunError)

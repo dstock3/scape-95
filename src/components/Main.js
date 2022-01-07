@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { useState, useReducer } from 'react'
+import React, { useState, useCallback } from 'react'
 import Start from './startbar/Start'
 import compIcon from "../assets/icons/mycomputer.png"
 import binIcon from "../assets/icons/bin.png"
@@ -36,7 +36,7 @@ function Main() {
 
     const [minWin, setMinWin] = useState([])
     
-    const selectController = (obj) => {
+    const selectController = useCallback((obj) => {
         let newArray = minWin
         let check = false
         for (let i = 0; i < newArray.length; i++) {
@@ -52,9 +52,9 @@ function Main() {
         }
         
         return newArray
-    }
+    }, [minWin])
 
-    const minHelper = (shortcutValue) => {
+    const minHelper = useCallback((shortcutValue) => {
         let newArray = minWin
         for (let i = 0; i < newArray.length; i++) {
             if ((newArray[i].value === shortcutValue) && (newArray[i].className === "selected")) {
@@ -62,9 +62,9 @@ function Main() {
             }
         }
         return newArray
-    }
+    }, [minWin])
 
-    const closeHelper = (shortcutValue) => {
+    const closeHelper = useCallback((shortcutValue) => {
         let newArray = minWin
         for (let i = 0; i < newArray.length; i++) {
             if (newArray[i].value === shortcutValue) {
@@ -72,9 +72,9 @@ function Main() {
             }
         }
         return newArray
-    }
+    }, [minWin])
 
-    const openComp = () => {
+    const openComp = useCallback(() => {
         setComp({ ...comp, isClicked: true, isMin: false})
         let compObj = {
             id: 0,
@@ -83,19 +83,19 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(compObj)) 
-    }
+    }, [comp, minWin])
 
-    const closeComp = () => {
+    const closeComp = useCallback(() => {
         setComp({...comp, isClicked: false, isMin: false})
         setMinWin(closeHelper(comp.shortcut));
-    }
+    }, [comp, minWin])
 
-    const minComp = () => {
+    const minComp = useCallback(() => {
         setComp({ ...comp, isClicked: true, isMin: true})
         setMinWin(minHelper(comp.shortcut))
-    }
+    }, [comp, minWin])
 
-    const openDoc = () => {
+    const openDoc = useCallback(() => {
         setDoc({ ...doc, isClicked: true, isMin: false})
         let docObj =  {
             id: 1,
@@ -105,19 +105,19 @@ function Main() {
         }
         setMinWin(selectController(docObj))
 
-    }
+    }, [doc, minWin])
 
-    const closeDoc = () => {
+    const closeDoc =  useCallback(() => {
         setDoc({...doc, isClicked: false, isMin: false})
         setMinWin(closeHelper(doc.shortcut));
-    }
+    }, [doc, minWin])
 
-    const minDoc = () => {
+    const minDoc = useCallback(() => {
         setDoc({ ...doc, isClicked: true, isMin: true})
         setMinWin(minHelper(doc.shortcut))
-    }
+    }, [doc, minWin])
 
-    const openNet = () => {
+    const openNet = useCallback(() => {
         setNet({ ...net, isClicked: true, isMin: false})
         let newObj = {
             id: 2,
@@ -126,19 +126,19 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(newObj))
-    }
+    }, [net, minWin])
 
-    const closeNet = () => {
+    const closeNet = useCallback(() => {
         setNet({...net, isClicked: false, isMin: false})
         setMinWin(closeHelper(net.shortcut));
-    }
+    }, [net, minWin])
 
-    const minNet = () => {
+    const minNet = useCallback(() => {
         setNet({ ...net, isClicked: true, isMin: true})
         setMinWin(minHelper(net.shortcut))
-    }
+    }, [net, minWin])
 
-    const openBin = () => {
+    const openBin = useCallback(() => {
         setBin({ ...bin, isClicked: true, isMin: false})
         let binObj = {
             id: 3,
@@ -147,29 +147,29 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(binObj))
-    }
+    }, [bin, minWin])
 
-    const closeBin = () => {
+    const closeBin = useCallback(() => {
         setBin({...bin, isClicked: false, isMin: false})
         setMinWin(closeHelper(bin.shortcut));
-    }
+    }, [bin, minWin])
 
-    const minBin = () => {
+    const minBin = useCallback(() => {
         setBin({ ...bin, isClicked: true, isMin: true})
         setMinWin(minHelper(bin.shortcut))
-    }
+    }, [bin, minWin])
 
     const [runInput, setRunInput] = useState("")
 
-    const openRun = () => {
+    const openRun = useCallback(() => {
         setRun({ ...run, isClicked: true, isMin: false})
-    }
+    }, [run])
 
-    const closeRun = () => {
+    const closeRun = useCallback(() => {
         setRun({...run, isClicked: false, isMin: false})
-    }
+    }, [run])
 
-    const openCli = () => {
+    const openCli = useCallback(() => {
         setCli({ ...cli, isClicked: true, isMin: false})
         
         let cliObj = {
@@ -179,19 +179,19 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(cliObj)) 
-    }
+    }, [cli, minWin])
 
-    const closeCli = () => {
+    const closeCli = useCallback(() => {
         setCli({...cli, isClicked: false, isMin: false})
         setMinWin(closeHelper(cli.shortcut));
-    }
+    }, [cli, minWin])
 
-    const minCli = () => {
+    const minCli = useCallback(() => {
         setCli({ ...cli, isClicked: true, isMin: true})
         setMinWin(minHelper(cli.shortcut))
-    }
+    }, [cli, minWin])
 
-    const openMine = () => {
+    const openMine = useCallback(() => {
         setMinesweeper({...minesweeper, isClicked: true, isMin: false})
 
         let mineObj = {
@@ -201,19 +201,19 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(mineObj)) 
-    }
+    }, [minesweeper, minWin])
 
-    const closeMine = () => {
+    const closeMine = useCallback(() => {
         setMinesweeper({...minesweeper, isClicked: false, isMin: false})
         setMinWin(closeHelper(minesweeper.shortcut));
-    }
+    }, [minesweeper, minWin])
 
-    const minMine = () => {
+    const minMine = useCallback(() => {
         setMinesweeper({ ...minesweeper, isClicked: true, isMin: true})
         setMinWin(minHelper(minesweeper.shortcut))
-    }
+    }, [minesweeper, minWin])
 
-    const openCalc = () => {
+    const openCalc = useCallback(() => {
         setCalc({...calc, isClicked: true, isMin: false})
 
         let calcObj = {
@@ -223,26 +223,25 @@ function Main() {
             className: "selected"
         }
         setMinWin(selectController(calcObj)) 
-    }
+    }, [calc, minWin])
 
-    const closeCalc = () => {
+    const closeCalc = useCallback(() => {
         setCalc({...calc, isClicked: false, isMin: false})
-        setMinWin(closeHelper(calc.shortcut));
-        
-    }
+        setMinWin(closeHelper(calc.shortcut));  
+    }, [calc, minWin])
 
-    const minCalc = () => {
+    const minCalc = useCallback(() => {
         setCalc({ ...calc, isClicked: true, isMin: true})
         setMinWin(minHelper(calc.shortcut))
-    }
+    }, [calc, minWin])
 
-    const openRunError = () => {
+    const openRunError = useCallback(() => {
         setRunError({...runError, shortcut: runInput, isClicked: true})
-    }
+    }, [runError, runInput])
 
-    const closeRunError = () => {
+    const closeRunError = useCallback(() => {
         setRunError({...runError, isClicked: false})
-    }
+    }, [runError])
 
     const openApps = {
         command: openCli,
@@ -255,13 +254,13 @@ function Main() {
 
     const [help, setHelp] = useState(false)
 
-    const openShutdown = () => {
+    const openShutdown = useCallback(() => {
         setShutdown({...shutdown, isClicked: true})
-    }
+    }, [shutdown])
 
-    const closeShutdown = () => {
+    const closeShutdown = useCallback(() => {
         setShutdown({...shutdown, isClicked: false})
-    }
+    }, [shutdown])
 
     return (
         <div className="main">
@@ -282,88 +281,73 @@ function Main() {
                     
                     slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
-                    }
-                    
-                    slotSix={
-                        <SpecialWindow isClicked={run.isClicked} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "130px", top: "310px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
-                            <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
-                        } />
-                    }
+                    }   
                 />
                 
                 <Col colId="two" />
-               
                 <Col colId="three" />
-
                 <Col colId="four" />
-
-                <Col colId="five"
-                    slotOne={
-                        <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
-                    }
-                    
-
-                    slotTwo={
-                        <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
-                    }
-
-                    slotThree={
-                        <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
-                    }
-
-                />
-
-                <Col colId="six" 
-                    slotOne={
-                        <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
-                            <Terminal openApps={openApps}/>
-                        } />
-                    }
-
-                    slotTwo={
-                        <BasicWindow isClicked={net.isClicked} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
-                    }
-                />
-
-                <Col colId="seven" 
-                    slotTwo={
-                        <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "75px", top: "250px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
-                            <RunError openRun={openRun} term={runInput} close={closeRunError} />
-                        } />
-                    }
-
-                    slotThree={
-                        <ShutdownPortal window={
-                            <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
-                                <Shutdown closeButton={closeShutdown} />
-                            } />
-                        }/>
-                    }
-
-                />
-
+                <Col colId="five"/>
+                <Col colId="six" />
+                <Col colId="seven" />
                 <Col colId="eight" />
-
-                <Col colId="nine" 
-                    slotTwo={
-                        <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "0px", top: "250px"}} size={{width: "375px", height: "300px"}} canDrag={true} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
-                            <Calc />
-                        } />
-                    }
-                
-                />
-
+                <Col colId="nine" />
                 <Col colId="ten" />
-
                 <Col colId="eleven" />
-
                 <Col colId="twelve" />
-
                 <Col colId="thirteen" />
-
                 <Col colId="fourteen" />
             </div>
-            
+            <Col colId="end" isConcealed="true"
+                slotOne={
+                    <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "600px", bottom: "525px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
+                        <RunError openRun={openRun} term={runInput} close={closeRunError} />
+                    } />
+                }
+
+                slotTwo={
+                    <SpecialWindow isClicked={calc.isClicked} winTitle={calc.shortcut} winId={`${calc.shortcutId}-window`} position={{left: "0px", bottom: "525px"}} size={{width: "375px", height: "300px"}} canDrag={true} closeState={true} minMax={<MinMaxSpec min={minCalc}/>} close={closeCalc} contents={
+                        <Calc />
+                    } />
+                }
+
+                slotThree={
+                    shutdown.isClicked ? 
+                    <ShutdownPortal window={
+                        <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
+                            <Shutdown closeButton={closeShutdown} />
+                        } />
+                    }/> : null
+                }
+                slotFour={
+                    <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
+                        <Terminal openApps={openApps}/>
+                    } />
+                }
+
+                slotFive={
+                    <BasicWindow isClicked={net.isClicked} open={openNet} winTitle={net.shortcut} winId={`${net.shortcutId}-window`} min={minNet} minState={net.isMin} close={closeNet} contents={<Internet />} />
+                }
+
+                slotSix={
+                    <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
+                }
+                
+                slotEight={
+                    <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
+                }
+
+                slotNine={
+                    <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
+                }
+
+                slotTen={
+                    <SpecialWindow isClicked={run.isClicked} winTitle={run.shortcut} winId={`${run.shortcutId}-window`} close={closeRun} size={{width: "400px", height: "175px"}} position={{left: "-1125px", bottom: "150px"}} help={<HelpButton helpPrompt={()=>setHelp(true)}/>} contents={
+                        <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
+                    } />
+                }
+            />
+
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
                 <div className="bottom">
                     <div className="dec-bottom-line"></div>

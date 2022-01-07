@@ -1,8 +1,17 @@
+@font-face {
+  font-family: 'MS95';
+  src: local('MS95'), url(../fonts/w95fa.woff) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
 html, body {
     margin: 0px;
     height: 100%;
     background-color:lightsteelblue;
+    font-family: MS95;
   }
+
   
   .hidden {
     visibility: hidden;
@@ -21,11 +30,17 @@ html, body {
   }
   
   .col {
-    margin: 1% 0;
     display: flex;
     flex-direction: column;
     width: 8%;
     height: 96vh;
+  }
+
+  #end {
+    flex-direction: row;
+    height: 0;
+    width: 0;
+
   }
   
   .slot {
