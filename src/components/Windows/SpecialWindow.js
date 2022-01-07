@@ -3,7 +3,6 @@ import '../../style/window.css'
 import { newDrag } from '../../DragFunctions'
 
 function SpecialWindow(props) {
-    console.log("Special Window ", props.winId)
     useEffect(()=> {
         const main = document.querySelector(".main")
         if (props.isClicked && props.fade) {

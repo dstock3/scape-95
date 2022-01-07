@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { newDrag } from '../../DragFunctions'
 import '../../style/window.css'
 import WindowsButtons from './WindowsButtons'
 
 function BasicWindow(props) {
-    console.log("Basic Window", props.winId)
     let defaultWidth
     let defaultHeight
 
@@ -15,6 +14,15 @@ function BasicWindow(props) {
         defaultWidth = "650px"
         defaultHeight ="650px"
     }
+
+    const [isMoved, setMoved] = useState(false)
+    const parentRef = useRef(false)
+
+    useEffect(()=> {
+        let win = document.getElementById(props.winId)
+        parentRef.current = win.parentElement
+
+    }, [])
 
     const [win, setWin] = useState({
         isMax: false, 
@@ -33,7 +41,6 @@ function BasicWindow(props) {
     })
 
     const [isHidden, setHidden] = useState("hidden")
-    const [isMoved, setMoved] = useState(false)
 
     useEffect(() => {
         if (props.minState) {
@@ -65,6 +72,14 @@ function BasicWindow(props) {
             zIndex: 1,
         }
 
+        const selectStyle = {
+            position: "relative",
+            right: "550px",
+            bottom: "500px",
+            minHeight: defaultHeight,
+            minWidth: defaultHeight,
+        }
+
         const maxStyle = {
             position: "fixed",
             minHeight: maxHeight + "px",
@@ -82,19 +97,30 @@ function BasicWindow(props) {
             height: main.offsetHeight - 15
         }
 
-        return { defaultStyle, maxStyle, defaultBody, maxBody }
+        return { defaultStyle, maxStyle, defaultBody, selectStyle, maxBody }
     }
 
     const maxToggle = () => {
         const newStyle = styleController()
         if (win.isMax) {
-            setWin({ ...win, 
-                isMin: false, 
-                isMax: false, 
-                isDraggable: false,
-                style: newStyle.defaultStyle,
-                bodyStyle: newStyle.defaultBody
-            })
+            if (isMoved) {
+                setWin({ ...win, 
+                    isMin: false, 
+                    isMax: false, 
+                    isDraggable: false,
+                    style: newStyle.defaultStyle,
+                    bodyStyle: newStyle.defaultBody
+                })
+
+            } else {
+                setWin({ ...win, 
+                    isMin: false, 
+                    isMax: false, 
+                    isDraggable: false,
+                    style: newStyle.selectStyle,
+                    bodyStyle: newStyle.defaultBody
+                })
+            }
         } else {
             setWin({ ...win, 
                 isMin: false, 
@@ -108,6 +134,10 @@ function BasicWindow(props) {
 
     useEffect(()=> {
         let window = document.getElementById(props.winId)
+        if (parentRef.current !== window.parentElement) {
+            setMoved(true)
+        }
+
         if (win.isMax) {
             window.classList.add("max")
             window.classList.remove("def")
@@ -120,29 +150,27 @@ function BasicWindow(props) {
     const setDraggableTrue = () => {
         if (!win.isMax) {
             setWin({...win, isDraggable: true})
-            setMoved(true)
         }
     }
 
     useEffect(()=> {
         let win = document.querySelector(`#${props.winId}`)
-        if (isMoved) {
-            function dragSet() {
-                win.style.position = "relative"
-                win.style.left = "0"
-                win.style.top = "350px"
-                win.style.bottom = "0"
-            }
-            if (win) {
-                win.addEventListener("dragend", dragSet)
 
-                return () => {
-                    win.removeEventListener("dragend", dragSet)
-                }
+        function dragSet() {
+            win.style.position = "relative"
+            win.style.left = "0"
+            win.style.top = "350px"
+            win.style.bottom = "0"
+        }
+        if (win) {
+            win.addEventListener("dragend", dragSet)
+
+            return () => {
+                win.removeEventListener("dragend", dragSet)
             }
         }
-
-    }, [isMoved])
+        
+    })
 
     if (props.isClicked) {
         return (
