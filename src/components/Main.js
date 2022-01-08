@@ -19,6 +19,10 @@ import Shutdown from './Windows/Shutdown'
 import ShutdownPortal from './ShutdownPortal'
 import Calc from './Accessories/Calc'
 import MinMaxSpec from './Windows/MinMaxSpec'
+import flopIcon from '../assets/icons/flop.png'
+import printIcon from '../assets/icons/print.png'
+import driveIcon from '../assets/icons/drive.png'
+import controlIcon from '../assets/icons/control.png'
 
 const StartContext = React.createContext()
 
@@ -33,6 +37,11 @@ function Main() {
     const [shutdown, setShutdown] = useState({shortcut: "Shut Down Windows", shortcutId: "shutdown", isClicked: false})
     const [minesweeper, setMinesweeper] = useState({shortcut: "Minesweeper", shortcutId: "mine", isClicked: false, isRightClicked: false, isMin: false})
     const [calc, setCalc] = useState({shortcut: "Calculator", shortcutId: "calc", isClicked: false, isRightClicked: false, isMin: false})
+
+    const [flop, setFlop] = useState({shortcut: "3 1/2 Floppy (A:)", shortcutId: "flop", isClicked: false, isRightClicked: false, isMin: false})
+    const [driveC, setDriveC] = useState({shortcut: "(C:)", shortcutId: "driveC", isClicked: false, isRightClicked: false, isMin: false})
+    const [control, setControl] = useState({shortcut: "Control Panel", shortcutId: "control", isClicked: false, isRightClicked: false, isMin: false})
+    const [print, setPrint] = useState({shortcut: "Printers", shortcutId: "print", isClicked: false, isRightClicked: false, isMin: false})
 
     const [minWin, setMinWin] = useState([])
     
@@ -262,6 +271,90 @@ function Main() {
         setShutdown({...shutdown, isClicked: false})
     }, [shutdown])
 
+    const openFlop = useCallback(() => {
+        setFlop({ ...flop, isClicked: true, isMin: false})
+        let flopObj = {
+            id: 0,
+            value: comp.shortcut,
+            open: openFlop,
+            className: "selected"
+        }
+        setMinWin(selectController(flopObj)) 
+    }, [flop, minWin])
+
+    const closeFlop = useCallback(() => {
+        setFlop({...flop, isClicked: false, isMin: false})
+        setMinWin(closeHelper(flop.shortcut));
+    }, [flop, minWin])
+
+    const minFlop = useCallback(() => {
+        setFlop({ ...flop, isClicked: true, isMin: true})
+        setMinWin(minHelper(flop.shortcut))
+    }, [flop, minWin])
+
+    const openDrive = useCallback(() => {
+        setDriveC({ ...driveC, isClicked: true, isMin: false})
+        let driveObj = {
+            id: 0,
+            value: comp.shortcut,
+            open: openDrive,
+            className: "selected"
+        }
+        setMinWin(selectController(driveObj)) 
+    }, [driveC, minWin])
+
+    const closeDrive = useCallback(() => {
+        setDriveC({...driveC, isClicked: false, isMin: false})
+        setMinWin(closeHelper(driveC.shortcut));
+    }, [driveC, minWin])
+
+    const minDrive = useCallback(() => {
+        setComp({ ...driveC, isClicked: true, isMin: true})
+        setMinWin(minHelper(driveC.shortcut))
+    }, [driveC, minWin])
+
+    const openControl = useCallback(() => {
+        setControl({ ...control, isClicked: true, isMin: false})
+        let controlObj = {
+            id: 0,
+            value: control.shortcut,
+            open: openControl,
+            className: "selected"
+        }
+        setMinWin(selectController(controlObj)) 
+    }, [control, minWin])
+
+    const closeControl = useCallback(() => {
+        setControl({...control, isClicked: false, isMin: false})
+        setMinWin(closeHelper(control.shortcut));
+    }, [control, minWin])
+
+    const minControl = useCallback(() => {
+        setComp({ ...control, isClicked: true, isMin: true})
+        setMinWin(minHelper(control.shortcut))
+    }, [control, minWin])
+
+    const openPrint = useCallback(() => {
+        setPrint({ ...print, isClicked: true, isMin: false})
+        let printObj = {
+            id: 0,
+            value: print.shortcut,
+            open: openPrint,
+            className: "selected"
+        }
+        setMinWin(selectController(printObj)) 
+    }, [print, minWin])
+
+    const closePrint = useCallback(() => {
+        setPrint({...print, isClicked: false, isMin: false})
+        setMinWin(closeHelper(print.shortcut));
+    }, [print, minWin])
+
+    const minPrint = useCallback(() => {
+        setPrint({ ...print, isClicked: true, isMin: true})
+        setMinWin(minHelper(print.shortcut))
+    }, [print, minWin])
+
     return (
         <div className="main">
             <div className="col-container">
@@ -330,7 +423,17 @@ function Main() {
                 }
 
                 slotSix={
-                    <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={"contents"} />
+                    <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={
+                        <div className="win-container">
+                            <DesktopIcon open={openFlop} shortcutId={flop.shortcutId} shortcutIconId={`${flop.shortcutId}-icon`} imgSrc={flopIcon} shortcut={flop.shortcut} contents={"contents"}/>
+
+                            <DesktopIcon open={openDrive} shortcutId={driveC.shortcutId} shortcutIconId={`${driveC.shortcutId}-icon`} imgSrc={driveIcon} shortcut={driveC.shortcut} contents={"contents"}/>
+
+                            <DesktopIcon open={openControl} shortcutId={control.shortcutId} shortcutIconId={`${control.shortcutId}-icon`} imgSrc={controlIcon} shortcut={control.shortcut} contents={"contents"}/>
+                            
+                            <DesktopIcon open={openPrint} shortcutId={print.shortcutId} shortcutIconId={`${print.shortcutId}-icon`} imgSrc={printIcon} shortcut={print.shortcut} contents={"contents"}/>
+                        </div>
+                    } />
                 }
                 
                 slotEight={
