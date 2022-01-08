@@ -23,234 +23,28 @@ import flopIcon from '../assets/icons/flop.png'
 import printIcon from '../assets/icons/print.png'
 import driveIcon from '../assets/icons/drive.png'
 import controlIcon from '../assets/icons/control.png'
+import useWindow from '../Hooks/useWindow'
 
 const StartContext = React.createContext()
 
 function Main() {
-    const [comp, setComp] = useState({shortcut: "My Computer", shortcutId: "comp", isClicked: false, isRightClicked: false, isMin: false})
-    const [doc, setDoc] = useState({shortcut: "My Documents", shortcutId: "doc", isClicked: false, isRightClicked: false, isMin: false})
-    const [bin, setBin] = useState({shortcut: "Recycle Bin", shortcutId: "bin", isClicked: false, isRightClicked: false, isMin: false})
-    const [net, setNet] = useState({shortcut: "Internet", shortcutId: "net", isClicked: false, isRightClicked: false, isMin: false})
-    const [cli, setCli] = useState({shortcut: "Scape-CLI Prompt", shortcutId: "cli", isClicked: false, isRightClicked: false, isMin: false })
-    const [run, setRun] = useState({shortcut: "Run", shortcutId: "run", isClicked: false })
-    const [runError, setRunError] = useState({shortcut: "Run Error", shortcutId: "run-error", isClicked: false })
-    const [shutdown, setShutdown] = useState({shortcut: "Shut Down Windows", shortcutId: "shutdown", isClicked: false})
-    const [minesweeper, setMinesweeper] = useState({shortcut: "Minesweeper", shortcutId: "mine", isClicked: false, isRightClicked: false, isMin: false})
-    const [calc, setCalc] = useState({shortcut: "Calculator", shortcutId: "calc", isClicked: false, isRightClicked: false, isMin: false})
-
-    const [flop, setFlop] = useState({shortcut: "3 1/2 Floppy (A:)", shortcutId: "flop", isClicked: false, isRightClicked: false, isMin: false})
-    const [driveC, setDriveC] = useState({shortcut: "(C:)", shortcutId: "driveC", isClicked: false, isRightClicked: false, isMin: false})
-    const [control, setControl] = useState({shortcut: "Control Panel", shortcutId: "control", isClicked: false, isRightClicked: false, isMin: false})
-    const [print, setPrint] = useState({shortcut: "Printers", shortcutId: "print", isClicked: false, isRightClicked: false, isMin: false})
-
     const [minWin, setMinWin] = useState([])
+    const [comp, setComp, openComp, closeComp, minComp] = useWindow(minWin, setMinWin, 1, "My Computer", "comp")
+    const [doc, setDoc, openDoc, closeDoc, minDoc] = useWindow(minWin, setMinWin, 2, "My Documents", "doc")
+    const [bin, setBin, openBin, closeBin, minBin] = useWindow(minWin, setMinWin, 3, "Recycle Bin", "bin")
+    const [net, setNet, openNet, closeNet, minNet] = useWindow(minWin, setMinWin, 4, "Internet", "net")
+    const [cli, setCli, openCli, closeCli, minCli] = useWindow(minWin, setMinWin, 5, "Scape-CLI Prompt", "cli")
+    const [flop, setFlop, openFlop, closeFlop, minFlop] = useWindow(minWin, setMinWin, 6, "3 1/2 Floppy (A:)", "flop")
+    const [driveC, setDriveC, openDrive, closeDrive, minDrive] = useWindow(minWin, setMinWin, 7, "(C:)",  "driveC")
+    const [control, setControl, openControl, closeControl, minControl] = useWindow(minWin, 8, setMinWin,  "Control Panel", "control")
+    const [print, setPrint, openPrint, closePrint, minPrint] = useWindow(minWin, setMinWin, 9, "Printers", "print")
+    const [run, setRun, openRun, closeRun, minRun] = useWindow(minWin, setMinWin, 10, "Run", "run")
+    const [runError, setRunError, openRunError, closeRunError, minRunError] = useWindow(minWin, setMinWin, 11, "Run Error", "run-error")
+    const [shutdown, setShutdown, openShutdown, closeShutdown, minShutdown] = useWindow(minWin, setMinWin, 12, "Shut Down Windows", "shutdown")
+    const [minesweeper, setMinesweeper, openMine, closeMine, minMine] = useWindow(minWin, setMinWin, 13, "Minesweeper", "mine")
+    const [calc, setCalc, openCalc, closeCalc, minCalc] = useWindow(minWin, setMinWin, 14, "Calculator", "calc")
     
-    const selectController = useCallback((obj) => {
-        let newArray = minWin
-        let check = false
-        for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].value === obj.value) {
-                newArray.splice(i, 1, obj)
-                check = true 
-            } else {
-                newArray[i].className = ""
-            }
-        }
-        if (!check) {
-            newArray.push(obj)
-        }
-        
-        return newArray
-    }, [minWin])
-
-    const minHelper = useCallback((shortcutValue) => {
-        let newArray = minWin
-        for (let i = 0; i < newArray.length; i++) {
-            if ((newArray[i].value === shortcutValue) && (newArray[i].className === "selected")) {
-                newArray[i].className = ""
-            }
-        }
-        return newArray
-    }, [minWin])
-
-    const closeHelper = useCallback((shortcutValue) => {
-        let newArray = minWin
-        for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].value === shortcutValue) {
-                newArray.splice(i, 1)
-            }
-        }
-        return newArray
-    }, [minWin])
-
-    const openComp = useCallback(() => {
-        setComp({ ...comp, isClicked: true, isMin: false})
-        let compObj = {
-            id: 0,
-            value: comp.shortcut,
-            open: openComp,
-            className: "selected"
-        }
-        setMinWin(selectController(compObj)) 
-    }, [comp, minWin])
-
-    const closeComp = useCallback(() => {
-        setComp({...comp, isClicked: false, isMin: false})
-        setMinWin(closeHelper(comp.shortcut));
-    }, [comp, minWin])
-
-    const minComp = useCallback(() => {
-        setComp({ ...comp, isClicked: true, isMin: true})
-        setMinWin(minHelper(comp.shortcut))
-    }, [comp, minWin])
-
-    const openDoc = useCallback(() => {
-        setDoc({ ...doc, isClicked: true, isMin: false})
-        let docObj =  {
-            id: 1,
-            value: doc.shortcut,
-            open: openDoc,
-            className: "selected"
-        }
-        setMinWin(selectController(docObj))
-
-    }, [doc, minWin])
-
-    const closeDoc =  useCallback(() => {
-        setDoc({...doc, isClicked: false, isMin: false})
-        setMinWin(closeHelper(doc.shortcut));
-    }, [doc, minWin])
-
-    const minDoc = useCallback(() => {
-        setDoc({ ...doc, isClicked: true, isMin: true})
-        setMinWin(minHelper(doc.shortcut))
-    }, [doc, minWin])
-
-    const openNet = useCallback(() => {
-        setNet({ ...net, isClicked: true, isMin: false})
-        let newObj = {
-            id: 2,
-            value: net.shortcut,
-            open: openNet,
-            className: "selected"
-        }
-        setMinWin(selectController(newObj))
-    }, [net, minWin])
-
-    const closeNet = useCallback(() => {
-        setNet({...net, isClicked: false, isMin: false})
-        setMinWin(closeHelper(net.shortcut));
-    }, [net, minWin])
-
-    const minNet = useCallback(() => {
-        setNet({ ...net, isClicked: true, isMin: true})
-        setMinWin(minHelper(net.shortcut))
-    }, [net, minWin])
-
-    const openBin = useCallback(() => {
-        setBin({ ...bin, isClicked: true, isMin: false})
-        let binObj = {
-            id: 3,
-            value: bin.shortcut,
-            open: openBin,
-            className: "selected"
-        }
-        setMinWin(selectController(binObj))
-    }, [bin, minWin])
-
-    const closeBin = useCallback(() => {
-        setBin({...bin, isClicked: false, isMin: false})
-        setMinWin(closeHelper(bin.shortcut));
-    }, [bin, minWin])
-
-    const minBin = useCallback(() => {
-        setBin({ ...bin, isClicked: true, isMin: true})
-        setMinWin(minHelper(bin.shortcut))
-    }, [bin, minWin])
-
     const [runInput, setRunInput] = useState("")
-
-    const openRun = useCallback(() => {
-        setRun({ ...run, isClicked: true, isMin: false})
-    }, [run])
-
-    const closeRun = useCallback(() => {
-        setRun({...run, isClicked: false, isMin: false})
-    }, [run])
-
-    const openCli = useCallback(() => {
-        setCli({ ...cli, isClicked: true, isMin: false})
-        
-        let cliObj = {
-            id: 5,
-            value: cli.shortcut,
-            open: openCli,
-            className: "selected"
-        }
-        setMinWin(selectController(cliObj)) 
-    }, [cli, minWin])
-
-    const closeCli = useCallback(() => {
-        setCli({...cli, isClicked: false, isMin: false})
-        setMinWin(closeHelper(cli.shortcut));
-    }, [cli, minWin])
-
-    const minCli = useCallback(() => {
-        setCli({ ...cli, isClicked: true, isMin: true})
-        setMinWin(minHelper(cli.shortcut))
-    }, [cli, minWin])
-
-    const openMine = useCallback(() => {
-        setMinesweeper({...minesweeper, isClicked: true, isMin: false})
-
-        let mineObj = {
-            id: 6,
-            value: minesweeper.shortcut,
-            open: openMine,
-            className: "selected"
-        }
-        setMinWin(selectController(mineObj)) 
-    }, [minesweeper, minWin])
-
-    const closeMine = useCallback(() => {
-        setMinesweeper({...minesweeper, isClicked: false, isMin: false})
-        setMinWin(closeHelper(minesweeper.shortcut));
-    }, [minesweeper, minWin])
-
-    const minMine = useCallback(() => {
-        setMinesweeper({ ...minesweeper, isClicked: true, isMin: true})
-        setMinWin(minHelper(minesweeper.shortcut))
-    }, [minesweeper, minWin])
-
-    const openCalc = useCallback(() => {
-        setCalc({...calc, isClicked: true, isMin: false})
-
-        let calcObj = {
-            id: 7,
-            value: calc.shortcut,
-            open: openCalc,
-            className: "selected"
-        }
-        setMinWin(selectController(calcObj)) 
-    }, [calc, minWin])
-
-    const closeCalc = useCallback(() => {
-        setCalc({...calc, isClicked: false, isMin: false})
-        setMinWin(closeHelper(calc.shortcut));  
-    }, [calc, minWin])
-
-    const minCalc = useCallback(() => {
-        setCalc({ ...calc, isClicked: true, isMin: true})
-        setMinWin(minHelper(calc.shortcut))
-    }, [calc, minWin])
-
-    const openRunError = useCallback(() => {
-        setRunError({...runError, shortcut: runInput, isClicked: true})
-    }, [runError, runInput])
-
-    const closeRunError = useCallback(() => {
-        setRunError({...runError, isClicked: false})
-    }, [runError])
 
     const openApps = {
         command: openCli,
@@ -262,98 +56,6 @@ function Main() {
     }
 
     const [help, setHelp] = useState(false)
-
-    const openShutdown = useCallback(() => {
-        setShutdown({...shutdown, isClicked: true})
-    }, [shutdown])
-
-    const closeShutdown = useCallback(() => {
-        setShutdown({...shutdown, isClicked: false})
-    }, [shutdown])
-
-    const openFlop = useCallback(() => {
-        setFlop({ ...flop, isClicked: true, isMin: false})
-        let flopObj = {
-            id: 0,
-            value: comp.shortcut,
-            open: openFlop,
-            className: "selected"
-        }
-        setMinWin(selectController(flopObj)) 
-    }, [flop, minWin])
-
-    const closeFlop = useCallback(() => {
-        setFlop({...flop, isClicked: false, isMin: false})
-        setMinWin(closeHelper(flop.shortcut));
-    }, [flop, minWin])
-
-    const minFlop = useCallback(() => {
-        setFlop({ ...flop, isClicked: true, isMin: true})
-        setMinWin(minHelper(flop.shortcut))
-    }, [flop, minWin])
-
-    const openDrive = useCallback(() => {
-        setDriveC({ ...driveC, isClicked: true, isMin: false})
-        let driveObj = {
-            id: 0,
-            value: comp.shortcut,
-            open: openDrive,
-            className: "selected"
-        }
-        setMinWin(selectController(driveObj)) 
-    }, [driveC, minWin])
-
-    const closeDrive = useCallback(() => {
-        setDriveC({...driveC, isClicked: false, isMin: false})
-        setMinWin(closeHelper(driveC.shortcut));
-    }, [driveC, minWin])
-
-    const minDrive = useCallback(() => {
-        setComp({ ...driveC, isClicked: true, isMin: true})
-        setMinWin(minHelper(driveC.shortcut))
-    }, [driveC, minWin])
-
-    const openControl = useCallback(() => {
-        setControl({ ...control, isClicked: true, isMin: false})
-        let controlObj = {
-            id: 0,
-            value: control.shortcut,
-            open: openControl,
-            className: "selected"
-        }
-        setMinWin(selectController(controlObj)) 
-    }, [control, minWin])
-
-    const closeControl = useCallback(() => {
-        setControl({...control, isClicked: false, isMin: false})
-        setMinWin(closeHelper(control.shortcut));
-    }, [control, minWin])
-
-    const minControl = useCallback(() => {
-        setComp({ ...control, isClicked: true, isMin: true})
-        setMinWin(minHelper(control.shortcut))
-    }, [control, minWin])
-
-    const openPrint = useCallback(() => {
-        setPrint({ ...print, isClicked: true, isMin: false})
-        let printObj = {
-            id: 0,
-            value: print.shortcut,
-            open: openPrint,
-            className: "selected"
-        }
-        setMinWin(selectController(printObj)) 
-    }, [print, minWin])
-
-    const closePrint = useCallback(() => {
-        setPrint({...print, isClicked: false, isMin: false})
-        setMinWin(closeHelper(print.shortcut));
-    }, [print, minWin])
-
-    const minPrint = useCallback(() => {
-        setPrint({ ...print, isClicked: true, isMin: true})
-        setMinWin(minHelper(print.shortcut))
-    }, [print, minWin])
 
     return (
         <div className="main">
