@@ -1,9 +1,9 @@
 /* eslint-disable default-case */
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import Start from './startbar/Start'
 import compIcon from "../assets/icons/mycomputer.png"
 import binIcon from "../assets/icons/bin.png"
-import docIcon from "../assets/icons/documents.png"
+import docIcon from "../assets/icons/docFull.png"
 import DesktopIcon from './desktop_shortcuts/DesktopIcon'
 import netIcon from "../assets/icons/internet.png"
 import Internet from './Windows/internet/Internet'
@@ -25,7 +25,7 @@ import driveIcon from '../assets/icons/drive.png'
 import controlIcon from '../assets/icons/control.png'
 import useWindow from '../Hooks/useWindow'
 
-const StartContext = React.createContext()
+export const StartContext = React.createContext()
 
 function Main() {
     const [minWin, setMinWin] = useState([])
@@ -163,5 +163,5 @@ function Main() {
         </div>
     )
 }
-export {StartContext}
+
 export default Main
