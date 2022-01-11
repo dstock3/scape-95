@@ -22,11 +22,11 @@ function Terminal(props) {
         }
         if (!check) {
             setCaret("caret-active")
-            setDirArray([...dirArray, {path: dir, content: dirInput}, {path: "", content: "command not recognized"}])
+            setDirArray([...dirArray, {key: (dirArray.length + 1), path: dir, content: dirInput}, {key: (dirArray.length + 2), path: "", content: "command not recognized"}])
             setDirInput("")
         } else {
             setCaret("caret-active")
-            setDirArray([...dirArray, {path: dir, content: dirInput}])
+            setDirArray([...dirArray, {key: (dirArray.length + 1), path: dir, content: dirInput}])
             setDirInput("")
         }
     }
@@ -48,7 +48,7 @@ function Terminal(props) {
                 <div className="copyright">(C)ScapeNet Corp 1981-1999.</div>
             </div>
             {dirArray.map(item => (
-                <div className="line-input">
+                <div className="line-input" key={item.key}>
                     <span className="dir">{item.path}</span> 
                     <span>{item.content}</span>
                 </div>
@@ -58,7 +58,7 @@ function Terminal(props) {
                     <label className="dir">{dir}</label>   
                     <span className={caret}></span>                 
                     
-                    <input className="terminal-input" value={dirInput} onChange={changeHandler} > 
+                    <input autoFocus className="terminal-input" value={dirInput} onChange={changeHandler} > 
                     </input>
                 </form>
             </div>
