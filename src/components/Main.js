@@ -161,6 +161,10 @@ function Main() {
                         <Run helpPrompt={help} setHelp={setHelp} closeRun={closeRun} openApps={openApps} runInput={{value: runInput, setter: setRunInput}} throwError={openRunError} />
                     } />
                 }
+
+                slotEleven={
+                    <BasicWindow isClicked={read.isClicked} open={openRead} winTitle={read.shortcut} winId={`${read.shortcutId}-window`} min={minRead} minState={read.isMin} close={closeRead} contents={"contents"} />
+                }
             />
 
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
