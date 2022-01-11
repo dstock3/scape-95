@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MS95';
+    src: local('MS95'), url(../fonts/w95fa.woff) format('woff');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
+
 .terminal {
     font-size: 1.25em;
     height: 100%;
@@ -27,6 +34,7 @@
 
 .restricted {
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .line-input {
@@ -38,11 +46,13 @@
 }
 
 .dir {
-    width: 25%;
+    min-width: fit-content;
+    margin-right: 5px;
 }
 
 .terminal-input {
     float: left;
+    font-family: MS95;
     font-size: 1em;
     color: rgb(245, 244, 244);
     width: fit-content;
@@ -56,24 +66,27 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    width: fit-content;
+    width: fill;
     height: fit-content;
     overflow: visible;
     caret-color: transparent;
     outline: none;
+    margin-left: 10px;
 }
 
 .terminal-input:focus {
     outline: none;
 }
 
-.caret {
+.caret-active {
+    margin-left: 10px;
     width: .66em;
     height: 1em;
     background-color: rgb(245, 244, 244);
     color: transparent;
     animation: caret 1.33s step-end infinite;
 }
+
 
 @keyframes caret {
         from,
