@@ -24,6 +24,8 @@ import printIcon from '../assets/icons/print.png'
 import driveIcon from '../assets/icons/drive.png'
 import controlIcon from '../assets/icons/control.png'
 import useWindow from '../Hooks/useWindow'
+import noteIcon from '../assets/icons/note.png'
+import HidCol from './Interface/HidCol'
 
 export const StartContext = React.createContext()
 
@@ -43,6 +45,7 @@ function Main() {
     const [shutdown, setShutdown, openShutdown, closeShutdown, minShutdown] = useWindow(minWin, setMinWin, 12, "Shut Down Windows", "shutdown")
     const [minesweeper, setMinesweeper, openMine, closeMine, minMine] = useWindow(minWin, setMinWin, 13, "Minesweeper", "mine")
     const [calc, setCalc, openCalc, closeCalc, minCalc] = useWindow(minWin, setMinWin, 14, "Calculator", "calc")
+    const [read, setRead, openRead, closeRead, minRead] = useWindow(minWin, setMinWin, 15, "readme.txt", "read")
     
     const [runInput, setRunInput] = useState("")
 
@@ -93,7 +96,7 @@ function Main() {
                 <Col colId="thirteen" />
                 <Col colId="fourteen" />
             </div>
-            <Col colId="end" isConcealed="true"
+            <HidCol colId="end" isConcealed="true"
                 slotOne={
                     <SpecialWindow isClicked={runError.isClicked} winTitle={runError.shortcut} winId={`${runError.shortcutId}-window`} position={{left: "600px", bottom: "525px"}} size={{width: "750px", height: "125px"}} closeState={false} contents={
                         <RunError openRun={openRun} term={runInput} close={closeRunError} />
@@ -139,7 +142,14 @@ function Main() {
                 }
                 
                 slotEight={
-                    <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={"contents"} />
+                    <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={
+                        <div className="win-container">
+                            <DesktopIcon open={openRead} shortcutId={read.shortcutId} shortcutIconId={`${read.shortcutId}-icon`} imgSrc={noteIcon} shortcut={read.shortcut} contents={"contents"}/>
+
+
+
+                        </div>
+                    } />
                 }
 
                 slotNine={
