@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/scape-95/static/css/main.2277d514.chunk.css",
-    "main.js": "/scape-95/static/js/main.feadfdfb.chunk.js",
-    "main.js.map": "/scape-95/static/js/main.feadfdfb.chunk.js.map",
+    "main.css": "/scape-95/static/css/main.1957e14b.chunk.css",
+    "main.js": "/scape-95/static/js/main.7c74d5c4.chunk.js",
+    "main.js.map": "/scape-95/static/js/main.7c74d5c4.chunk.js.map",
     "runtime-main.js": "/scape-95/static/js/runtime-main.b779b319.js",
     "runtime-main.js.map": "/scape-95/static/js/runtime-main.b779b319.js.map",
-    "static/js/2.e75b8e8a.chunk.js": "/scape-95/static/js/2.e75b8e8a.chunk.js",
-    "static/js/2.e75b8e8a.chunk.js.map": "/scape-95/static/js/2.e75b8e8a.chunk.js.map",
+    "static/js/2.cb2b9da3.chunk.js": "/scape-95/static/js/2.cb2b9da3.chunk.js",
+    "static/js/2.cb2b9da3.chunk.js.map": "/scape-95/static/js/2.cb2b9da3.chunk.js.map",
     "static/js/3.e2df01c8.chunk.js": "/scape-95/static/js/3.e2df01c8.chunk.js",
     "static/js/3.e2df01c8.chunk.js.map": "/scape-95/static/js/3.e2df01c8.chunk.js.map",
     "index.html": "/scape-95/index.html",
-    "static/css/main.2277d514.chunk.css.map": "/scape-95/static/css/main.2277d514.chunk.css.map",
-    "static/js/2.e75b8e8a.chunk.js.LICENSE.txt": "/scape-95/static/js/2.e75b8e8a.chunk.js.LICENSE.txt",
+    "static/css/main.1957e14b.chunk.css.map": "/scape-95/static/css/main.1957e14b.chunk.css.map",
+    "static/js/2.cb2b9da3.chunk.js.LICENSE.txt": "/scape-95/static/js/2.cb2b9da3.chunk.js.LICENSE.txt",
     "static/media/back.ceecbfa5.svg": "/scape-95/static/media/back.ceecbfa5.svg",
-    "static/media/documents.b22a8f50.png": "/scape-95/static/media/documents.b22a8f50.png",
     "static/media/forward.c1815b0c.svg": "/scape-95/static/media/forward.c1815b0c.svg",
     "static/media/home.a0c1b0a7.svg": "/scape-95/static/media/home.a0c1b0a7.svg",
     "static/media/internet.2ca46c35.png": "/scape-95/static/media/internet.2ca46c35.png",
     "static/media/mycomputer.eea4da8a.png": "/scape-95/static/media/mycomputer.eea4da8a.png",
     "static/media/refresh.9a571eb8.svg": "/scape-95/static/media/refresh.9a571eb8.svg",
-    "static/media/tictactoe.de78ee72.png": "/scape-95/static/media/tictactoe.de78ee72.png"
+    "static/media/tictactoe.de78ee72.png": "/scape-95/static/media/tictactoe.de78ee72.png",
+    "static/media/terminal.css": "/scape-95/static/media/w95fa.a79f0836.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.b779b319.js",
-    "static/js/2.e75b8e8a.chunk.js",
-    "static/css/main.2277d514.chunk.css",
-    "static/js/main.feadfdfb.chunk.js"
+    "static/js/2.cb2b9da3.chunk.js",
+    "static/css/main.1957e14b.chunk.css",
+    "static/js/main.7c74d5c4.chunk.js"
   ]
 }
