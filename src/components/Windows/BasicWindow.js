@@ -24,6 +24,8 @@ function BasicWindow(props) {
 
     }, [])
 
+    
+
     const [win, setWin] = useState({
         isMax: false, 
         isDraggable: false,
