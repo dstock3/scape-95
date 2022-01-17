@@ -3,6 +3,7 @@
     position: absolute;
     left: 0;
     bottom: 100%;
+    min-width: 200px;
     height: 400px;
     width: 17%;
     background-color: #b8b8b8;
@@ -75,7 +76,7 @@
   .start-option-container:hover {
     background-color: blue;
     color: white;
-    cursor: pointer;
+    cursor: default;
   }
   
   .min-win {

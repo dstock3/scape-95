@@ -18,6 +18,10 @@ function Terminal(props) {
                 check = true
                 setCaret("caret-active")
                 setDir(`C:\\>`)
+            } else if (dirInput === "cd") {
+                check = true
+                setCaret("caret-active")
+                setDir(`C:\\SCAPE-95>`)
             }
         }
         if (!check) {

@@ -30,6 +30,7 @@ html, body {
   .col {
     display: flex;
     flex-direction: column;
+    min-width: 100px;
     width: 8%;
     height: 96vh;
   }
@@ -46,6 +47,7 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 10%;
+    min-height: 100px;
   }
   
   .shortcut {
@@ -106,7 +108,7 @@ html, body {
   }
 
   .start-button {
-    cursor: pointer;
+    cursor: default;
     display: flex;
     font-weight: bold;
     width: 95px;
@@ -159,7 +161,7 @@ html, body {
   }
   
   .clock {
-    width: 70px;
+    min-width: 60px;
     cursor: pointer;
     display: flex;
     align-items: center;
