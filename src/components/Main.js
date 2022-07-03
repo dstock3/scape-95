@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Start from './startbar/Start'
 import compIcon from "../assets/icons/mycomputer.png"
 import binIcon from "../assets/icons/bin.png"
@@ -60,6 +60,14 @@ function Main() {
 
     const [help, setHelp] = useState(false)
 
+    useEffect(()=> {
+        const main = document.querySelector(".main")
+        if (!shutdown.isClicked) {
+            main.style.opacity = "1"
+            main.style.background = "rgb(176,196,222)"
+        }
+    }, [shutdown])
+
     return (
         <div className="main">
             <div className="col-container">
@@ -112,7 +120,7 @@ function Main() {
                 slotThree={
                     shutdown.isClicked ? 
                     <ShutdownPortal window={
-                        <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true}contents={
+                        <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true} contents={
                             <Shutdown closeButton={closeShutdown} />
                         } />
                     }/> : null

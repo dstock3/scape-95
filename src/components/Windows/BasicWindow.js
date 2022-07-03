@@ -32,28 +32,6 @@ function BasicWindow(props) {
         minWidth: defaultHeight,
     })
 
-    let mql = window.matchMedia('(max-width: 800px)');
-
-    useEffect(()=> {
-        if (mql.matches) {
-            defStyle.current = {
-                position: "absolute",
-                left: "0",
-                top: "0",
-                minHeight: defaultHeight,
-                minWidth: defaultHeight,
-            }
-        } else {
-            defStyle.current = {
-                position: "relative",
-                right: "550px",
-                bottom: "500px",
-                minHeight: defaultHeight,
-                minWidth: defaultHeight,
-            }
-        }
-    }, [])
-
     const [win, setWin] = useState({
         isMax: false, 
         isDraggable: false,
