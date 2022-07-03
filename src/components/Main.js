@@ -51,10 +51,15 @@ function Main() {
 
     const openApps = {
         command: openCli,
+        cmd: openCli,
         browser: openNet,
+        connect: openNet,
         comp: openComp,
+        "open my computer": openComp,
         docs: openDoc,
+        "open my documents": openDoc,
         bin: openBin,
+        "open recycling bin": openBin,
         calc: openCalc
     }
 
