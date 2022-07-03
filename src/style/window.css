@@ -37,12 +37,17 @@
   
   .windows-button {
     width: 25px;
-    height: 100%;
+    height: 107%;
+  }
+
+  .max {
+    height: 103%;
   }
   
   .window-buttons {
     height: 100%;
-    width: 75px;
+    width: fit-content;
+    overflow: hidden;
   }
 
   .special-window {
