@@ -74,7 +74,7 @@ function AccMenu(props) {
                         </div>
                     </div>
                     <div className="start-option-container">
-                        <div className="start-option" onClick={()=> openNewApp(openApps.calc)}>
+                        <div className="start-option" onClick={()=> openNewApp(openApps.notepad)}>
                             <img src={noteIcon} id="note-icon" alt="notepad icon" className="start-item-icon"></img>
                             <div className="start-item">Notepad</div>
                         </div>

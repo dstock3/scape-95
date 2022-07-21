@@ -46,6 +46,7 @@ function Main() {
     const [minesweeper, setMinesweeper, openMine, closeMine, minMine] = useWindow(minWin, setMinWin, 13, "Minesweeper", "mine")
     const [calc, setCalc, openCalc, closeCalc, minCalc] = useWindow(minWin, setMinWin, 14, "Calculator", "calc")
     const [read, setRead, openRead, closeRead, minRead] = useWindow(minWin, setMinWin, 15, "readme.txt", "read")
+    const [notepad, setNotes, openNotes, closeNotes, minNotes] = useWindow(minWin, setMinWin, 16, "Notepad",  "notepad")
     
     const [runInput, setRunInput] = useState("")
 
@@ -143,13 +144,13 @@ function Main() {
                 slotSix={
                     <BasicWindow isClicked={comp.isClicked} open={openComp} winTitle={comp.shortcut} winId={`${comp.shortcutId}-window`} min={minComp} minState={comp.isMin} close={closeComp} contents={
                         <div className="win-container">
-                            <DesktopIcon open={openFlop} shortcutId={flop.shortcutId} shortcutIconId={`${flop.shortcutId}-icon`} imgSrc={flopIcon} shortcut={flop.shortcut} contents={"contents"}/>
+                            <DesktopIcon open={openFlop} shortcutId={flop.shortcutId} shortcutIconId={`${flop.shortcutId}-icon`} imgSrc={flopIcon} shortcut={flop.shortcut} contents={""}/>
 
-                            <DesktopIcon open={openDrive} shortcutId={driveC.shortcutId} shortcutIconId={`${driveC.shortcutId}-icon`} imgSrc={driveIcon} shortcut={driveC.shortcut} contents={"contents"}/>
+                            <DesktopIcon open={openDrive} shortcutId={driveC.shortcutId} shortcutIconId={`${driveC.shortcutId}-icon`} imgSrc={driveIcon} shortcut={driveC.shortcut} contents={""}/>
 
-                            <DesktopIcon open={openControl} shortcutId={control.shortcutId} shortcutIconId={`${control.shortcutId}-icon`} imgSrc={controlIcon} shortcut={control.shortcut} contents={"contents"}/>
+                            <DesktopIcon open={openControl} shortcutId={control.shortcutId} shortcutIconId={`${control.shortcutId}-icon`} imgSrc={controlIcon} shortcut={control.shortcut} contents={""}/>
                             
-                            <DesktopIcon open={openPrint} shortcutId={print.shortcutId} shortcutIconId={`${print.shortcutId}-icon`} imgSrc={printIcon} shortcut={print.shortcut} contents={"contents"}/>
+                            <DesktopIcon open={openPrint} shortcutId={print.shortcutId} shortcutIconId={`${print.shortcutId}-icon`} imgSrc={printIcon} shortcut={print.shortcut} contents={""}/>
                         </div>
                     } />
                 }
@@ -157,13 +158,13 @@ function Main() {
                 slotEight={
                     <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={
                         <div className="win-container">
-                            <DesktopIcon open={openRead} shortcutId={read.shortcutId} shortcutIconId={`${read.shortcutId}-icon`} imgSrc={noteIcon} shortcut={read.shortcut} contents={"contents"}/>
+                            <DesktopIcon open={openRead} shortcutId={read.shortcutId} shortcutIconId={`${read.shortcutId}-icon`} imgSrc={noteIcon} shortcut={read.shortcut} contents={""}/>
                         </div>
                     } />
                 }
 
                 slotNine={
-                    <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={"contents"} />
+                    <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={""} />
                 }
 
                 slotTen={
@@ -173,11 +174,11 @@ function Main() {
                 }
 
                 slotEleven={
-                    <BasicWindow isClicked={read.isClicked} open={openRead} winTitle={read.shortcut} winId={`${read.shortcutId}-window`} min={minRead} minState={read.isMin} close={closeRead} contents={"contents"} />
+                    <BasicWindow isClicked={read.isClicked} open={openRead} winTitle={read.shortcut} winId={`${read.shortcutId}-window`} min={minRead} minState={read.isMin} close={closeRead} contents={""} />
                 }
             />
 
-            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli}}>
+            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes}}>
                 <div className="bottom">
                     <div className="dec-bottom-line"></div>
                     <Start windows={minWin} />
