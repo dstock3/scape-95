@@ -158,9 +158,6 @@ function Main() {
                     <BasicWindow isClicked={doc.isClicked} open={openDoc} winTitle={doc.shortcut} winId={`${doc.shortcutId}-window`} min={minDoc} minState={doc.isMin} close={closeDoc} contents={
                         <div className="win-container">
                             <DesktopIcon open={openRead} shortcutId={read.shortcutId} shortcutIconId={`${read.shortcutId}-icon`} imgSrc={noteIcon} shortcut={read.shortcut} contents={"contents"}/>
-
-
-
                         </div>
                     } />
                 }
@@ -186,7 +183,6 @@ function Main() {
                     <Start windows={minWin} />
                 </div>
             </StartContext.Provider>
-
         </div>
     )
 }

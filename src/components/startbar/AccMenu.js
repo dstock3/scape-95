@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import {StartContext} from '../Main'
 import defIcon from '../../assets/icons/programs.png'
 import calcIcon from '../../assets/icons/calc.png'
+import noteIcon from '../../assets/icons/notepad.png'
 import '../../style/start.css'
 import GamesMenu from './GamesMenu'
 
@@ -70,6 +71,12 @@ function AccMenu(props) {
                         <div className="start-option" onClick={()=> openNewApp(openApps.calc)}>
                             <img src={calcIcon} id="calc-icon" alt="calculator icon" className="start-item-icon"></img>
                             <div className="start-item" id="calc-start-text">Calculator</div>
+                        </div>
+                    </div>
+                    <div className="start-option-container">
+                        <div className="start-option" onClick={()=> openNewApp(openApps.calc)}>
+                            <img src={noteIcon} id="note-icon" alt="notepad icon" className="start-item-icon"></img>
+                            <div className="start-item">Notepad</div>
                         </div>
                     </div>
                 </div>
