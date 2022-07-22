@@ -26,6 +26,7 @@ import controlIcon from '../assets/icons/control.png'
 import useWindow from '../Hooks/useWindow'
 import noteIcon from '../assets/icons/note.png'
 import HidCol from './Interface/HidCol'
+import NotePad from './Windows/NotePad'
 
 export const StartContext = React.createContext()
 
@@ -175,6 +176,11 @@ function Main() {
 
                 slotEleven={
                     <BasicWindow isClicked={read.isClicked} open={openRead} winTitle={read.shortcut} winId={`${read.shortcutId}-window`} min={minRead} minState={read.isMin} close={closeRead} contents={""} />
+                }
+                slotTwelve={
+                    <BasicWindow isClicked={notepad.isClicked} open={openNotes} winTitle={notepad.shortcut} winId={`${read.shortcutId}-window`} min={minNotes} minState={notepad.isMin} close={closeNotes} contents={
+                        <NotePad />
+                    } />
                 }
             />
 
