@@ -5,8 +5,19 @@ function Shutdown(props) {
     const [option, setOption] = useState("shutdown")
 
     const handleConfirm = () => {
-        console.log(option)
-        //Add functionality here to mimic shutdown procedure
+        let body = document.querySelector("body")
+        let main = document.querySelector(".main")
+        let modal = document.querySelector("#shutdown-modal")
+        
+        if (option === "shutdown") {
+            body.style.backgroundColor = "black"
+            body.style.transition = "all 0.25s ease-out"
+            body.style.opacity = 1
+            body.style.zIndex = 1000
+            main.style.opacity = 0
+            modal.remove()
+
+        }
     }
 
     const optionSelected = (opt) => {
