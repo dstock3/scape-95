@@ -8,7 +8,7 @@ function Shutdown(props) {
         let body = document.querySelector("body")
         let main = document.querySelector(".main")
         let modal = document.querySelector("#shutdown-modal")
-        
+        //Shutdown procedure
         if (option === "shutdown") {
             body.style.backgroundColor = "black"
             body.style.transition = "all 0.25s ease-out"
@@ -18,6 +18,7 @@ function Shutdown(props) {
             modal.remove()
 
         }
+        //need to mimic restart and logout procedures
     }
 
     const optionSelected = (opt) => {
