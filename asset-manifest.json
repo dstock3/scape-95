@@ -1,16 +1,14 @@
 {
   "files": {
-    "main.css": "/scape-95/static/css/main.04da2f7a.chunk.css",
-    "main.js": "/scape-95/static/js/main.2ce66d06.chunk.js",
-    "main.js.map": "/scape-95/static/js/main.2ce66d06.chunk.js.map",
-    "runtime-main.js": "/scape-95/static/js/runtime-main.b779b319.js",
-    "runtime-main.js.map": "/scape-95/static/js/runtime-main.b779b319.js.map",
+    "main.css": "/scape-95/static/css/main.ab7abb85.chunk.css",
+    "main.js": "/scape-95/static/js/main.0e1768ab.chunk.js",
+    "main.js.map": "/scape-95/static/js/main.0e1768ab.chunk.js.map",
+    "runtime-main.js": "/scape-95/static/js/runtime-main.fe59d801.js",
+    "runtime-main.js.map": "/scape-95/static/js/runtime-main.fe59d801.js.map",
     "static/js/2.f50d15d3.chunk.js": "/scape-95/static/js/2.f50d15d3.chunk.js",
     "static/js/2.f50d15d3.chunk.js.map": "/scape-95/static/js/2.f50d15d3.chunk.js.map",
-    "static/js/3.e2df01c8.chunk.js": "/scape-95/static/js/3.e2df01c8.chunk.js",
-    "static/js/3.e2df01c8.chunk.js.map": "/scape-95/static/js/3.e2df01c8.chunk.js.map",
     "index.html": "/scape-95/index.html",
-    "static/css/main.04da2f7a.chunk.css.map": "/scape-95/static/css/main.04da2f7a.chunk.css.map",
+    "static/css/main.ab7abb85.chunk.css.map": "/scape-95/static/css/main.ab7abb85.chunk.css.map",
     "static/js/2.f50d15d3.chunk.js.LICENSE.txt": "/scape-95/static/js/2.f50d15d3.chunk.js.LICENSE.txt",
     "static/media/back.ceecbfa5.svg": "/scape-95/static/media/back.ceecbfa5.svg",
     "static/media/forward.c1815b0c.svg": "/scape-95/static/media/forward.c1815b0c.svg",
@@ -22,9 +20,9 @@
     "static/media/terminal.css": "/scape-95/static/media/w95fa.a79f0836.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.b779b319.js",
+    "static/js/runtime-main.fe59d801.js",
     "static/js/2.f50d15d3.chunk.js",
-    "static/css/main.04da2f7a.chunk.css",
-    "static/js/main.2ce66d06.chunk.js"
+    "static/css/main.ab7abb85.chunk.css",
+    "static/js/main.0e1768ab.chunk.js"
   ]
 }
