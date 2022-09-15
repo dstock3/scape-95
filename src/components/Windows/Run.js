@@ -7,10 +7,17 @@ function Run(props) {
     const [span, setSpan] = useState({ok: "", cancel: "", browse: "", input: ""})
     const [helpMsg, setHelpMsg] = useState({ok: false, cancel: false, browse: false, input: false})
 
+    let runWindow = document.querySelector(".run")
+    let runButtons = Array.from(document.getElementsByClassName("run-button"))
+    let runInput = document.querySelector(".run-input")
+    let window = document.querySelector("#run-window")
+    
     useEffect(()=> {
-        let runWindow = document.querySelector(".run")
-        let runButtons = Array.from(document.getElementsByClassName("run-button"))
-        let runInput = document.querySelector(".run-input")
+        window.style.zIndex = 500
+        
+    }, [])
+    
+    useEffect(()=> {
 
         if (props.helpPrompt) {
             for (let i = 0; i < runButtons.length; i++) {
