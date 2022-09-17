@@ -3,11 +3,13 @@ import React from 'react'
 function NotePad() {
     const noteStyle = {
         height: "100%",
-        width: "99%",
-        resize: "none"
+        width: "100%",
+        resize: "none",
+        padding: "0",
+        borderWidth: "0" 
     }
     return (
-        <textarea style={noteStyle} rows="30" cols="40"></textarea>
+        <textarea style={noteStyle}></textarea>
     )
 }
 
