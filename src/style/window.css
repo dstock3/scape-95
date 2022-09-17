@@ -59,3 +59,7 @@
     border: 1px solid black;
     overflow: visible;
 }
+
+.txt {
+  margin: 5px;
+}
