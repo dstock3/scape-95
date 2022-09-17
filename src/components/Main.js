@@ -48,6 +48,7 @@ function Main() {
     const [calc, setCalc, openCalc, closeCalc, minCalc] = useWindow(minWin, setMinWin, 14, "Calculator", "calc")
     const [read, setRead, openRead, closeRead, minRead] = useWindow(minWin, setMinWin, 15, "readme.txt", "read")
     const [notepad, setNotes, openNotes, closeNotes, minNotes] = useWindow(minWin, setMinWin, 16, "Notepad",  "notepad")
+    const [misc, setMisc, openMisc, closeMisc, minMisc] = useWindow(minWin, setMinWin, 17, "misc.txt", "misc")
     
     const [runInput, setRunInput] = useState("")
 
@@ -165,7 +166,11 @@ function Main() {
                 }
 
                 slotNine={
-                    <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={""} />
+                    <BasicWindow isClicked={bin.isClicked} open={openBin} winTitle={bin.shortcut} winId={`${bin.shortcutId}-window`} min={minBin} minState={bin.isMin} close={closeBin} contents={
+                        <div className="win-container">
+                            <DesktopIcon open={openMisc} shortcutId={misc.shortcutId} shortcutIconId={`${misc.shortcutId}-icon`} imgSrc={noteIcon} shortcut={misc.shortcut} contents={""}/>
+                        </div>
+                    } />
                 }
 
                 slotTen={
