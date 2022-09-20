@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import {StartContext} from '../Main'
 import '../../style/start.css'
-import defIcon from '../../assets/icons/programs.png'
+import mineIcon from '../../assets/icons/mine.png'
 
 function GamesMenu(props) {
     const [accStyle, setAccStyle] = useState({
@@ -27,7 +27,7 @@ function GamesMenu(props) {
             <div className="start-menu" id="new-games" style={accStyle}>
                 <div className="start-option-container">
                     <div className="start-option" onClick={()=>openNewApp(openApps.mine)}>
-                        <img src={defIcon} alt="mine icon" className="start-item-icon"></img>
+                        <img src={mineIcon} alt="mine icon" id="mine-icon" className="start-item-icon"></img>
                         <div className="start-item">Minesweeper</div>
                     </div>
                 </div>
