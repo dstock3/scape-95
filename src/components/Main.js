@@ -28,6 +28,7 @@ import noteIcon from '../assets/icons/note.png'
 import HidCol from './Interface/HidCol'
 import NotePad from './Windows/NotePad'
 import ReadMe from '../assets/text/ReadMe'
+import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper'
 
 export const StartContext = React.createContext()
 
@@ -185,9 +186,16 @@ function Main() {
                         <ReadMe />
                     } />
                 }
+
                 slotTwelve={
                     <BasicWindow isClicked={notepad.isClicked} open={openNotes} winTitle={notepad.shortcut} winId={`${read.shortcutId}-window`} min={minNotes} minState={notepad.isMin} close={closeNotes} contents={
                         <NotePad />
+                    } />
+                }
+
+                slotThirteen={
+                    <BasicWindow isClicked={minesweeper.isClicked} open={openMine} winTitle={minesweeper.shortcut} winId={`${minesweeper.shortcutId}-window`} min={minMine} minState={minesweeper.isMin} close={closeMine} size={{width: "400px", height: "425px"}} contents={
+                        <Minesweeper />
                     } />
                 }
             />
