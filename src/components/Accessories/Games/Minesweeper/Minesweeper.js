@@ -9,6 +9,7 @@ const Minesweeper = () => {
     const [bombsArray, setBombsArray] = useState([])
     const [emptyArray, setEmptyArray] = useState([])
     const [gameArray, setGameArray] = useState([])
+    const [shuffled, setShuffled] = useState([])
     
     useEffect(()=> {
         for (let i = 0; i < bombAmount; i++) {
@@ -28,11 +29,10 @@ const Minesweeper = () => {
 
     useEffect(()=> {
         if (gameArray.length > 0) {
-            setGameArray(gameArray.sort(() => Math.random() -0.5))
+            setShuffled(gameArray.sort(() => Math.random() -0.5))
             
         }
-        console.log(gameArray)
-
+        
     }, [gameArray])
 
     
@@ -58,7 +58,7 @@ const Minesweeper = () => {
             </div>
             <div className="mine-grid">
                 {squares.map((square, index) => (
-                    <div className="square" id={square} key={index}>
+                    <div className={shuffled[index]} id={square} key={index}>
                     </div>
                     ))}
             </div>
