@@ -8,8 +8,8 @@ const Minesweeper = () => {
     const [bombAmount, setBombAmount] = useState(20)
     const [bombsArray, setBombsArray] = useState([])
     const [emptyArray, setEmptyArray] = useState([])
+    const [gameArray, setGameArray] = useState([])
     
-
     useEffect(()=> {
         for (let i = 0; i < bombAmount; i++) {
             setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
@@ -21,11 +21,26 @@ const Minesweeper = () => {
             setEmptyArray(emptyArray => [...emptyArray, "valid"]) 
         }
     }, [bombAmount])
+
+    useEffect(()=> {
+        setGameArray(emptyArray.concat(bombsArray))
+    }, [emptyArray])
+
+    useEffect(()=> {
+        if (gameArray.length > 0) {
+            setGameArray(gameArray.sort(() => Math.random() -0.5))
+            
+        }
+        console.log(gameArray)
+
+    }, [gameArray])
+
     
     useEffect(()=> {
         for (let i = 0; i < width*width; i++) {
             setSquares(squares => [...squares, i]) 
         }
+        
     }, [width])
 
     return (
@@ -42,11 +57,10 @@ const Minesweeper = () => {
                 </div>
             </div>
             <div className="mine-grid">
-            {squares.map((square, index) => (
-                <div className="square" id={square} key={index}>
-                </div>
-                ))
-            }
+                {squares.map((square, index) => (
+                    <div className="square" id={square} key={index}>
+                    </div>
+                    ))}
             </div>
         </div>
     )
