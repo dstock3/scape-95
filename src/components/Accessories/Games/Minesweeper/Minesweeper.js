@@ -5,19 +5,28 @@ const Minesweeper = () => {
     const [mineNum, setMineNum] = useState(10)
     const [width, setWidth] = useState(10)
     const [squares, setSquares] = useState([])
+    const [bombAmount, setBombAmount] = useState(20)
+    const [bombsArray, setBombsArray] = useState([])
+    const [emptyArray, setEmptyArray] = useState([])
     
+
+    useEffect(()=> {
+        for (let i = 0; i < bombAmount; i++) {
+            setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
+        }
+
+        let emptyArrayAmount = width*width-bombAmount
+
+        for (let i = 0; i < emptyArrayAmount; i++) {
+            setEmptyArray(emptyArray => [...emptyArray, "valid"]) 
+        }
+    }, [bombAmount])
     
     useEffect(()=> {
         for (let i = 0; i < width*width; i++) {
-
-            
-            setSquares(squares => squares.concat(i))
-
+            setSquares(squares => [...squares, i]) 
         }
-        console.log(squares)
-    }, [])
-
-
+    }, [width])
 
     return (
         <div className="minesweeper">
@@ -29,13 +38,15 @@ const Minesweeper = () => {
                     {/* need to find smiley icon*/}
                 </div>
                 <div className="mine-timer">
-                    {width.map
 
-                    }
                 </div>
             </div>
             <div className="mine-grid">
-
+            {squares.map((square, index) => (
+                <div className="square" id={square} key={index}>
+                </div>
+                ))
+            }
             </div>
         </div>
     )
