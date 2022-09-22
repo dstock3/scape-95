@@ -41,8 +41,6 @@ const Minesweeper = () => {
 
     useEffect(()=> {
         let squares = Array.from(document.getElementsByClassName("square"))
-        console.log(squares)
-        
         
         for (let i = 0; i < squares.length; i++) {
             let sum = 0
@@ -59,13 +57,17 @@ const Minesweeper = () => {
                 if (i < 88 && !isRight && squares[i + 1 + width].classList.contains('bomb')) sum ++
                 if (i < 88 && !isRight && squares[i + width].classList.contains('bomb')) sum ++
                 squares[i].setAttribute('data', sum)
-                console.log(squares[i])
-                
             }
+        }
+    }, [shuffled])
 
+    const handleClick = (squareId) => {
+        let square = document.getElementById(squareId)
+        if (square.classList.contains('bomb')) {
+            alert('game over')
         }
 
-    }, [shuffled])
+    }
 
     return (
         <div className="minesweeper">
@@ -82,7 +84,7 @@ const Minesweeper = () => {
             </div>
             <div className="mine-grid">
                 {squares.map((square, index) => (
-                    <div className={`square ${shuffled[index]}`} id={square} key={index}>
+                    <div className={`square ${shuffled[index]}`} id={square} key={index} onClick={()=>handleClick(square)}>
                     </div>
                     ))}
             </div>
