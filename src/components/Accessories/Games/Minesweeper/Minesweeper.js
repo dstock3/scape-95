@@ -30,18 +30,42 @@ const Minesweeper = () => {
     useEffect(()=> {
         if (gameArray.length > 0) {
             setShuffled(gameArray.sort(() => Math.random() -0.5))
-            
         }
-        
     }, [gameArray])
 
-    
     useEffect(()=> {
         for (let i = 0; i < width*width; i++) {
             setSquares(squares => [...squares, i]) 
         }
-        
     }, [width])
+
+    useEffect(()=> {
+        let squares = Array.from(document.getElementsByClassName("square"))
+        console.log(squares)
+        
+        
+        for (let i = 0; i < squares.length; i++) {
+            let sum = 0
+            const isLeft = (i % width === 0)
+            const isRight = (i === width - 1)
+
+            if (squares[i].classList.contains('valid')) {
+                if (i > 0 && !isLeft && squares[i - 1].classList.contains('bomb')) sum ++
+                if (i > 9 && !isRight && squares[i + 1 - width].classList.contains('bomb')) sum ++
+                if (i > 10 && squares[i - width].classList.contains('bomb')) sum ++
+                if (i > 11 && !isLeft && squares[i - 1 - width].classList.contains('bomb')) sum ++
+                if (i < 98 && !isRight && squares[i + 1].classList.contains('bomb')) sum ++
+                if (i < 90 && !isLeft && squares[i - 1 + width].classList.contains('bomb')) sum ++
+                if (i < 88 && !isRight && squares[i + 1 + width].classList.contains('bomb')) sum ++
+                if (i < 88 && !isRight && squares[i + width].classList.contains('bomb')) sum ++
+                squares[i].setAttribute('data', sum)
+                console.log(squares[i])
+                
+            }
+
+        }
+
+    }, [shuffled])
 
     return (
         <div className="minesweeper">
@@ -58,7 +82,7 @@ const Minesweeper = () => {
             </div>
             <div className="mine-grid">
                 {squares.map((square, index) => (
-                    <div className={shuffled[index]} id={square} key={index}>
+                    <div className={`square ${shuffled[index]}`} id={square} key={index}>
                     </div>
                     ))}
             </div>
