@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../../../../style/games/minesweeper.css'
+import bombPic from '../../../../assets/icons/mine.png'
 
 const Minesweeper = () => {
     const [mineNum, setMineNum] = useState(10)
@@ -10,7 +11,9 @@ const Minesweeper = () => {
     const [emptyArray, setEmptyArray] = useState([])
     const [gameArray, setGameArray] = useState([])
     const [shuffled, setShuffled] = useState([])
-    
+    const [isGameOver, setIsGameOver] = useState(false)
+    const [losingMove, setLosingMove] = useState(null)
+
     useEffect(()=> {
         for (let i = 0; i < bombAmount; i++) {
             setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
@@ -40,6 +43,17 @@ const Minesweeper = () => {
     }, [width])
 
     useEffect(()=> {
+        if (isGameOver) {
+            const losingSquare = document.getElementById(losingMove)
+            const mine = document.createElement('img')
+            mine.src = bombPic
+            losingSquare.appendChild(mine)
+
+        }
+
+    }, [isGameOver])
+
+    useEffect(()=> {
         let squares = Array.from(document.getElementsByClassName("square"))
         
         for (let i = 0; i < squares.length; i++) {
@@ -63,10 +77,70 @@ const Minesweeper = () => {
 
     const handleClick = (squareId) => {
         let square = document.getElementById(squareId)
-        if (square.classList.contains('bomb')) {
-            alert('game over')
+        click(square)
+    }
+
+    const click = (square) => {
+        if (isGameOver || square.classList.contains('checked') || square.classList.contains('flag')) {
+            console.log("skip")
+        } else {
+            if (square.classList.contains('bomb')) {
+                setIsGameOver(true)
+                setLosingMove(square.id)
+                console.log('game over')
+            } else {
+                let sum = square.getAttribute('data')
+                
+                if (sum > 0) {
+                    square.classList.add("checked")
+                    square.innerHTML = sum
+                }
+                checkSquare(square, square.id)
+            } 
+        }
+        square.classList.add("checked")
+    }
+
+    const checkSquare = (square, squareId) => {
+        const isLeft = (squareId % width === 0)
+        const isRight = (squareId % width === width - 1)
+
+        let squares = Array.from(document.getElementsByClassName("square"))
+        /*
+        
+        function pass(thisSquare) {
+            const newId = thisSquare.id
+            const newSquare = document.getElementById(newId)
+            click(newSquare)
         }
 
+        setTimeout(()=> {
+            if (squareId > 0 && !isLeft) {
+                pass(squares[parseInt(squareId) -1])
+            }
+            if (squareId > 9 && !isRight) {
+                pass(squares[parseInt(squareId) +1 -width])
+            }
+            if (squareId > 10) {
+                pass(squares[parseInt(squareId -width)])
+            }
+            if (squareId > 11 && !isLeft) {
+                pass(squares[parseInt(squareId) -1 - width])
+            }
+            if (squareId < 98 && !isRight) {
+                pass(squares[parseInt(squareId) +1])
+            }
+            if (squareId < 90 && !isLeft) {
+                pass(squares[parseInt(squareId) -1 + width])
+            }
+            if (squareId < 88 && !isRight) {
+                pass(squares[parseInt(squareId) +1 + width])
+            }
+            if (squareId < 89) {
+                pass(squares[parseInt(squareId) +width])
+            }
+        }, 10)
+        */
     }
 
     return (
