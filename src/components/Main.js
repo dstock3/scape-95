@@ -47,6 +47,7 @@ function Main() {
     const [runError, setRunError, openRunError, closeRunError, minRunError] = useWindow(minWin, setMinWin, 11, "Run Error", "run-error")
     const [shutdown, setShutdown, openShutdown, closeShutdown, minShutdown] = useWindow(minWin, setMinWin, 12, "Shut Down Windows", "shutdown")
     const [minesweeper, setMinesweeper, openMine, closeMine, minMine] = useWindow(minWin, setMinWin, 13, "Minesweeper", "mine")
+    const [mineInst, setMineInst] = useState(0)
     const [calc, setCalc, openCalc, closeCalc, minCalc] = useWindow(minWin, setMinWin, 14, "Calculator", "calc")
     const [read, setRead, openRead, closeRead, minRead] = useWindow(minWin, setMinWin, 15, "readme.txt", "read")
     const [notepad, setNotes, openNotes, closeNotes, minNotes] = useWindow(minWin, setMinWin, 16, "Notepad",  "notepad")
@@ -195,7 +196,7 @@ function Main() {
 
                 slotThirteen={
                     <BasicWindow isClicked={minesweeper.isClicked} open={openMine} winTitle={minesweeper.shortcut} winId={`${minesweeper.shortcutId}-window`} min={minMine} minState={minesweeper.isMin} close={closeMine} size={{width: "275px", height: "275px"}} contents={
-                        <Minesweeper />
+                        <Minesweeper mineInst={mineInst} setMineInst={setMineInst} key={new Date().getTime()}/>
                     } />
                 }
             />

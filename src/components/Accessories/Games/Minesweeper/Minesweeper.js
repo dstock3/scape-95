@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../../../style/games/minesweeper.css'
 import bombPic from '../../../../assets/icons/mine.png'
 
-const Minesweeper = () => {
+const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
     const [squares, setSquares] = useState([])
     const [bombAmount, setBombAmount] = useState(20)
@@ -11,21 +11,22 @@ const Minesweeper = () => {
     const [gameArray, setGameArray] = useState([])
     const [shuffled, setShuffled] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
-    const [losingMove, setLosingMove] = useState(null)
     const [counter, setCounter] = useState(0)
     const [isActive, setIsActive] = useState(false)
     
     useEffect(()=> {
-        for (let i = 0; i < bombAmount; i++) {
-            setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
+        if (!isGameOver) {
+            for (let i = 0; i < bombAmount; i++) {
+                setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
+            }
+    
+            let emptyArrayAmount = width*width-bombAmount
+    
+            for (let i = 0; i < emptyArrayAmount; i++) {
+                setEmptyArray(emptyArray => [...emptyArray, "valid"]) 
+            }  
         }
-
-        let emptyArrayAmount = width*width-bombAmount
-
-        for (let i = 0; i < emptyArrayAmount; i++) {
-            setEmptyArray(emptyArray => [...emptyArray, "valid"]) 
-        }
-    }, [bombAmount])
+    }, [bombAmount, isGameOver])
 
     useEffect(()=> {
         setGameArray(emptyArray.concat(bombsArray))
@@ -63,6 +64,7 @@ const Minesweeper = () => {
                 squares[i].setAttribute('data', sum)
             }
         }
+
     }, [shuffled])
 
     useEffect(()=> {
@@ -85,19 +87,7 @@ const Minesweeper = () => {
     }
 
     const resetGame = () => {
-        setWidth(10)
-        setBombAmount(20)
-        setShuffled(gameArray.sort(() => Math.random() -0.5))
-        setIsGameOver(false)
-        setLosingMove(null)
-        setCounter(0)
-        setIsActive(false)
-        let squares = Array.from(document.getElementsByClassName("square"))
-        for (let i = 0; i < squares.length; i++) {
-            let square = squares[i]
-            square.style.backgroundColor = "rgb(186, 186, 186)"
-            square.innerHTML = ""
-        }
+        setMineInst(mineInst + 1)
     }
 
     const click = (square) => {
@@ -106,7 +96,6 @@ const Minesweeper = () => {
         } else {
             if (square.classList.contains('bomb')) {
                 setIsGameOver(true)
-                setLosingMove(square.id)
                 setIsActive(false)
                 setCounter(0)
 
@@ -123,23 +112,32 @@ const Minesweeper = () => {
                 }
                 
             } else {
-                let sum = square.getAttribute('data')
-                if (parseInt(sum) === 0) {
-                    square.style.color = "rgb(232, 231, 231)"
+                let sum = parseInt(square.getAttribute('data'))
+                
+                if (sum === 0) {
+                    square.style.backgroundColor = "rgb(232, 231, 231)"
+                    square.style.border = "solid 3px rgb(124, 124, 124)"
                 }
                 
                 if (sum > 0) {
-                    if (parseInt(sum) === 1) {
+                    if (sum === 1) {
                         square.style.color = "blue"
-                    } else if (parseInt(sum) === 2) {
+                    } else if (sum === 2) {
                         square.style.color = "green"
-                    } else if (parseInt(sum) === 3) {
+                    } else if (sum === 3) {
                         square.style.color = "red"
-                    } else if (parseInt(sum) === 4) {
+                    } else if (sum === 4) {
                         square.style.color = "darkblue"
+                    } else if (sum === 5) {
+                        square.style.color = "darkred"
+                    } else if (sum === 6) {
+                        square.style.color = "teal"
+                    } else if (sum === 7) {
+                        square.style.color = "black"
+                    } else if (sum === 8) {
+                        square.style.color = "grey"
                     }
                     square.classList.add("checked")
-                    
                     
                     square.innerHTML = sum
                 }
