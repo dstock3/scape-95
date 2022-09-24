@@ -8,9 +8,30 @@
     flex-direction: column;
 }
 
+.top-lvl {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
 .mine-num, .mine-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 45px;
+    background-color: black;
     font-family: 'digital';
     color: red;
+    font-size: 1.5em;
+}
+
+.mine-num {
+    margin-left: 15%;
+}
+
+.mine-timer {
+    margin-right: 15%;
 }
 
 .mine-grid {
@@ -18,7 +39,7 @@
     width: 400px;
     display: flex;
     flex-wrap: wrap;
-    background-color: grey;
+    background-color: rgb(155, 155, 155);
 }
 
 .mine-grid div {

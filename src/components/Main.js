@@ -194,7 +194,7 @@ function Main() {
                 }
 
                 slotThirteen={
-                    <BasicWindow isClicked={minesweeper.isClicked} open={openMine} winTitle={minesweeper.shortcut} winId={`${minesweeper.shortcutId}-window`} min={minMine} minState={minesweeper.isMin} close={closeMine} size={{width: "400px", height: "425px"}} contents={
+                    <BasicWindow isClicked={minesweeper.isClicked} open={openMine} winTitle={minesweeper.shortcut} winId={`${minesweeper.shortcutId}-window`} min={minMine} minState={minesweeper.isMin} close={closeMine} size={{width: "350px", height: "475px"}} contents={
                         <Minesweeper />
                     } />
                 }
