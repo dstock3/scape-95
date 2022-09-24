@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/scape-95/static/css/main.f52eef94.chunk.css",
-    "main.js": "/scape-95/static/js/main.16fdc805.chunk.js",
-    "main.js.map": "/scape-95/static/js/main.16fdc805.chunk.js.map",
+    "main.css": "/scape-95/static/css/main.8e3f325c.chunk.css",
+    "main.js": "/scape-95/static/js/main.47903c97.chunk.js",
+    "main.js.map": "/scape-95/static/js/main.47903c97.chunk.js.map",
     "runtime-main.js": "/scape-95/static/js/runtime-main.fe59d801.js",
     "runtime-main.js.map": "/scape-95/static/js/runtime-main.fe59d801.js.map",
     "static/js/2.f50d15d3.chunk.js": "/scape-95/static/js/2.f50d15d3.chunk.js",
     "static/js/2.f50d15d3.chunk.js.map": "/scape-95/static/js/2.f50d15d3.chunk.js.map",
     "index.html": "/scape-95/index.html",
-    "static/css/main.f52eef94.chunk.css.map": "/scape-95/static/css/main.f52eef94.chunk.css.map",
+    "static/css/main.8e3f325c.chunk.css.map": "/scape-95/static/css/main.8e3f325c.chunk.css.map",
     "static/js/2.f50d15d3.chunk.js.LICENSE.txt": "/scape-95/static/js/2.f50d15d3.chunk.js.LICENSE.txt",
+    "static/media/minesweeper.css": "/scape-95/static/media/DS-DIGI.0ef0e224.TTF",
     "static/media/back.ceecbfa5.svg": "/scape-95/static/media/back.ceecbfa5.svg",
     "static/media/forward.c1815b0c.svg": "/scape-95/static/media/forward.c1815b0c.svg",
     "static/media/home.a0c1b0a7.svg": "/scape-95/static/media/home.a0c1b0a7.svg",
@@ -22,7 +23,7 @@
   "entrypoints": [
     "static/js/runtime-main.fe59d801.js",
     "static/js/2.f50d15d3.chunk.js",
-    "static/css/main.f52eef94.chunk.css",
-    "static/js/main.16fdc805.chunk.js"
+    "static/css/main.8e3f325c.chunk.css",
+    "static/js/main.47903c97.chunk.js"
   ]
 }
