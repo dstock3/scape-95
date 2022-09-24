@@ -6,13 +6,29 @@
 .minesweeper {
     display: flex;
     flex-direction: column;
+    height: 300px;
+    width: 275px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(186, 186, 186);
+    border-left: 3px solid rgb(232, 232, 232);
+    border-top: 3px solid rgb(232, 232, 232);
+    border-right: 3px solid rgb(35, 35, 35);
+    border-bottom: 3px solid rgb(35, 35, 35);
 }
 
 .top-lvl {
     display: flex;
     justify-content: space-between;
-    height: 25px;
-    width: 250px;
+    align-items: center;
+    height: 30px;
+    width: 244px;
+    background-color: rgb(186, 186, 186);
+    border-left: 3px solid rgb(232, 232, 232);
+    border-top: 3px solid rgb(232, 232, 232);
+    border-right: 3px solid rgb(35, 35, 35);
+    border-bottom: 3px solid rgb(35, 35, 35);
 }
 
 .mine-num, .mine-timer {
@@ -51,7 +67,7 @@
     width: 19px;
     border-left: 3px solid rgb(232, 232, 232);
     border-top: 3px solid rgb(232, 232, 232);
-    border-right: 3px solid rgb(19, 19, 19);
-    border-bottom: 3px solid rgb(19, 19, 19);
+    border-right: 3px solid rgb(35, 35, 35);
+    border-bottom: 3px solid rgb(35, 35, 35);
     font-weight: bold;
 }

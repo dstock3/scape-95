@@ -13,6 +13,7 @@ const Minesweeper = () => {
     const [shuffled, setShuffled] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
     const [losingMove, setLosingMove] = useState(null)
+    const [counter, setCounter] = useState(0)
     
 
     useEffect(()=> {
@@ -165,7 +166,7 @@ const Minesweeper = () => {
                     {/* need to find smiley icon*/}
                 </div>
                 <div className="mine-timer">
-
+                    {counter}
                 </div>
             </div>
             <div className="mine-grid">
