@@ -3,7 +3,6 @@ import '../../../../style/games/minesweeper.css'
 import bombPic from '../../../../assets/icons/mine.png'
 
 const Minesweeper = () => {
-    const [mineNum, setMineNum] = useState(10)
     const [width, setWidth] = useState(10)
     const [squares, setSquares] = useState([])
     const [bombAmount, setBombAmount] = useState(20)
@@ -16,7 +15,6 @@ const Minesweeper = () => {
     const [counter, setCounter] = useState(0)
     const [isActive, setIsActive] = useState(false)
     
-
     useEffect(()=> {
         for (let i = 0; i < bombAmount; i++) {
             setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
@@ -44,17 +42,6 @@ const Minesweeper = () => {
             setSquares(squares => [...squares, i]) 
         }
     }, [width])
-
-    useEffect(()=> {
-        if (isGameOver) {
-            const losingSquare = document.getElementById(losingMove)
-            const mine = document.createElement('img')
-            mine.src = bombPic
-            losingSquare.appendChild(mine)
-
-        }
-
-    }, [isGameOver])
 
     useEffect(()=> {
         let squares = Array.from(document.getElementsByClassName("square"))
@@ -104,9 +91,22 @@ const Minesweeper = () => {
             if (square.classList.contains('bomb')) {
                 setIsGameOver(true)
                 setLosingMove(square.id)
-                setCounter(0)
                 setIsActive(false)
-                console.log('game over')
+                setCounter(0)
+
+                const losingSquare = document.getElementById(square.id)
+                losingSquare.style.background = "red"
+                
+                let squares = Array.from(document.getElementsByClassName("square"))
+                for (let i = 0; i < squares.length; i++) {
+                    if (squares[i].classList.contains('bomb')) {
+                        const mine = document.createElement('img')
+                        mine.src = bombPic
+                        squares[i].appendChild(mine)
+
+                    }
+                }
+                
             } else {
                 let sum = square.getAttribute('data')
                 if (parseInt(sum) === 0) {
@@ -180,7 +180,7 @@ const Minesweeper = () => {
         <div className="minesweeper">
             <div className="top-lvl">
                 <div className="mine-num">
-                    {mineNum}
+                    {bombAmount}
                 </div>
                 <div className="smiley">
                     {/* need to find smiley icon*/}
