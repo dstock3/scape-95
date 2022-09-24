@@ -99,6 +99,8 @@ const Minesweeper = () => {
                         square.style.color = "green"
                     } else if (parseInt(sum) === 3) {
                         square.style.color = "red"
+                    } else if (parseInt(sum) === 4) {
+                        square.style.color = "darkblue"
                     }
                     square.classList.add("checked")
                     
