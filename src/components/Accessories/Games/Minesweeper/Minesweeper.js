@@ -14,6 +14,7 @@ const Minesweeper = () => {
     const [isGameOver, setIsGameOver] = useState(false)
     const [losingMove, setLosingMove] = useState(null)
     const [counter, setCounter] = useState(0)
+    const [isActive, setIsActive] = useState(false)
     
 
     useEffect(()=> {
@@ -77,7 +78,21 @@ const Minesweeper = () => {
         }
     }, [shuffled])
 
+    useEffect(()=> {
+        let int = null;
+        if (isActive) {
+            int = setInterval(() => {
+                setCounter(counter => counter + 1);
+            }, 1000);
+
+        } else if (!isActive && counter !== 0) {
+            clearInterval(int);
+          }
+        return () => clearInterval(int);
+    }, [isActive, counter])
+
     const handleClick = (squareId) => {
+        setIsActive(true)
         let square = document.getElementById(squareId)
         click(square)
     }
@@ -89,9 +104,14 @@ const Minesweeper = () => {
             if (square.classList.contains('bomb')) {
                 setIsGameOver(true)
                 setLosingMove(square.id)
+                setCounter(0)
+                setIsActive(false)
                 console.log('game over')
             } else {
                 let sum = square.getAttribute('data')
+                if (parseInt(sum) === 0) {
+                    square.style.color = "rgb(232, 231, 231)"
+                }
                 
                 if (sum > 0) {
                     if (parseInt(sum) === 1) {

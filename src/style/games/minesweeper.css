@@ -71,3 +71,8 @@
     border-bottom: 3px solid rgb(35, 35, 35);
     font-weight: bold;
 }
+
+.square img {
+    height:19px;
+    width:19px;
+}
