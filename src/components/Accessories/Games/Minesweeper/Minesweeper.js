@@ -13,6 +13,7 @@ const Minesweeper = () => {
     const [shuffled, setShuffled] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
     const [losingMove, setLosingMove] = useState(null)
+    
 
     useEffect(()=> {
         for (let i = 0; i < bombAmount; i++) {
@@ -92,7 +93,16 @@ const Minesweeper = () => {
                 let sum = square.getAttribute('data')
                 
                 if (sum > 0) {
+                    if (parseInt(sum) === 1) {
+                        square.style.color = "blue"
+                    } else if (parseInt(sum) === 2) {
+                        square.style.color = "green"
+                    } else if (parseInt(sum) === 3) {
+                        square.style.color = "red"
+                    }
                     square.classList.add("checked")
+                    
+                    
                     square.innerHTML = sum
                 }
                 checkSquare(square, square.id)
