@@ -47,6 +47,15 @@
     margin-left: 15%;
 }
 
+.smiley {
+    height: 21px;
+    width: 21px;
+    border-left: 3px solid rgb(232, 232, 232);
+    border-top: 3px solid rgb(232, 232, 232);
+    border-right: 3px solid rgb(35, 35, 35);
+    border-bottom: 3px solid rgb(35, 35, 35);
+}
+
 .mine-timer {
     margin-right: 15%;
 }

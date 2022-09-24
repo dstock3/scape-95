@@ -84,6 +84,22 @@ const Minesweeper = () => {
         click(square)
     }
 
+    const resetGame = () => {
+        setWidth(10)
+        setBombAmount(20)
+        setShuffled(gameArray.sort(() => Math.random() -0.5))
+        setIsGameOver(false)
+        setLosingMove(null)
+        setCounter(0)
+        setIsActive(false)
+        let squares = Array.from(document.getElementsByClassName("square"))
+        for (let i = 0; i < squares.length; i++) {
+            let square = squares[i]
+            square.style.backgroundColor = "rgb(186, 186, 186)"
+            square.innerHTML = ""
+        }
+    }
+
     const click = (square) => {
         if (isGameOver || square.classList.contains('checked') || square.classList.contains('flag')) {
             console.log("skip")
@@ -103,7 +119,6 @@ const Minesweeper = () => {
                         const mine = document.createElement('img')
                         mine.src = bombPic
                         squares[i].appendChild(mine)
-
                     }
                 }
                 
@@ -182,7 +197,7 @@ const Minesweeper = () => {
                 <div className="mine-num">
                     {bombAmount}
                 </div>
-                <div className="smiley">
+                <div className="smiley" onClick={()=>resetGame()}>
                     {/* need to find smiley icon*/}
                 </div>
                 <div className="mine-timer">
