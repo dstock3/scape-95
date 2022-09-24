@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../../../../style/games/minesweeper.css'
 import bombPic from '../../../../assets/icons/mine.png'
+import smiley from '../../../../assets/icons/minesmiley.png'
 
 const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
     const [squares, setSquares] = useState([])
-    const [bombAmount, setBombAmount] = useState(20)
+    const [bombAmount, setBombAmount] = useState(10)
     const [bombsArray, setBombsArray] = useState([])
     const [emptyArray, setEmptyArray] = useState([])
     const [gameArray, setGameArray] = useState([])
@@ -13,6 +14,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     const [isGameOver, setIsGameOver] = useState(false)
     const [counter, setCounter] = useState(0)
     const [isActive, setIsActive] = useState(false)
+    const [face, setFace] = useState(smiley)
     
     useEffect(()=> {
         if (!isGameOver) {
@@ -196,7 +198,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                     {bombAmount}
                 </div>
                 <div className="smiley" onClick={()=>resetGame()}>
-                    {/* need to find smiley icon*/}
+                    <img src={face} alt="minesweeper smiley face"></img>
                 </div>
                 <div className="mine-timer">
                     {counter}

@@ -54,6 +54,9 @@
     border-top: 3px solid rgb(232, 232, 232);
     border-right: 3px solid rgb(35, 35, 35);
     border-bottom: 3px solid rgb(35, 35, 35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mine-timer {
