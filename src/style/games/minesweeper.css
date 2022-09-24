@@ -1,6 +1,16 @@
+@font-face {
+    font-family: 'digital';
+    src: url(../../fonts/DS-DIGI.TTF);
+}
+
 .minesweeper {
     display: flex;
     flex-direction: column;
+}
+
+.mine-num, .mine-timer {
+    font-family: 'digital';
+    color: red;
 }
 
 .mine-grid {

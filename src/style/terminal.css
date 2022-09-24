@@ -1,8 +1,7 @@
 @font-face {
     font-family: 'MS95';
     src: local('MS95'), url(../fonts/w95fa.woff) format('woff');
-    /* other formats include: 'woff2', 'truetype, 'opentype',
-                              'embedded-opentype', and 'svg' */
+
   }
 
 .terminal {
