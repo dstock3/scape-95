@@ -11,15 +11,16 @@
 .top-lvl {
     display: flex;
     justify-content: space-between;
-    height: 50px;
+    height: 25px;
+    width: 250px;
 }
 
 .mine-num, .mine-timer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
-    width: 45px;
+    height: 25px;
+    width: 25px;
     background-color: black;
     font-family: 'digital';
     color: red;
@@ -35,8 +36,8 @@
 }
 
 .mine-grid {
-    height: 400px;
-    width: 400px;
+    height: 250px;
+    width: 250px;
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(186, 186, 186);
@@ -46,11 +47,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 38px;
-    width: 38px;
-    border-left: 1px solid rgb(255, 255, 255);
-    border-top: 1px solid rgb(255, 255, 255);
-    border-right: 1px solid rgb(0, 0, 0);
-    border-bottom: 1px solid rgb(0, 0, 0);
+    height: 19px;
+    width: 19px;
+    border-left: 3px solid rgb(232, 232, 232);
+    border-top: 3px solid rgb(232, 232, 232);
+    border-right: 3px solid rgb(19, 19, 19);
+    border-bottom: 3px solid rgb(19, 19, 19);
     font-weight: bold;
 }
