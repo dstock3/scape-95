@@ -3,6 +3,7 @@ import '../../../../style/games/minesweeper.css'
 import bombPic from '../../../../assets/icons/mine.png'
 import smiley from '../../../../assets/icons/minesmiley.png'
 import smileyConcerned from '../../../../assets/icons/minesmileyconcern.png'
+import smileyDead from '../../../../assets/icons/minesmileydead.png'
 
 const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
@@ -100,6 +101,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             console.log("skip")
         } else {
             if (square.classList.contains('bomb')) {
+                setFace(smileyDead)
                 setIsGameOver(true)
                 setIsActive(false)
                 setCounter(0)
@@ -240,9 +242,17 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                     {counter}
                 </div>
             </div>
-            <div className="mine-grid">
+            <div className="mine-grid" draggable={false}>
                 {squares.map((square, index) => (
-                    <div className={`square ${shuffled[index]}`} id={square} key={index} onMouseDown={()=>initMove(square)} onMouseEnter={()=>potentialMove(isClicked, square)} onMouseLeave={()=>cleanUpBoard(isClicked, square)} onMouseUp={()=>handleClick(square)}>
+                    <div 
+                        className={`square ${shuffled[index]}`} 
+                        id={square} 
+                        key={index} 
+                        onMouseDown={()=>initMove(square)} 
+                        onMouseEnter={()=>potentialMove(isClicked, square)} 
+                        onMouseLeave={()=>cleanUpBoard(isClicked, square)} 
+                        onMouseUp={()=>handleClick(square)}
+                        draggable={false}>
                     </div>
                     ))}
             </div>
