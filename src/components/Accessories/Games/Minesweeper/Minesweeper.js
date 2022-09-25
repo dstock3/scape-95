@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../../../style/games/minesweeper.css'
 import bombPic from '../../../../assets/icons/mine.png'
 import smiley from '../../../../assets/icons/minesmiley.png'
+import smileyConcerned from '../../../../assets/icons/minesmileyconcern.png'
 
 const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
@@ -114,6 +115,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                 }
                 
             } else {
+                setFace(smiley)
                 let sum = parseInt(square.getAttribute('data'))
                 
                 if (sum === 0) {
@@ -191,6 +193,10 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         */
     }
 
+    const setSmiley = () => {
+        setFace(smileyConcerned)
+    }
+
     return (
         <div className="minesweeper">
             <div className="top-lvl">
@@ -206,7 +212,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             </div>
             <div className="mine-grid">
                 {squares.map((square, index) => (
-                    <div className={`square ${shuffled[index]}`} id={square} key={index} onClick={()=>handleClick(square)}>
+                    <div className={`square ${shuffled[index]}`} id={square} key={index} onMouseDown={()=>setSmiley()} onMouseUp={()=>handleClick(square)}>
                     </div>
                     ))}
             </div>
