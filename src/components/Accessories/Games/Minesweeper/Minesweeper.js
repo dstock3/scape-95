@@ -16,6 +16,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     const [counter, setCounter] = useState(0)
     const [isActive, setIsActive] = useState(false)
     const [face, setFace] = useState(smiley)
+    const [isClicked, setIsClicked] = useState(false)
     
     useEffect(()=> {
         if (!isGameOver) {
@@ -94,6 +95,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     }
 
     const click = (square) => {
+        setIsClicked(false)
         if (isGameOver || square.classList.contains('checked') || square.classList.contains('flag')) {
             console.log("skip")
         } else {
@@ -199,10 +201,30 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     }
 
     const initMove = (squareId) => {
+        setIsClicked(true)
         const square = document.getElementById(squareId)
         square.style.backgroundColor = "rgb(232, 231, 231)"
         square.style.border = "solid 3px rgb(124, 124, 124)"
         setFace(smileyConcerned)
+    }
+
+    const potentialMove = (clickState, squareId) => {
+        if (clickState) {
+            const square = document.getElementById(squareId)
+            square.style.backgroundColor = "rgb(232, 231, 231)"
+            square.style.border = "solid 3px rgb(124, 124, 124)"
+        }
+    }
+
+    const cleanUpBoard = (clickState, squareId) => {
+        if (clickState) {
+            const square = document.getElementById(squareId)
+            square.style.backgroundColor = "rgb(186, 186, 186)"
+            square.style.borderLeft = "3px solid rgb(232, 232, 232)"
+            square.style.borderTop = "3px solid rgb(232, 232, 232)"
+            square.style.borderRight = "3px solid rgb(35, 35, 35)"
+            square.style.borderBottom = "3px solid rgb(35, 35, 35)"
+        }
     }
 
     return (
@@ -220,7 +242,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             </div>
             <div className="mine-grid">
                 {squares.map((square, index) => (
-                    <div className={`square ${shuffled[index]}`} id={square} key={index} onMouseDown={()=>initMove(square)} onMouseUp={()=>handleClick(square)}>
+                    <div className={`square ${shuffled[index]}`} id={square} key={index} onMouseDown={()=>initMove(square)} onMouseEnter={()=>potentialMove(isClicked, square)} onMouseLeave={()=>cleanUpBoard(isClicked, square)} onMouseUp={()=>handleClick(square)}>
                     </div>
                     ))}
             </div>
