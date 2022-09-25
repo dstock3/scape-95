@@ -142,7 +142,12 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                         square.style.color = "grey"
                     }
                     square.classList.add("checked")
-                    
+                    square.style.backgroundColor = "rgb(186, 186, 186)"
+                    square.style.borderLeft = "3px solid rgb(232, 232, 232)"
+                    square.style.borderTop = "3px solid rgb(232, 232, 232)"
+                    square.style.borderRight = "3px solid rgb(35, 35, 35)"
+                    square.style.borderBottom = "3px solid rgb(35, 35, 35)"
+
                     square.innerHTML = sum
                 }
                 checkSquare(square, square.id)
@@ -193,7 +198,10 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         */
     }
 
-    const setSmiley = () => {
+    const initMove = (squareId) => {
+        const square = document.getElementById(squareId)
+        square.style.backgroundColor = "rgb(232, 231, 231)"
+        square.style.border = "solid 3px rgb(124, 124, 124)"
         setFace(smileyConcerned)
     }
 
@@ -212,7 +220,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             </div>
             <div className="mine-grid">
                 {squares.map((square, index) => (
-                    <div className={`square ${shuffled[index]}`} id={square} key={index} onMouseDown={()=>setSmiley()} onMouseUp={()=>handleClick(square)}>
+                    <div className={`square ${shuffled[index]}`} id={square} key={index} onMouseDown={()=>initMove(square)} onMouseUp={()=>handleClick(square)}>
                     </div>
                     ))}
             </div>
