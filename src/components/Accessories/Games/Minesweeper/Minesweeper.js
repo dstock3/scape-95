@@ -95,68 +95,72 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         setMineInst(mineInst + 1)
     }
 
+    const gameOver = (square) => {
+        setFace(smileyDead)
+        setIsGameOver(true)
+        setIsActive(false)
+        setCounter(counter)
+
+        const losingSquare = document.getElementById(square.id)
+        losingSquare.style.background = "red"
+        losingSquare.style.border = "solid 3px red"
+        
+        let squares = Array.from(document.getElementsByClassName("square"))
+        for (let i = 0; i < squares.length; i++) {
+            if (squares[i].classList.contains('bomb')) {
+                const mine = document.createElement('img')
+                mine.src = bombPic
+                squares[i].appendChild(mine)
+            }
+        }
+    }
+
     const click = (square) => {
         setIsClicked(false)
-        if (isGameOver || square.classList.contains('checked') || square.classList.contains('flag')) {
-            console.log("skip")
+        if (isGameOver) return
+        if (square.classList.contains('checked') || square.classList.contains('flag')) return
+
+        if (square.classList.contains('bomb')) {
+            gameOver(square)
         } else {
-            if (square.classList.contains('bomb')) {
-                setFace(smileyDead)
-                setIsGameOver(true)
-                setIsActive(false)
-                setCounter(0)
+            setFace(smiley)
+            let sum = parseInt(square.getAttribute('data'))
+            
+            if (sum === 0) {
+                square.style.backgroundColor = "rgb(232, 231, 231)"
+                square.style.border = "solid 3px rgb(124, 124, 124)"
+            }
+            
+            if (sum > 0) {
+                if (sum === 1) {
+                    square.style.color = "blue"
+                } else if (sum === 2) {
+                    square.style.color = "green"
+                } else if (sum === 3) {
+                    square.style.color = "red"
+                } else if (sum === 4) {
+                    square.style.color = "darkblue"
+                } else if (sum === 5) {
+                    square.style.color = "darkred"
+                } else if (sum === 6) {
+                    square.style.color = "teal"
+                } else if (sum === 7) {
+                    square.style.color = "black"
+                } else if (sum === 8) {
+                    square.style.color = "grey"
+                }
+                square.classList.add("checked")
+                square.style.backgroundColor = "rgb(186, 186, 186)"
+                square.style.borderLeft = "3px solid rgb(232, 232, 232)"
+                square.style.borderTop = "3px solid rgb(232, 232, 232)"
+                square.style.borderRight = "3px solid rgb(35, 35, 35)"
+                square.style.borderBottom = "3px solid rgb(35, 35, 35)"
 
-                const losingSquare = document.getElementById(square.id)
-                losingSquare.style.background = "red"
-                
-                let squares = Array.from(document.getElementsByClassName("square"))
-                for (let i = 0; i < squares.length; i++) {
-                    if (squares[i].classList.contains('bomb')) {
-                        const mine = document.createElement('img')
-                        mine.src = bombPic
-                        squares[i].appendChild(mine)
-                    }
-                }
-                
-            } else {
-                setFace(smiley)
-                let sum = parseInt(square.getAttribute('data'))
-                
-                if (sum === 0) {
-                    square.style.backgroundColor = "rgb(232, 231, 231)"
-                    square.style.border = "solid 3px rgb(124, 124, 124)"
-                }
-                
-                if (sum > 0) {
-                    if (sum === 1) {
-                        square.style.color = "blue"
-                    } else if (sum === 2) {
-                        square.style.color = "green"
-                    } else if (sum === 3) {
-                        square.style.color = "red"
-                    } else if (sum === 4) {
-                        square.style.color = "darkblue"
-                    } else if (sum === 5) {
-                        square.style.color = "darkred"
-                    } else if (sum === 6) {
-                        square.style.color = "teal"
-                    } else if (sum === 7) {
-                        square.style.color = "black"
-                    } else if (sum === 8) {
-                        square.style.color = "grey"
-                    }
-                    square.classList.add("checked")
-                    square.style.backgroundColor = "rgb(186, 186, 186)"
-                    square.style.borderLeft = "3px solid rgb(232, 232, 232)"
-                    square.style.borderTop = "3px solid rgb(232, 232, 232)"
-                    square.style.borderRight = "3px solid rgb(35, 35, 35)"
-                    square.style.borderBottom = "3px solid rgb(35, 35, 35)"
-
-                    square.innerHTML = sum
-                }
-                checkSquare(square, square.id)
-            } 
-        }
+                square.innerHTML = sum
+            }
+            checkSquare(square, square.id)
+        } 
+        
         square.classList.add("checked")
     }
 
@@ -166,7 +170,6 @@ const Minesweeper = ({mineInst, setMineInst}) => {
 
         let squares = Array.from(document.getElementsByClassName("square"))
         /*
-        
         function pass(thisSquare) {
             const newId = thisSquare.id
             const newSquare = document.getElementById(newId)
@@ -200,6 +203,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             }
         }, 10)
         */
+        
     }
 
     const initMove = (squareId) => {
