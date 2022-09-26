@@ -86,7 +86,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         return () => clearInterval(int);
     }, [isActive, counter])
 
-    const handleClick = (squareId) => {
+    const handleClick = (squareId) => {        
         setIsActive(true)
         let square = document.getElementById(squareId)
         click(square)
@@ -230,14 +230,22 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         }
     }
 
-    const plantFlag = (squareId) => {
-
+    const plantFlag = (e, squareId) => {
         document.addEventListener("contextmenu", (event) => {
             event.preventDefault();
         });
-        
-        console.log(squareId)
-       
+
+        if (e.type === "contextmenu") {
+            const square = document.getElementById(squareId)
+            if (square.classList.contains('checked') || square.classList.contains('flag')) return
+
+            square.style.backgroundColor = "rgb(186, 186, 186)"
+            square.style.borderLeft = "3px solid rgb(232, 232, 232)"
+            square.style.borderTop = "3px solid rgb(232, 232, 232)"
+            square.style.borderRight = "3px solid rgb(35, 35, 35)"
+            square.style.borderBottom = "3px solid rgb(35, 35, 35)"
+            square.classList.add('flag')
+        }
     }
 
     return (
@@ -263,7 +271,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                         onMouseEnter={()=>potentialMove(isClicked, square)} 
                         onMouseLeave={()=>cleanUpBoard(isClicked, square)} 
                         onMouseUp={()=>handleClick(square)}
-                        onContextMenu={()=>plantFlag(square)}
+                        onContextMenu={(e)=>plantFlag(e, square)}
                         draggable={false}>
                     </div>
                     ))}
