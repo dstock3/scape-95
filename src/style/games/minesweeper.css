@@ -85,6 +85,7 @@
 }
 
 .square {
+    font-size: 1.25em;
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;

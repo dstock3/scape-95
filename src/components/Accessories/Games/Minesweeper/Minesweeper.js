@@ -245,12 +245,12 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         });
         const square = document.getElementById(squareId)
         setFace(smiley)
-        if (flagAmount > 0 && !square.hasChildNodes()) {
-            if (square.classList.contains('flag')) {
-                square.classList.remove('flag')
-                setFlagAmount(flagAmount + 1)
-                square.firstChild.remove()
-            }
+        
+        if (square.classList.contains('flag')) {
+            square.classList.remove('flag')
+            setFlagAmount(flagAmount + 1)
+            square.firstChild.remove()
+        } else if (flagAmount > 0 && !square.hasChildNodes()) {
             if (square.classList.contains('checked')) return
 
             square.style.backgroundColor = "rgb(186, 186, 186)"
