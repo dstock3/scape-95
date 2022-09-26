@@ -250,7 +250,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             square.classList.remove('flag')
             setFlagAmount(flagAmount + 1)
             square.firstChild.remove()
-        } else if (flagAmount > 0 && !square.hasChildNodes()) {
+        } else if (flagAmount > 0 && !square.hasChildNodes() && !isGameOver) {
             if (square.classList.contains('checked')) return
 
             square.style.backgroundColor = "rgb(186, 186, 186)"
