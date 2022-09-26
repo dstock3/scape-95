@@ -87,10 +87,12 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         return () => clearInterval(int);
     }, [isActive, counter])
 
-    const handleClick = (squareId) => {        
-        setIsActive(true)
-        let square = document.getElementById(squareId)
-        click(square)
+    const handleClick = (event, squareId) => {
+        if (event.button === 0 && !isGameOver) {
+            setIsActive(true)
+            let square = document.getElementById(squareId)
+            click(square)
+        }        
     }
 
     const resetGame = () => {
@@ -109,7 +111,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         
         let squares = Array.from(document.getElementsByClassName("square"))
         for (let i = 0; i < squares.length; i++) {
-            if (squares[i].classList.contains('bomb')) {
+            if (squares[i].classList.contains('bomb') && !squares[i].classList.contains('flag')) {
                 const mine = document.createElement('img')
                 mine.src = bombPic
                 squares[i].appendChild(mine)
@@ -117,7 +119,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         }
     }
 
-    const click = (square) => {
+    const click = (square) => {        
         setIsClicked(false)
         if (isGameOver) return
         if (square.classList.contains('checked') || square.classList.contains('flag')) return
@@ -177,57 +179,63 @@ const Minesweeper = ({mineInst, setMineInst}) => {
 
         setTimeout(()=> {
             if (squareId > 0 && !isLeft) {
-                pass(squares[parseInt(squareId) -1])
+                pass(squares[parseInt(squareId) - 1])
             }
             if (squareId > 9 && !isRight) {
-                pass(squares[parseInt(squareId) +1 -width])
+                pass(squares[parseInt(squareId) + 1 - width])
             }
             if (squareId > 10) {
-                pass(squares[parseInt(squareId -width)])
+                pass(squares[parseInt(squareId - width)])
             }
             if (squareId > 11 && !isLeft) {
-                pass(squares[parseInt(squareId) -1 - width])
+                pass(squares[parseInt(squareId) - 1 - width])
             }
             if (squareId < 98 && !isRight) {
-                pass(squares[parseInt(squareId) +1])
+                pass(squares[parseInt(squareId) + 1])
             }
             if (squareId < 90 && !isLeft) {
-                pass(squares[parseInt(squareId) -1 + width])
+                pass(squares[parseInt(squareId) - 1 + width])
             }
             if (squareId < 88 && !isRight) {
-                pass(squares[parseInt(squareId) +1 + width])
+                pass(squares[parseInt(squareId) + 1 + width])
             }
             if (squareId < 89) {
-                pass(squares[parseInt(squareId) +width])
+                pass(squares[parseInt(squareId) + width])
             }
         }, 10)
         */
     }
 
-    const initMove = (squareId) => {
-        setIsClicked(true)
-        const square = document.getElementById(squareId)
-        square.style.backgroundColor = "rgb(232, 231, 231)"
-        square.style.border = "solid 3px rgb(124, 124, 124)"
-        setFace(smileyConcerned)
-    }
-
-    const potentialMove = (clickState, squareId) => {
-        if (clickState) {
+    const initMove = (event, squareId) => {
+        if (event.button === 0 && !isGameOver) {
+            setIsClicked(true)
             const square = document.getElementById(squareId)
             square.style.backgroundColor = "rgb(232, 231, 231)"
             square.style.border = "solid 3px rgb(124, 124, 124)"
+            setFace(smileyConcerned)
         }
     }
 
-    const cleanUpBoard = (clickState, squareId) => {
-        if (clickState) {
-            const square = document.getElementById(squareId)
-            square.style.backgroundColor = "rgb(186, 186, 186)"
-            square.style.borderLeft = "3px solid rgb(232, 232, 232)"
-            square.style.borderTop = "3px solid rgb(232, 232, 232)"
-            square.style.borderRight = "3px solid rgb(35, 35, 35)"
-            square.style.borderBottom = "3px solid rgb(35, 35, 35)"
+    const potentialMove = (event, clickState, squareId) => {
+        if (event.button === 0 && !isGameOver) {
+            if (clickState) {
+                const square = document.getElementById(squareId)
+                square.style.backgroundColor = "rgb(232, 231, 231)"
+                square.style.border = "solid 3px rgb(124, 124, 124)"
+            }
+        }
+    }
+
+    const cleanUpBoard = (event, clickState, squareId) => {
+        if (event.button === 0 && !isGameOver) {
+            if (clickState) {
+                const square = document.getElementById(squareId)
+                square.style.backgroundColor = "rgb(186, 186, 186)"
+                square.style.borderLeft = "3px solid rgb(232, 232, 232)"
+                square.style.borderTop = "3px solid rgb(232, 232, 232)"
+                square.style.borderRight = "3px solid rgb(35, 35, 35)"
+                square.style.borderBottom = "3px solid rgb(35, 35, 35)"
+            }
         }
     }
 
@@ -235,10 +243,15 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         document.addEventListener("contextmenu", (event) => {
             event.preventDefault();
         });
-
-        if (e.type === "contextmenu") {
-            const square = document.getElementById(squareId)
-            if (square.classList.contains('checked') || square.classList.contains('flag')) return
+        const square = document.getElementById(squareId)
+        setFace(smiley)
+        if (flagAmount > 0 && !square.hasChildNodes()) {
+            if (square.classList.contains('flag')) {
+                square.classList.remove('flag')
+                setFlagAmount(flagAmount + 1)
+                square.firstChild.remove()
+            }
+            if (square.classList.contains('checked')) return
 
             square.style.backgroundColor = "rgb(186, 186, 186)"
             square.style.borderLeft = "3px solid rgb(232, 232, 232)"
@@ -250,6 +263,8 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             const flagSquare = document.createElement('img')
             flagSquare.src = flag
             square.appendChild(flagSquare)
+
+            setFlagAmount(flagAmount - 1)
         }
     }
 
@@ -272,10 +287,10 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                         className={`square ${shuffled[index]}`} 
                         id={square} 
                         key={index} 
-                        onMouseDown={()=>initMove(square)} 
-                        onMouseEnter={()=>potentialMove(isClicked, square)} 
-                        onMouseLeave={()=>cleanUpBoard(isClicked, square)} 
-                        onMouseUp={()=>handleClick(square)}
+                        onMouseDown={(e)=>initMove(e, square)} 
+                        onMouseEnter={(e)=>potentialMove(e, isClicked, square)} 
+                        onMouseLeave={(e)=>cleanUpBoard(e, isClicked, square)} 
+                        onMouseUp={(e)=>handleClick(e, square)}
                         onContextMenu={(e)=>plantFlag(e, square)}
                         draggable={false}>
                     </div>
