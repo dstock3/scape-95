@@ -9,6 +9,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
     const [squares, setSquares] = useState([])
     const [bombAmount, setBombAmount] = useState(10)
+    const [flagAmount, setFlagAmount] = useState(bombAmount)
     const [bombsArray, setBombsArray] = useState([])
     const [emptyArray, setEmptyArray] = useState([])
     const [gameArray, setGameArray] = useState([])
@@ -119,7 +120,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         setIsClicked(false)
         if (isGameOver) return
         if (square.classList.contains('checked') || square.classList.contains('flag')) return
-
+        square.classList.add("checked")
         if (square.classList.contains('bomb')) {
             gameOver(square)
         } else {
@@ -155,13 +156,10 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                 square.style.borderTop = "3px solid rgb(232, 232, 232)"
                 square.style.borderRight = "3px solid rgb(35, 35, 35)"
                 square.style.borderBottom = "3px solid rgb(35, 35, 35)"
-
                 square.innerHTML = sum
             }
             checkSquare(square, square.id)
         } 
-        
-        square.classList.add("checked")
     }
 
     const checkSquare = (square, squareId) => {
@@ -203,7 +201,6 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             }
         }, 10)
         */
-        
     }
 
     const initMove = (squareId) => {
@@ -233,11 +230,21 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         }
     }
 
+    const plantFlag = (squareId) => {
+
+        document.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+        });
+        
+        console.log(squareId)
+       
+    }
+
     return (
         <div className="minesweeper">
             <div className="top-lvl">
                 <div className="mine-num">
-                    {bombAmount}
+                    {flagAmount}
                 </div>
                 <div className="smiley" onClick={()=>resetGame()}>
                     <img src={face} alt="minesweeper smiley face"></img>
@@ -256,6 +263,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                         onMouseEnter={()=>potentialMove(isClicked, square)} 
                         onMouseLeave={()=>cleanUpBoard(isClicked, square)} 
                         onMouseUp={()=>handleClick(square)}
+                        onContextMenu={()=>plantFlag(square)}
                         draggable={false}>
                     </div>
                     ))}
