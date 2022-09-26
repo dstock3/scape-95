@@ -4,6 +4,7 @@ import bombPic from '../../../../assets/icons/mine.png'
 import smiley from '../../../../assets/icons/minesmiley.png'
 import smileyConcerned from '../../../../assets/icons/minesmileyconcern.png'
 import smileyDead from '../../../../assets/icons/minesmileydead.png'
+import flag from '../../../../assets/icons/flag.png'
 
 const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
@@ -245,6 +246,10 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             square.style.borderRight = "3px solid rgb(35, 35, 35)"
             square.style.borderBottom = "3px solid rgb(35, 35, 35)"
             square.classList.add('flag')
+
+            const flagSquare = document.createElement('img')
+            flagSquare.src = flag
+            square.appendChild(flagSquare)
         }
     }
 
