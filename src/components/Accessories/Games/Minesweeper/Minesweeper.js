@@ -5,6 +5,7 @@ import smiley from '../../../../assets/icons/minesmiley.png'
 import smileyConcerned from '../../../../assets/icons/minesmileyconcern.png'
 import smileyDead from '../../../../assets/icons/minesmileydead.png'
 import flag from '../../../../assets/icons/flag.png'
+import smileyWin from '../../../../assets/icons/minesmileywin.png'
 
 const Minesweeper = ({mineInst, setMineInst}) => {
     const [width, setWidth] = useState(10)
@@ -286,10 +287,11 @@ const Minesweeper = ({mineInst, setMineInst}) => {
 
         if (bombs === score) {
             setIsGameOver(true)
+            setFace(smileyWin)
+            setIsActive(false)
+            setCounter(counter)
             console.log('user wins')
-        } else {
-            console.log('nope')
-        }
+        } 
     }
 
     return (
