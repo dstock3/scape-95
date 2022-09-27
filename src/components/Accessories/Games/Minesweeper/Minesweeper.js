@@ -120,11 +120,11 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         }
     }
 
-    const click = (square) => {        
+    const click = (square) => {
+        let squareId = square.id        
         setIsClicked(false)
         if (isGameOver) return
         if (square.classList.contains('checked') || square.classList.contains('flag')) return
-        square.classList.add("checked")
         if (square.classList.contains('bomb')) {
             gameOver(square)
         } else {
@@ -132,26 +132,28 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             let sum = parseInt(square.getAttribute('data'))
             
             if (sum === 0) {
+                square.classList.add('checked')
                 square.style.backgroundColor = "rgb(232, 231, 231)"
                 square.style.border = "solid 3px rgb(124, 124, 124)"
             }
             
-            if (sum > 0) {
+            if (sum != 0) {
+                square.classList.add('checked')
                 if (sum === 1) {
                     square.style.color = "blue"
-                } else if (sum === 2) {
+                } else if (sum == 2) {
                     square.style.color = "green"
-                } else if (sum === 3) {
+                } else if (sum == 3) {
                     square.style.color = "red"
-                } else if (sum === 4) {
+                } else if (sum == 4) {
                     square.style.color = "darkblue"
-                } else if (sum === 5) {
+                } else if (sum == 5) {
                     square.style.color = "darkred"
-                } else if (sum === 6) {
+                } else if (sum == 6) {
                     square.style.color = "teal"
-                } else if (sum === 7) {
+                } else if (sum == 7) {
                     square.style.color = "black"
-                } else if (sum === 8) {
+                } else if (sum == 8) {
                     square.style.color = "grey"
                 }
                 square.classList.add("checked")
@@ -161,53 +163,35 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                 square.style.borderRight = "3px solid rgb(35, 35, 35)"
                 square.style.borderBottom = "3px solid rgb(35, 35, 35)"
                 square.innerHTML = sum
+                return
             }
             checkSquare(square, square.id)
-        } 
+        }
+        square.classList.add('checked') 
     }
 
     const checkSquare = (square, squareId) => {
         const isLeft = (squareId % width === 0)
-        const isRight = (squareId % width === width - 1)
+        const isRight = (squareId % width === width -1)
 
-        let squares = Array.from(document.getElementsByClassName("square"))
-
-        /*
-        
-        function pass(thisSquare) {
-            const newId = thisSquare.id
-            const newSquare = document.getElementById(newId)
-            click(newSquare)
+        function pass(condition, thisId) {
+            if (condition) {
+                const newId = thisId  
+                const newSquare = document.getElementById(newId)
+                click(newSquare)
+            }
         }
 
-        
-            if (squareId > 0 && !isLeft) {
-                pass(squares[parseInt(squareId) - 1])
-            }
-            if (squareId > 9 && !isRight) {
-                pass(squares[parseInt(squareId) + 1 - width])
-            }
-            if (squareId > 10) {
-                pass(squares[parseInt(squareId - width)])
-            }
-            if (squareId > 11 && !isLeft) {
-                pass(squares[parseInt(squareId) - 1 - width])
-            }
-            if (squareId < 98 && !isRight) {
-                pass(squares[parseInt(squareId) + 1])
-            }
-            if (squareId < 90 && !isLeft) {
-                pass(squares[parseInt(squareId) - 1 + width])
-            }
-            if (squareId < 88 && !isRight) {
-                pass(squares[parseInt(squareId) + 1 + width])
-            }
-            if (squareId < 89) {
-                pass(squares[parseInt(squareId) + width])
-            }
-            */
-        
-        
+        setTimeout(() => {
+            pass((squareId > 0 && !isLeft),  (parseInt(squareId) - 1))
+            pass((squareId > 9 && !isRight), (parseInt(squareId) + 1 - width))
+            pass((squareId > 10),  (parseInt(squareId) - width))
+            pass((squareId > 11 && !isLeft), (parseInt(squareId) - 1 - width))
+            pass((squareId < 98 && !isRight), (parseInt(squareId) + 1))
+            pass((squareId < 90 && !isLeft), (parseInt(squareId) - 1 + width))
+            pass((squareId < 88 && !isRight), (parseInt(squareId) + 1 + width))
+            pass((squareId < 89), (parseInt(squareId) + width))
+        }, 10)
     }
 
     const initMove = (event, squareId) => {
@@ -257,7 +241,6 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             square.firstChild.remove()
         } else if (flagAmount > 0 && !square.hasChildNodes() && !isGameOver) {
             if (square.classList.contains('checked')) return
-
             square.style.backgroundColor = "rgb(186, 186, 186)"
             square.style.borderLeft = "3px solid rgb(232, 232, 232)"
             square.style.borderTop = "3px solid rgb(232, 232, 232)"
@@ -268,7 +251,6 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             const flagSquare = document.createElement('img')
             flagSquare.src = flag
             square.appendChild(flagSquare)
-
             setFlagAmount(flagAmount - 1)
             checkBoard()
         }
@@ -276,7 +258,6 @@ const Minesweeper = ({mineInst, setMineInst}) => {
 
     const checkBoard = () => {
         const squares = Array.from(document.getElementsByClassName("square"))
-
         const bombs = bombAmount
         let score = 0
 
@@ -291,7 +272,6 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             setFace(smileyWin)
             setIsActive(false)
             setCounter(counter)
-            console.log('user wins')
         } 
     }
 
