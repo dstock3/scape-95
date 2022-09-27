@@ -170,14 +170,16 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         const isRight = (squareId % width === width - 1)
 
         let squares = Array.from(document.getElementsByClassName("square"))
+
         /*
+        
         function pass(thisSquare) {
             const newId = thisSquare.id
             const newSquare = document.getElementById(newId)
             click(newSquare)
         }
 
-        setTimeout(()=> {
+        
             if (squareId > 0 && !isLeft) {
                 pass(squares[parseInt(squareId) - 1])
             }
@@ -202,8 +204,9 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             if (squareId < 89) {
                 pass(squares[parseInt(squareId) + width])
             }
-        }, 10)
-        */
+            */
+        
+        
     }
 
     const initMove = (event, squareId) => {
@@ -265,6 +268,27 @@ const Minesweeper = ({mineInst, setMineInst}) => {
             square.appendChild(flagSquare)
 
             setFlagAmount(flagAmount - 1)
+            checkBoard()
+        }
+    }
+
+    const checkBoard = () => {
+        const squares = Array.from(document.getElementsByClassName("square"))
+
+        const bombs = bombAmount
+        let score = 0
+
+        for (let i = 0; i < squares.length; i++) {
+            if (squares[i].classList.contains('bomb') && squares[i].classList.contains('flag')) {
+                score += 1
+            }
+        }
+
+        if (bombs === score) {
+            setIsGameOver(true)
+            console.log('user wins')
+        } else {
+            console.log('nope')
         }
     }
 
