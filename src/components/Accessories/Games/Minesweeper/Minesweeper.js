@@ -244,6 +244,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     }
 
     const plantFlag = (e, squareId) => {
+        setIsActive(true)
         document.addEventListener("contextmenu", (event) => {
             event.preventDefault();
         });

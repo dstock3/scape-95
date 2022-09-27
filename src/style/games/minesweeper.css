@@ -36,7 +36,7 @@
     justify-content: center;
     align-items: center;
     height: 25px;
-    width: 25px;
+    width: 2.25em;
     background-color: black;
     font-family: 'digital';
     color: red;
@@ -44,7 +44,11 @@
 }
 
 .mine-num {
-    margin-left: 15%;
+    margin-left: 5%;
+}
+
+.mine-timer {
+    margin-right: 5%;
 }
 
 .smiley {
@@ -59,9 +63,7 @@
     justify-content: center;
 }
 
-.mine-timer {
-    margin-right: 15%;
-}
+
 
 .mine-grid {
     height: 250px;
