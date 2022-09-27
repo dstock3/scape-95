@@ -227,32 +227,34 @@ const Minesweeper = ({mineInst, setMineInst}) => {
         }
     }
 
-    const plantFlag = (e, squareId) => {
-        setIsActive(true)
+    const plantFlag = (squareId) => {
         document.addEventListener("contextmenu", (event) => {
             event.preventDefault();
         });
         const square = document.getElementById(squareId)
         setFace(smiley)
-        
-        if (square.classList.contains('flag')) {
-            square.classList.remove('flag')
-            setFlagAmount(flagAmount + 1)
-            square.firstChild.remove()
-        } else if (flagAmount > 0 && !square.hasChildNodes() && !isGameOver) {
-            if (square.classList.contains('checked')) return
-            square.style.backgroundColor = "rgb(186, 186, 186)"
-            square.style.borderLeft = "3px solid rgb(232, 232, 232)"
-            square.style.borderTop = "3px solid rgb(232, 232, 232)"
-            square.style.borderRight = "3px solid rgb(35, 35, 35)"
-            square.style.borderBottom = "3px solid rgb(35, 35, 35)"
-            square.classList.add('flag')
 
-            const flagSquare = document.createElement('img')
-            flagSquare.src = flag
-            square.appendChild(flagSquare)
-            setFlagAmount(flagAmount - 1)
-            checkBoard()
+        if (!isGameOver) {
+            setIsActive(true)
+            if (square.classList.contains('flag')) {
+                square.classList.remove('flag')
+                setFlagAmount(flagAmount + 1)
+                square.firstChild.remove()
+            } else if (flagAmount > 0 && !square.hasChildNodes()) {
+                if (square.classList.contains('checked')) return
+                square.style.backgroundColor = "rgb(186, 186, 186)"
+                square.style.borderLeft = "3px solid rgb(232, 232, 232)"
+                square.style.borderTop = "3px solid rgb(232, 232, 232)"
+                square.style.borderRight = "3px solid rgb(35, 35, 35)"
+                square.style.borderBottom = "3px solid rgb(35, 35, 35)"
+                square.classList.add('flag')
+    
+                const flagSquare = document.createElement('img')
+                flagSquare.src = flag
+                square.appendChild(flagSquare)
+                setFlagAmount(flagAmount - 1)
+                checkBoard()
+            }
         }
     }
 
@@ -298,7 +300,7 @@ const Minesweeper = ({mineInst, setMineInst}) => {
                         onMouseEnter={(e)=>potentialMove(e, isClicked, square)} 
                         onMouseLeave={(e)=>cleanUpBoard(e, isClicked, square)} 
                         onMouseUp={(e)=>handleClick(e, square)}
-                        onContextMenu={(e)=>plantFlag(e, square)}
+                        onContextMenu={()=>plantFlag(square)}
                         draggable={false}>
                     </div>
                     ))}
