@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/scape-95/static/css/main.1f1014c8.chunk.css",
-    "main.js": "/scape-95/static/js/main.345d9db1.chunk.js",
-    "main.js.map": "/scape-95/static/js/main.345d9db1.chunk.js.map",
+    "main.js": "/scape-95/static/js/main.c38a60b1.chunk.js",
+    "main.js.map": "/scape-95/static/js/main.c38a60b1.chunk.js.map",
     "runtime-main.js": "/scape-95/static/js/runtime-main.fe59d801.js",
     "runtime-main.js.map": "/scape-95/static/js/runtime-main.fe59d801.js.map",
     "static/js/2.f50d15d3.chunk.js": "/scape-95/static/js/2.f50d15d3.chunk.js",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.fe59d801.js",
     "static/js/2.f50d15d3.chunk.js",
     "static/css/main.1f1014c8.chunk.css",
-    "static/js/main.345d9db1.chunk.js"
+    "static/js/main.c38a60b1.chunk.js"
   ]
 }
