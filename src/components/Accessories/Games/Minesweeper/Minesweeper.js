@@ -12,42 +12,40 @@ const Minesweeper = ({mineInst, setMineInst}) => {
     const [squares, setSquares] = useState([])
     const [bombAmount, setBombAmount] = useState(10)
     const [flagAmount, setFlagAmount] = useState(bombAmount)
-    const [bombsArray, setBombsArray] = useState([])
-    const [emptyArray, setEmptyArray] = useState([])
-    const [gameArray, setGameArray] = useState([])
     const [shuffled, setShuffled] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
     const [counter, setCounter] = useState(0)
     const [isActive, setIsActive] = useState(false)
     const [face, setFace] = useState(smiley)
     const [isClicked, setIsClicked] = useState(false)
-    
-    useEffect(()=> {
-        if (!isGameOver) {
-            for (let i = 0; i < bombAmount; i++) {
-                setBombsArray(bombsArray => [...bombsArray, "bomb"]) 
-            }
-    
-            let emptyArrayAmount = width*width-bombAmount
-    
-            for (let i = 0; i < emptyArrayAmount; i++) {
-                setEmptyArray(emptyArray => [...emptyArray, "valid"]) 
-            }  
-        }
-    }, [bombAmount, isGameOver])
 
-    useEffect(()=> {
-        setGameArray(emptyArray.concat(bombsArray))
-    }, [emptyArray])
-
-    useEffect(()=> {
-        if (gameArray.length > 0) {
-            setShuffled(gameArray.sort(() => Math.random() -0.5))
-            for (let i = 0; i < width*width; i++) {
-                setSquares(squares => [...squares, i]) 
-            }
+    const setBoard = () => {
+        let bombsArray = []
+        for (let i = 0; i < bombAmount; i++) {
+            bombsArray.push("bomb")
         }
-    }, [gameArray])
+
+        let emptyArrayAmount = width*width-bombAmount
+        let emptyArray = []
+        for (let i = 0; i < emptyArrayAmount; i++) {
+            emptyArray.push("valid")
+        } 
+
+        let thisGame = emptyArray.concat(bombsArray)
+        let shuffledGame = thisGame.sort(() => Math.random() -0.5)
+        setShuffled(shuffledGame)
+
+        let squareArray = []
+
+        for (let i = 0; i < width*width; i++) {
+            squareArray.push(i)    
+        } 
+        setSquares(squareArray)
+    }
+    
+    useEffect(()=> {
+        setBoard()
+    }, [])
 
     useEffect(()=> {
         let squares = Array.from(document.getElementsByClassName("square"))
