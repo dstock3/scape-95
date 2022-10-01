@@ -45,7 +45,7 @@ function StartMenu(props) {
                                 <div className="start-option-arrow">▶</div>
                             </div>
 
-                            <div className="start-option-container">
+                            <div className="start-option-container" onClick={()=> setDocs({...docs, isClicked: true})}>
                                 <div className="start-option">
                                     <img src={docIcon} alt="dummy-alt" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>D</span>ocuments</div>
