@@ -19,6 +19,7 @@ function StartMenu(props) {
     useEffect(()=> {
         if (!props.canStart) {
             setPrograms({...programs, isClicked: false})
+            setDocs({...docs, isClicked: false})
 
         }
     }, [props.canStart])
