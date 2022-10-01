@@ -66,7 +66,8 @@ function Main() {
         "open my documents": openDoc,
         bin: openBin,
         "open recycling bin": openBin,
-        calc: openCalc
+        calc: openCalc,
+        readMe: openRead
     }
 
     const [help, setHelp] = useState(false)
@@ -201,7 +202,7 @@ function Main() {
                 }
             />
 
-            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes}}>
+            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>
                 <div className="bottom">
                     <div className="dec-bottom-line"></div>
                     <Start windows={minWin} />
