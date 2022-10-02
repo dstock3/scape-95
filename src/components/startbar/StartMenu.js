@@ -11,6 +11,7 @@ import '../../style/start.css'
 import ProgramsMenu from './ProgramsMenu'
 import {StartContext} from '../Main'
 import DocsMenu from './DocsMenu'
+import SettingsMenu from './SettingsMenu'
 
 function StartMenu(props) {
     const [programs, setPrograms] = useState({isClicked: false})
@@ -62,6 +63,7 @@ function StartMenu(props) {
             <>
                 <ProgramsMenu isClicked={programs.isClicked} canStart={props.canStart} setStart={props.setStart}/>
                 <DocsMenu isClicked={docs.isClicked} canStart={props.canStart} setStart={props.setStart}/>
+                <SettingsMenu isClicked={settings.isClicked} canStart={props.canStart} setStart={props.setStart}/>
                 <div className="start-menu">
                     <div className="start-title-container">
                         <div className="start-title">
