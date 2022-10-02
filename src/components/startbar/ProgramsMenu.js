@@ -41,14 +41,14 @@ function ProgramsMenu(props) {
                     <div className="start-option-container" onClick={openAcc}>
                         <div className="start-option">
                             <img src={accIcon} alt="accessories icon" className="start-item-icon"></img>
-                            <div className="start-item">Accessories</div>
+                            <div className="start-item"><span style={{textDecoration: "underline"}}>A</span>ccessories</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
                     </div>
                     <div className="start-option-container">
                         <div className="start-option" /*onClick={openAccessories}*/>
                             <img src={accIcon} alt="online icon" className="start-item-icon"></img>
-                            <div className="start-item">Online Services</div>
+                            <div className="start-item"><span style={{textDecoration: "underline"}}>O</span>nline Services</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
                         {/*<Accessories isClicked={acc.isClicked}/>*/}
@@ -56,7 +56,7 @@ function ProgramsMenu(props) {
                     <div className="start-option-container">
                         <div className="start-option" /*onClick={openAccessories}*/>
                             <img src={accIcon} alt="startup icon" className="start-item-icon"></img>
-                            <div className="start-item">Start Up</div>
+                            <div className="start-item"><span style={{textDecoration: "underline"}}>S</span>tart Up</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
                         {/*<Accessories isClicked={acc.isClicked}/>*/}

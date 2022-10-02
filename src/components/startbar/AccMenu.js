@@ -49,21 +49,21 @@ function AccMenu(props) {
                     <div className="start-option-container" onClick={openGames}>
                         <div className="start-option">
                             <img src={defIcon} alt="games icon" className="start-item-icon"></img>
-                            <div className="start-item">Games</div>
+                            <div className="start-item"><span style={{textDecoration: "underline"}}>G</span>ames</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
                     </div>
                     <div className="start-option-container" onClick={openNetTools}>
                         <div className="start-option">
                             <img src={defIcon} alt="internet tools icon" className="start-item-icon"></img>
-                            <div className="start-item">Internet Tools</div>
+                            <div className="start-item"><span style={{textDecoration: "underline"}}>I</span>nternet Tools</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
                     </div>
                     <div className="start-option-container" onClick={openMedia}>
                         <div className="start-option">
                             <img src={defIcon} alt="multimedia icon" className="start-item-icon"></img>
-                            <div className="start-item">Multimedia</div>
+                            <div className="start-item"><span style={{textDecoration: "underline"}}>M</span>ultimedia</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
                     </div>
