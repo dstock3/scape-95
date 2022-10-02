@@ -17,6 +17,19 @@ function StartMenu(props) {
     const [docs, setDocs] = useState({isClicked: false})
 
     useEffect(()=> {
+        if (programs.isClicked) {
+            setDocs({...docs, isClicked: false})
+        }
+    }, [programs])
+
+    useEffect(()=> {
+        if (docs.isClicked) {
+            setPrograms({...programs, isClicked: false})
+        }
+
+    }, [docs])
+
+    useEffect(()=> {
         if (!props.canStart) {
             setPrograms({...programs, isClicked: false})
             setDocs({...docs, isClicked: false})
@@ -40,7 +53,7 @@ function StartMenu(props) {
                     
                     <div className="start-option-list">
                         <div className="start-options-top">
-                            <div className="start-option-container" onMouseEnter={()=> setPrograms({...programs, isHover: true})}  onMouseLeave={()=> setPrograms({...programs, isHover: false})} onClick={()=> setPrograms({...programs, isClicked: true})}>
+                            <div className="start-option-container" onClick={()=> setPrograms({...programs, isClicked: true})}>
                                 <div className="start-option">
                                     <img src={programsIcon} alt="programs icon" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>P</span>rograms</div>
