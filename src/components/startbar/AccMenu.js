@@ -5,6 +5,7 @@ import calcIcon from '../../assets/icons/calc.png'
 import noteIcon from '../../assets/icons/notepad.png'
 import '../../style/start.css'
 import GamesMenu from './GamesMenu'
+import NetToolsMenu from './NetToolsMenu'
 
 function AccMenu(props) {
     const [games, setGames] = useState({isClicked: false})
@@ -31,20 +32,27 @@ function AccMenu(props) {
 
     const openGames = () => {
         setGames({...games, isClicked: true})
+        setNetTools({...netTools, isClicked: false})
+        setMedia({...media, isClicked: false})
     }
 
     const openNetTools = () => {
         setNetTools({...netTools, isClicked: true})
+        setGames({...games, isClicked: false})
+        setMedia({...media, isClicked: false})
     }
 
     const openMedia = () => {
         setMedia({...media, isClicked: true})
+        setGames({...games, isClicked: false})
+        setGames({...games, isClicked: false})
     }
 
     if (props.isClicked) {
         return (
             <>
                 <GamesMenu isClicked={games.isClicked} canStart={props.canStart} setStart={props.setStart}/>
+                <NetToolsMenu isClicked={netTools.isClicked} canStart={props.canStart} setStart={props.setStart}/>
                 <div className="start-menu" style={accStyle}>
                     <div className="start-option-container" onClick={openGames}>
                         <div className="start-option">

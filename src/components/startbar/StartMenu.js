@@ -73,7 +73,7 @@ function StartMenu(props) {
                     
                     <div className="start-option-list">
                         <div className="start-options-top">
-                            <div className="start-option-container" onClick={()=> openPrograms()}>
+                            <div className="start-option-container" onClick={openPrograms}>
                                 <div className="start-option">
                                     <img src={programsIcon} alt="programs icon" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>P</span>rograms</div>
@@ -81,7 +81,7 @@ function StartMenu(props) {
                                 <div className="start-option-arrow">▶</div>
                             </div>
 
-                            <div className="start-option-container" onClick={()=> openDocs()}>
+                            <div className="start-option-container" onClick={openDocs}>
                                 <div className="start-option">
                                     <img src={docIcon} alt="dummy-alt" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>D</span>ocuments</div>
@@ -89,7 +89,7 @@ function StartMenu(props) {
                                 <div className="start-option-arrow">▶</div>
                             </div>
 
-                            <div className="start-option-container" onClick={()=> openSettings()}>
+                            <div className="start-option-container" onClick={openSettings}>
                                 <div className="start-option">
                                     <img src={settingsIcon} alt="settings icon" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>S</span>ettings</div>
