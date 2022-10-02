@@ -15,6 +15,25 @@ import DocsMenu from './DocsMenu'
 function StartMenu(props) {
     const [programs, setPrograms] = useState({isClicked: false})
     const [docs, setDocs] = useState({isClicked: false})
+    const [settings, setSettings] = useState({isClicked: false})
+
+    const openPrograms = () => {
+        setPrograms({...programs, isClicked: true})
+        setDocs({...docs, isClicked: false})
+        setSettings({...settings, isClicked: false})
+    }
+
+    const openDocs = () => {
+        setDocs({...docs, isClicked: true})
+        setPrograms({...programs, isClicked: false})
+        setSettings({...settings, isClicked: false})
+    }
+
+    const openSettings = () => {
+        setSettings({...settings, isClicked: true})
+        setPrograms({...programs, isClicked: false})
+        setDocs({...docs, isClicked: false})
+    }
 
     useEffect(()=> {
         if (programs.isClicked) {
@@ -26,7 +45,6 @@ function StartMenu(props) {
         if (docs.isClicked) {
             setPrograms({...programs, isClicked: false})
         }
-
     }, [docs])
 
     useEffect(()=> {
@@ -53,7 +71,7 @@ function StartMenu(props) {
                     
                     <div className="start-option-list">
                         <div className="start-options-top">
-                            <div className="start-option-container" onClick={()=> setPrograms({...programs, isClicked: true})}>
+                            <div className="start-option-container" onClick={()=> openPrograms()}>
                                 <div className="start-option">
                                     <img src={programsIcon} alt="programs icon" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>P</span>rograms</div>
@@ -61,7 +79,7 @@ function StartMenu(props) {
                                 <div className="start-option-arrow">▶</div>
                             </div>
 
-                            <div className="start-option-container" onClick={()=> setDocs({...docs, isClicked: true})}>
+                            <div className="start-option-container" onClick={()=> openDocs()}>
                                 <div className="start-option">
                                     <img src={docIcon} alt="dummy-alt" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>D</span>ocuments</div>
@@ -69,7 +87,7 @@ function StartMenu(props) {
                                 <div className="start-option-arrow">▶</div>
                             </div>
 
-                            <div className="start-option-container">
+                            <div className="start-option-container" onClick={()=> openSettings()}>
                                 <div className="start-option">
                                     <img src={settingsIcon} alt="settings icon" className="start-item-icon"></img>
                                     <div className="start-item"><span style={{textDecoration: "underline"}}>S</span>ettings</div>
