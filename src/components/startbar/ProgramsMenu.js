@@ -4,10 +4,9 @@ import accIcon from '../../assets/icons/programs.png'
 import netIcon from '../../assets/icons/internet.png'
 import dosIcon from '../../assets/icons/dos.png'
 import {StartContext} from '../Main'
-import Start from './Start'
 import AccMenu from './AccMenu'
 
-function ProgramsMenu(props) {
+function ProgramsMenu({isClicked, canStart, setStart}) {
     const [acc, setAcc] = useState({isClicked: false})
 
     const openApps = useContext(StartContext)
@@ -29,13 +28,13 @@ function ProgramsMenu(props) {
 
     const openNewApp = (openApp) => {
         openApp()
-        props.setStart({...props.canStart, isStarted: false})
+        setStart({...canStart, isStarted: false})
     }
 
-    if (props.isClicked) {
+    if (isClicked) {
         return(
             <>
-                <AccMenu isClicked={acc.isClicked} canStart={props.canStart} setStart={props.setStart} />
+                <AccMenu isClicked={acc.isClicked} canStart={canStart} setStart={setStart} />
 
                 <div className="start-menu" style={progStyle}>
                     <div className="start-option-container" onClick={openAcc}>
@@ -46,20 +45,18 @@ function ProgramsMenu(props) {
                         <div className="start-option-arrow">▶</div>
                     </div>
                     <div className="start-option-container">
-                        <div className="start-option" /*onClick={openAccessories}*/>
+                        <div className="start-option">
                             <img src={accIcon} alt="online icon" className="start-item-icon"></img>
                             <div className="start-item"><span style={{textDecoration: "underline"}}>O</span>nline Services</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
-                        {/*<Accessories isClicked={acc.isClicked}/>*/}
                     </div>
                     <div className="start-option-container">
-                        <div className="start-option" /*onClick={openAccessories}*/>
+                        <div className="start-option">
                             <img src={accIcon} alt="startup icon" className="start-item-icon"></img>
                             <div className="start-item"><span style={{textDecoration: "underline"}}>S</span>tart Up</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
-                        {/*<Accessories isClicked={acc.isClicked}/>*/}
                     </div>             
                     <div className="start-option-container" onClick={()=> openNewApp(openApps.internet)}>
                         <div className="start-option">

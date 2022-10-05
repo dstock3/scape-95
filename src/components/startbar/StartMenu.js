@@ -13,7 +13,7 @@ import {StartContext} from '../Main'
 import DocsMenu from './DocsMenu'
 import SettingsMenu from './SettingsMenu'
 
-function StartMenu(props) {
+function StartMenu({canStart, setStart, setFalse}) {
     const [programs, setPrograms] = useState({isClicked: false})
     const [docs, setDocs] = useState({isClicked: false})
     const [settings, setSettings] = useState({isClicked: false})
@@ -49,21 +49,21 @@ function StartMenu(props) {
     }, [docs])
 
     useEffect(()=> {
-        if (!props.canStart) {
+        if (!canStart) {
             setPrograms({...programs, isClicked: false})
             setDocs({...docs, isClicked: false})
 
         }
-    }, [props.canStart])
+    }, [canStart])
 
     const openApps = useContext(StartContext)
     
-    if (props.canStart) {
+    if (canStart) {
         return (         
             <>
-                <ProgramsMenu isClicked={programs.isClicked} canStart={props.canStart} setStart={props.setStart}/>
-                <DocsMenu isClicked={docs.isClicked} canStart={props.canStart} setStart={props.setStart}/>
-                <SettingsMenu isClicked={settings.isClicked} canStart={props.canStart} setStart={props.setStart}/>
+                <ProgramsMenu isClicked={programs.isClicked} canStart={canStart} setStart={setStart}/>
+                <DocsMenu isClicked={docs.isClicked} canStart={canStart} setStart={setStart}/>
+                <SettingsMenu isClicked={settings.isClicked} canStart={canStart} setStart={setStart}/>
                 <div className="start-menu">
                     <div className="start-title-container">
                         <div className="start-title">
@@ -112,7 +112,7 @@ function StartMenu(props) {
                             </div>
                             <div className="start-option-container" onClick={()=> {
                                 openApps.run()
-                                props.setFalse()
+                                setFalse()
                                 }
                             } >
                                 <div className="start-option">
@@ -132,7 +132,7 @@ function StartMenu(props) {
                             </div>
                             <div className="start-option-container" onClick={()=> {
                                 openApps.shutdown()
-                                props.setFalse()
+                                setFalse()
                                 }
                             } id="shutdown">
                                 <div className="start-option">

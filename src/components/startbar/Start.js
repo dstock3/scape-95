@@ -3,7 +3,7 @@ import Clock from './Clock'
 import StartMenu from './StartMenu'
 import windowsIcon from "../../assets/icons/windows.png"
 
-const Start = (props) => {
+const Start = ({windows}) => {
     const [start, setStart] = useState({isStarted: false})
     const [isBorder, setBorder] = useState("")
 
@@ -71,7 +71,7 @@ const Start = (props) => {
             <StartMenu canStart={start.isStarted} setStart={setStart} setFalse={()=>setStart({ ...start, isStarted: false })}/>
             <div className="bar-body">
                 <div className="min-win">
-                    {props.windows.map(window => (
+                    {windows.map(window => (
                         <div className={`min-win-button ${window.className}`} onClick={window.open} key={window.id} >{window.value}</div>
                     ))}
                 </div>

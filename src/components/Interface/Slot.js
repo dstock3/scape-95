@@ -1,10 +1,10 @@
 import React from 'react'
 import { letDrop, newDrop } from '../../DragFunctions'
 
-function Slot(props) {
+function Slot({content}) {
     return (
         <div className="slot" onDrop={newDrop} onDragOver={letDrop}>
-            {props.content}
+            {content}
         </div>
     )
 }

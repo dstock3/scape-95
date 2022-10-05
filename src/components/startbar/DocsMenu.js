@@ -3,7 +3,7 @@ import '../../style/start.css'
 import { StartContext } from '../Main'
 import docsIcon from '../../assets/icons/note.png'
 
-const DocsMenu = (props) => {
+const DocsMenu = ({isClicked, canStart, setStart}) => {
     const openApps = useContext(StartContext)
 
     const [progStyle, setProgStyle] = useState({
@@ -19,10 +19,10 @@ const DocsMenu = (props) => {
 
     const openNewApp = (openApp) => {
         openApp()
-        props.setStart({...props.canStart, isStarted: false})
+        setStart({...canStart, isStarted: false})
     }
 
-    if (props.isClicked) {
+    if (isClicked) {
         return (
             <div className="start-menu" style={progStyle}>
                 <div className="start-option-container" onClick={()=> openNewApp(openApps.readMe)}>

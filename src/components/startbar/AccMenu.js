@@ -7,7 +7,7 @@ import '../../style/start.css'
 import GamesMenu from './GamesMenu'
 import NetToolsMenu from './NetToolsMenu'
 
-function AccMenu(props) {
+function AccMenu({isClicked, canStart, setStart}) {
     const [games, setGames] = useState({isClicked: false})
     const [netTools, setNetTools] = useState({isClicked: false})
     const [media, setMedia] = useState({isClicked: false})
@@ -27,7 +27,7 @@ function AccMenu(props) {
 
     const openNewApp = (openApp) => {
         openApp()
-        props.setStart({...props.canStart, isStarted: false})
+        setStart({...canStart, isStarted: false})
     }
 
     const openGames = () => {
@@ -48,11 +48,11 @@ function AccMenu(props) {
         setGames({...games, isClicked: false})
     }
 
-    if (props.isClicked) {
+    if (isClicked) {
         return (
             <>
-                <GamesMenu isClicked={games.isClicked} canStart={props.canStart} setStart={props.setStart}/>
-                <NetToolsMenu isClicked={netTools.isClicked} canStart={props.canStart} setStart={props.setStart}/>
+                <GamesMenu isClicked={games.isClicked} canStart={canStart} setStart={setStart}/>
+                <NetToolsMenu isClicked={netTools.isClicked} canStart={canStart} setStart={setStart}/>
                 <div className="start-menu" style={accStyle}>
                     <div className="start-option-container" onClick={openGames}>
                         <div className="start-option">

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import '../../style/calc.css'
 
-function Calc(props) {
+function Calc() {
     const [display, setDisplay] = useState(0)
     const [firstNum, setFirstNum] = useState(0)
     const [operator, setOperator] = useState()

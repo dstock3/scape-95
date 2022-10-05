@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { newDrag } from '../../DragFunctions'
 
-const DesktopIcon = (props) => {
+const DesktopIcon = ({open, shortcut, shortcutId, shortcutIconId, imgSrc}) => {
     const [border, setBorder] = useState("")
     const [imageScreen, setScreen ] = useState("")
 
@@ -17,12 +17,12 @@ const DesktopIcon = (props) => {
     }
 
     return (
-        <div className="shortcut" onMouseLeave={offClick} onClick={clickHandler} onDoubleClick={props.open} id={props.shortcutId} draggable="true" onDragStart={newDrag}>
+        <div className="shortcut" onMouseLeave={offClick} onClick={clickHandler} onDoubleClick={open} id={shortcutId} draggable="true" onDragStart={newDrag}>
             <div className={`screen ${imageScreen}`}>
-                <img className="desktop-icon" draggable={false} id={props.shortcutIconId} src={props.imgSrc} alt={props.shortcut}></img>
+                <img className="desktop-icon" draggable={false} id={shortcutIconId} src={imgSrc} alt={shortcut}></img>
             </div>
 
-            <div className={`folder-name ${border}`}>{props.shortcut}</div>
+            <div className={`folder-name ${border}`}>{shortcut}</div>
         </div>
     )
 }

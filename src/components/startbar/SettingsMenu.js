@@ -5,7 +5,7 @@ import controlIcon from '../../assets/icons/control.png'
 import printerIcon from '../../assets/icons/print.png'
 import taskbarIcon from '../../assets/icons/taskbar.png'
 
-const SettingsMenu = (props) => {
+const SettingsMenu = ({isClicked, canStart, setStart}) => {
     const openApps = useContext(StartContext)
 
     const [progStyle, setProgStyle] = useState({
@@ -21,10 +21,10 @@ const SettingsMenu = (props) => {
 
     const openNewApp = (openApp) => {
         openApp()
-        props.setStart({...props.canStart, isStarted: false})
+        setStart({...canStart, isStarted: false})
     }
 
-    if (props.isClicked) {
+    if (isClicked) {
         return (
             <div className="start-menu" style={progStyle}>
                 <div className="start-option-container">

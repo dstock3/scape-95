@@ -3,7 +3,7 @@ import {StartContext} from '../Main'
 import '../../style/start.css'
 import mineIcon from '../../assets/icons/mine.png'
 
-function GamesMenu(props) {
+function GamesMenu({isClicked, canStart, setStart}) {
     const [accStyle, setAccStyle] = useState({
         position: "absolute",
         left: "50%",
@@ -19,10 +19,10 @@ function GamesMenu(props) {
 
     const openNewApp = (openApp) => {
         openApp()
-        props.setStart({...props.canStart, isStarted: false})
+        setStart({...canStart, isStarted: false})
     }
 
-    if (props.isClicked) {
+    if (isClicked) {
         return (
             <div className="start-menu" id="new-games" style={accStyle}>
                 <div className="start-option-container">
