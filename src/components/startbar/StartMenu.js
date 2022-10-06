@@ -39,12 +39,14 @@ function StartMenu({canStart, setStart, setFalse}) {
     useEffect(()=> {
         if (programs.isClicked) {
             setDocs({...docs, isClicked: false})
+            setSettings({...settings, isClicked: false})
         }
     }, [programs])
 
     useEffect(()=> {
         if (docs.isClicked) {
             setPrograms({...programs, isClicked: false})
+            setSettings({...settings, isClicked: false})
         }
     }, [docs])
 
@@ -52,6 +54,7 @@ function StartMenu({canStart, setStart, setFalse}) {
         if (!canStart) {
             setPrograms({...programs, isClicked: false})
             setDocs({...docs, isClicked: false})
+            setSettings({...settings, isClicked: false})
 
         }
     }, [canStart])
