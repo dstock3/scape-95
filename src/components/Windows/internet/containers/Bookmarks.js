@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-function Bookmarks(props) {
+function Bookmarks({loading, prevPageSetter, prevPage, page, pageSetter, bookmarks}) {
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
@@ -19,9 +19,9 @@ function Bookmarks(props) {
 
     const openBookmark = (pageItem) => {
         setIsOpen(false)
-        props.loading()
-        props.prevPageSetter([...props.prevPage, props.page])
-        props.pageSetter({...props.page, current: pageItem.component, title: pageItem.title, pageID: pageItem.id, url: pageItem.url})
+        loading()
+        prevPageSetter([...prevPage, page])
+        pageSetter({...page, current: pageItem.component, title: pageItem.title, pageID: pageItem.id, url: pageItem.url})
     }
 
     if (isOpen) {
@@ -31,7 +31,7 @@ function Bookmarks(props) {
                     <span style={{textDecoration: "underline"}}>B</span>ookmarks
                 </div>
                 <ul className="bookmarks-list">
-                    {props.bookmarks.map(pageItem => (
+                    {bookmarks.map(pageItem => (
                         <li className="bookmark-list-item" key={pageItem.id}>
                             <div onClick={() => {
                                 openBookmark(pageItem)

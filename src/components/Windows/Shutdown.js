@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import shutdownIcon from '../../assets/icons/shutdown-menu-icon.png'
 
-function Shutdown(props) {
+function Shutdown({closeButton}) {
     const [option, setOption] = useState("shutdown")
 
     const handleConfirm = () => {
@@ -82,7 +82,7 @@ function Shutdown(props) {
                     </form>
                     <div className="shutdown-buttons">
                         <button className="shutdown-button" onClick={handleConfirm}>Yes</button>
-                        <button className="shutdown-button" onClick={props.closeButton}>No</button>
+                        <button className="shutdown-button" onClick={closeButton}>No</button>
                         <button className="shutdown-button">Help</button>
                     </div>
                 </div>

@@ -2,50 +2,50 @@ import React, { useState, useEffect } from 'react'
 import '../../style/window.css'
 import { newDrag } from '../../DragFunctions'
 
-function SpecialWindow(props) {
+function SpecialWindow({isClicked, fade, size, position, minState, closeState, close, canDrag, winId, winTitle, help, minMax, contents}) {
     useEffect(()=> {
         const main = document.querySelector(".main")
-        if (props.isClicked && props.fade) {
+        if (isClicked && fade) {
             main.style.opacity = ".25"
             main.style.background = "rgb(128, 128, 128)"
         } 
-    }, [props.isClicked])
+    }, [isClicked])
 
     const [win, setWin] = useState({
         isDraggable: false,
         style: {
             position: "relative",
-            minHeight: props.size.height,
-            minWidth:  props.size.width,
-            left: props.position.left,
-            bottom: props.position.bottom,
-            right: props.position.right,
+            minHeight: size.height,
+            minWidth:  size.width,
+            left: position.left,
+            bottom: position.bottom,
+            right: position.right,
         },
         bodyStyle: {
-            height: props.size.height
+            height: size.height
         },
     })
 
-    const [isHidden, setHidden] = useState(props.minState)
+    const [isHidden, setHidden] = useState(minState)
 
     useEffect(() => {
-        if (props.minState) {
+        if (minState) {
             setHidden("hidden")
         } else {
             setHidden("")
         }
-    }, [props.minState])
+    }, [minState])
 
     const [isClosed, setClosed] = useState(false)
     
     const closeSet = () => {
-        if (props.closeState) {
+        if (closeState) {
             setClosed(true)
-            props.close()
+            close()
         }
     }
     let buttonStyle
-    if (!props.closeState) {
+    if (!closeState) {
         buttonStyle = {
             color: "rgb(112, 112, 112)",
             fontWeight: "bold"
@@ -53,32 +53,32 @@ function SpecialWindow(props) {
     }
 
     const setDraggableTrue = () => {
-        if (props.canDrag) {
+        if (canDrag) {
             setWin({...win, isDraggable: true})
         }
     }
     
-    if (props.isClicked) {
+    if (isClicked) {
         return (
             <>
-                <div className={`special-window ${isHidden}`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+                <div className={`special-window ${isHidden}`} id={winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
                     <div className="window-top" onMouseEnter={setDraggableTrue} onMouseLeave={()=> setWin({...win, isDraggable: false})}>
-                        <div className="window-title">{props.winTitle}</div>
+                        <div className="window-title">{winTitle}</div>
                         <div className="window-buttons" style={{width: "fit-content", marginRight: "1px"}}>
-                            {props.help}
-                            {props.minMax}
+                            {help}
+                            {minMax}
                             <button className="windows-button close" onClick={closeSet} style={buttonStyle}>X</button>
                         </div>
                     </div>
                     <div className="window-body" style={win.bodyStyle}>
-                        {props.contents}             
+                        {contents}             
                     </div>
                 </div>
             </>
         )
-    } else if (!props.isClicked) {
+    } else if (!isClicked) {
         return(
-            <div className={`special-window hidden`} id={props.winId} draggable="false" style={win.style}>
+            <div className={`special-window hidden`} id={winId} draggable="false" style={win.style}>
 
             </div>
         )

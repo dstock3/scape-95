@@ -4,22 +4,22 @@ import homeIcon from '../../../../assets/internet/home.svg'
 import backIcon from '../../../../assets/internet/back.svg'
 import forwardIcon from '../../../../assets/internet/forward.svg'
 
-function NetButtons(props) {
+function NetButtons({setHome, goBack, goForward, refresh}) {
     return (
         <div className="net-button-container">
-            <button onClick={props.setHome}>
+            <button onClick={setHome}>
                 <img src={homeIcon} alt="home icon"></img>
                 <div className="net-button-label">Home</div>
             </button>
-            <button onClick={props.goBack}>
+            <button onClick={goBack}>
                 <img src={backIcon} alt="back icon"></img>
                 <div className="net-button-label">Back</div>
             </button>
-            <button onClick={props.goForward}>
+            <button onClick={goForward}>
                 <img src={forwardIcon} alt="forward icon"></img>
                 <div className="net-button-label">Forward</div>
             </button>
-            <button onClick={props.refresh}>
+            <button onClick={refresh}>
                 <img src={refreshIcon} alt="refresh icon"></img>
                 <div className="net-button-label">Refresh</div>
             </button>

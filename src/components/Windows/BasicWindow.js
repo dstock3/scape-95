@@ -3,13 +3,13 @@ import { newDrag } from '../../DragFunctions'
 import '../../style/window.css'
 import WindowsButtons from './WindowsButtons'
 
-function BasicWindow(props) {
+function BasicWindow({size, winId, minState, close, isClicked, min, winTitle, contents}) {
     let defaultWidth
     let defaultHeight
 
-    if (props.size) {
-        defaultWidth = props.size.width
-        defaultHeight = props.size.height
+    if (size) {
+        defaultWidth = size.width
+        defaultHeight = size.height
     } else {
         defaultWidth = "650px"
         defaultHeight ="650px"
@@ -19,7 +19,7 @@ function BasicWindow(props) {
     const parentRef = useRef(false)
 
     useEffect(()=> {
-        let win = document.getElementById(props.winId)
+        let win = document.getElementById(winId)
         parentRef.current = win.parentElement
 
     }, [])
@@ -45,18 +45,18 @@ function BasicWindow(props) {
     const [isHidden, setHidden] = useState("hidden")
 
     useEffect(() => {
-        if (props.minState) {
+        if (minState) {
             setHidden("hidden")
         } else {
             setHidden("")
         }
-    }, [props.minState])
+    }, [minState])
 
     const [isClosed, setClosed] = useState(false)
     
     const closeSet = () => {
         setClosed(true)
-        props.close()
+        close()
     }
     
     const styleController = () => {
@@ -135,7 +135,7 @@ function BasicWindow(props) {
     }
 
     useEffect(()=> {
-        let window = document.getElementById(props.winId)
+        let window = document.getElementById(winId)
         if (parentRef.current !== window.parentElement) {
             setMoved(true)
         }
@@ -156,7 +156,7 @@ function BasicWindow(props) {
     }
 
     useEffect(()=> {
-        let win = document.querySelector(`#${props.winId}`)
+        let win = document.querySelector(`#${winId}`)
 
         function dragSet() {
             win.style.position = "relative"
@@ -174,23 +174,23 @@ function BasicWindow(props) {
         
     })
 
-    if (props.isClicked) {
+    if (isClicked) {
         return (
             <>
-                <div className={`basic-window ${isHidden}`} id={props.winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
+                <div className={`basic-window ${isHidden}`} id={winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
                     <div className="window-top" onMouseEnter={setDraggableTrue} onMouseLeave={()=> setWin({...win, isDraggable: false})} onDoubleClick={maxToggle}>
-                        <div className="window-title">{props.winTitle}</div>
-                        <WindowsButtons min={props.min} max={maxToggle} close={closeSet} />
+                        <div className="window-title">{winTitle}</div>
+                        <WindowsButtons min={min} max={maxToggle} close={closeSet} />
                     </div>
                     <div className="window-body" style={win.bodyStyle}>
-                        {props.contents}             
+                        {contents}             
                     </div>
                 </div>
             </>
         )
-    } else if (!props.isClicked) {
+    } else if (!isClicked) {
         return(
-            <div className={`basic-window hidden`} id={props.winId} draggable={false} onDragStart={newDrag} style={{height: "0", width: "0"}}>
+            <div className={`basic-window hidden`} id={winId} draggable={false} onDragStart={newDrag} style={{height: "0", width: "0"}}>
 
             </div>
         )

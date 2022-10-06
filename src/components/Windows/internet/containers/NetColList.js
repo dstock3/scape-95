@@ -1,12 +1,12 @@
 import React from 'react'
 
-function NetColList(props) {
-    if (props.image) {
+function NetColList({image, list}) {
+    if (image) {
         return (
             <>
-                <img className="profile-image" src={props.image} alt="placeholder"></img>
+                <img className="profile-image" src={image} alt="placeholder"></img>
                 <ul className="net-list">
-                    {props.list.map(item => (
+                    {list.map(item => (
                         <li className="net-list-item" key={item.key}>
                             <a href={item.link}>{item.linkTitle}</a>
                         </li>
@@ -17,7 +17,7 @@ function NetColList(props) {
     } else {
         return (
             <ul className="net-list">
-                {props.list.map(item => (
+                {list.map(item => (
                     <li className="net-list-item" key={item.key}>
                         <a href={item.link}>{item.linkTitle}</a>
                     </li>

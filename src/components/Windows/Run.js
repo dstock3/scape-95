@@ -3,13 +3,13 @@ import runIcon from '../../assets/icons/run.png'
 import HelpMsg from './HelpMsg'
 import '../../style/run.css'
 
-function Run(props) {
+function Run({helpPrompt, openApps, runInput, throwError, closeRun, setHelp  }) {
     const [span, setSpan] = useState({ok: "", cancel: "", browse: "", input: ""})
     const [helpMsg, setHelpMsg] = useState({ok: false, cancel: false, browse: false, input: false})
 
     let runWindow = document.querySelector(".run")
     let runButtons = Array.from(document.getElementsByClassName("run-button"))
-    let runInput = document.querySelector(".run-input")
+    let runInputElement = document.querySelector(".run-input")
     let window = document.querySelector("#run-window")
     
     useEffect(()=> {
@@ -19,12 +19,12 @@ function Run(props) {
     
     useEffect(()=> {
 
-        if (props.helpPrompt) {
+        if (helpPrompt) {
             for (let i = 0; i < runButtons.length; i++) {
                 runButtons[i].style.cursor = "help"
             }
             runWindow.style.cursor = "help"
-            runInput.style.cursor = "help"
+            runInputElement.style.cursor = "help"
         } else {
             if (runButtons) {
                 for (let i = 0; i < runButtons.length; i++) {
@@ -32,12 +32,12 @@ function Run(props) {
                 }
             }
 
-            if (runInput) {
+            if (runInputElement) {
                 runWindow.style.cursor = "default"
-                runInput.style.cursor = "text"
+                runInputElement.style.cursor = "text"
             }
         }
-    }, [props.helpPrompt])
+    }, [helpPrompt])
     
     const setOk = () => {
         if (!(helpMsg.cancel || helpMsg.browse || helpMsg.input)) {
@@ -64,13 +64,13 @@ function Run(props) {
     }
 
     const runProgram = () => {
-        if (!props.helpPrompt) {
+        if (!helpPrompt) {
             let match = false
-            let openApps
-            for (let prop in props.openApps) {
-                if (props.runInput.value === prop) {
+            
+            for (let prop in openApps) {
+                if (runInput.value === prop) {
                     match = true
-                    openApps = props.openApps[prop]
+                    openApps = openApps[prop]
                 }
             }
             
@@ -78,7 +78,7 @@ function Run(props) {
                 openApps()
                 closeWindow()
             } else {
-                props.throwError(props.runInput.value)
+                throwError(runInput.value)
                 closeWindow()
             }
             setSpan({...span, ok: ""})  
@@ -89,8 +89,8 @@ function Run(props) {
     }
 
     const closeWindow = () => {
-        if (!props.helpPrompt) {
-            props.closeRun()
+        if (!helpPrompt) {
+            closeRun()
             setSpan({...span, cancel: ""})
         } else {
             setSpan({...span, cancel: "visible"})
@@ -99,7 +99,7 @@ function Run(props) {
     }
 
     const browse = () => {
-        if (!props.helpPrompt) {
+        if (!helpPrompt) {
             setSpan({...span, browse: ""})            
         } else {
             setSpan({...span, browse: "visible"})
@@ -108,7 +108,7 @@ function Run(props) {
     }
 
     const clickInput = () => {
-        if (props.helpPrompt) {
+        if (helpPrompt) {
             setSpan({...span, input: "visible"})
             setInput()
         }
@@ -140,12 +140,12 @@ function Run(props) {
             <div className="run-input-container">
                 <label className="run-text">Open: </label>
 
-                <input onClick={clickInput} type="text" value={props.runInput.value} onChange={e => props.runInput.setter(e.target.value)} className="run-input"></input>
+                <input onClick={clickInput} type="text" value={runInput.value} onChange={e => runInput.setter(e.target.value)} className="run-input"></input>
 
                 {
-                    props.helpPrompt && helpMsg.input ? 
+                    helpPrompt && helpMsg.input ? 
                         <div className="tip">
-                            <HelpMsg optionState={helpMsg.input} setFalse={()=>setHelpMsg({...helpMsg, input: false})} setHelp={props.setHelp} helpId="run-input-help" spanSet={()=>setSpan({...span, input: ""})} span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
+                            <HelpMsg optionState={helpMsg.input} setFalse={()=>setHelpMsg({...helpMsg, input: false})} setHelp={setHelp} helpId="run-input-help" spanSet={()=>setSpan({...span, input: ""})} span={span.input} content={"Provides a place for you to type the location and filename of the program you want to run. If you are unsure of the program's location or filename, click Browse. You can also make a temporary network connection by typing the path to a shared computer in this box."}/>
                         </div> : null
                 }
             </div>
@@ -156,9 +156,9 @@ function Run(props) {
                         OK
                     </button>
                     {
-                        props.helpPrompt && helpMsg.ok ?
+                        helpPrompt && helpMsg.ok ?
                             <div className="tip">
-                                <HelpMsg optionState={helpMsg.ok} setFalse={()=>setHelpMsg({...helpMsg, ok: false})} setHelp={props.setHelp} helpId="run-program-help" spanSet={()=>setSpan({...span, ok: ""})} span={span.ok} content={"Closes this dialog box and saves any changes you have made."}/>
+                                <HelpMsg optionState={helpMsg.ok} setFalse={()=>setHelpMsg({...helpMsg, ok: false})} setHelp={setHelp} helpId="run-program-help" spanSet={()=>setSpan({...span, ok: ""})} span={span.ok} content={"Closes this dialog box and saves any changes you have made."}/>
                             </div> : null
                     }
                 </div>
@@ -167,9 +167,9 @@ function Run(props) {
                         Cancel
                     </button>
                     {
-                        props.helpPrompt && helpMsg.cancel ?
+                        helpPrompt && helpMsg.cancel ?
                             <div className="tip">
-                                <HelpMsg optionState={helpMsg.cancel} setFalse={()=> setHelpMsg({...helpMsg, cancel: false})} setHelp={props.setHelp} helpId="close-run-help" spanSet={()=>setSpan({...span, cancel: ""})} span={span.cancel} content={"Closes this dialog box without saving any changes you have made."}/>
+                                <HelpMsg optionState={helpMsg.cancel} setFalse={()=> setHelpMsg({...helpMsg, cancel: false})} setHelp={setHelp} helpId="close-run-help" spanSet={()=>setSpan({...span, cancel: ""})} span={span.cancel} content={"Closes this dialog box without saving any changes you have made."}/>
                             </div> : null
                     }
                 </div>
@@ -178,9 +178,9 @@ function Run(props) {
                         Browse...
                     </button>
                     {
-                        props.helpPrompt  && helpMsg.browse ?
+                        helpPrompt  && helpMsg.browse ?
                             <div className="tip">
-                                <HelpMsg optionState={helpMsg.browse} setFalse={()=>setHelpMsg({...helpMsg, browse: false})} setHelp={props.setHelp} helpId="run-browse-help" spanSet={()=>setSpan({...span, browse: ""})} span={span.browse} content={"Click this to browse through folders to find the file you want."}/>
+                                <HelpMsg optionState={helpMsg.browse} setFalse={()=>setHelpMsg({...helpMsg, browse: false})} setHelp={setHelp} helpId="run-browse-help" spanSet={()=>setSpan({...span, browse: ""})} span={span.browse} content={"Click this to browse through folders to find the file you want."}/>
                             </div> : null
                     }
                 </div>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../style/terminal.css'
 
-function Terminal(props) {
+function Terminal({openApps}) {
     const [dir, setDir] = useState(`C:\\SCAPE-95>`)
     const [dirInput, setDirInput] = useState("")
     const [dirArray, setDirArray] = useState([])
@@ -10,10 +10,10 @@ function Terminal(props) {
     const handleSubmit = e => {
         e.preventDefault();
         let check = false
-        for (let prop in props.openApps) {
+        for (let prop in openApps) {
             if (dirInput === prop) {
                 check = true
-                props.openApps[prop]()
+                openApps[prop]()
             } else if (dirInput === "cd..") {
                 check = true
                 setCaret("caret-active")

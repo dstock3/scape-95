@@ -1,10 +1,10 @@
 import React from 'react'
 
-function MinMaxSpec(props) {
+function MinMaxSpec({min, max}) {
     return (
         <>
-            <button className="windows-button min" onClick={props.min}>-</button>
-            <button className="windows-button max" onClick={props.max}>❑</button>
+            <button className="windows-button min" onClick={min}>-</button>
+            <button className="windows-button max" onClick={max}>❑</button>
         </>
     )
 }

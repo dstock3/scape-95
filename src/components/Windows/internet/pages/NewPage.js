@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NetColList from '../containers/NetColList'
 
-function NewPage(props) {
+function NewPage({colPosition}) {
     const [netList, setNetList] = useState([
         {key: 1, link: "#", linkTitle: "Lorem Ipsum"},
         {key: 2, link: "#", linkTitle: "Lorem Ipsum"},
@@ -13,7 +13,7 @@ function NewPage(props) {
         <>
             <h1>New Page</h1>
             <div className="net-container">
-                <div className={`net-col ${props.colPosition}`}>
+                <div className={`net-col ${colPosition}`}>
                     <NetColList list={netList} image={"https://picsum.photos/seed/picsum/200/200"}/>
                 </div>
                 <div className="net-body">

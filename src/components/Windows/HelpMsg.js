@@ -1,14 +1,14 @@
 import React from 'react'
 
-function HelpMsg(props) {
+function HelpMsg({setHelp, setFalse, optionState, helpId, span, content}) {
     const clickHandler = () => {
-        props.setHelp(false)
-        props.setFalse()   
+        setHelp(false)
+        setFalse()   
     }
 
-    if (props.optionState) {
+    if (optionState) {
         return(
-            <span onClick={clickHandler} id={props.helpId} className={`tip-text ${props.span}`}>{props.content}</span>
+            <span onClick={clickHandler} id={helpId} className={`tip-text ${span}`}>{content}</span>
         )
     } return null
 }
