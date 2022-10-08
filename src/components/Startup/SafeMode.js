@@ -25,16 +25,33 @@ const SafeMode = () => {
   return (
     <div className="safe-mode">
       <div className="safe-mode-menu">
-        <h1 className="safe-mode-title">Scape 95 Startup Menu</h1>
-        <div className="safe-mode-line"></div>
+        <div className="safe-mode-head-container">
+          <h1 className="safe-mode-title">Scape 95 Startup Menu</h1>
+          <div className="safe-mode-line"></div>
+          <div className="safe-mode-line"></div>
+        </div>
         <ul className="safe-mode-options">
-            <li className="safe-mode-option">1. Normal</li>
-            <li className="safe-mode-option">2. Logged (\BOOTLOG.TXT)</li>
-            <li className="safe-mode-option">3. Safe Mode</li>
-            <li className="safe-mode-option">4. Safe Mode with network support</li>
-            <li className="safe-mode-option">5. Step-by-step confirmation</li>
-            <li className="safe-mode-option">6. Command prompt only</li>
-            <li className="safe-mode-option">7. Safe mode command prompt only</li>
+            <li className="safe-mode-option select">1. 
+              <span className="option-text">Normal</span>
+            </li>
+            <li className="safe-mode-option">2. 
+              <span className="option-text">Logged (\BOOTLOG.TXT)</span>
+            </li>
+            <li className="safe-mode-option">3. 
+              <span className="option-text">Safe Mode</span>
+            </li>
+            <li className="safe-mode-option">4. 
+              <span className="option-text">Safe Mode with network support</span>
+              </li>
+            <li className="safe-mode-option">5. 
+              <span className="option-text">Step-by-step confirmation</span>
+            </li>
+            <li className="safe-mode-option">6. 
+              <span className="option-text">Command prompt only</span>
+            </li>
+            <li className="safe-mode-option">7. 
+              <span className="option-text">Safe mode command prompt only</span>
+            </li>
         </ul>
         <div className="safe-mode-submenu">
           <div className="choice">Enter a choice: {select}</div>
