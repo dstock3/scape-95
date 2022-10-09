@@ -23,6 +23,8 @@ const SafeMode = () => {
   }, [isActive, count])
 
   useEffect(()=> {
+    document.addEventListener("keydown", keyEvent);
+    
     const setClass = (selectedElement) => {
       let options = Array.from(document.getElementsByClassName("safe-mode-option"))
 
@@ -45,6 +47,19 @@ const SafeMode = () => {
     }
   }, [select])
 
+  const setKeyBinding = (selectConfig) => {
+    setSelect(selectConfig)
+    document.removeEventListener("keydown", keyEvent);
+  }
+
+  const keyEvent = e => {
+    if (e.key === "ArrowUp" && select > 1) {
+      setKeyBinding(select - 1)
+    } else if (e.key === "ArrowDown" && select < 7) {
+      setKeyBinding(select + 1)
+    }
+  }
+
   return (
     <div className="safe-mode">
       <div className="safe-mode-menu">
@@ -54,25 +69,25 @@ const SafeMode = () => {
           <div className="safe-mode-line"></div>
         </div>
         <ul className="safe-mode-options">
-            <li className="safe-mode-option" id="option-1">1. 
+            <li className="safe-mode-option" id="option-1" tabIndex="0">1. 
               <span className="option-text">Normal</span>
             </li>
-            <li className="safe-mode-option" id="option-2">2. 
+            <li className="safe-mode-option" id="option-2" tabIndex="1">2. 
               <span className="option-text">Logged (\BOOTLOG.TXT)</span>
             </li>
-            <li className="safe-mode-option" id="option-3">3. 
+            <li className="safe-mode-option" id="option-3" tabIndex="2">3. 
               <span className="option-text">Safe Mode</span>
             </li>
-            <li className="safe-mode-option" id="option-4">4. 
+            <li className="safe-mode-option" id="option-4" tabIndex="3">4. 
               <span className="option-text">Safe Mode with network support</span>
               </li>
-            <li className="safe-mode-option" id="option-5">5. 
+            <li className="safe-mode-option" id="option-5" tabIndex="4">5. 
               <span className="option-text">Step-by-step confirmation</span>
             </li>
-            <li className="safe-mode-option" id="option-6">6. 
+            <li className="safe-mode-option" id="option-6" tabIndex="5">6. 
               <span className="option-text">Command prompt only</span>
             </li>
-            <li className="safe-mode-option" id="option-7">7. 
+            <li className="safe-mode-option" id="option-7" tabIndex="6">7. 
               <span className="option-text">Safe mode command prompt only</span>
             </li>
         </ul>
