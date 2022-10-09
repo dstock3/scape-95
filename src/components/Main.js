@@ -32,7 +32,7 @@ import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper'
 
 export const StartContext = React.createContext()
 
-function Main() {
+function Main({setStartup}) {
     const [minWin, setMinWin] = useState([])
     const [comp, setComp, openComp, closeComp, minComp] = useWindow(minWin, setMinWin, 1, "My Computer", "comp")
     const [doc, setDoc, openDoc, closeDoc, minDoc] = useWindow(minWin, setMinWin, 2, "My Documents", "doc")
@@ -133,7 +133,7 @@ function Main() {
                     shutdown.isClicked ? 
                     <ShutdownPortal window={
                         <SpecialWindow isClicked={shutdown.isClicked} winTitle={shutdown.shortcut} winId={`${shutdown.shortcutId}-window`} position={{left: "0", top: "0"}} size={{width: "425px", height: "233px"}} closeState={true} close={closeShutdown} fade={true} contents={
-                            <Shutdown closeButton={closeShutdown} />
+                            <Shutdown setStartup={setStartup} closeButton={closeShutdown} />
                         } />
                     }/> : null
                 }

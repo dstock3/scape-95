@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import shutdownIcon from '../../assets/icons/shutdown-menu-icon.png'
 
-function Shutdown({closeButton}) {
+function Shutdown({setStartup, closeButton}) {
     const [option, setOption] = useState("shutdown")
 
     const handleConfirm = () => {
@@ -16,9 +16,19 @@ function Shutdown({closeButton}) {
             body.style.zIndex = 1000
             main.style.opacity = 0
             modal.remove()
-
         }
         //need to mimic restart and logout procedures
+        if (option === "restart") {
+            body.style.backgroundColor = "black"
+            body.style.transition = "all 0.25s ease-out"
+            body.style.opacity = 1
+            body.style.zIndex = 1000
+            main.style.opacity = 0
+            modal.remove()
+            setTimeout(() => {
+                setStartup(0)
+              }, "5000")
+        }
     }
 
     const optionSelected = (opt) => {
