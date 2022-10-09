@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../style/safe-mode.css'
 
 const SafeMode = () => {
-  const [select, setSelect] = useState(4)
+  const [select, setSelect] = useState(1)
   const [count, setCount] = useState(30)
   const [isActive, setIsActive] = useState(true)
 
@@ -37,34 +37,11 @@ const SafeMode = () => {
       }
     }
 
-    if (select === 1) {
-      let option = document.getElementById("option-one")
-      setClass(option)
-
-    } else if (select === 2) {
-      let option = document.getElementById("option-two")
-      setClass(option)
-
-    } else if (select === 3) {
-      let option = document.getElementById("option-three")
-      setClass(option)
-
-    } else if (select === 4) {
-      let option = document.getElementById("option-four")
-      setClass(option)
-      
-    } else if (select === 5) {
-      let option = document.getElementById("option-five")
-      setClass(option)
-
-    } else if (select === 6) {
-      let option = document.getElementById("option-six")
-      setClass(option)
-
-    } else if (select === 7) {
-      let option = document.getElementById("option-seven")
-      setClass(option)
-
+    for (let i = 0; i < 8; i++) {
+      if (select === i) {
+        let option = document.getElementById(`option-${i}`)
+        setClass(option)
+      }
     }
   }, [select])
 
@@ -77,25 +54,25 @@ const SafeMode = () => {
           <div className="safe-mode-line"></div>
         </div>
         <ul className="safe-mode-options">
-            <li className="safe-mode-option" id="option-one">1. 
+            <li className="safe-mode-option" id="option-1">1. 
               <span className="option-text">Normal</span>
             </li>
-            <li className="safe-mode-option" id="option-two">2. 
+            <li className="safe-mode-option" id="option-2">2. 
               <span className="option-text">Logged (\BOOTLOG.TXT)</span>
             </li>
-            <li className="safe-mode-option" id="option-three">3. 
+            <li className="safe-mode-option" id="option-3">3. 
               <span className="option-text">Safe Mode</span>
             </li>
-            <li className="safe-mode-option" id="option-four">4. 
+            <li className="safe-mode-option" id="option-4">4. 
               <span className="option-text">Safe Mode with network support</span>
               </li>
-            <li className="safe-mode-option" id="option-five">5. 
+            <li className="safe-mode-option" id="option-5">5. 
               <span className="option-text">Step-by-step confirmation</span>
             </li>
-            <li className="safe-mode-option" id="option-six">6. 
+            <li className="safe-mode-option" id="option-6">6. 
               <span className="option-text">Command prompt only</span>
             </li>
-            <li className="safe-mode-option" id="option-seven">7. 
+            <li className="safe-mode-option" id="option-7">7. 
               <span className="option-text">Safe mode command prompt only</span>
             </li>
         </ul>
