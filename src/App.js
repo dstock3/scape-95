@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       {startup === 0 ? <SafeMode startup={startup} setStartup={setStartup} /> : null}
-      {startup === 1 ? <Loading setStartup={setStartup} /> : null}
+      {startup === 1 ? <Loading startup={startup} setStartup={setStartup} /> : null}
       {startup === "start" ? <Main setStartup={setStartup} /> : null}
     </div>
   );

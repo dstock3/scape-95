@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import loadingScreen from '../../assets/system/startup.gif'
 import '../../style/startup.css'
 
-const Loading = ({setStartup}) => {
-  
+const Loading = ({startup, setStartup}) => {
   useEffect(()=> {
+    if (startup === 1) {
       setTimeout(() => {
         setStartup("start")
       }, "5000")
-  }, [])
+    }
+  }, [startup])
 
   return (
     <div className="loading-screen">

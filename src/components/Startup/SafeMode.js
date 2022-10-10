@@ -64,11 +64,13 @@ const SafeMode = ({startup, setStartup}) => {
     } else if (e.key === "ArrowDown" && select < 7) {
       setKeyBinding(select + 1)
     } else if (e.key === "Enter") {
+      setIsActive(false)
       setTimeout(() => {
         setStartup(select)
       }, "2000")
     }
   }
+
   if (startup === 0) {
     return (
       <div className="safe-mode">
