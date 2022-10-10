@@ -8,7 +8,7 @@ function App() {
   const [startup, setStartup] = useState("start")
   return (
     <div className="App">
-      <SafeMode startup={startup} setStartup={setStartup} />
+      {startup === 0 ? <SafeMode startup={startup} setStartup={setStartup} /> : null}
       {startup === 1 ? <Loading setStartup={setStartup} /> : null}
       {startup === "start" ? <Main setStartup={setStartup} /> : null}
     </div>
