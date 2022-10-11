@@ -29,6 +29,7 @@ import HidCol from './Interface/HidCol'
 import NotePad from './Windows/NotePad'
 import ReadMe from '../assets/text/ReadMe'
 import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper'
+import ErrorMsg from './Windows/ErrorMsg'
 
 export const StartContext = React.createContext()
 
@@ -52,7 +53,7 @@ function Main({setStartup}) {
     const [read, setRead, openRead, closeRead, minRead] = useWindow(minWin, setMinWin, 15, "readme.txt", "read")
     const [notepad, setNotes, openNotes, closeNotes, minNotes] = useWindow(minWin, setMinWin, 16, "Notepad",  "notepad")
     const [misc, setMisc, openMisc, closeMisc, minMisc] = useWindow(minWin, setMinWin, 17, "misc.txt", "misc")
-    
+    const [err, setErr, openErr, closeErr, minErr] = useWindow(minWin, setMinWin, 18, "Error", "err")
     const [runInput, setRunInput] = useState("")
 
     const openApps = {
@@ -155,8 +156,12 @@ function Main({setStartup}) {
                             <DesktopIcon open={openDrive} shortcutId={driveC.shortcutId} shortcutIconId={`${driveC.shortcutId}-icon`} imgSrc={driveIcon} shortcut={driveC.shortcut} contents={""}/>
 
                             <DesktopIcon open={openControl} shortcutId={control.shortcutId} shortcutIconId={`${control.shortcutId}-icon`} imgSrc={controlIcon} shortcut={control.shortcut} contents={""}/>
-                            
+
+                            <DesktopIcon open={openErr} shortcutId={print.shortcutId} shortcutIconId={`${print.shortcutId}-icon`} imgSrc={printIcon} shortcut={print.shortcut} contents={""}/>
+
+                            {/*
                             <DesktopIcon open={openPrint} shortcutId={print.shortcutId} shortcutIconId={`${print.shortcutId}-icon`} imgSrc={printIcon} shortcut={print.shortcut} contents={""}/>
+                            */}
                         </div>
                     } />
                 }
@@ -198,6 +203,12 @@ function Main({setStartup}) {
                 slotThirteen={
                     <BasicWindow isClicked={minesweeper.isClicked} open={openMine} winTitle={minesweeper.shortcut} winId={`${minesweeper.shortcutId}-window`} min={minMine} minState={minesweeper.isMin} close={closeMine} size={{width: "275px", height: "275px"}} contents={
                         <Minesweeper mineInst={mineInst} setMineInst={setMineInst} key={new Date().getTime()}/>
+                    } />
+                }
+
+                slotFourteen={
+                    <SpecialWindow isClicked={err.isClicked} winTitle={"Desktop"} winId={`${err.shortcutId}-window`} close={closeErr} size={{width: "350px", height: "125px"}} position={{left: "-750px", bottom: "450px"}} contents={
+                        <ErrorMsg msg="The properties for this item are not available." close={closeErr} />
                     } />
                 }
             />
