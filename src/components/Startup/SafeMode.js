@@ -6,14 +6,14 @@ const SafeMode = ({startup, setStartup}) => {
   const [count, setCount] = useState(30)
   const [isActive, setIsActive] = useState(false)
 
-  useEffect(()=> {
+  useEffect(() => {
     if (startup === 0) {
-      setIsActive(true)
-      let option = document.getElementById(`option-${select}`)
-      setClass(option)
+      setIsActive(true);
+      let option = document.getElementById(`option-${select}`);
+      setClass(option);
     }
-  }, [startup])
-
+  }, [startup]);
+  
   useEffect(()=> {
     let int = null;
     if (isActive) {

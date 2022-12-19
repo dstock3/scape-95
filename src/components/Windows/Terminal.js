@@ -14,7 +14,7 @@ function Terminal({openApps, winState}) {
             if (dirInput === prop) {
                 check = true
                 openApps[prop]()
-            } else if (dirInput === "cd..") {
+            } else if (dirInput === "cd ..") {
                 check = true
                 setCaret("caret-active")
                 setDir(`C:\\>`)
