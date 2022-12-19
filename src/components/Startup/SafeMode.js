@@ -60,17 +60,17 @@ const SafeMode = ({startup, setStartup}) => {
 
   const keyEvent = e => {
     if (e.key === "ArrowUp" && select > 1) {
-      setKeyBinding(select - 1)
+      setKeyBinding(select - 1);
     } else if (e.key === "ArrowDown" && select < 7) {
-      setKeyBinding(select + 1)
-    } else if (e.key === "Enter") {
-      setIsActive(false)
+      setKeyBinding(select + 1);
+    } else if (e.key === "Enter" && select === 6) {
+      setIsActive(false);
       setTimeout(() => {
-        setStartup(select)
-      }, "2000")
+        setStartup(select);
+      }, 2000);
     }
-  }
-
+  };
+  
   if (startup === 0) {
     return (
       <div className="safe-mode">

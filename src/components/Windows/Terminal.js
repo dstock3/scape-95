@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../style/terminal.css'
 
-function Terminal({openApps}) {
+function Terminal({openApps, winState}) {
     const [dir, setDir] = useState(`C:\\SCAPE-95>`)
     const [dirInput, setDirInput] = useState("")
     const [dirArray, setDirArray] = useState([])
@@ -45,7 +45,7 @@ function Terminal({openApps}) {
     }
 
     return (
-        <div className="terminal">
+        <div className={"terminal " + winState}>
             <div className="copy-95">
                 <div className="restricted">Scape(R) 1995</div>
                 
