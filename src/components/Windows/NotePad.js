@@ -2,13 +2,7 @@ import React from 'react'
 import '../../style/notepad.css'
 
 function NotePad() {
-    const noteStyle = {
-        height: "100%",
-        width: "100%",
-        resize: "none",
-        padding: "0",
-        borderWidth: "0" 
-    }
+
     return (
         <div className="notepad-container">
             <div className="notepad-options">
@@ -18,7 +12,7 @@ function NotePad() {
                 <button className="notepad-option"><span style={{textDecoration: "underline"}}>V</span>iew</button>
                 <button className="notepad-option"><span style={{textDecoration: "underline"}}>H</span>elp</button>
             </div>
-            <textarea style={noteStyle}>
+            <textarea>
                 This is a note pad
             </textarea>
         </div>
