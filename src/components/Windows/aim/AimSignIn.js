@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import aimSignInImg from '../../../assets/aim/aim-sign-in.png';
 import '../../../style/aim.css'; 
 
 const AimSignIn = ({ closeAim }) => {
@@ -16,27 +17,27 @@ const AimSignIn = ({ closeAim }) => {
     return (
         <div className="aim-signin-container">
             <div className="aim-logo">
-                {/* Insert AIM logo here */}
+                <img src={aimSignInImg} alt="AIM Logo" />
             </div>
             <div className="aim-input-container">
                 <input
                     type="text"
                     placeholder="Screen Name"
                     value={username}
-                    className="aim-input" // Add class for styling
+                    className="aim-input" 
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <a href="#" className="aim-link">Get a Screen Name</a> {/* Styling for link */}
+                <a href="#" className="aim-link">Get a Screen Name</a> 
                 <input
                     type="password"
                     placeholder="Password"
                     value={password}
-                    className="aim-input" // Add class for styling
+                    className="aim-input" 
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <a href="#" className="aim-link">Forgot Password?</a> {/* Styling for link */}
+                <a href="#" className="aim-link">Forgot Password?</a>
                 
-                <div className="aim-checkbox-container"> {/* Container for custom checkbox styling */}
+                <div className="aim-checkbox-container"> 
                     <label className="aim-checkbox">
                         <input
                             type="checkbox"

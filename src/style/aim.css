@@ -2,51 +2,57 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px;
+    padding: 10px;
     background-color: #fff;
     border: 1px solid #c0c0c0;
     font-family: 'Arial', sans-serif;
-    width: 270px;
+    width: 250px; /* Adjust the width as needed */
+    box-sizing: border-box; /* Ensures padding is included in width */
 }
 
 .aim-logo-banner {
     background-color: #1240ab;
-    padding: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
+    height: 60px; /* Adjust the height as needed */
+    margin-bottom: 10px; /* Adds space below the banner */
 }
 
 .aim-logo {
-    /*background-image: url('path-to-aim-logo.png'); */
-    width: 100px;
-    height: 50px;
+    background-image: url('../assets/aim/aim-sign-in.png');  
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center; /* Centers the logo in the banner */
+    width: 100%;
+    height: 100%;
+}
+
+/* Add a container for the sign-in form to control layout */
+.aim-signin-form {
+    width: 100%;
 }
 
 .aim-input {
     border: 1px solid #c0c0c0;
     padding: 8px;
     margin: 4px 0;
-    font-size: 14px;
-    box-shadow: inset 1px 1px 1px #fff, inset -1px -1px 2px #adb3b9;
-    width: calc(100% - 20px);
+    font-size: 12px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
 }
 
 .aim-link {
     color: #0000ff;
     text-decoration: underline;
-    font-size: 12px;
+    font-size: 10px;
     margin: 5px 0;
     text-align: center;
+    display: block; /* Ensures links are on their own line */
 }
 
 .aim-checkbox-container {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 10px;
     margin: 10px 0;
 }
 
@@ -59,27 +65,30 @@
     margin-right: 5px;
 }
 
-.aim-buttons {
+.aim-buttons-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 10px;
 }
 
 .aim-signon-btn,
 .aim-cancel-btn {
-    background-color: #0044ff;
     border: none;
     color: white;
-    padding: 8px 15px;
+    padding: 5px 20px;
     border-radius: 2px;
     cursor: pointer;
     font-weight: bold;
-    margin: 2px;
+    font-size: 12px;
     text-transform: uppercase;
+    margin: 2px;
 }
 
-.aim-signon-btn:hover,
-.aim-cancel-btn:hover {
+.aim-signon-btn {
+    background-color: #0044ff;
+}
+
+.aim-signon-btn:hover {
     background-color: #0033cc;
 }
 
@@ -88,15 +97,19 @@
     color: #000;
 }
 
+.aim-cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
 .aim-links-container {
     display: flex;
     justify-content: space-around;
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .aim-version {
-    font-size: 10px;
+    font-size: 9px;
     color: #808080;
     margin-top: 10px;
     text-align: center;
