@@ -6,27 +6,27 @@
     background-color: #fff;
     border: 1px solid #c0c0c0;
     font-family: 'Arial', sans-serif;
-    width: 250px; /* Adjust the width as needed */
-    box-sizing: border-box; /* Ensures padding is included in width */
+    width: 250px; 
+    box-sizing: border-box; 
 }
 
 .aim-logo-banner {
     background-color: #1240ab;
     width: 100%;
-    height: 60px; /* Adjust the height as needed */
-    margin-bottom: 10px; /* Adds space below the banner */
+    margin-bottom: 10px; 
 }
 
 .aim-logo {
-    background-image: url('../assets/aim/aim-sign-in.png');  
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center; /* Centers the logo in the banner */
+    background-position: center; 
     width: 100%;
     height: 100%;
 }
 
-/* Add a container for the sign-in form to control layout */
 .aim-signin-form {
     width: 100%;
 }
@@ -46,7 +46,7 @@
     font-size: 10px;
     margin: 5px 0;
     text-align: center;
-    display: block; /* Ensures links are on their own line */
+    display: block; 
 }
 
 .aim-checkbox-container {
@@ -85,11 +85,17 @@
 }
 
 .aim-signon-btn {
-    background-color: #0044ff;
+    background-color: #000080;
+    border: 1px solid #000080; 
+    color: white;
+    padding: 5px 20px;
+    margin: 2px;
+    text-transform: none; 
 }
 
+
 .aim-signon-btn:hover {
-    background-color: #0033cc;
+    background-color: #0000ff; 
 }
 
 .aim-cancel-btn {
