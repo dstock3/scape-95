@@ -1,0 +1,58 @@
+.grid-container {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 2px solid #000080; 
+}
+
+.grid-title {
+    font-family: 'Arial', sans-serif;
+    color: #ffffff; 
+    text-align: center;
+}
+
+.grid-header, .grid-footer {
+    background-color: #000080; 
+    padding: 10px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.grid-item {
+    border: 2px solid #000080;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #c0c0c0; 
+}
+
+.grid-item h2 {
+    font-family: 'Arial', sans-serif;
+    color: #000080; 
+}
+
+.grid-button {
+    background-color: #008000;
+    color: white;
+    border: 1px outset #006400;
+    padding: 5px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.grid-button:hover {
+    background-color: #004d00; 
+}
+
+.grid-link {
+    color: #000080; 
+}
+
+.grid-link:hover {
+    text-decoration: none;
+    color: #ff0000; 
+}
+
+.grid-divider {
+    border: 1px solid #000080; 
+}
