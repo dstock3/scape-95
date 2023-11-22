@@ -1,0 +1,41 @@
+.aim-signin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0; 
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.aim-logo {
+    /* background-image: url('path-to-aim-logo.png'); */
+    width: 100px; 
+    height: 50px; 
+    background-size: cover;
+    margin-bottom: 20px;
+}
+
+.aim-signin-container input {
+    width: 80%; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+}
+
+.aim-signin-container button {
+    width: 85%; 
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #0078d7; 
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.aim-signin-container button:hover {
+    background-color: #0056b3; 
+}

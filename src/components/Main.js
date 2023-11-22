@@ -30,6 +30,8 @@ import NotePad from './Windows/NotePad'
 import ReadMe from '../assets/text/ReadMe'
 import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper'
 import ErrorMsg from './Windows/ErrorMsg'
+import AimSignIn from './Windows/aim/AimSignIn'
+import aimIcon from "../assets/icons/aim.png"; 
 
 export const StartContext = React.createContext()
 
@@ -54,6 +56,7 @@ function Main({setStartup}) {
     const [notepad, setNotes, openNotes, closeNotes, minNotes] = useWindow(minWin, setMinWin, 16, "Notepad",  "notepad")
     const [misc, setMisc, openMisc, closeMisc, minMisc] = useWindow(minWin, setMinWin, 17, "misc.txt", "misc")
     const [err, setErr, openErr, closeErr, minErr] = useWindow(minWin, setMinWin, 18, "Error", "err")
+    const [aim, setAim, openAim, closeAim, minAim] = useWindow(minWin, setMinWin, 19, "Aim", "aim")
     const [runInput, setRunInput] = useState("")
 
     const openApps = {
@@ -100,7 +103,11 @@ function Main({setStartup}) {
                     
                     slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
-                    }   
+                    }
+                    
+                    slotFive={
+                        <DesktopIcon open={openAim} shortcutId={aim.shortcutId} shortcutIconId={`${aim.shortcutId}-icon`} imgSrc={aimIcon} shortcut={aim.shortcut} />
+                    }
                 />
                 
                 <Col colId="two" />
@@ -211,6 +218,11 @@ function Main({setStartup}) {
                         <ErrorMsg msg="The properties for this item are not available." close={closeErr} />
                     } />
                 }
+                
+                slotFifteen={
+                    <SpecialWindow isClicked={aim.isClicked} open={openAim} winTitle={aim.shortcut} winId={`${aim.shortcutId}-window`} close={closeAim} size={{ width: "350px", height: "250px" }} position={{ left: "-700px", bottom: "500px" }} contents={<AimSignIn closeAim={closeAim} />
+                    } />
+                }      
             />
 
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>
