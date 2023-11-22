@@ -2,40 +2,61 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0; 
-    border-radius: 5px;
-    font-family: Arial, sans-serif;
+    padding: 10px;
+    background-color: #ffffff; 
+    font-family: 'Arial', sans-serif;
 }
 
 .aim-logo {
-    /* background-image: url('path-to-aim-logo.png'); */
-    width: 100px; 
-    height: 50px; 
-    background-size: cover;
-    margin-bottom: 20px;
+    /*background-image: url('path-to-aim-logo.png'); */
+    width: 100%; 
+    height: auto; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
 }
 
-.aim-signin-container input {
-    width: 80%; 
-    padding: 10px;
+.aim-signin-container input,
+.aim-signin-container select,
+.aim-signin-container button {
+    width: 100%;
     margin-bottom: 10px;
+    padding: 8px;
+    font-size: 14px;
     border: 1px solid #d0d0d0;
     border-radius: 3px;
 }
 
 .aim-signin-container button {
-    width: 85%; 
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #0078d7; 
+    background-color: #0044ff; 
     color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
     font-weight: bold;
+    border: none;
 }
 
 .aim-signin-container button:hover {
-    background-color: #0056b3; 
+    background-color: #0033cc; 
+}
+
+.aim-signin-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.aim-signin-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.aim-signin-checkbox input[type='checkbox'] {
+    margin-right: 5px;
+}
+
+.aim-footer {
+    font-size: 10px;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
 }
