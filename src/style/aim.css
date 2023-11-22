@@ -2,61 +2,102 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    background-color: #ffffff; 
+    padding: 16px;
+    background-color: #fff;
+    border: 1px solid #c0c0c0;
     font-family: 'Arial', sans-serif;
+    width: 270px;
+}
+
+.aim-logo-banner {
+    background-color: #1240ab;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .aim-logo {
     /*background-image: url('path-to-aim-logo.png'); */
-    width: 100%; 
-    height: auto; 
+    width: 100px;
+    height: 50px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin-bottom: 10px;
 }
 
-.aim-signin-container input,
-.aim-signin-container select,
-.aim-signin-container button {
-    width: 100%;
-    margin-bottom: 10px;
+.aim-input {
+    border: 1px solid #c0c0c0;
     padding: 8px;
+    margin: 4px 0;
     font-size: 14px;
-    border: 1px solid #d0d0d0;
-    border-radius: 3px;
+    box-shadow: inset 1px 1px 1px #fff, inset -1px -1px 2px #adb3b9;
+    width: calc(100% - 20px);
 }
 
-.aim-signin-container button {
-    background-color: #0044ff; 
-    color: white;
-    font-weight: bold;
-    border: none;
+.aim-link {
+    color: #0000ff;
+    text-decoration: underline;
+    font-size: 12px;
+    margin: 5px 0;
+    text-align: center;
 }
 
-.aim-signin-container button:hover {
-    background-color: #0033cc; 
-}
-
-.aim-signin-links {
+.aim-checkbox-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
+    font-size: 12px;
+    margin: 10px 0;
 }
 
-.aim-signin-checkbox {
+.aim-checkbox {
     display: flex;
     align-items: center;
 }
 
-.aim-signin-checkbox input[type='checkbox'] {
+.aim-checkbox input[type='checkbox'] {
     margin-right: 5px;
 }
 
-.aim-footer {
-    font-size: 10px;
-    color: #333;
-    text-align: center;
+.aim-buttons {
+    display: flex;
+    justify-content: space-around;
     margin-top: 10px;
+}
+
+.aim-signon-btn,
+.aim-cancel-btn {
+    background-color: #0044ff;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 2px;
+    text-transform: uppercase;
+}
+
+.aim-signon-btn:hover,
+.aim-cancel-btn:hover {
+    background-color: #0033cc;
+}
+
+.aim-cancel-btn {
+    background-color: #f3f3f3;
+    color: #000;
+}
+
+.aim-links-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.aim-version {
+    font-size: 10px;
+    color: #808080;
+    margin-top: 10px;
+    text-align: center;
 }

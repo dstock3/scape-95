@@ -8,37 +8,36 @@ const AimSignIn = ({ closeAim }) => {
     const [autoLogin, setAutoLogin] = useState(false);
 
     const handleSignIn = () => {
-        // Sign-in logic
         console.log('Signing in:', username, password);
+        // Implement your sign-in logic here
         closeAim();
     };
 
     return (
         <div className="aim-signin-container">
             <div className="aim-logo">
-                {/* AIM logo here */}
+                {/* Insert AIM logo here */}
             </div>
             <div className="aim-input-container">
                 <input
                     type="text"
                     placeholder="Screen Name"
                     value={username}
+                    className="aim-input" // Add class for styling
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <div className="aim-get-screen-name">
-                    <a href="#">Get a Screen Name</a>
-                </div>
+                <a href="#" className="aim-link">Get a Screen Name</a> {/* Styling for link */}
                 <input
                     type="password"
                     placeholder="Password"
                     value={password}
+                    className="aim-input" // Add class for styling
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="aim-forgot-password">
-                    <a href="#">Forgot Password?</a>
-                </div>
-                <div className="aim-checkboxes">
-                    <label>
+                <a href="#" className="aim-link">Forgot Password?</a> {/* Styling for link */}
+                
+                <div className="aim-checkbox-container"> {/* Container for custom checkbox styling */}
+                    <label className="aim-checkbox">
                         <input
                             type="checkbox"
                             checked={savePassword}
@@ -46,7 +45,7 @@ const AimSignIn = ({ closeAim }) => {
                         />
                         Save password
                     </label>
-                    <label>
+                    <label className="aim-checkbox">
                         <input
                             type="checkbox"
                             checked={autoLogin}
@@ -55,14 +54,17 @@ const AimSignIn = ({ closeAim }) => {
                         Auto-login
                     </label>
                 </div>
-                <div className="aim-buttons">
-                    <button onClick={handleSignIn}>Sign On</button>
-                    <button onClick={closeAim}>Cancel</button>
+
+                <div className="aim-buttons-container"> 
+                    <button className="aim-signon-btn" onClick={handleSignIn}>Sign On</button> 
+                    <button className="aim-cancel-btn" onClick={closeAim}>Cancel</button> 
                 </div>
-                <div className="aim-links">
-                    <a href="#">Help</a>
-                    <a href="#">Setup</a>
+
+                <div className="aim-links-container"> 
+                    <a href="#" className="aim-link">Help</a> 
+                    <a href="#" className="aim-link">Setup</a> 
                 </div>
+
                 <div className="aim-version">
                     Version: 5.9.3702
                 </div>
