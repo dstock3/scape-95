@@ -147,6 +147,12 @@ section {
     padding-top: 5%;
 }
 
+.new-page3-container {
+    background: rgb(176, 176, 176);
+    background: linear-gradient(180deg, rgba(176,176,176,1) 25%, rgb(106, 106, 106) 100%);
+    color: white;
+}
+
 .new-page3 {
     font-family: 'Times New Roman', serif;
     color: #000080; 
