@@ -1,7 +1,11 @@
+.outer-grid-container {
+    background-image: url('../assets/internet/space.gif');
+}
+
 .grid-container {
     max-width: 960px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: #04ff00;
     padding: 10px;
     border: 2px solid #000080; 
 }
@@ -34,7 +38,7 @@
 .grid-button {
     background-color: #008000;
     color: white;
-    border: 1px outset #006400;
+    border: 1px outset #04ff00;
     padding: 5px 15px;
     margin: 5px;
     cursor: pointer;

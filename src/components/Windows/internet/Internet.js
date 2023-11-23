@@ -11,6 +11,7 @@ import TicTacToe from './pages/games/TicTacToe'
 import Bookmarks from './containers/Bookmarks'
 import InputContainer from './containers/InputContainer'
 import GridLayout from './pages/GridLayout'
+import NewPage3 from './pages/NewPage3'
 
 function Internet() {
     useEffect(()=> {
@@ -31,7 +32,8 @@ function Internet() {
         {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
         {component: <NotFound />, title: "404 Not Found", id: "not-found", url: ""},
         {component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url:  "http://www.webgames.com/tictactoe"},
-        {component: <GridLayout />, title: "Grid Layout", id: "grid-layout", url:  "http://www.gridlayout.com"}
+        {component: <GridLayout />, title: "Grid Layout", id: "grid-layout", url:  "http://www.gridlayout.com"},
+        {component: <NewPage3 />, title: "New Page 3", id: "newpage3", url:  "http://www.newpage3.com"}
     ])
 
     const bookmarks = [
@@ -40,7 +42,8 @@ function Internet() {
         {component: <NewPage colPosition="col-right"/>, title: "New Page", id: "newpage", url: "http://www.newpage.com"},
         {component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com"},
         {component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url:  "http://www.webgames.com/tictactoe"},
-        {component: <GridLayout />, title: "Grid Layout", id: "grid-layout", url:  "http://www.gridlayout.com"}
+        {component: <GridLayout />, title: "Grid Layout", id: "grid-layout", url:  "http://www.gridlayout.com"},
+        {component: <NewPage3 />, title: "New Page 3", id: "newpage3", url:  "http://www.newpage3.com"}
     ]
 
     const homePage = {current: <Homepage />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net"}

@@ -146,3 +146,68 @@ section {
     align-self: center;
     padding-top: 5%;
 }
+
+.new-page3 {
+    font-family: 'Times New Roman', serif;
+    color: #000080; 
+    background-color: #d0d0d0;
+    max-width: 960px; 
+    margin: 0 auto; 
+}
+
+.page3-header {
+    background-color: #000080; 
+    color: #ffffff;
+    display: table; 
+    width: 100%;
+}
+
+.page3-nav-list {
+    padding: 10px;
+    border: 1px solid #ffffff; 
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page3-nav-list a {
+    margin-right: 10px;
+    color: #000080;
+}
+
+.page3-main-content {
+    background: #f0f0f0; 
+    border: 1px solid #000080; 
+    padding: 10px;
+}
+
+.page3-main-content section {
+    border: 1px dashed #000080; 
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.page3-project-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.page3-project-link {
+    background-color: #000080;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #000080;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.page3-footer {
+    background-color: #000080; 
+    color: #ffffff; 
+    padding: 10px;
+    text-align: center;
+    border-top: 5px double #ffffff; 
+}
