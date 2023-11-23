@@ -42,6 +42,7 @@ const AimClient = () => {
                             <ul className="aim-buddy-list">
                                 {buddies[group].list.map((buddy) => (
                                     <li key={buddy} className={buddies[group].online ? 'online' : 'offline'}>
+                                        
                                         {/*
                                             <img src={buddies[group].online ? onlineIcon : offlineIcon} alt="status" />
                                             {buddy}
