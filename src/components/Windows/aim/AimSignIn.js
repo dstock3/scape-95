@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../../style/aim.css'; 
 import aimSignInImg from '../../../assets/aim/aim-sign-in.png'; 
 
-const AimSignIn = ({ closeAim }) => {
+const AimSignIn = ({ closeAim, openAimClient }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [savePassword, setSavePassword] = useState(false);
@@ -10,7 +10,7 @@ const AimSignIn = ({ closeAim }) => {
 
     const handleSignIn = () => {
         console.log('Signing in:', username, password);
-        //sign-in logic here
+        openAimClient();
         closeAim();
     };
 
