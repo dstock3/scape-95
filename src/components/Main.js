@@ -58,7 +58,7 @@ function Main({setStartup}) {
     const [misc, setMisc, openMisc, closeMisc, minMisc] = useWindow(minWin, setMinWin, 17, "misc.txt", "misc")
     const [err, setErr, openErr, closeErr, minErr] = useWindow(minWin, setMinWin, 18, "Error", "err")
     const [aim, setAim, openAim, closeAim, minAim] = useWindow(minWin, setMinWin, 19, "Aim", "aim")
-    const [aimClient, setAimClient, openAimClient, closeAimClient, minAimClient] = useWindow(minWin, setMinWin, 20, "IM-Client", "im-client")
+    const [aimClient, setAimClient, openAimClient, closeAimClient, minAimClient] = useWindow(minWin, setMinWin, 20, "AIM-Client", "aim-client")
     const [runInput, setRunInput] = useState("")
 
     const openApps = {
@@ -227,8 +227,8 @@ function Main({setStartup}) {
                 }
                 
                 slotSixteen={
-                    <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "250px", height: "450px" }} position={{ left: "-700px", bottom: "500px" }} contents={
-                        <AimClient closeAim={closeAimClient} />
+                    <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "250px", height: "650px" }} position={{ left: "-700px", bottom: "500px" }} contents={
+                        <AimClient />
                     } />
                 }
             />
