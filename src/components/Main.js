@@ -227,7 +227,7 @@ function Main({setStartup}) {
                 }
                 
                 slotSixteen={
-                    <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "250px", height: "650px" }} position={{ left: "-700px", bottom: "500px" }} contents={
+                    <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
                         <AimClient />
                     } />
                 }

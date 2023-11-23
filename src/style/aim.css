@@ -122,153 +122,80 @@
 }
 
 .aim-client-container {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-    color: #000000;
-    border: 1px solid #000000;
-    width: 250px;
-    margin: 0 auto;
-}
-
-.aim-client-header {
-    background-color: #1240ab;
-    color: #ffffff;
-    padding: 4px;
-    font-weight: bold;
-    text-align: center;
-    position: relative;
-}
-
-.aim-client-close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 2px 5px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.aim-client-nav ul {
-    list-style: none;
-    padding-left: 0;
-    background-color: #d0d0d0;
-    overflow: hidden;
-    margin: 0;
-}
-
-.aim-client-nav li {
-    display: inline;
-    padding: 5px 10px;
-    text-align: center;
-}
-
-.aim-client-nav li a {
-    text-decoration: none;
-    color: #000000;
-}
-
-.aim-client-container {
-    font-family: "Tahoma", sans-serif;
-    background-color: #FFF;
-    width: 100%;
-  }
-  
-.aim-client-header {
-    background-color: #1240ab;
-    color: #FFF;
-    padding: 5px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    width: 200px;
+    height: 500px;
+    background-color: rgb(202, 202, 202);
+    border-left: white 2px solid;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
 }
 
-.aim-client-title {
-    font-weight: bold;
+.aim-client-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    border-left: white 2px solid;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
 }
 
-.aim-client-close-btn {
+.aim-client-options {
+    margin-top: 5px;
+    display: flex;
+}
+
+.aim-client-option {
+    padding: 5px;
     cursor: pointer;
-    font-size: 1rem;
+}
+
+.aim-client-option:hover {
+    background-color: rgb(26,0,195);
     color: white;
 }
 
-.aim-client-list {
-    background-color: #FFFF99; 
-    padding: 5px;
-    border-bottom: 2px solid #000;
+.my-aim-option {
+    margin-left: 10px 
 }
 
-.aim-client-list-title {
-    font-size: 0.9rem;
-    margin: 0;
-    font-weight: bold;
-    color: #000;
-    cursor: pointer; 
+.aim-client-hr {
+    width: 95%;
+    border-bottom: white 2px solid;
+    border-top: black 1px solid;
 }
 
-.aim-client-group {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+.aim-client-banner {
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    align-self: center;
 }
 
-.aim-client-group-item {
-    font-size: 0.8rem;
-    color: #000;
-    padding: 2px 5px;
-}
+.aim-client-body {
+    height: 55%;
+    width: 95%;
+    border-top: white 2px solid;
+    border-left: white 2px solid;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
 
-.aim-client-group-item.online {
-    font-weight: bold;
-}
-
-.aim-client-group-item.offline {
-    color: #B0B0B0; 
 }
 
 .aim-client-footer {
-    background-color: #1240ab;
-    color: #FFF;
-    text-align: center;
-    padding: 5px;
-    font-size: 0.8rem;
+    height: 10%;
+    width: 95%;
+    border-top: white 2px solid;
+    border-left: white 2px solid;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
+
 }
 
-.aim-client-group-item:hover {
-    background-color: #E0E0E0; 
-    cursor: pointer;
-}
-
-.aim-client-status-icon {
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-}
-
-/*
-.online .aim-client-status-icon {
-background-image: url('path-to-your-online-icon.png');
-}
-
-.offline .aim-client-status-icon {
-background-image: url('path-to-your-offline-icon.png');
-}
-*/
-
-.aim-client-container::-webkit-scrollbar {
-    width: 15px;
-}
-
-.aim-client-container::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-}
-
-.aim-client-container::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 10px;
-}
-
-.aim-client-container::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-}
