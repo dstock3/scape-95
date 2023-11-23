@@ -180,13 +180,97 @@
 }
 
 .aim-client-body {
+    display: flex;
+    flex-direction: column;
     height: 55%;
     width: 95%;
     border-top: white 2px solid;
     border-left: white 2px solid;
     border-right: black 2px solid;
     border-bottom: black 2px solid;
+    margin-top: 5px;
+    border-top-left-radius: 5px;
+}
 
+.aim-client-tabs {
+    display: flex;
+    height: 30px;
+    width: 100%;
+    margin-bottom: 1px;
+}
+
+.aim-client-tab {
+    padding: 7px;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+}
+
+.list-setup-tab {
+    border-right: black 2px solid;
+}
+
+.selected-tab {
+    font-weight: bold;
+}
+
+.online-tab {
+    border-right: black 2px solid;
+}
+
+.contact-list-outer-container {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 95%;
+}
+
+.contact-list-container {
+    background-color: white;
+    width: 95%;
+    height: 95%;
+    border-left: black 2px solid;
+    border-top: black 2px solid;
+    border-right: white 2px solid;
+    border-bottom: white 2px solid;
+    overflow: auto;
+}
+
+.aim-client-list-container {
+    margin-left: 5px;
+}
+
+.buddies-list-container {
+    margin-top: 5px;
+}
+
+.header-text {
+    padding: 3px;
+    cursor: pointer;
+}
+
+.buddies-list-text {
+    border: 1px black dotted;
+    background-color: rgb(250, 250, 153);
+}
+
+.header-text {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.aim-client-list-container ul {
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    list-style-type: none;
+    padding: 0;
+    padding-inline-start: 0px;
+    margin-left: 15px;
+}
+
+.offline-list-container {
+    color: #706f6f;
 }
 
 .aim-client-footer {
@@ -196,6 +280,5 @@
     border-left: white 2px solid;
     border-right: black 2px solid;
     border-bottom: black 2px solid;
-
 }
 
