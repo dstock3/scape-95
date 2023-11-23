@@ -132,6 +132,8 @@
     border-left: white 2px solid;
     border-right: black 2px solid;
     border-bottom: black 2px solid;
+    overflow: visible;
+    z-index: 1; 
 }
 
 .aim-client-header {
@@ -184,19 +186,14 @@
     flex-direction: column;
     height: 55%;
     width: 95%;
-    border-top: white 2px solid;
-    border-left: white 2px solid;
-    border-right: black 2px solid;
-    border-bottom: black 2px solid;
     margin-top: 5px;
     border-top-left-radius: 5px;
 }
 
 .aim-client-tabs {
     display: flex;
-    height: 30px;
-    width: 100%;
-    margin-bottom: 1px;
+    height: 35px;
+    width: 75%;
 }
 
 .aim-client-tab {
@@ -205,31 +202,44 @@
     border-top-right-radius: 5px;
 }
 
-.list-setup-tab {
-    border-right: black 2px solid;
-}
-
 .selected-tab {
     font-weight: bold;
+    border-bottom: solid 2px rgb(202, 202, 202);
+    position: relative;
+    z-index: 10; 
+    top: 2px; 
+}
+
+.list-setup-tab {
+    border-right: black 2px solid;
+    border-top: white 2px solid;
+    position: relative;
+    top: 2px; 
 }
 
 .online-tab {
+    border-top: white 2px solid;
+    border-left: white 2px solid;
     border-right: black 2px solid;
 }
 
 .contact-list-outer-container {
-    align-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80%;
     width: 95%;
+    border-top: white 2px solid;
+    border-left: white 2px solid;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
+    z-index: 1;
 }
 
 .contact-list-container {
     background-color: white;
-    width: 95%;
-    height: 95%;
+    width: 90%;
+    height: 90%;
     border-left: black 2px solid;
     border-top: black 2px solid;
     border-right: white 2px solid;
@@ -245,19 +255,15 @@
     margin-top: 5px;
 }
 
-.header-text {
-    padding: 3px;
-    cursor: pointer;
-}
-
 .buddies-list-text {
     border: 1px black dotted;
-    background-color: rgb(250, 250, 153);
+    background-color: rgba(247, 251, 1, 0.723);
 }
 
 .header-text {
     font-weight: bold;
-    margin-left: 5px;
+    padding: 3px;
+    cursor: pointer;
 }
 
 .aim-client-list-container ul {

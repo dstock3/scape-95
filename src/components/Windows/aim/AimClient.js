@@ -2,6 +2,19 @@ import React, { useEffect, useState } from 'react';
 import '../../../style/aim.css';
 
 const AimClient = () => {
+    const [lists, setLists] = useState({
+        buddies: {
+            status: 'open'
+        },
+        family: {
+            status: 'closed'
+
+        },
+        coworkers: {
+            status: 'closed'
+        }
+    });
+
     const [buddies, setBuddies] = useState([
         {
             name: 'Buddy 1',
@@ -17,6 +30,12 @@ const AimClient = () => {
         },
         {
             name: 'Buddy 3',
+            status: 'offline',
+            away: false,
+            idle: false,
+        },
+        {
+            name: 'Buddy 4',
             status: 'offline',
             away: false,
             idle: false,
@@ -62,6 +81,16 @@ const AimClient = () => {
             status: 'offline',
             away: false,
             idle: false,
+        },
+        {
+            name: 'Coworker 4',
+            status: 'offline',
+            away: false,
+        },
+        {
+            name: 'Coworker 5',
+            status: 'offline',
+            away: false,
         }
     ]);
 
@@ -120,13 +149,13 @@ const AimClient = () => {
                     <div className="contact-list-container">
                         <div className="aim-client-list-container buddies-list-container">
                             <div className="buddies-list-header">
-                                <span className="list-header-arrow">
-                                    {'>'}
+                                <span className="list-header-arrow">▼</span>
+                                <span className="buddies-list-text header-text">Buddies {" "} 
+                                ({buddies.filter((contact) => contact.status === 'online').length}/{buddies.length})
                                 </span>
-                                <span className="buddies-list-text header-text">Buddies</span>
                             </div>
                             <ul className="buddies-list">
-                                {buddies.map((contact, index) => {
+                                {lists.buddies.status === 'open' && buddies.map((contact, index) => {
                                     return (
                                         contact.status === 'online' && (
                                             <li className="contact-list-item" key={index}>
@@ -141,10 +170,10 @@ const AimClient = () => {
                         </div>
                         <div className="aim-client-list-container family-list-container">
                             <div className="family-list-header">
-                                <span className="list-header-arrow">
-                                    {'>'}
+                                <span className="list-header-arrow">▼</span>
+                                <span className="header-text">Family {" "} 
+                                ({family.filter((contact) => contact.status === 'online').length}/{family.length})
                                 </span>
-                                <span className="header-text">Family</span>
                             </div>
                             <ul className="family-list">
                                 {family.map((contact, index) => {
@@ -162,10 +191,10 @@ const AimClient = () => {
                         </div>
                         <div className="aim-client-list-container coworkers-list-container">
                             <div className="coworkers-list-header">
-                                <span className="list-header-arrow">
-                                    {'>'}
+                                <span className="list-header-arrow">▼</span>
+                                <span className="header-text">Coworkers {" "} 
+                                ({coworkers.filter((contact) => contact.status === 'online').length}/{coworkers.length})
                                 </span>
-                                <span className="header-text">Coworkers</span>
                             </div>
                             <ul className="coworkers-list">
                                 {coworkers.map((contact, index) => {
@@ -183,9 +212,7 @@ const AimClient = () => {
                         </div>
                         <div className="aim-client-list-container offline-list-container">
                             <div className="offline-list-header">
-                                <span className="list-header-arrow">
-                                    {'>'}
-                                </span>
+                                <span className="list-header-arrow">▼</span>
                                 <span className="header-text">Offline</span>
                             </div>
                             <ul className="offline-list">
@@ -204,6 +231,7 @@ const AimClient = () => {
                 </div>
             </div>
             <div className="aim-client-footer">
+                
             </div>
         </div>
     );
