@@ -9,9 +9,10 @@ const AimSignIn = ({ closeAim, openAimClient }) => {
     const [autoLogin, setAutoLogin] = useState(false);
 
     const handleSignIn = () => {
-        console.log('Signing in:', username, password);
-        openAimClient();
-        closeAim();
+        setTimeout(() => {
+            openAimClient();
+            closeAim();
+        }, 2500);
     };
 
     return (

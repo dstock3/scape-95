@@ -3,11 +3,14 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    background-color: #fff;
+    background-color: rgb(202, 202, 202);
     border: 1px solid black;
     font-family: 'Arial', sans-serif;
     width: 250px; 
     box-sizing: border-box; 
+    border-left: white 2px solid;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
 }
 
 .aim-logo-banner {
@@ -288,3 +291,23 @@
     border-bottom: black 2px solid;
 }
 
+.aim-footer-images {
+    display: flex;
+    margin-top: 5px;
+    margin-inline: 10px;
+}
+
+.aim-footer-img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.aim-footer-description {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+}

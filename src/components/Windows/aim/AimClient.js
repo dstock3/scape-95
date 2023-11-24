@@ -218,7 +218,38 @@ const AimClient = () => {
                 </div>
             </div>
             <div className="aim-client-footer">
-                
+                <div className='aim-footer-images'>
+                    <div className="aim-footer-img-container">
+                        <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="IM icon" />
+                        <div className="aim-footer-description">
+                            <span style={{textDecoration: "underline"}}>I</span>M
+                        </div>
+                    </div>
+                    <div className="aim-footer-img-container">
+                        <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Chat Icon" />
+                        <div className="aim-footer-description">
+                            <span style={{textDecoration: "underline"}}>C</span>hat
+                        </div>
+                    </div>
+                    <div className="aim-footer-img-container">
+                        <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Info icon" />
+                        <div className="aim-footer-description">
+                            <span style={{textDecoration: "underline"}}>I</span>nfo
+                        </div>
+                    </div>
+                    <div className="aim-footer-img-container">
+                        <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Away icon" />
+                        <div className="aim-footer-description">
+                            <span style={{textDecoration: "underline"}}>A</span>way
+                        </div>
+                    </div>
+                    <div className="aim-footer-img-container">
+                        <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Setup icon" />
+                        <div className="aim-footer-description">
+                            <span style={{textDecoration: "underline"}}>S</span>etup
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
