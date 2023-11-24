@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 const ContactListHead = ({ contactList, contactType, className, selectedList, onClick }) => {
     console.log("Class Name:", className); 
 
@@ -8,7 +11,9 @@ const ContactListHead = ({ contactList, contactType, className, selectedList, on
 
     return (
         <div className={headerClass} onClick={onClick}>
-            <span className="list-header-arrow">▼</span>
+            <span className="list-header-arrow">
+                <FontAwesomeIcon icon={faChevronDown} style={{ fontSize: '10px' }} />
+            </span>
             <span className={textClass}>{contactType} {" "}
             ({contactList.filter((contact) => contact.status === 'online').length}/{contactList.length})
             </span>

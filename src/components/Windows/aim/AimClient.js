@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ContactListHead from './ContactListHead';
 import ContactListItem from './ContactListItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import '../../../style/aim.css';
 
 const AimClient = () => {
@@ -197,7 +199,9 @@ const AimClient = () => {
                         </div>
                         <div className="aim-client-list-container offline-list-container">
                             <div className="offline-list-header">
-                                <span className="list-header-arrow">▼</span>
+                                <span className="list-header-arrow">
+                                    <FontAwesomeIcon icon={faChevronDown} style={{ fontSize: '10px' }} />
+                                </span>
                                 <span className="header-text">Offline</span>
                             </div>
                             {offline && offline.length > 0 && (
@@ -218,7 +222,7 @@ const AimClient = () => {
                 </div>
             </div>
             <div className="aim-client-footer">
-                <div className='aim-footer-images'>
+                <div className="aim-footer-images">
                     <div className="aim-footer-img-container">
                         <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="IM icon" />
                         <div className="aim-footer-description">
