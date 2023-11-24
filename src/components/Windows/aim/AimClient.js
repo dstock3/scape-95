@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ContactListHead from './ContactListHead';
+import ContactListItem from './ContactListItem';
 import '../../../style/aim.css';
 
 const AimClient = () => {
@@ -148,84 +150,26 @@ const AimClient = () => {
                 <div className="contact-list-outer-container">
                     <div className="contact-list-container">
                         <div className="aim-client-list-container buddies-list-container">
-                            <div className="buddies-list-header">
-                                <span className="list-header-arrow">▼</span>
-                                <span className="buddies-list-text header-text">Buddies {" "} 
-                                ({buddies.filter((contact) => contact.status === 'online').length}/{buddies.length})
-                                </span>
-                            </div>
-                            <ul className="buddies-list">
-                                {lists.buddies.status === 'open' && buddies.map((contact, index) => {
-                                    return (
-                                        contact.status === 'online' && (
-                                            <li className="contact-list-item" key={index}>
-                                                <div className="contact-list-item-name-container">
-                                                    <span className="contact-list-item-name">{contact.name}</span>
-                                                </div>
-                                            </li>
-                                        )
-                                    );
-                                })}
-                            </ul>
+                            <ContactListHead contactList={buddies} contactType="Buddies" className="buddies-list" />
+                            <ContactListItem className="buddies-list" contactList={buddies} />
                         </div>
                         <div className="aim-client-list-container family-list-container">
-                            <div className="family-list-header">
-                                <span className="list-header-arrow">▼</span>
-                                <span className="header-text">Family {" "} 
-                                ({family.filter((contact) => contact.status === 'online').length}/{family.length})
-                                </span>
-                            </div>
-                            <ul className="family-list">
-                                {family.map((contact, index) => {
-                                    return (
-                                        contact.status === 'online' && (
-                                            <li className="contact-list-item" key={index}>
-                                                <div className="contact-list-item-name-container">
-                                                    <span className="contact-list-item-name">{contact.name}</span>
-                                                </div>
-                                            </li>
-                                        )
-                                    );
-                                })}
-                            </ul>
+                            <ContactListHead contactList={family} contactType="Family" className="family-list" />
+                            <ContactListItem className="family-list" contactList={family} />    
                         </div>
                         <div className="aim-client-list-container coworkers-list-container">
-                            <div className="coworkers-list-header">
-                                <span className="list-header-arrow">▼</span>
-                                <span className="header-text">Coworkers {" "} 
-                                ({coworkers.filter((contact) => contact.status === 'online').length}/{coworkers.length})
-                                </span>
-                            </div>
-                            <ul className="coworkers-list">
-                                {coworkers.map((contact, index) => {
-                                    return (
-                                        contact.status === 'online' && (
-                                            <li className="contact-list-item" key={index}>
-                                                <div className="contact-list-item-name-container">
-                                                    <span className="contact-list-item-name">{contact.name}</span>
-                                                </div>
-                                            </li>
-                                        )
-                                    );
-                                })}
-                            </ul>
+                            <ContactListHead contactList={coworkers} contactType="Coworkers" className="coworkers-list" />
+                            <ContactListItem className="coworkers-list" contactList={coworkers} />
                         </div>
                         <div className="aim-client-list-container offline-list-container">
                             <div className="offline-list-header">
                                 <span className="list-header-arrow">▼</span>
                                 <span className="header-text">Offline</span>
                             </div>
-                            <ul className="offline-list">
-                                {offline && offline.map((contact, index) => {
-                                    return (
-                                        <li className="contact-list-item" key={index}>
-                                            <div className="contact-list-item-name-container">
-                                                <span className="contact-list-item-name">{contact.name}</span>
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+
+                            {offline && offline.length > 0 && (
+                                <ContactListItem className="offline-list" contactList={offline} />
+                            )}    
                         </div>
                     </div>
                 </div>
