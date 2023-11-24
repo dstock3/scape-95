@@ -4,6 +4,13 @@ import ContactListItem from './ContactListItem';
 import '../../../style/aim.css';
 
 const AimClient = () => {
+    const [selectedList, setSelectedList] = useState('buddies'); 
+
+    const handleListSelection = (listType) => {
+        console.log("List Selected:", listType); 
+        setSelectedList(listType);
+    };
+
     const [lists, setLists] = useState({
         buddies: {
             status: 'open'
@@ -150,15 +157,36 @@ const AimClient = () => {
                 <div className="contact-list-outer-container">
                     <div className="contact-list-container">
                         <div className="aim-client-list-container buddies-list-container">
-                            <ContactListHead contactList={buddies} contactType="Buddies" className="buddies-list" />
+                            <ContactListHead
+                                contactList={buddies}
+                                contactType="Buddies"
+                                className="buddies-list"
+                                selectedList={selectedList}
+                                onClick={() => handleListSelection('buddies')}
+                            />
+                            
                             <ContactListItem className="buddies-list" contactList={buddies} />
                         </div>
                         <div className="aim-client-list-container family-list-container">
-                            <ContactListHead contactList={family} contactType="Family" className="family-list" />
+                            <ContactListHead
+                                contactList={family}
+                                contactType="Family"
+                                className="family-list"
+                                selectedList={selectedList}
+                                onClick={() => handleListSelection('family')}
+                            />
+                            
                             <ContactListItem className="family-list" contactList={family} />    
                         </div>
                         <div className="aim-client-list-container coworkers-list-container">
-                            <ContactListHead contactList={coworkers} contactType="Coworkers" className="coworkers-list" />
+                            <ContactListHead
+                                contactList={coworkers}
+                                contactType="Coworkers"
+                                className="coworkers-list"
+                                selectedList={selectedList}
+                                onClick={() => handleListSelection('coworkers')}
+                            />
+
                             <ContactListItem className="coworkers-list" contactList={coworkers} />
                         </div>
                         <div className="aim-client-list-container offline-list-container">
