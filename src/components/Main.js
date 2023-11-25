@@ -231,6 +231,8 @@ function Main({setStartup}) {
                         <AimClient />
                     } />
                 }
+
+                
             />
 
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>

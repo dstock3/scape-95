@@ -137,6 +137,25 @@ const AimClient = () => {
         });
         setOffline(offlineContacts);
     }, [buddies, family, coworkers]);
+
+    const randomlyUpdateStatus = () => {
+        const updateStatus = contacts => contacts.map(contact => ({
+            ...contact,
+            status: Math.random() > 0.5 ? 'online' : 'offline'
+        }));
+
+        setBuddies(b => updateStatus(b));
+        setFamily(f => updateStatus(f));
+        setCoworkers(c => updateStatus(c));
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            randomlyUpdateStatus();
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
     
     return (
         <div className="aim-client-container">
