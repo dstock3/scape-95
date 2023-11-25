@@ -6,11 +6,10 @@
     background-color: rgb(202, 202, 202);
     border: 1px solid black;
     font-family: 'Arial', sans-serif;
-    width: 250px; 
+    width: 250px;
+    height: 515px; 
     box-sizing: border-box; 
     border-left: white 2px solid;
-    border-right: black 2px solid;
-    border-bottom: black 2px solid;
 }
 
 .aim-logo-banner {
@@ -48,7 +47,6 @@
     text-decoration: underline;
     font-size: 10px;
     margin: 5px 0;
-    text-align: center;
     display: block; 
 }
 
@@ -57,6 +55,12 @@
     justify-content: space-between;
     font-size: 10px;
     margin: 10px 0;
+}
+
+.aim-hr {
+    width: 100%;
+    border-bottom: white 2px solid;
+    border-top: rgb(126, 125, 125) 2px solid;
 }
 
 .aim-checkbox {
@@ -96,7 +100,6 @@
     text-transform: none; 
 }
 
-
 .aim-signon-btn:hover {
     background-color: #0000ff; 
 }
@@ -115,6 +118,16 @@
     justify-content: space-around;
     margin-top: 8px;
     font-size: 10px;
+}
+
+.screen-name-label{
+    font-style: italic;
+    color:#000080;
+}
+
+.aim-label {
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .aim-version {

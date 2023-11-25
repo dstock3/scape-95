@@ -20,7 +20,9 @@ const AimSignIn = ({ closeAim, openAimClient }) => {
             <div className="aim-logo-banner">
                 <img src={aimSignInImg} alt="AIM Logo" className="aim-logo" />
             </div>
+            <hr className="aim-hr" />
             <div className="aim-signin-form">
+                <label className="aim-label screen-name-label">ScreenName</label>
                 <input
                     type="text"
                     placeholder="Screen Name"
@@ -29,6 +31,7 @@ const AimSignIn = ({ closeAim, openAimClient }) => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 <a href="#" className="aim-link">Get a Screen Name</a>
+                <label className="aim-label password-label">Password</label>
                 <input
                     type="password"
                     placeholder="Password"
