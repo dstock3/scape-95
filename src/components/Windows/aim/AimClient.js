@@ -40,82 +40,26 @@ const AimClient = () => {
     };
 
     const [buddies, setBuddies] = useState([
-        {
-            name: 'Buddy 1',
-            status: 'online',
-            away: false,
-            idle: false,
-        },
-        {
-            name: 'Buddy 2',
-            status: 'online',
-            away: true,
-            idle: false,
-        },
-        {
-            name: 'Buddy 3',
-            status: 'offline',
-            away: false,
-            idle: false,
-        },
-        {
-            name: 'Buddy 4',
-            status: 'offline',
-            away: false,
-            idle: false,
-        }
+        { name: 'StarGazer91', status: 'online', away: false, idle: false },
+        { name: 'BlueSkyWalker', status: 'online', away: true, idle: false },
+        { name: 'PixelPirate', status: 'idle', away: false, idle: true },
+        { name: 'DigitalDruid', status: 'offline', away: false, idle: false },
+        { name: 'NeonNinja', status: 'online', away: false, idle: false }
     ]);
-
+    
     const [family, setFamily] = useState([
-        {
-            name: 'Family 1',
-            status: 'online',
-            away: false,
-            idle: false,
-        },
-        {
-            name: 'Family 2',
-            status: 'online',
-            away: true,
-            idle: false,
-        },
-        {
-            name: 'Family 3',
-            status: 'offline',
-            away: false,
-            idle: false,
-        }
+        { name: 'MamaBear2020', status: 'offline', away: false, idle: false },
+        { name: 'PapaWolf', status: 'online', away: true, idle: false },
+        { name: 'JuniorJaguar', status: 'online', away: false, idle: false },
+        { name: 'BabyKoala', status: 'idle', away: false, idle: true }
     ]);
-
+    
     const [coworkers, setCoworkers] = useState([
-        {
-            name: 'Coworker 1',
-            status: 'online',
-            away: false,
-            idle: false,
-        },
-        {
-            name: 'Coworker 2',
-            status: 'online',
-            away: true,
-            idle: false,
-        },
-        {
-            name: 'Coworker 3',
-            status: 'offline',
-            away: false,
-            idle: false,
-        },
-        {
-            name: 'Coworker 4',
-            status: 'offline',
-            away: false,
-        },
-        {
-            name: 'Coworker 5',
-            status: 'offline',
-            away: false,
-        }
+        { name: 'CodeMaster', status: 'online', away: false, idle: false },
+        { name: 'BugHunter', status: 'online', away: true, idle: false },
+        { name: 'DesignDiva', status: 'offline', away: false, idle: false },
+        { name: 'AgileAce', status: 'offline', away: false },
+        { name: 'DynamoDev', status: 'idle', away: false, idle: true }
     ]);
 
     const [offline, setOffline] = useState(null);
