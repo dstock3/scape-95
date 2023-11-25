@@ -265,6 +265,9 @@ const AimClient = () => {
                         </div>
                     </div>
                 </div>
+                <div className="aim-client-footer-banner">
+                    <img className="aim-client-footer-banner-img" src="https://picsum.photos/190/40" alt="aim-client-footer-banner" />
+                </div>
             </div>
         </div>
     );

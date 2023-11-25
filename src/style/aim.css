@@ -218,7 +218,7 @@
 .aim-client-body {
     display: flex;
     flex-direction: column;
-    height: 55%;
+    height: 50%;
     width: 95%;
     margin-top: 5px;
     border-top-left-radius: 5px;
@@ -310,6 +310,10 @@
     margin-left: 15px;
 }
 
+.contact-list-item-name {
+    cursor: pointer;
+}
+
 .offline-list-container {
     color: #706f6f;
 }
@@ -342,4 +346,13 @@
     font-size: 14px;
     text-align: center;
     margin-top: 5px;
+}
+
+.aim-client-footer-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
 }
