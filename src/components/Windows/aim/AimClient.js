@@ -7,12 +7,7 @@ import '../../../style/aim.css';
 
 const AimClient = () => {
     const [selectedList, setSelectedList] = useState('buddies'); 
-
-    const handleListSelection = (listType) => {
-        console.log("List Selected:", listType); 
-        setSelectedList(listType);
-    };
-
+    
     const [lists, setLists] = useState({
         buddies: {
             status: 'open'
@@ -23,8 +18,24 @@ const AimClient = () => {
         },
         coworkers: {
             status: 'closed'
+        },
+        offline: {
+            status: 'open'
         }
     });
+
+    const handleListSelection = (listType) => {
+        setSelectedList(listType);
+        setLists(prevLists => {
+            return {
+                ...prevLists,
+                [listType]: {
+                    ...prevLists[listType],
+                    status: prevLists[listType].status === 'open' ? 'closed' : 'open'
+                }
+            };
+        });
+    };
 
     const [buddies, setBuddies] = useState([
         {
@@ -167,7 +178,7 @@ const AimClient = () => {
                                 onClick={() => handleListSelection('buddies')}
                             />
                             
-                            {selectedList === 'buddies' && (
+                            {lists.buddies.status === 'open' && (
                                 <ContactListItem className="buddies-list" contactList={buddies} />
                             )}
                         </div>
@@ -180,9 +191,9 @@ const AimClient = () => {
                                 onClick={() => handleListSelection('family')}
                             />
                             
-                            {selectedList === 'family' && (
+                            {lists.family.status === 'open' && (
                                 <ContactListItem className="family-list" contactList={family} />
-                            )}  
+                            )}
                         </div>
                         <div className="aim-client-list-container coworkers-list-container">
                             <ContactListHead
@@ -193,9 +204,9 @@ const AimClient = () => {
                                 onClick={() => handleListSelection('coworkers')}
                             />
 
-                            {selectedList === 'coworkers' && (
+                            {lists.coworkers.status === 'open' && (
                                 <ContactListItem className="coworkers-list" contactList={coworkers} />
-                            )}
+                            )}                            
                         </div>
                         <div className="aim-client-list-container offline-list-container">
                             <div className="offline-list-header">

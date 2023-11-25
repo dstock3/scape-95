@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 const ContactListHead = ({ contactList, contactType, className, selectedList, onClick }) => {
-    console.log("Class Name:", className); 
-
     const baseClassName = className.split('-')[0];
 
     const headerClass = `${className}-header`;
