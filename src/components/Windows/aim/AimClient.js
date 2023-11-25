@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ContactListHead from './ContactListHead';
 import ContactListItem from './ContactListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import '../../../style/aim.css';
+import doorOpenSound from '../../../assets/aim/doorOpen.mp3';
+import doorCloseSound from '../../../assets/aim/doorClose.mp3';
 
 const AimClient = () => {
     const [selectedList, setSelectedList] = useState('buddies'); 
@@ -138,23 +140,59 @@ const AimClient = () => {
         setOffline(offlineContacts);
     }, [buddies, family, coworkers]);
 
-    const randomlyUpdateStatus = () => {
-        const updateStatus = contacts => contacts.map(contact => ({
-            ...contact,
-            status: Math.random() > 0.5 ? 'online' : 'offline'
-        }));
+    const doorOpenAudioRef = useRef(null);
+    const doorCloseAudioRef = useRef(null);
 
-        setBuddies(b => updateStatus(b));
-        setFamily(f => updateStatus(f));
-        setCoworkers(c => updateStatus(c));
+    useEffect(() => {
+        doorOpenAudioRef.current = new Audio(doorOpenSound);
+        doorCloseAudioRef.current = new Audio(doorCloseSound);
+    }, []);
+
+    const randomlyChangeStatus = (contacts, statusToChange, newStatus, soundEffect) => {
+        const eligibleContacts = contacts.filter(contact => contact.status === statusToChange);
+        if (eligibleContacts.length > 0) {
+            const randomIndex = Math.floor(Math.random() * eligibleContacts.length);
+            return contacts.map((contact, index) => {
+                if (index === randomIndex) {
+                    soundEffect.current.play();
+                    return { ...contact, status: newStatus };
+                }
+                return contact;
+            });
+        }
+        return contacts; 
+    };
+
+    const randomlySignOn = () => {
+        const randomGroup = Math.floor(Math.random() * 3); 
+        if (randomGroup === 0) {
+            setBuddies(b => randomlyChangeStatus(b, 'offline', 'online', doorOpenAudioRef));
+        } else if (randomGroup === 1) {
+            setFamily(f => randomlyChangeStatus(f, 'offline', 'online', doorOpenAudioRef));
+        } else {
+            setCoworkers(c => randomlyChangeStatus(c, 'offline', 'online', doorOpenAudioRef));
+        }
+    };
+    
+    const randomlySignOff = () => {
+        const randomGroup = Math.floor(Math.random() * 3); 
+        if (randomGroup === 0) {
+            setBuddies(b => randomlyChangeStatus(b, 'online', 'offline', doorCloseAudioRef));
+        } else if (randomGroup === 1) {
+            setFamily(f => randomlyChangeStatus(f, 'online', 'offline', doorCloseAudioRef));
+        } else {
+            setCoworkers(c => randomlyChangeStatus(c, 'online', 'offline', doorCloseAudioRef));
+        }
     };
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            randomlyUpdateStatus();
-        }, 5000);
-
-        return () => clearInterval(interval);
+        const signOnInterval = setInterval(randomlySignOn, 70000); 
+        const signOffInterval = setInterval(randomlySignOff, 15000);
+    
+        return () => {
+            clearInterval(signOnInterval);
+            clearInterval(signOffInterval);
+        };
     }, []);
     
     return (
