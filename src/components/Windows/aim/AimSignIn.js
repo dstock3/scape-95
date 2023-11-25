@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../../style/aim.css'; 
 import aimSignInImg from '../../../assets/aim/aim-sign-in.png'; 
+import keyImg from '../../../assets/aim/aim-key.svg';
 
 const AimSignIn = ({ closeAim, openAimClient }) => {
     const [username, setUsername] = useState('');
@@ -22,7 +23,10 @@ const AimSignIn = ({ closeAim, openAimClient }) => {
             </div>
             <hr className="aim-hr" />
             <div className="aim-signin-form">
-                <label className="aim-label screen-name-label">ScreenName</label>
+                <div className="aim-key-container">
+                    <label className="aim-label screen-name-label">ScreenName</label>
+                    <img src={keyImg} alt="Key" className="aim-key" />
+                </div>
                 <input
                     type="text"
                     placeholder="Screen Name"
