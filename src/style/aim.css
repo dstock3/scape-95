@@ -12,10 +12,10 @@
 }
 
 .aim-loader-container {
-    height: 300px; 
+    height: 325px; 
 }
 
-.aim-loading-message {
+.aim-screenname, .aim-loading-message {
     font-size: 12px;
     margin-top: 10px;
 }

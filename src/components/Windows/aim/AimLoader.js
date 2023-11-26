@@ -38,6 +38,7 @@ const AimLoader = ({ closeAimLoader, openAimClient }) => {
             <img src={aimSignInImg} alt="AIM Logo" className="aim-logo" />
         </div>
         <hr className="aim-hr" />
+        <div className="aim-screenname">Screen Name</div>
         <div className="aim-loading-message">{renderLoadingMessage()}</div>
         <div className="aim-buttons-container">
             <button className="aim-cancel-btn" onClick={closeAimLoader}>Cancel</button>
