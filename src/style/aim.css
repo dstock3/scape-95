@@ -1,4 +1,4 @@
-.aim-signin-container {
+.aim-signin-container, .aim-loader-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,10 @@
     height: 515px; 
     box-sizing: border-box; 
     border-left: white 2px solid;
+}
+
+.aim-loader-container {
+    height: 300px; 
 }
 
 .aim-logo-banner {

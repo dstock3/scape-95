@@ -3,17 +3,15 @@ import '../../../style/aim.css';
 import aimSignInImg from '../../../assets/aim/aim-sign-in.png'; 
 import keyImg from '../../../assets/aim/aim-key.svg';
 
-const AimSignIn = ({ closeAim, openAimClient }) => {
+const AimSignIn = ({ closeAim, openAimLoader }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [savePassword, setSavePassword] = useState(false);
     const [autoLogin, setAutoLogin] = useState(false);
 
     const handleSignIn = () => {
-        setTimeout(() => {
-            openAimClient();
-            closeAim();
-        }, 2500);
+        openAimLoader();
+        closeAim();
     };
 
     return (

@@ -33,6 +33,7 @@ import ErrorMsg from './Windows/ErrorMsg'
 import AimSignIn from './Windows/aim/AimSignIn'
 import AimClient from './Windows/aim/AimClient'
 import aimIcon from "../assets/icons/aim.png"; 
+import AimLoader from './Windows/aim/AimLoader'
 
 export const StartContext = React.createContext()
 
@@ -58,7 +59,8 @@ function Main({setStartup}) {
     const [misc, setMisc, openMisc, closeMisc, minMisc] = useWindow(minWin, setMinWin, 17, "misc.txt", "misc")
     const [err, setErr, openErr, closeErr, minErr] = useWindow(minWin, setMinWin, 18, "Error", "err")
     const [aim, setAim, openAim, closeAim, minAim] = useWindow(minWin, setMinWin, 19, "Aim", "aim")
-    const [aimClient, setAimClient, openAimClient, closeAimClient, minAimClient] = useWindow(minWin, setMinWin, 20, "AIM-Client", "aim-client")
+    const [aimLoader, setAimLoader, openAimLoader, closeAimLoader, minAimLoader] = useWindow(minWin, setMinWin, 20, "AIM-Loader", "aim-loader")
+    const [aimClient, setAimClient, openAimClient, closeAimClient, minAimClient] = useWindow(minWin, setMinWin, 21, "AIM-Client", "aim-client")
     const [runInput, setRunInput] = useState("")
 
     const openApps = {
@@ -222,17 +224,21 @@ function Main({setStartup}) {
                 }
                 
                 slotFifteen={
-                    <SpecialWindow isClicked={aim.isClicked} open={openAim} winTitle={aim.shortcut} winId={`${aim.shortcutId}-window`} close={closeAim} size={{ width: "250px", height: "515px" }} position={{ left: "-700px", bottom: "500px" }} contents={<AimSignIn closeAim={closeAim} openAimClient={openAimClient} />
+                    <SpecialWindow isClicked={aim.isClicked} open={openAim} winTitle={"Sign On"} winId={`${aim.shortcutId}-window`} close={closeAim} size={{ width: "250px", height: "515px" }} position={{ left: "-700px", bottom: "500px" }} contents={<AimSignIn closeAim={closeAim} openAimLoader={openAimLoader} />
+                    } />
+                }
+
+                slotSixteen={
+                    <SpecialWindow isClicked={aimLoader.isClicked} open={openAimLoader} winTitle={"AIM-Loader"} winId={`${aimLoader.shortcutId}-window`} close={closeAimLoader} size={{ width: "250px", height: "300px" }} position={{ left: "-700px", bottom: "500px" }} contents={
+                        <AimLoader closeAimLoader={closeAimLoader} openAimClient={openAimClient} />
                     } />
                 }
                 
-                slotSixteen={
+                slotSeventeen={
                     <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
                         <AimClient />
                     } />
                 }
-
-                
             />
 
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>
