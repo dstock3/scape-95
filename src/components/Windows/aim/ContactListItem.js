@@ -1,3 +1,5 @@
+import React from 'react';
+
 const ContactListItem = ({ className, contactList }) => {
     return (
         <ul className={className}>
@@ -16,4 +18,4 @@ const ContactListItem = ({ className, contactList }) => {
     )
 }
 
-export default ContactListItem;
+export default React.memo(ContactListItem);
