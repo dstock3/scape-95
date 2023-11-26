@@ -15,6 +15,11 @@
     height: 300px; 
 }
 
+.aim-loading-message {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
 .aim-logo-banner {
     background-color: #1240ab;
     width: 100%;
