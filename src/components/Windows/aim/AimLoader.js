@@ -26,6 +26,9 @@ const AimLoader = ({ closeAimLoader, openAimClient }) => {
             ) : (
             <div>AIM loaded successfully!</div>
         )}
+        <div className="aim-buttons-container">
+            <button className="aim-cancel-btn" onClick={closeAimLoader}>Cancel</button>
+        </div>
     </div>
   );
 };
