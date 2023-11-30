@@ -61,6 +61,7 @@ function Main({setStartup}) {
     const [aim, setAim, openAim, closeAim, minAim] = useWindow(minWin, setMinWin, 19, "Aim", "aim")
     const [aimLoader, setAimLoader, openAimLoader, closeAimLoader, minAimLoader] = useWindow(minWin, setMinWin, 20, "AIM-Loader", "aim-loader")
     const [aimClient, setAimClient, openAimClient, closeAimClient, minAimClient] = useWindow(minWin, setMinWin, 21, "AIM-Client", "aim-client")
+    const [aimWindow, setAimWindow, openAimWindow, closeAimWindow, minAimWindow] = useWindow(minWin, setMinWin, 22, "AIM", "aim-window")
     const [runInput, setRunInput] = useState("")
 
     const openApps = {
@@ -239,6 +240,11 @@ function Main({setStartup}) {
                         <AimClient />
                     } />
                 }
+
+                slotEighteen={
+                    <SpecialWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
+                        <AimWindow />
+                } />
             />
 
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>
