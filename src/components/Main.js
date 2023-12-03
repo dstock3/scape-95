@@ -34,6 +34,7 @@ import AimSignIn from './Windows/aim/AimSignIn'
 import AimClient from './Windows/aim/AimClient'
 import aimIcon from "../assets/icons/aim.png"; 
 import AimLoader from './Windows/aim/AimLoader'
+import AimWindow from './Windows/aim/AimWindow'
 
 export const StartContext = React.createContext()
 
@@ -237,14 +238,16 @@ function Main({setStartup}) {
                 
                 slotSeventeen={
                     <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
-                        <AimClient />
+                        <AimClient openAimWindow={openAimWindow} />
                     } />
                 }
 
                 slotEighteen={
-                    <SpecialWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
+                    <SpecialWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "700px", height: "275px" }} position={{ left: "-1700px", bottom: "500px" }} contents={
                         <AimWindow />
-                } />
+                    } />
+
+                }
             />
 
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>

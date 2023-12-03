@@ -7,7 +7,11 @@ import '../../../style/aim.css';
 import doorOpenSound from '../../../assets/aim/doorOpen.mp3';
 import doorCloseSound from '../../../assets/aim/doorClose.mp3';
 
-const AimClient = () => {
+const AimClient = ({ openAimWindow }) => {
+    useEffect(() => {
+        openAimWindow();
+    }, [openAimWindow]);
+
     const [selectedList, setSelectedList] = useState('buddies'); 
     
     const [lists, setLists] = useState({
