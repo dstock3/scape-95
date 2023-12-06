@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Clock from './Clock'
 import StartMenu from './StartMenu'
 import windowsIcon from "../../assets/icons/windows.png"
+import aimIcon from '../../assets/icons/aim.png'
 
 const Start = ({ windows }) => {
     const [start, setStart] = useState({isStarted: false})
@@ -76,7 +77,14 @@ const Start = ({ windows }) => {
                     ))}
                 </div>
             </div>
-            <Clock />
+
+            <div className="side-icon-container">
+                <div className="instant-messenger-side-icon">
+                    <img src={aimIcon} alt="instant messenger icon" className="aim-icon" onClick={()=> openAppCloseMenu(windows[0].open)}></img> 
+                </div>
+
+                <Clock />
+            </div>
         </div>
     )
 }

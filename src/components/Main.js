@@ -111,9 +111,6 @@ function Main({setStartup}) {
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
                     }
                     
-                    slotFive={
-                        <DesktopIcon open={openAim} shortcutId={aim.shortcutId} shortcutIconId={`${aim.shortcutId}-icon`} imgSrc={aimIcon} shortcut={aim.shortcut} />
-                    }
                 />
                 
                 <Col colId="two" />

@@ -16,12 +16,17 @@ const OnlineServices = ({isClicked, canStart, setStart}) => {
     })
 
     const openApps = useContext(StartContext)
+    
+    const openNewApp = (openApp) => {
+        openApp()
+        setStart({...canStart, isStarted: false})
+    }
 
     if (isClicked) {
         return (
             <div className="start-menu" style={progStyle}>
                 <div className="start-option-container">
-                    <div className="start-option">
+                    <div className="start-option" onClick={()=> openNewApp(openApps.aim)}>
                         <img src={aimIcon} alt="instant messenger icon" className="start-item-icon"></img>
                         <div className="start-item">AOL Instant Messenger</div>
                     </div>
