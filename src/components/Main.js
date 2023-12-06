@@ -110,7 +110,6 @@ function Main({setStartup}) {
                     slotFour={
                         <DesktopIcon open={openNet} shortcutId={net.shortcutId} shortcutIconId={`${net.shortcutId}-icon`} imgSrc={netIcon} shortcut={net.shortcut} contents={<Internet />}/>
                     }
-                    
                 />
                 
                 <Col colId="two" />
@@ -249,7 +248,7 @@ function Main({setStartup}) {
             <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead, aim: openAim }}>
                 <div className="bottom">
                     <div className="dec-bottom-line"></div>
-                    <Start windows={minWin} />
+                    <Start windows={minWin}  />
                 </div>
             </StartContext.Provider>
         </div>

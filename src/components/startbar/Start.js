@@ -1,12 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Clock from './Clock'
 import StartMenu from './StartMenu'
 import windowsIcon from "../../assets/icons/windows.png"
 import aimIcon from '../../assets/icons/aim.png'
+import {StartContext} from '../Main'
 
 const Start = ({ windows }) => {
     const [start, setStart] = useState({isStarted: false})
     const [isBorder, setBorder] = useState("")
+    const openApps = useContext(StartContext)
+
+    const openNewApp = (openApp) => {
+        openApp()
+        setStart({...start, isStarted: false})
+    }
 
     useEffect(() => {
         let offStart = document.querySelector(".col-container")
@@ -79,8 +86,8 @@ const Start = ({ windows }) => {
             </div>
 
             <div className="side-icon-container">
-                <div className="instant-messenger-side-icon">
-                    <img src={aimIcon} alt="instant messenger icon" className="aim-icon" onClick={()=> openAppCloseMenu(windows[0].open)}></img> 
+                <div className="instant-messenger-side-icon" onClick={()=>openNewApp(openApps.aim)}>
+                    <img src={aimIcon} alt="instant messenger icon" className="aim-icon"></img> 
                 </div>
 
                 <Clock />
