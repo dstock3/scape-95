@@ -246,11 +246,10 @@ function Main({setStartup}) {
                     <SpecialWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "700px", height: "275px" }} position={{ left: "-1700px", bottom: "500px" }} contents={
                         <AimWindow />
                     } />
-
                 }
             />
 
-            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead}}>
+            <StartContext.Provider value={{calc: openCalc, mine: openMine, shutdown: openShutdown, run: openRun, internet: openNet, terminal: openCli, notepad: openNotes, readMe: openRead, aim: openAim }}>
                 <div className="bottom">
                     <div className="dec-bottom-line"></div>
                     <Start windows={minWin} />

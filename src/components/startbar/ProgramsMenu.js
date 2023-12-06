@@ -5,14 +5,20 @@ import netIcon from '../../assets/icons/internet.png'
 import dosIcon from '../../assets/icons/dos.png'
 import {StartContext} from '../Main'
 import AccMenu from './AccMenu'
+import OnlineServices from './OnlineServices'
 
 function ProgramsMenu({isClicked, canStart, setStart}) {
     const [acc, setAcc] = useState({isClicked: false})
+    const [online, setOnline] = useState({isClicked: false})
 
     const openApps = useContext(StartContext)
 
     const openAcc = () => {
         setAcc({...acc, isClicked: true})
+    }
+
+    const openOnline = () => {
+        setOnline({...online, isClicked: true})
     }
 
     const [progStyle, setProgStyle] = useState({
@@ -35,6 +41,7 @@ function ProgramsMenu({isClicked, canStart, setStart}) {
         return(
             <>
                 <AccMenu isClicked={acc.isClicked} canStart={canStart} setStart={setStart} />
+                <OnlineServices isClicked={online.isClicked} canStart={canStart} setStart={setStart} />
 
                 <div className="start-menu" style={progStyle}>
                     <div className="start-option-container" onClick={openAcc}>
@@ -44,7 +51,7 @@ function ProgramsMenu({isClicked, canStart, setStart}) {
                         </div>
                         <div className="start-option-arrow">▶</div>
                     </div>
-                    <div className="start-option-container">
+                    <div className="start-option-container" onClick={openOnline}>
                         <div className="start-option">
                             <img src={accIcon} alt="online icon" className="start-item-icon"></img>
                             <div className="start-item"><span style={{textDecoration: "underline"}}>O</span>nline Services</div>

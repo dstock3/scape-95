@@ -3,7 +3,7 @@ import Clock from './Clock'
 import StartMenu from './StartMenu'
 import windowsIcon from "../../assets/icons/windows.png"
 
-const Start = ({windows}) => {
+const Start = ({ windows }) => {
     const [start, setStart] = useState({isStarted: false})
     const [isBorder, setBorder] = useState("")
 
