@@ -1,200 +1,79 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { newDrag } from '../../DragFunctions'
-import '../../style/window.css'
-import WindowsButtons from './WindowsButtons'
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import '../../style/window.css';
+import WindowsButtons from './WindowsButtons';
 
-function BasicWindow({size, winId, minState, close, isClicked, min, winTitle, contents}) {
-    const [defaultWidth, setDefaultWidth] = useState("650px")
-    const [defaultHeight, setDefaultHeight] = useState("650px")
+function BasicWindow({ size = { width: "650px", height: "650px" }, winId, minState, close, isClicked, min, winTitle, contents }) {
+    const windowRef = useRef(null);
+    const [isMaximized, setIsMaximized] = useState(false);
+    const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = useState(false);
 
-    useEffect(()=> {
-        if (size) {
-            setDefaultWidth(size.width)
-            setDefaultHeight(size.height)
-        } 
-    }, [])
+    const windowStyle = useMemo(() => ({
+        position: "fixed",
+        top: isMaximized ? "0" : "50px", 
+        left: isMaximized ? "0" : "50px", 
+        width: isMaximized ? "100%" : size.width,
+        height: isMaximized ? "100%" : size.height,
+        zIndex: 2
+    }), [isMaximized, size]);
 
-    const [isMoved, setMoved] = useState(false)
-    const parentRef = useRef(false)
-
-    useEffect(()=> {
-        let win = document.getElementById(winId)
-        parentRef.current = win.parentElement
-    }, [])
-
-    let defStyle = useRef({
-        position: "relative",
-        right: "550px",
-        bottom: "500px",
-        minHeight: defaultHeight,
-        minWidth: defaultHeight,
-    })
-
-    const [win, setWin] = useState({
-        isMax: false, 
-        isDraggable: false,
-        isSelected: true,
-        style: defStyle.current,
-        bodyStyle: {
-            height: parseInt(defaultHeight.replace("px", "") - 25)
+    const handleMouseDown = (event) => {
+        if (!isMaximized) {
+            setDragStart({ x: event.clientX, y: event.clientY });
+            setIsDragging(true);
         }
-    })
+    };
 
-    const [isHidden, setHidden] = useState("hidden")
+    const handleMouseMove = (event) => {
+        if (isDragging) {
+            const currentX = event.clientX;
+            const currentY = event.clientY;
+            const dx = currentX - dragStart.x;
+            const dy = currentY - dragStart.y;
 
-    useEffect(() => {
-        if (minState) {
-            setHidden("hidden")
-        } else {
-            setHidden("")
+            const currentTop = windowRef.current.offsetTop;
+            const currentLeft = windowRef.current.offsetLeft;
+
+            windowRef.current.style.top = `${currentTop + dy}px`;
+            windowRef.current.style.left = `${currentLeft + dx}px`;
+
+            setDragStart({ x: currentX, y: currentY });
         }
-    }, [minState])
+    };
 
-    const [isClosed, setClosed] = useState(false)
-    
-    const closeSet = () => {
-        setClosed(true)
-        close()
-    }
-    
-    const styleController = () => {
-        const main = document.querySelector(".main")
-        let maxHeight = main.offsetHeight - 40
-        const maxWidth = main.offsetWidth
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
 
-        const defaultStyle = {
-            position: "relative",
-            left: "0",
-            top: "350px",
-            bottom: "0",
-            minHeight: defaultHeight,
-            minWidth: defaultWidth,
-            zIndex: 1,
-        }
+    const toggleMaximize = () => {
+        setIsMaximized(!isMaximized);
+    };
 
-        const selectStyle = {
-            position: "relative",
-            right: "550px",
-            bottom: "500px",
-            minHeight: defaultHeight,
-            minWidth: defaultHeight,
-        }
-
-        const maxStyle = {
-            position: "fixed",
-            minHeight: maxHeight + "px",
-            minWidth: maxWidth + "px",
-            left: "0",
-            top: "0",
-            zIndex: 2
-        }
-
-        const defaultBody = {
-            height: parseInt(defaultHeight.replace("px", "") - 25) + "px"
-        }
-
-        const maxBody = {
-            height: main.offsetHeight - 15
-        }
-
-        return { defaultStyle, maxStyle, defaultBody, selectStyle, maxBody }
+    if (!isClicked) {
+        return null;
     }
 
-    const maxToggle = () => {
-        const newStyle = styleController()
-        if (win.isMax) {
-            if (isMoved) {
-                setWin({ ...win, 
-                    isMin: false, 
-                    isMax: false, 
-                    isDraggable: false,
-                    style: newStyle.defaultStyle,
-                    bodyStyle: newStyle.defaultBody
-                })
-
-            } else {
-                setWin({ ...win, 
-                    isMin: false, 
-                    isMax: false, 
-                    isDraggable: false,
-                    style: newStyle.selectStyle,
-                    bodyStyle: newStyle.defaultBody
-                })
-            }
-        } else {
-            setWin({ ...win, 
-                isMin: false, 
-                isMax: true, 
-                isDraggable: false,
-                style: newStyle.maxStyle,
-                bodyStyle: newStyle.maxBody
-            })
-        }
-    }
-
-    useEffect(()=> {
-        let window = document.getElementById(winId)
-        if (parentRef.current !== window.parentElement) {
-            setMoved(true)
-        }
-
-        if (win.isMax) {
-            window.classList.add("max")
-            window.classList.remove("def")
-        } else {
-            window.classList.add("def")
-            window.classList.remove("max")
-        }
-    }, [win.isMax])
-
-    const setDraggableTrue = () => {
-        if (!win.isMax) {
-            setWin({...win, isDraggable: true})
-        }
-    }
-
-    useEffect(()=> {
-        let win = document.querySelector(`#${winId}`)
-
-        function dragSet() {
-            win.style.position = "relative"
-            win.style.left = "0"
-            win.style.top = "350px"
-            win.style.bottom = "0"
-        }
-        if (win) {
-            win.addEventListener("dragend", dragSet)
-
-            return () => {
-                win.removeEventListener("dragend", dragSet)
-            }
-        }
-        
-    })
-
-    if (isClicked) {
-        return (
-            <>
-                <div className={`basic-window ${isHidden}`} id={winId} draggable={win.isDraggable} onDragStart={newDrag} style={win.style}>
-                    <div className="window-top" onMouseEnter={setDraggableTrue} onMouseLeave={()=> setWin({...win, isDraggable: false})} onDoubleClick={maxToggle}>
-                        <div className="window-title">{winTitle}</div>
-                        <WindowsButtons min={min} max={maxToggle} close={closeSet} />
-                    </div>
-                    <div className="window-body" style={win.bodyStyle}>
-                        {contents}             
-                    </div>
-                </div>
-            </>
-        )
-    } else if (!isClicked) {
-        return(
-            <div className={`basic-window hidden`} id={winId} draggable={false} onDragStart={newDrag} style={{height: "0", width: "0"}}>
-
+    return (
+        <div 
+            className={`basic-window ${minState ? 'hidden' : ''}`} 
+            id={winId}
+            ref={windowRef} 
+            style={windowStyle}
+            onMouseUp={handleMouseUp}
+        >
+            <div className="window-top" 
+                 onMouseDown={handleMouseDown}
+                 onMouseMove={handleMouseMove}
+                 onDoubleClick={toggleMaximize}
+            >
+                <div className="window-title">{winTitle}</div>
+                <WindowsButtons min={min} max={toggleMaximize} close={close} />
             </div>
-        )
-    } else if (isClosed) {
-        return null
-    }
+            <div className="window-body" style={{ height: `calc(${size.height} - 25px)` }}>
+                {contents}
+            </div>
+        </div>
+    );
 }
 
-export default React.memo(BasicWindow)
+export default React.memo(BasicWindow);
