@@ -6,225 +6,224 @@
 }
 
 html, body {
-    margin: 0px;
-    height: 100%;
-    background-color:lightsteelblue; 
-    font-family: MS95;
-  }
+  margin: 0px;
+  height: 100%;
+  background-color:lightsteelblue; 
+  font-family: MS95;
+}
 
+.hidden {
+  visibility: hidden;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.col-container {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  width: 8%;
+  height: 96vh;
+}
+
+#end {
+  flex-direction: row;
+  height: 0;
+  width: 0;
+
+}
+
+.slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  min-height: 100px;
+}
+
+.shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 0;
+  width: fit-content;
+}
+
+.desktop-icon {
+  width: 48px;
+}
+
+.folder-name {
+  text-align: center;
+  width: fit-content;
+  margin: 5px;
+  padding-inline: 5px;
+  border: 1px transparent dotted;
+}
+
+.screen-active {
+  background-color: rgba(0, 0, 124, 0.418);
+  z-index: 6;
+}
+
+.active-border-shortcut {
+  border: 1px rgb(255, 251, 0) dotted;
+  background-color: rgba(0, 0, 124, 0.418);
+  color: white;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.dec-bottom-line {
+  height: 0;
+  width: 100%;
+  border-top: 2px solid rgb(177, 177, 177);
+  border-bottom: 2px solid white;
+
+}
+
+.start-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  background: rgb(184,184,184);
+  background: linear-gradient(180deg, rgba(184,184,184,1) 83%, rgba(129,129,129,1) 100%);
+}
+
+.start-button {
+  cursor: default;
+  display: flex;
+  font-weight: bold;
+  width: 95px;
+  height: 80%;
+  justify-content: space-between;
+  align-items: center;
+  border-left: white 3px solid;
+  border-top: white 2px solid;
+  border-right: black 2px solid;
+  border-bottom: black 2px solid;
+  padding-inline: 3px;
+}
+
+.start-border {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90px;
   
-  .hidden {
-    visibility: hidden;
-  }
+}
+
+.active-border {
+  border: 1px black dotted;
+}
+
+.started {
+  border-top: none;
+  background: rgb(172,172,172);
+  background: linear-gradient(180deg, rgba(172,172,172,1) 0%, rgba(205,205,205,1) 18%);
+  border-left: black 3px solid;
+  border-top: black 2px solid;
+  border-right: white 2px solid;
+  border-bottom: rgb(155, 155, 155) 2px solid;
+}
+
+.windows-icon {
+  height: 25px;
+  margin: 0 6px;
+}
+
+.start-text {
+  margin: 0 5px;
+}
+
+.bar-body {
+  display: flex;
+  width: 92.5%;
+  height: 100%;
+  align-items: center;
+}
+
+.side-icon-container {
+  height: 75%;
+  border-left: black 2px solid;
+  border-top: black 2px solid;
+  border-right: white 4px solid;
+  border-bottom: white 2px solid;
+  padding-inline: 1%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.instant-messenger-side-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.instant-messenger-side-icon img {
+  height: 25px;
+  width: 25px;
+  margin-right: 15px;
+}
+
+.instant-messenger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding-block: 10px;
+}
+
+#instant-messenger-icon {
+  height: 25px;
+  width: 25px;
+  margin-right: 15px;
+}
+
+.clock {
+  min-width: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#net-icon {
+  width: 125px;
+  height: 80px;
+  margin: 0px 0px -15px -10px;
+}
+
+#doc-icon {
+  width: 55px;
+
+}
+
+.win-container {
+  margin-top: 15px;
+  display: flex;
   
-  .App {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .col-container {
-    display: flex;
-  }
-  
-  .col {
-    display: flex;
-    flex-direction: column;
-    min-width: 100px;
-    width: 8%;
-    height: 96vh;
-  }
+}
 
-  #end {
-    flex-direction: row;
-    height: 0;
-    width: 0;
-
-  }
-  
-  .slot {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    min-height: 100px;
-  }
-  
-  .shortcut {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    z-index: 0;
-    width: fit-content;
-  }
-  
-  .desktop-icon {
-    width: 48px;
-  }
-  
-  .folder-name {
-    text-align: center;
-    width: fit-content;
-    margin: 5px;
-    padding-inline: 5px;
-    border: 1px transparent dotted;
-  }
-
-  .screen-active {
-    background-color: rgba(0, 0, 124, 0.418);
-    z-index: 6;
-  }
-
-  .active-border-shortcut {
-    border: 1px rgb(255, 251, 0) dotted;
-    background-color: rgba(0, 0, 124, 0.418);
-    color: white;
-  }
-  
-  .bottom {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 3;
-  }
-
-  .dec-bottom-line {
-    height: 0;
-    width: 100%;
-    border-top: 2px solid rgb(177, 177, 177);
-    border-bottom: 2px solid white;
-
-  }
-  
-  .start-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    width: 100%;
-    background: rgb(184,184,184);
-    background: linear-gradient(180deg, rgba(184,184,184,1) 83%, rgba(129,129,129,1) 100%);
-  }
-
-  .start-button {
-    cursor: default;
-    display: flex;
-    font-weight: bold;
-    width: 95px;
-    height: 80%;
-    justify-content: space-between;
-    align-items: center;
-    border-left: white 3px solid;
-    border-top: white 2px solid;
-    border-right: black 2px solid;
-    border-bottom: black 2px solid;
-    padding-inline: 3px;
-  }
-
-  .start-border {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 90px;
-    
-  }
-
-  .active-border {
-    border: 1px black dotted;
-  }
-
-  .started {
-    border-top: none;
-    background: rgb(172,172,172);
-    background: linear-gradient(180deg, rgba(172,172,172,1) 0%, rgba(205,205,205,1) 18%);
-    border-left: black 3px solid;
-    border-top: black 2px solid;
-    border-right: white 2px solid;
-    border-bottom: rgb(155, 155, 155) 2px solid;
-  }
-  
-  .windows-icon {
-    height: 25px;
-    margin: 0 6px;
-  }
-  
-  .start-text {
-    margin: 0 5px;
-  }
-
-  .bar-body {
-    display: flex;
-    width: 92.5%;
-    height: 100%;
-    align-items: center;
-  }
-
-  .side-icon-container {
-    height: 75%;
-    border-left: black 2px solid;
-    border-top: black 2px solid;
-    border-right: white 4px solid;
-    border-bottom: white 2px solid;
-    padding-inline: 1%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .instant-messenger-side-icon {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .instant-messenger-side-icon img {
-    height: 25px;
-    width: 25px;
-    margin-right: 15px;
-  }
-
-  .instant-messenger-icon {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100%;
-    padding-block: 10px;
-  }
-
-  #instant-messenger-icon {
-    height: 25px;
-    width: 25px;
-    margin-right: 15px;
-  }
-
-  .clock {
-    min-width: 60px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  #net-icon {
-    width: 125px;
-    height: 80px;
-    margin: 0px 0px -15px -10px;
-  }
-
-  #doc-icon {
-    width: 55px;
-
-  }
-
-  .win-container {
-    margin-top: 15px;
-    display: flex;
-    
-  }
-
-  .win-container > .shortcut {
-    margin-right: 15px;
-  }
+.win-container > .shortcut {
+  margin-right: 15px;
+}

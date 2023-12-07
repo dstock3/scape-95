@@ -1,59 +1,59 @@
 .basic-window {
-    z-index: 1;
-    background-color: azure;
-    display: flex;
-    flex-direction: column;
-    resize: both;
-    border: 1px solid black;
-    overflow: visible;
-  }
+  z-index: 1;
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  border: 1px solid black;
+  overflow: visible;
+}
   
-  .window-top {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 25px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-    background: rgb(26,0,195);
-    background: linear-gradient(90deg, rgba(26,0,195,1) 53%, rgba(93,133,233,1) 100%);
-    z-index: 5;
-  }
+.window-top {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  background: rgb(26,0,195);
+  background: linear-gradient(90deg, rgba(26,0,195,1) 53%, rgba(93,133,233,1) 100%);
+  z-index: 5;
+}
   
-  .window-body {
-    width: 100%;
-    height: 100%;
-    background: white;
-  }
-  
-  .window-title {
-    color: white;
-    margin: 0 5px;
-    font-size: .75em;
-    align-self: center;
-    font-weight: bold;
-  }
-  
-  .windows-button {
-    width: 25px;
-    height: 107%;
-  }
-  
-  .window-buttons {
-    height: 100%;
-    width: fit-content;
-    overflow: hidden;
-  }
+.window-body {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
 
-  .special-window {
-    z-index: 1;
-    background-color: azure;
-    display: flex;
-    flex-direction: column;
-    resize: both;
-    border: 1px solid black;
-    overflow: visible;
+.window-title {
+  color: white;
+  margin: 0 5px;
+  font-size: .75em;
+  align-self: center;
+  font-weight: bold;
+}
+
+.windows-button {
+  width: 25px;
+  height: 107%;
+}
+
+.window-buttons {
+  height: 100%;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.special-window {
+  z-index: 1;
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  border: 1px solid black;
+  overflow: visible;
 }
 
 .txt {

@@ -92,11 +92,11 @@
 
 
 @keyframes caret {
-        from,
-        to {
-            background-color: transparent;
-        }
-        50% {
-            background-color: rgb(245, 244, 244);
-        }
+    from,
+    to {
+        background-color: transparent;
     }
+    50% {
+        background-color: rgb(245, 244, 244);
+    }
+}
