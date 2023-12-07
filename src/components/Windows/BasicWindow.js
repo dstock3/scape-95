@@ -17,6 +17,10 @@ function BasicWindow({ size = { width: "650px", height: "650px" }, winId, minSta
         zIndex: 2
     }), [isMaximized, size]);
 
+    const windowBodyStyle = useMemo(() => ({
+        height: isMaximized ? 'calc(100% - 25px)' : `calc(${size.height} - 25px)`,
+    }), [isMaximized, size]);
+
     const handleMouseDown = (event) => {
         if (!isMaximized) {
             setDragStart({ x: event.clientX, y: event.clientY });
@@ -56,20 +60,18 @@ function BasicWindow({ size = { width: "650px", height: "650px" }, winId, minSta
     return (
         <div 
             className={`basic-window ${minState ? 'hidden' : ''}`} 
-            id={winId}
+            id={winId} 
             ref={windowRef} 
             style={windowStyle}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
         >
-            <div className="window-top" 
-                 onMouseDown={handleMouseDown}
-                 onMouseMove={handleMouseMove}
-                 onDoubleClick={toggleMaximize}
-            >
+            <div className="window-top" onDoubleClick={toggleMaximize}>
                 <div className="window-title">{winTitle}</div>
                 <WindowsButtons min={min} max={toggleMaximize} close={close} />
             </div>
-            <div className="window-body" style={{ height: `calc(${size.height} - 25px)` }}>
+            <div className="window-body" style={windowBodyStyle}>
                 {contents}
             </div>
         </div>
