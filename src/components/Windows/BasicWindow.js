@@ -4,16 +4,15 @@ import '../../style/window.css'
 import WindowsButtons from './WindowsButtons'
 
 function BasicWindow({size, winId, minState, close, isClicked, min, winTitle, contents}) {
-    let defaultWidth
-    let defaultHeight
+    const [defaultWidth, setDefaultWidth] = useState("650px")
+    const [defaultHeight, setDefaultHeight] = useState("650px")
 
-    if (size) {
-        defaultWidth = size.width
-        defaultHeight = size.height
-    } else {
-        defaultWidth = "650px"
-        defaultHeight ="650px"
-    }
+    useEffect(()=> {
+        if (size) {
+            setDefaultWidth(size.width)
+            setDefaultHeight(size.height)
+        } 
+    }, [])
 
     const [isMoved, setMoved] = useState(false)
     const parentRef = useRef(false)
@@ -21,7 +20,6 @@ function BasicWindow({size, winId, minState, close, isClicked, min, winTitle, co
     useEffect(()=> {
         let win = document.getElementById(winId)
         parentRef.current = win.parentElement
-
     }, [])
 
     let defStyle = useRef({

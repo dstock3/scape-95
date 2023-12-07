@@ -98,7 +98,6 @@ function Main({setStartup}) {
                         <DesktopIcon open={openComp} shortcutId={comp.shortcutId} shortcutIconId={`${comp.shortcutId}-icon`} imgSrc={compIcon} shortcut={comp.shortcut}/>
                     } 
                     
-                    
                     slotTwo={
                         <DesktopIcon open={openDoc} shortcutId={doc.shortcutId} shortcutIconId={`${doc.shortcutId}-icon`} imgSrc={docIcon} shortcut={doc.shortcut} />
                     }
@@ -233,13 +232,13 @@ function Main({setStartup}) {
                 }
                 
                 slotSeventeen={
-                    <SpecialWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
-                        <AimClient openAimWindow={openAimWindow} />
+                    <BasicWindow isClicked={aimClient.isClicked} open={openAimClient} winTitle={aimClient.shortcut} winId={`${aimClient.shortcutId}-window`} close={closeAimClient} size={{ width: "200px", height: "500px" }} position={{ left: "-700px", bottom: "500px" }} contents={
+                        <AimClient openAimWindow={openAimWindow} closeAimLoader={closeAimLoader} />
                     } />
                 }
 
                 slotEighteen={
-                    <SpecialWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "700px", height: "275px" }} position={{ left: "-1700px", bottom: "500px" }} contents={
+                    <BasicWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "700px", height: "275px" }} position={{ left: "-1700px", bottom: "500px" }} contents={
                         <AimWindow />
                     } />
                 }
