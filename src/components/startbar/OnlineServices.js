@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import '../../style/start.css'
 import {StartContext} from '../Main'
 import aimIcon from '../../assets/icons/aim.png'

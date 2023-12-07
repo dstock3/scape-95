@@ -14,10 +14,12 @@ function ProgramsMenu({isClicked, canStart, setStart}) {
     const openApps = useContext(StartContext)
 
     const openAcc = () => {
+        setOnline({...online, isClicked: false})
         setAcc({...acc, isClicked: true})
     }
 
     const openOnline = () => {
+        setAcc({...acc, isClicked: false})
         setOnline({...online, isClicked: true})
     }
 

@@ -15,7 +15,7 @@ function AccMenu({isClicked, canStart, setStart}) {
     const [accStyle, setAccStyle] = useState({
         position: "absolute",
         left: "33.5%",
-        bottom: "1000%",
+        bottom: "950%",
         borderLeft: "1px black solid",
         zIndex: "5",
         height: "fit-content",
