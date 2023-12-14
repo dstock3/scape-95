@@ -221,12 +221,13 @@ function Main({setStartup}) {
                 }
                 
                 slotFifteen={
-                    <SpecialWindow isClicked={aim.isClicked} open={openAim} winTitle={"Sign On"} winId={`${aim.shortcutId}-window`} close={closeAim} size={{ width: "250px", height: "515px" }} position={{ left: "-700px", bottom: "500px" }} contents={<AimSignIn closeAim={closeAim} openAimLoader={openAimLoader} />
+                    <SpecialWindow isClicked={aim.isClicked} open={openAim} winTitle={"Sign On"} winId={`${aim.shortcutId}-window`} close={closeAim} size={{ width: "250px", height: "515px" }} position={{ left: "-250px", bottom: "650px" }} contents={
+                        <AimSignIn closeAim={closeAim} openAimLoader={openAimLoader} />
                     } />
                 }
 
                 slotSixteen={
-                    <SpecialWindow isClicked={aimLoader.isClicked} open={openAimLoader} winTitle={"AIM-Loader"} winId={`${aimLoader.shortcutId}-window`} close={closeAimLoader} size={{ width: "250px", height: "325px" }} position={{ left: "-930px", bottom: "615px" }} contents={
+                    <SpecialWindow isClicked={aimLoader.isClicked} open={openAimLoader} winTitle={"AIM-Loader"} winId={`${aimLoader.shortcutId}-window`} close={closeAimLoader} size={{ width: "250px", height: "325px" }} position={{ left: "-500px", bottom: "750px" }} contents={
                         <AimLoader closeAimLoader={closeAimLoader} openAimClient={openAimClient} />
                     } />
                 }
