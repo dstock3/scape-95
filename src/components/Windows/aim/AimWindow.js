@@ -34,6 +34,17 @@ const AimWindow = () => {
         }
     };
 
+    const receiveMessage = () => {
+        const timestamp = new Date().toLocaleTimeString();
+        const fakeMessage = {
+            id: uuidv4(),
+            text: "This is a simulated response.",
+            sent: false,
+            time: timestamp
+        };
+        setMessages([...messages, fakeMessage]);
+    };
+
     return (
         <div className="aim-window" aria-label="Chat Window">
             <ul className="aim-menu-bar">
@@ -68,6 +79,9 @@ const AimWindow = () => {
             <div className="aim-window-button-container">
                 <button className="aim-window-button" onClick={handleSendMessage} aria-label="Send Message">
                     Send
+                </button>
+                <button className="aim-window-button" onClick={receiveMessage} aria-label="Receive Message">
+                    Receive
                 </button>
             </div>
         </div>
