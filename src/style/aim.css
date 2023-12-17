@@ -409,8 +409,8 @@
     word-break: break-word; 
 }
 
-.message span {
-    display: inline; 
+.message {
+    display: flex; 
 }
 
 .aim-input {

@@ -26,12 +26,11 @@ const AimWindow = () => {
         messageArea.scrollTop = messageArea.scrollHeight;
     }, [messages]);
 
-
     const handleSendMessage = () => {
         if (quillRef.current) {
             const quill = new Quill(quillRef.current);
-            const messageContent = quill.root.innerHTML;
-            if (messageContent.trim() !== '<p><br></p>') {
+            const messageContent = quill.getText().trim();
+            if (messageContent !== '') {
                 const timestamp = new Date().toLocaleTimeString();
                 setMessages(prevMessages => [...prevMessages, { id: uuidv4(), text: messageContent, sent: true, time: timestamp }]);
                 quill.root.innerHTML = '';
