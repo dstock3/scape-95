@@ -2,40 +2,40 @@ import React, { useState, useEffect, useRef } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
+import { v4 as uuidv4 } from 'uuid';
 
 const AimWindow = () => {
     const [messages, setMessages] = useState([]);
-    const quillRef = useRef(null); 
+    const quillRef = useRef(null);
 
     useEffect(() => {
         if (quillRef.current) {
             const quill = new Quill(quillRef.current, {
                 theme: 'snow',
                 modules: {
-                    toolbar: [['bold', 'italic', 'underline', 'link', 'image']] 
+                    toolbar: [['bold', 'italic', 'underline', 'link', 'image']]
                 },
             });
 
-            quill.on('text-change', () => {
-                setMessages([...messages, { text: quill.root.innerHTML, sent: true }]);
-            });
+            quill.focus();
         }
-    }, [quillRef, messages]);
+    }, []);
 
     const handleSendMessage = () => {
         if (quillRef.current) {
             const quill = new Quill(quillRef.current);
             const messageContent = quill.root.innerHTML;
-            if (messageContent.trim() !== '<p><br></p>') { 
+            if (messageContent.trim() !== '<p><br></p>') {
                 const timestamp = new Date().toLocaleTimeString();
-                setMessages([...messages, { text: messageContent, sent: true, time: timestamp }]);
-                quill.root.innerHTML = ''; 
+                setMessages([...messages, { id: uuidv4(), text: messageContent, sent: true, time: timestamp }]);
+                quill.root.innerHTML = '';
+                quill.focus(); 
             }
         }
     };
 
     return (
-        <div className="aim-window">
+        <div className="aim-window" aria-label="Chat Window">
             <ul className="aim-menu-bar">
                 <li className="aim-window-file-option">
                     <span style={{textDecoration: "underline"}}>F</span>ile
@@ -54,23 +54,24 @@ const AimWindow = () => {
             <hr className="aim-menu-bar-divider" />
 
             <div className="aim-message-area">
-                {messages.map((message, index) => (
-                    <div key={index} className={`message ${message.sent ? 'sent' : 'received'}`}>
+                {messages.map(message => (
+                    <div key={message.id} className={`message ${message.sent ? 'sent' : 'received'}`} aria-label={`Message sent at ${message.time}`}>
                         <span>[{message.time}] </span>
                         <span className="username">{message.sent ? 'You' : 'Friend'}: </span>
-                        <span>{message.text}</span>
+                        <div dangerouslySetInnerHTML={{ __html: message.text }}></div>
                     </div>
                 ))}
             </div>
-            <div className="aim-message-input-area">
-                <div ref={quillRef} style={{ height: 100 }}></div> 
-            </div>
+
+            <div ref={quillRef} style={{ height: 100 }}></div>
+
             <div className="aim-window-button-container">
-                <button className="aim-window-button" onClick={handleSendMessage}>Send</button>
+                <button className="aim-window-button" onClick={handleSendMessage} aria-label="Send Message">
+                    Send
+                </button>
             </div>
         </div>
     );
 };
 
 export default AimWindow;
-
