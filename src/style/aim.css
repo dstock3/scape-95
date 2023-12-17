@@ -367,7 +367,7 @@
 
 .aim-window {
     font-family: 'Arial', sans-serif;
-    background-color: #fff;
+    background-color: rgb(202, 202, 202);
     width: 700px; 
     height: 275px;
     display: flex;
@@ -376,7 +376,6 @@
 
 .aim-menu-bar {
     list-style: none;
-    background-color: #d8d8d8;
     padding: 0;
     margin: 0;
     display: flex;
@@ -385,7 +384,11 @@
 .aim-window-file-option {
     padding: 3px 8px;
     cursor: pointer;
-    border-right: 1px solid #000; 
+}
+
+.aim-window-file-option:hover {
+    background-color: rgb(26,0,195);
+    color: white;
 }
 
 .aim-window-file-option:last-child {
@@ -401,7 +404,6 @@
 }
 
 .aim-message {
-    background-color: #f0f0f0;
     margin: 0 0 10px 0;
     padding: 5px;
     word-break: break-word; 
@@ -434,8 +436,15 @@
 }
 
 .aim-message-area {
+    align-self: center;
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
+    width: 97%;
+    background-color: white;
+    border-left: black 1px solid;
+    border-top: black 1px solid;
+    border-right: white 1px solid;
+    border-bottom: white 1px solid;
+    overflow: auto;
 }
