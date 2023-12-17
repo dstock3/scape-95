@@ -410,10 +410,7 @@
 }
 
 .aim-message-input-area {
-    display: flex;
     padding: 5px;
-    border-top: 1px solid #000;
-    background-color: #f0f0f0;
 }
 
 .aim-input {
@@ -447,4 +444,10 @@
     border-right: white 1px solid;
     border-bottom: white 1px solid;
     overflow: auto;
+}
+
+.aim-window-button {
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
 }

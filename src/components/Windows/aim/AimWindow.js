@@ -62,10 +62,11 @@ const AimWindow = () => {
                     </div>
                 ))}
             </div>
-            <div className="aim-toolbar"></div>
             <div className="aim-message-input-area">
                 <div ref={quillRef} style={{ height: 100 }}></div> 
-                <button onClick={handleSendMessage}>Send</button>
+            </div>
+            <div className="aim-window-button-container">
+                <button className="aim-window-button" onClick={handleSendMessage}>Send</button>
             </div>
         </div>
     );
