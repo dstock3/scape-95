@@ -440,7 +440,7 @@
     align-self: center;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 175px;
     width: 97%;
     background-color: white;
     border-left: black 1px solid;
@@ -479,4 +479,14 @@
 
 .aim-window .ql-editor {
     background-color: white;
+}
+
+.received .username {
+    color: red;
+    font-weight: bold;
+}
+
+.sent .username {
+    color: blue;
+    font-weight: bold;
 }

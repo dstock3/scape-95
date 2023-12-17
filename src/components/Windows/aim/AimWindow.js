@@ -72,7 +72,6 @@ const AimWindow = () => {
             <div className="aim-message-area">
                 {messages.map(message => (
                     <div key={message.id} className={`message ${message.sent ? 'sent' : 'received'}`} aria-label={`Message sent at ${message.time}`}>
-                        <span>[{message.time}] </span>
                         <span className="username">{message.sent ? 'You' : 'Friend'}:</span>
                         <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
                     </div>
