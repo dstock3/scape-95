@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
@@ -21,13 +21,19 @@ const AimWindow = () => {
         }
     }, []);
 
+    useLayoutEffect(() => {
+        const messageArea = document.querySelector('.aim-message-area');
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }, [messages]);
+
+
     const handleSendMessage = () => {
         if (quillRef.current) {
             const quill = new Quill(quillRef.current);
             const messageContent = quill.root.innerHTML;
             if (messageContent.trim() !== '<p><br></p>') {
                 const timestamp = new Date().toLocaleTimeString();
-                setMessages([...messages, { id: uuidv4(), text: messageContent, sent: true, time: timestamp }]);
+                setMessages(prevMessages => [...prevMessages, { id: uuidv4(), text: messageContent, sent: true, time: timestamp }]);
                 quill.root.innerHTML = '';
                 quill.focus(); 
             }
@@ -42,7 +48,7 @@ const AimWindow = () => {
             sent: false,
             time: timestamp
         };
-        setMessages([...messages, fakeMessage]);
+        setMessages(prevMessages => [...prevMessages, fakeMessage]);
     };
 
     return (
@@ -68,8 +74,8 @@ const AimWindow = () => {
                 {messages.map(message => (
                     <div key={message.id} className={`message ${message.sent ? 'sent' : 'received'}`} aria-label={`Message sent at ${message.time}`}>
                         <span>[{message.time}] </span>
-                        <span className="username">{message.sent ? 'You' : 'Friend'}: </span>
-                        <div dangerouslySetInnerHTML={{ __html: message.text }}></div>
+                        <span className="username">{message.sent ? 'You' : 'Friend'}:</span>
+                        <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
                     </div>
                 ))}
             </div>
