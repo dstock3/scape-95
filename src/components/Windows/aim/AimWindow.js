@@ -81,9 +81,16 @@ const AimWindow = () => {
             <div ref={quillRef} style={{ height: 100 }}></div>
 
             <div className="aim-window-button-container">
+                <button className="aim-window-button" aria-label="Warn">
+                    Warn
+                </button>
+                <button className="aim-window-button" aria-label="Warn">
+                    Block
+                </button>
                 <button className="aim-window-button" onClick={handleSendMessage} aria-label="Send Message">
                     Send
                 </button>
+                {/* for testing purposes only */}
                 <button className="aim-window-button" onClick={receiveMessage} aria-label="Receive Message">
                     Receive
                 </button>

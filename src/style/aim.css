@@ -214,6 +214,11 @@
     border-top: black 1px solid;
 }
 
+.aim-menu-bar-divider {
+    width: 99%;
+    margin-block-start: .25em;
+}
+
 .aim-client-banner {
     height: 75%;
     display: flex;
@@ -368,8 +373,8 @@
 .aim-window {
     font-family: 'Arial', sans-serif;
     background-color: rgb(202, 202, 202);
-    width: 700px; 
-    height: 275px;
+    width: 550px; 
+    height: 350px;
     display: flex;
     flex-direction: column;
 }
@@ -379,6 +384,7 @@
     padding: 0;
     margin: 0;
     display: flex;
+    font-size: .85em;
 }
 
 .aim-window-file-option {
@@ -391,8 +397,8 @@
     color: white;
 }
 
-.aim-window-file-option:last-child {
-    border-right: none;
+.aim-toolbar {
+    border:rgb(126, 125, 125) 2px solid;
 }
 
 .aim-chat-area {
