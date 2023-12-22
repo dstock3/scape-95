@@ -487,6 +487,10 @@
     background-color: white;
 }
 
+.typing-indicator {
+    font-size: .75em;
+}
+
 .received .username {
     color: red;
     font-weight: bold;
