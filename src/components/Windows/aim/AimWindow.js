@@ -110,8 +110,11 @@ const AimWindow = () => {
 
             <div ref={quillRef} style={{ height: 100 }}></div>
 
+            <div className="typing-indicator">
+                {isTyping && <span>Friend is typing...</span>}
+            </div>
+
             <div className="aim-window-button-container">
-                {isTyping && <div className="typing-indicator">Friend is typing...</div>}
                 <button className="aim-window-button" aria-label="Warn">
                     Warn
                 </button>

@@ -489,6 +489,12 @@
 }
 
 .typing-indicator {
+    display: flex;
+    justify-content: flex-end;
+    height: 25px;
+}
+
+.typing-indicator span {
     font-size: .75em;
 }
 
