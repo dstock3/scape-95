@@ -239,7 +239,7 @@ function Main({setStartup}) {
                 }
 
                 slotEighteen={
-                    <BasicWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "550px", height: "375px" }} position={{ left: "-1700px", bottom: "500px" }} contents={
+                    <BasicWindow isClicked={aimWindow.isClicked} open={openAimWindow} winTitle={aimWindow.shortcut} winId={`${aimWindow.shortcutId}-window`} close={closeAimWindow} size={{ width: "550px", height: "425px" }} position={{ left: "-1700px", bottom: "500px" }} contents={
                         <AimWindow />
                     } />
                 }

@@ -115,7 +115,7 @@ const AimWindow = () => {
                 <button className="aim-window-button" aria-label="Warn">
                     Warn
                 </button>
-                <button className="aim-window-button" aria-label="Warn">
+                <button className="aim-window-button" aria-label="Block">
                     Block
                 </button>
                 <button className="aim-window-button" onClick={handleSendMessage} aria-label="Send Message">
