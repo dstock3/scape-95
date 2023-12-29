@@ -148,7 +148,7 @@ function Main({setStartup}) {
                 }
                 slotFour={
                     <BasicWindow isClicked={cli.isClicked} open={openCli} winTitle={cli.shortcut} winId={'cli'} min={minCli} minState={cli.isMin} close={closeCli} contents={
-                        <Terminal openApps={openApps}/>
+                        <Terminal openApps={openApps} closeCli={closeCli} />
                     } />
                 }
 

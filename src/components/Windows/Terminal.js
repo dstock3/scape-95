@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import '../../style/terminal.css';
 
-function Terminal({ openApps, winState }) {
+function Terminal({ openApps, winState, closeCli }) {
     const [dir, setDir] = useState(`C:\\SCAPE-95>`);
     const [dirInput, setDirInput] = useState("");
     const [dirArray, setDirArray] = useState([]);
@@ -25,6 +25,10 @@ function Terminal({ openApps, winState }) {
                 setCaret("caret-active");
                 return false;
             },
+            'exit': () => {
+                closeCli();
+                return false;
+            }
         };
         
         let commandAdded = false;
@@ -46,7 +50,7 @@ function Terminal({ openApps, winState }) {
         }
         setCaret("caret-active");
         setDirInput("");
-    }, [dirInput, openApps, dir]);
+    }, [dirInput, openApps, dir, closeCli]);
     
     const changeHandler = useCallback((e) => {
         setCaret("caret-inactive");
