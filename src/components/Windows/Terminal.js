@@ -9,32 +9,45 @@ function Terminal({ openApps, winState }) {
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        let check = false;
-        for (let prop in openApps) {
-            if (dirInput === prop) {
-                check = true;
-                openApps[prop]();
-            } else if (dirInput === "cd ..") {
-                check = true;
+        const commands = {
+            'cd ..': () => {
                 setCaret("caret-active");
                 setDir(`C:\\>`);
-            } else if (dirInput === "cd") {
-                check = true;
+                return true;
+            },
+            'cd': () => {
                 setCaret("caret-active");
                 setDir(`C:\\SCAPE-95>`);
-            }
-        }
-        if (!check) {
+                return true;
+            },
+            'clear': () => {
+                setDirArray([]);
+                setCaret("caret-active");
+                return false;
+            },
+        };
+        
+        let commandAdded = false;
+        if (dirInput in openApps) {
+            openApps[dirInput]();
             setCaret("caret-active");
-            setDirArray([...dirArray, { key: (dirArray.length + 1), path: dir, content: dirInput }, { key: (dirArray.length + 2), path: "", content: "command not recognized" }]);
-            setDirInput("");
-        } else {
-            setCaret("caret-active");
-            setDirArray([...dirArray, { key: (dirArray.length + 1), path: dir, content: dirInput }]);
-            setDirInput("");
+            commandAdded = true;
+        } else if (dirInput in commands) {
+            commandAdded = commands[dirInput]();
         }
-    }, [dirInput, openApps, dir, dirArray]);
-
+    
+        if (commandAdded) {
+            setDirArray(prevArray => [...prevArray, { key: prevArray.length + 1, path: dir, content: dirInput }]);
+        } else if (dirInput !== 'clear') {
+            setCaret("caret-active");
+            setDirArray(prevArray => [...prevArray, 
+                                      { key: prevArray.length + 1, path: dir, content: dirInput }, 
+                                      { key: prevArray.length + 2, path: "", content: "command not recognized" }]);
+        }
+        setCaret("caret-active");
+        setDirInput("");
+    }, [dirInput, openApps, dir]);
+    
     const changeHandler = useCallback((e) => {
         setCaret("caret-inactive");
         setDirInput(e.target.value);
