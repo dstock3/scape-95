@@ -1,69 +1,65 @@
-import {useState, useCallback} from 'react'
+import { useState, useCallback } from 'react';
 
 function useWindow(minWin, setMinWin, newId, shortcutName, newShortcutId) {
+  const selectController = useCallback((obj) => {
+    let found = false;
+    const newArray = minWin.map(item => {
+      if (item.value === obj.value) {
+        found = true;
+        return { ...obj }; 
+      } else {
+        return { ...item, className: "" }; 
+      }
+    });
+    if (!found) {
+      newArray.push({ ...obj });
+    }
+    return newArray;
+  }, [minWin]);
 
-    const selectController = useCallback((obj) => {
-        let newArray = minWin
-        let check = false
-        for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].value === obj.value) {
-                newArray.splice(i, 1, obj)
-                check = true 
-            } else {
-                newArray[i].className = ""
-            }
-        }
-        if (!check) {
-            newArray.push(obj)
-        }
-        
-        return newArray
-    }, [minWin])
+  const minHelper = useCallback((shortcutValue) => {
+    return minWin.map(item => {
+      if (item.value === shortcutValue && item.className === "selected") {
+        return { ...item, className: "" };
+      }
+      return { ...item }; 
+    });
+  }, [minWin]);
 
-    const minHelper = useCallback((shortcutValue) => {
-        let newArray = minWin
-        for (let i = 0; i < newArray.length; i++) {
-            if ((newArray[i].value === shortcutValue) && (newArray[i].className === "selected")) {
-                newArray[i].className = ""
-            }
-        }
-        return newArray
-    }, [minWin])
+  const closeHelper = useCallback((shortcutValue) => {
+    return minWin.filter(item => item.value !== shortcutValue);
+  }, [minWin]);
 
-    const closeHelper = useCallback((shortcutValue) => {
-        let newArray = minWin
-        for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].value === shortcutValue) {
-                newArray.splice(i, 1)
-            }
-        }
-        return newArray
-    }, [minWin])
+  const [winState, setWinState] = useState({
+    shortcut: shortcutName,
+    shortcutId: newShortcutId,
+    isClicked: false,
+    isRightClicked: false,
+    isMin: false
+  });
 
-    const [window, setWindow] = useState({shortcut: shortcutName, shortcutId: newShortcutId, isClicked: false, isRightClicked: false, isMin: false})
+  const openWindow = useCallback(() => {
+    setWinState(prev => ({ ...prev, isClicked: true, isMin: false }));
+    const windowObj = {
+      id: newId,
+      value: winState.shortcut,
+      open: openWindow, 
+      className: "selected"
+    };
+    setMinWin(selectController(windowObj));
+  }, [winState, minWin, newId, selectController, setMinWin]);
 
-    const openWindow = useCallback(() => {
-        setWindow({ ...window, isClicked: true, isMin: false})
-        let windowObj = {
-            id: newId,
-            value: window.shortcut,
-            open: openWindow,
-            className: "selected"
-        }
-        setMinWin(selectController(windowObj)) 
-    }, [window, minWin])
+  const closeWindow = useCallback(() => {
+    setWinState(prev => ({ ...prev, isClicked: false, isMin: false }));
+    setMinWin(closeHelper(winState.shortcut));
+  }, [winState, closeHelper, setMinWin]);
 
-    const closeWindow = useCallback(() => {
-        setWindow({...window, isClicked: false, isMin: false})
-        setMinWin(closeHelper(window.shortcut));
-    }, [window, minWin])
+  const minWindow = useCallback(() => {
+    setWinState(prev => ({ ...prev, isClicked: true, isMin: true }));
+    setMinWin(minHelper(winState.shortcut));
+  }, [winState, minHelper, setMinWin]);
 
-    const minWindow = useCallback(() => {
-        setWindow({ ...window, isClicked: true, isMin: true})
-        setMinWin(minHelper(window.shortcut))
-    }, [window, minWin])
-
-    return [window, setWindow, openWindow, closeWindow, minWindow]
+  return [winState, setWinState, openWindow, closeWindow, minWindow];
 }
 
-export default useWindow
+export default useWindow;

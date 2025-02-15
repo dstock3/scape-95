@@ -45,8 +45,8 @@ function Terminal({ openApps, winState, closeCli }) {
         } else if (dirInput !== 'clear') {
             setCaret("caret-active");
             setDirArray(prevArray => [...prevArray, 
-                                      { key: prevArray.length + 1, path: dir, content: dirInput }, 
-                                      { key: prevArray.length + 2, path: "", content: "command not recognized" }]);
+                { key: prevArray.length + 1, path: dir, content: dirInput }, 
+                { key: prevArray.length + 2, path: "", content: "command not recognized" }]);
         }
         setCaret("caret-active");
         setDirInput("");
