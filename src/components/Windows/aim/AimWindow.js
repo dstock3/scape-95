@@ -25,75 +25,76 @@ const autoResponses = [
 const AimWindow = () => {
     const [messages, setMessages] = useState([]);
     const quillRef = useRef(null);
+    const quillInstance = useRef(null); // Store the persistent Quill instance
     const [isTyping, setIsTyping] = useState(false);
     const [nextResponseIndex, setNextResponseIndex] = useState(0);
 
     useEffect(() => {
-        if (quillRef.current) {
-            const quill = new Quill(quillRef.current, {
+        if (quillRef.current && !quillInstance.current) {
+            quillInstance.current = new Quill(quillRef.current, {
                 theme: 'snow',
                 modules: {
                     toolbar: [['bold', 'italic', 'underline', 'link', 'image']]
                 },
             });
-
-            quill.focus();
+            quillInstance.current.focus();
         }
     }, []);
 
     useLayoutEffect(() => {
         const messageArea = document.querySelector('.aim-message-area');
-        messageArea.scrollTop = messageArea.scrollHeight;
+        if (messageArea) {
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
     }, [messages]);
 
     const handleSendMessage = () => {
-        if (quillRef.current) {
-            const quill = new Quill(quillRef.current);
-            const messageContent = quill.getText().trim();
+        if (quillInstance.current) {
+            const messageContent = quillInstance.current.getText().trim();
             if (messageContent !== '') {
                 const timestamp = new Date().toLocaleTimeString();
-                setMessages(prevMessages => [...prevMessages, { id: uuidv4(), text: messageContent, sent: true, time: timestamp }]);
-                quill.root.innerHTML = '';
-                quill.focus(); 
+                setMessages(prevMessages => [
+                    ...prevMessages, 
+                    { id: uuidv4(), text: messageContent, sent: true, time: timestamp }
+                ]);
+                quillInstance.current.root.innerHTML = '';
+                quillInstance.current.focus();
             }
         }
-
         setTimeout(() => {
             receiveAutomatedResponse();
-        }, 500); 
+        }, 500);
     };
 
     const receiveAutomatedResponse = () => {
         setIsTyping(true);
-    
         setTimeout(() => {
-            setIsTyping(false); 
+            setIsTyping(false);
             const fakeMessage = {
                 id: uuidv4(),
                 text: autoResponses[nextResponseIndex],
                 sent: false,
                 time: new Date().toLocaleTimeString()
             };
-    
             setMessages(prevMessages => [...prevMessages, fakeMessage]);
-            setNextResponseIndex((prevIndex) => (prevIndex + 1) % autoResponses.length); 
-        }, 500); 
+            setNextResponseIndex((prevIndex) => (prevIndex + 1) % autoResponses.length);
+        }, 500);
     };
 
     return (
         <div className="aim-window" aria-label="Chat Window">
             <ul className="aim-menu-bar">
                 <li className="aim-window-file-option">
-                    <span style={{textDecoration: "underline"}}>F</span>ile
+                    <span style={{ textDecoration: "underline" }}>F</span>ile
                 </li>
                 <li className="aim-window-file-option">
-                    <span style={{textDecoration: "underline"}}>E</span>dit
+                    <span style={{ textDecoration: "underline" }}>E</span>dit
                 </li>
                 <li className="aim-window-file-option">
-                    <span style={{textDecoration: "underline"}}>I</span>nsert
+                    <span style={{ textDecoration: "underline" }}>I</span>nsert
                 </li>
                 <li className="aim-window-file-option">
-                    <span style={{textDecoration: "underline"}}>P</span>eople
+                    <span style={{ textDecoration: "underline" }}>P</span>eople
                 </li>
             </ul>
 
@@ -101,7 +102,11 @@ const AimWindow = () => {
 
             <div className="aim-message-area">
                 {messages.map(message => (
-                    <div key={message.id} className={`message ${message.sent ? 'sent' : 'received'}`} aria-label={`Message sent at ${message.time}`}>
+                    <div 
+                        key={message.id} 
+                        className={`message ${message.sent ? 'sent' : 'received'}`} 
+                        aria-label={`Message sent at ${message.time}`}
+                    >
                         <span className="username">{message.sent ? 'You' : 'Friend'}:</span>
                         <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
                     </div>
@@ -121,14 +126,13 @@ const AimWindow = () => {
                 <button className="aim-window-button" aria-label="Block">
                     Block
                 </button>
-                <button className="aim-window-button" onClick={handleSendMessage} aria-label="Send Message">
+                <button 
+                    className="aim-window-button" 
+                    onClick={handleSendMessage} 
+                    aria-label="Send Message"
+                >
                     Send
                 </button>
-                {/* for testing purposes only 
-                    <button className="aim-window-button" onClick={receiveMessage} aria-label="Receive Message">
-                        Receive
-                    </button>
-                */}
             </div>
         </div>
     );
