@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useMemo, useRef, useCallback } from 'react';
 import ContactListHead from './ContactListHead';
 import ContactListItem from './ContactListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ const AimClient = ({ openAimWindow }) => {
     }, [openAimWindow]);
 
     const [selectedList, setSelectedList] = useState('buddies'); 
-    
+
     const [lists, setLists] = useState({
         buddies: { status: 'open' },
         family: { status: 'closed' },
@@ -21,7 +21,7 @@ const AimClient = ({ openAimWindow }) => {
         offline: { status: 'open' }
     });
 
-    const handleListSelection = (listType) => {
+    const handleListSelection = useCallback((listType) => {
         setSelectedList(listType);
         setLists(prevLists => ({
             ...prevLists,
@@ -30,7 +30,7 @@ const AimClient = ({ openAimWindow }) => {
                 status: prevLists[listType].status === 'open' ? 'closed' : 'open'
             }
         }));
-    };
+    }, []);
 
     const [buddies, setBuddies] = useState([
         { name: 'StarGazer91', status: 'online', away: false, idle: false },
@@ -77,7 +77,7 @@ const AimClient = ({ openAimWindow }) => {
         doorCloseAudioRef.current = new Audio(doorCloseSound);
     }, []);
 
-    const randomlyChangeStatus = (contacts, statusToChange, newStatus, soundEffect) => {
+    const randomlyChangeStatus = useCallback((contacts, statusToChange, newStatus, soundEffect) => {
         const eligibleContacts = contacts.filter(contact => contact.status === statusToChange);
         if (eligibleContacts.length > 0) {
             const randomIndex = Math.floor(Math.random() * eligibleContacts.length);
@@ -89,11 +89,11 @@ const AimClient = ({ openAimWindow }) => {
                 return contact;
             });
         }
-        return contacts; 
-    };
+        return contacts;
+    }, []);
 
-    const randomlySignOn = () => {
-        const randomGroup = Math.floor(Math.random() * 3); 
+    const randomlySignOn = useCallback(() => {
+        const randomGroup = Math.floor(Math.random() * 3);
         if (randomGroup === 0) {
             setBuddies(b => randomlyChangeStatus(b, 'offline', 'online', doorOpenAudioRef));
         } else if (randomGroup === 1) {
@@ -101,10 +101,10 @@ const AimClient = ({ openAimWindow }) => {
         } else {
             setCoworkers(c => randomlyChangeStatus(c, 'offline', 'online', doorOpenAudioRef));
         }
-    };
-    
-    const randomlySignOff = () => {
-        const randomGroup = Math.floor(Math.random() * 3); 
+    }, [randomlyChangeStatus]);
+
+    const randomlySignOff = useCallback(() => {
+        const randomGroup = Math.floor(Math.random() * 3);
         if (randomGroup === 0) {
             setBuddies(b => randomlyChangeStatus(b, 'online', 'offline', doorCloseAudioRef));
         } else if (randomGroup === 1) {
@@ -112,33 +112,32 @@ const AimClient = ({ openAimWindow }) => {
         } else {
             setCoworkers(c => randomlyChangeStatus(c, 'online', 'offline', doorCloseAudioRef));
         }
-    };
+    }, [randomlyChangeStatus]);
 
     useEffect(() => {
-        const signOnInterval = setInterval(randomlySignOn, 70000); 
+        const signOnInterval = setInterval(randomlySignOn, 70000);
         const signOffInterval = setInterval(randomlySignOff, 15000);
-    
+
         return () => {
             clearInterval(signOnInterval);
             clearInterval(signOffInterval);
         };
-    }, []);
-    
+    }, [randomlySignOn, randomlySignOff]);
+
     return (
         <div className="aim-client-container">
             <div className="aim-client-header">
                 <div className="aim-client-options">
                     <div className="aim-client-option my-aim-option">
-                        <span style={{textDecoration: "underline"}}>M</span>y AIM
+                        <span style={{ textDecoration: "underline" }}>M</span>y AIM
                     </div>
                     <div className="aim-client-option people-option">
-                        <span style={{textDecoration: "underline"}}>P</span>eople
+                        <span style={{ textDecoration: "underline" }}>P</span>eople
                     </div>
                     <div className="aim-client-option help-option">
-                        <span style={{textDecoration: "underline"}}>H</span>elp
+                        <span style={{ textDecoration: "underline" }}>H</span>elp
                     </div>
                 </div>
-
                 <hr className="aim-client-hr" />
                 <div className="aim-client-banner">
                     <img className="aim-client-banner-img" src="https://picsum.photos/150/66" alt="aim-client-banner" />
@@ -189,7 +188,6 @@ const AimClient = ({ openAimWindow }) => {
                                 selectedList={selectedList}
                                 onClick={() => handleListSelection('coworkers')}
                             />
-
                             {lists.coworkers.status === 'open' && (
                                 <ContactListItem className="coworkers-list" contactList={coworkers} />
                             )}                            
@@ -221,31 +219,31 @@ const AimClient = ({ openAimWindow }) => {
                     <div className="aim-footer-img-container">
                         <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="IM icon" />
                         <div className="aim-footer-description">
-                            <span style={{textDecoration: "underline"}}>I</span>M
+                            <span style={{ textDecoration: "underline" }}>I</span>M
                         </div>
                     </div>
                     <div className="aim-footer-img-container">
                         <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Chat Icon" />
                         <div className="aim-footer-description">
-                            <span style={{textDecoration: "underline"}}>C</span>hat
+                            <span style={{ textDecoration: "underline" }}>C</span>hat
                         </div>
                     </div>
                     <div className="aim-footer-img-container">
                         <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Info icon" />
                         <div className="aim-footer-description">
-                            <span style={{textDecoration: "underline"}}>I</span>nfo
+                            <span style={{ textDecoration: "underline" }}>I</span>nfo
                         </div>
                     </div>
                     <div className="aim-footer-img-container">
                         <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Away icon" />
                         <div className="aim-footer-description">
-                            <span style={{textDecoration: "underline"}}>A</span>way
+                            <span style={{ textDecoration: "underline" }}>A</span>way
                         </div>
                     </div>
                     <div className="aim-footer-img-container">
                         <img className="aim-footer-img" src="https://picsum.photos/25/25" alt="Setup icon" />
                         <div className="aim-footer-description">
-                            <span style={{textDecoration: "underline"}}>S</span>etup
+                            <span style={{ textDecoration: "underline" }}>S</span>etup
                         </div>
                     </div>
                 </div>
