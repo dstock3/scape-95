@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
@@ -8,8 +8,8 @@ import blueSkyWalkerResponses from '../../../assets/aim/aim_scripts/BlueSkyWalke
 import starGazer91Responses from '../../../assets/aim/aim_scripts/StarGazer91.json';
 
 const characterResponses = {
-    BlueSkyWalker: blueSkyWalkerResponses,
-    StarGazer91: starGazer91Responses,
+  BlueSkyWalker: blueSkyWalkerResponses,
+  StarGazer91: starGazer91Responses,
 };
 
 const AimWindow = () => {
@@ -20,26 +20,7 @@ const AimWindow = () => {
   const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
   const [nextResponseIndex, setNextResponseIndex] = useState(0);
 
-  useEffect(() => {
-    if (quillRef.current && !quillInstance.current) {
-      quillInstance.current = new Quill(quillRef.current, {
-        theme: 'snow',
-        modules: {
-          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
-        },
-      });
-      quillInstance.current.focus();
-    }
-  }, []);
-
-  useLayoutEffect(() => {
-    const messageArea = document.querySelector('.aim-message-area');
-    if (messageArea) {
-      messageArea.scrollTop = messageArea.scrollHeight;
-    }
-  }, [messages]);
-
-  const handleSendMessage = () => {
+  const handleSendMessage = useCallback(() => {
     if (quillInstance.current) {
       const messageContent = quillInstance.current.getText().trim();
       if (messageContent !== '') {
@@ -52,13 +33,44 @@ const AimWindow = () => {
         quillInstance.current.focus();
       }
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    if (quillRef.current && !quillInstance.current) {
+      quillInstance.current = new Quill(quillRef.current, {
+        theme: 'snow',
+        modules: {
+          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
+        },
+      });
+      quillInstance.current.focus();
+
+      // Attach a keydown listener to quill's root
+      const editor = quillInstance.current.root;
+      const handleKeyDown = (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          handleSendMessage();
+        }
+      };
+      editor.addEventListener("keydown", handleKeyDown);
+      return () => {
+        editor.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [handleSendMessage]);
+
+  useLayoutEffect(() => {
+    const messageArea = document.querySelector('.aim-message-area');
+    if (messageArea) {
+      messageArea.scrollTop = messageArea.scrollHeight;
+    }
+  }, [messages]);
 
   useEffect(() => {
     if (messages.length === 0) return;
     const lastMessage = messages[messages.length - 1];
     if (lastMessage.sent) {
-
       const timer = setTimeout(() => {
         receiveAutomatedResponse();
       }, 300);
