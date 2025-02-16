@@ -14,8 +14,8 @@ function BasicWindow({
 }) {
   const windowRef = useRef(null);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const dragStartRef = useRef({ x: 0, y: 0 });
 
   const windowStyle = useMemo(() => ({
     position: "fixed",
@@ -23,40 +23,38 @@ function BasicWindow({
     left: isMaximized ? "0" : "50px", 
     width: isMaximized ? "100%" : size.width,
     height: isMaximized ? "100%" : size.height,
-    zIndex: 2
+    zIndex: 2,
   }), [isMaximized, size]);
 
   const windowBodyStyle = useMemo(() => ({
     height: isMaximized ? 'calc(100% - 25px)' : `calc(${size.height} - 25px)`,
   }), [isMaximized, size]);
 
-  const handleMouseDown = useCallback((event) => {
-    if (!isMaximized) {
-      setDragStart({ x: event.clientX, y: event.clientY });
-      setIsDragging(true);
-    }
-  }, [isMaximized]);
-
   const handleMouseMove = useCallback((event) => {
-    if (isDragging) {
-      const currentX = event.clientX;
-      const currentY = event.clientY;
-      const dx = currentX - dragStart.x;
-      const dy = currentY - dragStart.y;
-
-      if (windowRef.current) {
-        const currentTop = windowRef.current.offsetTop;
-        const currentLeft = windowRef.current.offsetLeft;
-        windowRef.current.style.top = `${currentTop + dy}px`;
-        windowRef.current.style.left = `${currentLeft + dx}px`;
-      }
-      setDragStart({ x: currentX, y: currentY });
+    if (windowRef.current) {
+      const { x, y } = dragStartRef.current;
+      const dx = event.clientX - x;
+      const dy = event.clientY - y;
+      windowRef.current.style.top = `${windowRef.current.offsetTop + dy}px`;
+      windowRef.current.style.left = `${windowRef.current.offsetLeft + dx}px`;
+      dragStartRef.current = { x: event.clientX, y: event.clientY };
     }
-  }, [isDragging, dragStart]);
+  }, []);
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
-  }, []);
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+  }, [handleMouseMove]);
+
+  const handleMouseDown = useCallback((event) => {
+    if (!isMaximized) {
+      dragStartRef.current = { x: event.clientX, y: event.clientY };
+      setIsDragging(true);
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+  }, [isMaximized, handleMouseMove, handleMouseUp]);
 
   const toggleMaximize = useCallback(() => {
     setIsMaximized(prev => !prev);
@@ -73,8 +71,6 @@ function BasicWindow({
       ref={windowRef} 
       style={windowStyle}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
     >
       <div className="window-top" onDoubleClick={toggleMaximize}>
         <div className="window-title">{winTitle}</div>
