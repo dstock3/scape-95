@@ -1,0 +1,27 @@
+[
+    {
+      "name": "MamaBear2020",
+      "status": "offline",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "PapaWolf",
+      "status": "online",
+      "away": true,
+      "idle": false
+    },
+    {
+      "name": "JuniorJaguar",
+      "status": "online",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "BabyKoala",
+      "status": "idle",
+      "away": false,
+      "idle": true
+    }
+  ]
+  

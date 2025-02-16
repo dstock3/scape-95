@@ -1,0 +1,33 @@
+[
+    {
+      "name": "StarGazer91",
+      "status": "online",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "BlueSkyWalker",
+      "status": "online",
+      "away": true,
+      "idle": false
+    },
+    {
+      "name": "PixelPirate",
+      "status": "idle",
+      "away": false,
+      "idle": true
+    },
+    {
+      "name": "DigitalDruid",
+      "status": "offline",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "NeonNinja",
+      "status": "online",
+      "away": false,
+      "idle": false
+    }
+  ]
+  

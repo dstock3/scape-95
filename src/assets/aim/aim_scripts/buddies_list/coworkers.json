@@ -1,0 +1,33 @@
+[
+    {
+      "name": "CodeMaster",
+      "status": "online",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "BugHunter",
+      "status": "online",
+      "away": true,
+      "idle": false
+    },
+    {
+      "name": "DesignDiva",
+      "status": "offline",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "AgileAce",
+      "status": "offline",
+      "away": false,
+      "idle": false
+    },
+    {
+      "name": "DynamoDev",
+      "status": "idle",
+      "away": false,
+      "idle": true
+    }
+  ]
+  

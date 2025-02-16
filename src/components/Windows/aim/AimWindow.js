@@ -4,138 +4,145 @@ import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
 import { v4 as uuidv4 } from 'uuid';
 
-const autoResponses = [
-    "Hey there! How can I help you today?",
-    "Interesting point! I never thought about it that way.",
-    "That's really cool. Tell me more!",
-    "Oh wow, I didn't know that. Thanks for sharing!",
-    "Haha, that's pretty funny! 😂",
-    "Hmm, I'm not sure about that. Do you have more info?",
-    "Can you elaborate on that a bit more?",
-    "I'm here if you need to talk.",
-    "That sounds exciting! Have any pictures or links to share?",
-    "I'm a bit confused. Can you explain that again?",
-    "Let's change the topic. Got any plans for the weekend?",
-    "I totally agree with you on that.",
-    "Sorry, I was away for a moment. What did I miss?",
-    "I think you're right. It's important to consider all perspectives.",
-    "That's a tough question. Let me think about it for a second."
-];
+import blueSkyWalkerResponses from '../../../assets/aim/aim_scripts/BlueSkyWalker.json';
+import starGazer91Responses from '../../../assets/aim/aim_scripts/StarGazer91.json';
+
+const characterResponses = {
+    BlueSkyWalker: blueSkyWalkerResponses,
+    StarGazer91: starGazer91Responses,
+};
 
 const AimWindow = () => {
-    const [messages, setMessages] = useState([]);
-    const quillRef = useRef(null);
-    const quillInstance = useRef(null); 
-    const [isTyping, setIsTyping] = useState(false);
-    const [nextResponseIndex, setNextResponseIndex] = useState(0);
+  const [messages, setMessages] = useState([]);
+  const quillRef = useRef(null);
+  const quillInstance = useRef(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
+  const [nextResponseIndex, setNextResponseIndex] = useState(0);
 
-    useEffect(() => {
-        if (quillRef.current && !quillInstance.current) {
-            quillInstance.current = new Quill(quillRef.current, {
-                theme: 'snow',
-                modules: {
-                    toolbar: [['bold', 'italic', 'underline', 'link', 'image']]
-                },
-            });
-            quillInstance.current.focus();
-        }
-    }, []);
+  useEffect(() => {
+    if (quillRef.current && !quillInstance.current) {
+      quillInstance.current = new Quill(quillRef.current, {
+        theme: 'snow',
+        modules: {
+          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
+        },
+      });
+      quillInstance.current.focus();
+    }
+  }, []);
 
-    useLayoutEffect(() => {
-        const messageArea = document.querySelector('.aim-message-area');
-        if (messageArea) {
-            messageArea.scrollTop = messageArea.scrollHeight;
-        }
-    }, [messages]);
+  useLayoutEffect(() => {
+    const messageArea = document.querySelector('.aim-message-area');
+    if (messageArea) {
+      messageArea.scrollTop = messageArea.scrollHeight;
+    }
+  }, [messages]);
 
-    const handleSendMessage = () => {
-        if (quillInstance.current) {
-            const messageContent = quillInstance.current.getText().trim();
-            if (messageContent !== '') {
-                const timestamp = new Date().toLocaleTimeString();
-                setMessages(prevMessages => [
-                    ...prevMessages, 
-                    { id: uuidv4(), text: messageContent, sent: true, time: timestamp }
-                ]);
-                quillInstance.current.root.innerHTML = '';
-                quillInstance.current.focus();
-            }
-        }
-        setTimeout(() => {
-            receiveAutomatedResponse();
-        }, 500);
-    };
+  const handleSendMessage = () => {
+    if (quillInstance.current) {
+      const messageContent = quillInstance.current.getText().trim();
+      if (messageContent !== '') {
+        const timestamp = new Date().toLocaleTimeString();
+        setMessages(prev => [
+          ...prev,
+          { id: uuidv4(), text: messageContent, sent: true, time: timestamp },
+        ]);
+        quillInstance.current.root.innerHTML = '';
+        quillInstance.current.focus();
+      }
+    }
+  };
 
-    const receiveAutomatedResponse = () => {
-        setIsTyping(true);
-        setTimeout(() => {
-            setIsTyping(false);
-            const fakeMessage = {
-                id: uuidv4(),
-                text: autoResponses[nextResponseIndex],
-                sent: false,
-                time: new Date().toLocaleTimeString()
-            };
-            setMessages(prevMessages => [...prevMessages, fakeMessage]);
-            setNextResponseIndex((prevIndex) => (prevIndex + 1) % autoResponses.length);
-        }, 500);
-    };
+  useEffect(() => {
+    if (messages.length === 0) return;
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage.sent) {
 
-    return (
-        <div className="aim-window" aria-label="Chat Window">
-            <ul className="aim-menu-bar">
-                <li className="aim-window-file-option">
-                    <span style={{ textDecoration: "underline" }}>F</span>ile
-                </li>
-                <li className="aim-window-file-option">
-                    <span style={{ textDecoration: "underline" }}>E</span>dit
-                </li>
-                <li className="aim-window-file-option">
-                    <span style={{ textDecoration: "underline" }}>I</span>nsert
-                </li>
-                <li className="aim-window-file-option">
-                    <span style={{ textDecoration: "underline" }}>P</span>eople
-                </li>
-            </ul>
+      const timer = setTimeout(() => {
+        receiveAutomatedResponse();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [messages]);
 
-            <hr className="aim-menu-bar-divider" />
+  const receiveAutomatedResponse = () => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setIsTyping(false);
+      const responses = characterResponses[currentCharacter] || [];
+      const responseText =
+        responses.length > 0
+          ? responses[nextResponseIndex]
+          : "I'm not sure how to respond to that.";
+      const fakeMessage = {
+        id: uuidv4(),
+        text: responseText,
+        sent: false,
+        time: new Date().toLocaleTimeString(),
+      };
+      setMessages(prev => [...prev, fakeMessage]);
+      setNextResponseIndex(prev => (prev + 1) % responses.length);
+    }, 300);
+  };
 
-            <div className="aim-message-area">
-                {messages.map(message => (
-                    <div 
-                        key={message.id} 
-                        className={`message ${message.sent ? 'sent' : 'received'}`} 
-                        aria-label={`Message sent at ${message.time}`}
-                    >
-                        <span className="username">{message.sent ? 'You' : 'Friend'}:</span>
-                        <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
-                    </div>
-                ))}
-            </div>
+  return (
+    <div className="aim-window" aria-label="Chat Window">
+      <ul className="aim-menu-bar">
+        <li className="aim-window-file-option">
+          <span style={{ textDecoration: 'underline' }}>F</span>ile
+        </li>
+        <li className="aim-window-file-option">
+          <span style={{ textDecoration: 'underline' }}>E</span>dit
+        </li>
+        <li className="aim-window-file-option">
+          <span style={{ textDecoration: 'underline' }}>I</span>nsert
+        </li>
+        <li className="aim-window-file-option">
+          <span style={{ textDecoration: 'underline' }}>P</span>eople
+        </li>
+      </ul>
 
-            <div ref={quillRef} style={{ height: 100 }}></div>
+      <hr className="aim-menu-bar-divider" />
 
-            <div className="typing-indicator">
-                {isTyping && <span>Friend is typing...</span>}
-            </div>
+      <div className="aim-message-area">
+        {messages.map(message => (
+          <div
+            key={message.id}
+            className={`message ${message.sent ? 'sent' : 'received'}`}
+            aria-label={`Message sent at ${message.time}`}
+          >
+            <span className="username">
+              {message.sent ? 'You' : currentCharacter}:
+            </span>
+            <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
+          </div>
+        ))}
+      </div>
 
-            <div className="aim-window-button-container">
-                <button className="aim-window-button" aria-label="Warn">
-                    Warn
-                </button>
-                <button className="aim-window-button" aria-label="Block">
-                    Block
-                </button>
-                <button 
-                    className="aim-window-button" 
-                    onClick={handleSendMessage} 
-                    aria-label="Send Message"
-                >
-                    Send
-                </button>
-            </div>
-        </div>
-    );
+      <div ref={quillRef} style={{ height: 100 }}></div>
+
+      <div className="typing-indicator">
+        {isTyping && <span>{currentCharacter} is typing...</span>}
+      </div>
+
+      <div className="aim-window-button-container">
+        <button className="aim-window-button" aria-label="Warn">
+          Warn
+        </button>
+        <button className="aim-window-button" aria-label="Block">
+          Block
+        </button>
+        <button
+          className="aim-window-button"
+          onClick={handleSendMessage}
+          aria-label="Send Message"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default AimWindow;
