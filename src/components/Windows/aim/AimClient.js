@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import ContactListHead from './ContactListHead';
 import ContactListItem from './ContactListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,32 +15,21 @@ const AimClient = ({ openAimWindow }) => {
     const [selectedList, setSelectedList] = useState('buddies'); 
     
     const [lists, setLists] = useState({
-        buddies: {
-            status: 'open'
-        },
-        family: {
-            status: 'closed'
-
-        },
-        coworkers: {
-            status: 'closed'
-        },
-        offline: {
-            status: 'open'
-        }
+        buddies: { status: 'open' },
+        family: { status: 'closed' },
+        coworkers: { status: 'closed' },
+        offline: { status: 'open' }
     });
 
     const handleListSelection = (listType) => {
         setSelectedList(listType);
-        setLists(prevLists => {
-            return {
-                ...prevLists,
-                [listType]: {
-                    ...prevLists[listType],
-                    status: prevLists[listType].status === 'open' ? 'closed' : 'open'
-                }
-            };
-        });
+        setLists(prevLists => ({
+            ...prevLists,
+            [listType]: {
+                ...prevLists[listType],
+                status: prevLists[listType].status === 'open' ? 'closed' : 'open'
+            }
+        }));
     };
 
     const [buddies, setBuddies] = useState([
@@ -66,26 +55,18 @@ const AimClient = ({ openAimWindow }) => {
         { name: 'DynamoDev', status: 'idle', away: false, idle: true }
     ]);
 
-    const [offline, setOffline] = useState(null);
-
-    useEffect(() => {
+    const offline = useMemo(() => {
         const offlineContacts = [];
-        buddies.forEach((contact) => {
-            if (contact.status === 'offline') {
-                offlineContacts.push(contact);
-            }
+        buddies.forEach(contact => {
+            if (contact.status === 'offline') offlineContacts.push(contact);
         });
-        family.forEach((contact) => {
-            if (contact.status === 'offline') {
-                offlineContacts.push(contact);
-            }
+        family.forEach(contact => {
+            if (contact.status === 'offline') offlineContacts.push(contact);
         });
-        coworkers.forEach((contact) => {
-            if (contact.status === 'offline') {
-                offlineContacts.push(contact);
-            }
+        coworkers.forEach(contact => {
+            if (contact.status === 'offline') offlineContacts.push(contact);
         });
-        setOffline(offlineContacts);
+        return offlineContacts;
     }, [buddies, family, coworkers]);
 
     const doorOpenAudioRef = useRef(null);
@@ -222,15 +203,13 @@ const AimClient = ({ openAimWindow }) => {
                             </div>
                             {offline && offline.length > 0 && (
                                 <ul className="offline-list">
-                                    {offline.map((contact, index) => {
-                                        return (
-                                            <li className="contact-list-item" key={index}>
-                                                <div className="contact-list-item-name-container">
-                                                    <span className="contact-list-item-name">{contact.name}</span>
-                                                </div>
-                                            </li>
-                                        )
-                                    })}
+                                    {offline.map((contact, index) => (
+                                        <li className="contact-list-item" key={index}>
+                                            <div className="contact-list-item-name-container">
+                                                <span className="contact-list-item-name">{contact.name}</span>
+                                            </div>
+                                        </li>
+                                    ))}
                                 </ul>
                             )}   
                         </div>

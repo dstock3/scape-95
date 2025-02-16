@@ -25,7 +25,7 @@ const autoResponses = [
 const AimWindow = () => {
     const [messages, setMessages] = useState([]);
     const quillRef = useRef(null);
-    const quillInstance = useRef(null); // Store the persistent Quill instance
+    const quillInstance = useRef(null); 
     const [isTyping, setIsTyping] = useState(false);
     const [nextResponseIndex, setNextResponseIndex] = useState(0);
 
