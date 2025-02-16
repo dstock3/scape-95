@@ -7,6 +7,14 @@ import '../../../style/aim.css';
 import doorOpenSound from '../../../assets/aim/doorOpen.mp3';
 import doorCloseSound from '../../../assets/aim/doorClose.mp3';
 
+const normalizeContacts = (contacts) => {
+  return contacts.map(contact => ({
+    away: false,
+    idle: false,
+    ...contact,
+  }));
+};
+
 const AimClient = ({ openAimWindow }) => {
     useEffect(() => {
         openAimWindow();
@@ -32,28 +40,28 @@ const AimClient = ({ openAimWindow }) => {
         }));
     }, []);
 
-    const [buddies, setBuddies] = useState([
+    const [buddies, setBuddies] = useState(normalizeContacts([
         { name: 'StarGazer91', status: 'online', away: false, idle: false },
         { name: 'BlueSkyWalker', status: 'online', away: true, idle: false },
         { name: 'PixelPirate', status: 'idle', away: false, idle: true },
         { name: 'DigitalDruid', status: 'offline', away: false, idle: false },
         { name: 'NeonNinja', status: 'online', away: false, idle: false }
-    ]);
+    ]));
     
-    const [family, setFamily] = useState([
+    const [family, setFamily] = useState(normalizeContacts([
         { name: 'MamaBear2020', status: 'offline', away: false, idle: false },
         { name: 'PapaWolf', status: 'online', away: true, idle: false },
         { name: 'JuniorJaguar', status: 'online', away: false, idle: false },
         { name: 'BabyKoala', status: 'idle', away: false, idle: true }
-    ]);
+    ]));
     
-    const [coworkers, setCoworkers] = useState([
+    const [coworkers, setCoworkers] = useState(normalizeContacts([
         { name: 'CodeMaster', status: 'online', away: false, idle: false },
         { name: 'BugHunter', status: 'online', away: true, idle: false },
         { name: 'DesignDiva', status: 'offline', away: false, idle: false },
-        { name: 'AgileAce', status: 'offline', away: false },
+        { name: 'AgileAce', status: 'offline', away: false, idle: false },
         { name: 'DynamoDev', status: 'idle', away: false, idle: true }
-    ]);
+    ]));
 
     const offline = useMemo(() => {
         const offlineContacts = [];
@@ -117,13 +125,13 @@ const AimClient = ({ openAimWindow }) => {
     useEffect(() => {
         const signOnInterval = setInterval(randomlySignOn, 70000);
         const signOffInterval = setInterval(randomlySignOff, 15000);
-
+    
         return () => {
             clearInterval(signOnInterval);
             clearInterval(signOffInterval);
         };
     }, [randomlySignOn, randomlySignOff]);
-
+    
     return (
         <div className="aim-client-container">
             <div className="aim-client-header">
