@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import blueSkyWalkerResponses from '../../../assets/aim/aim_scripts/BlueSkyWalker.json';
 import starGazer91Responses from '../../../assets/aim/aim_scripts/StarGazer91.json';
 import { UserContext } from '../../../context/UserContext';
+import imrcvSound from '../../../assets/aim/imrcv.wav';
 
 const characterResponses = {
   BlueSkyWalker: blueSkyWalkerResponses,
@@ -21,6 +22,11 @@ const AimWindow = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
   const [nextResponseIndex, setNextResponseIndex] = useState(0);
+
+  const imReceivedAudioRef = useRef(null);
+  useEffect(() => {
+    imReceivedAudioRef.current = new Audio(imrcvSound);
+  }, []);
 
   const handleSendMessage = useCallback(() => {
     if (quillInstance.current) {
@@ -46,7 +52,6 @@ const AimWindow = () => {
         },
       });
       quillInstance.current.focus();
-
       const editor = quillInstance.current.root;
       const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -83,6 +88,9 @@ const AimWindow = () => {
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
+      if (imReceivedAudioRef.current) {
+        imReceivedAudioRef.current.play();
+      }
       const responses = characterResponses[currentCharacter] || [];
       const responseText =
         responses.length > 0
