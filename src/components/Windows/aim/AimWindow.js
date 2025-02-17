@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import blueSkyWalkerResponses from '../../../assets/aim/aim_scripts/BlueSkyWalker.json';
 import starGazer91Responses from '../../../assets/aim/aim_scripts/StarGazer91.json';
-import { UserContext } from '../../../context/UserContext'
+import { UserContext } from '../../../context/UserContext';
 
 const characterResponses = {
   BlueSkyWalker: blueSkyWalkerResponses,
@@ -22,26 +22,6 @@ const AimWindow = () => {
   const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
   const [nextResponseIndex, setNextResponseIndex] = useState(0);
 
-  useEffect(() => {
-    if (quillRef.current && !quillInstance.current) {
-      quillInstance.current = new Quill(quillRef.current, {
-        theme: 'snow',
-        modules: {
-          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
-        },
-      });
-      quillInstance.current.focus();
-      // (Optional) Bind Enter key here if needed.
-    }
-  }, []);
-
-  useLayoutEffect(() => {
-    const messageArea = document.querySelector('.aim-message-area');
-    if (messageArea) {
-      messageArea.scrollTop = messageArea.scrollHeight;
-    }
-  }, [messages]);
-
   const handleSendMessage = useCallback(() => {
     if (quillInstance.current) {
       const messageContent = quillInstance.current.getText().trim();
@@ -56,6 +36,37 @@ const AimWindow = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (quillRef.current && !quillInstance.current) {
+      quillInstance.current = new Quill(quillRef.current, {
+        theme: 'snow',
+        modules: {
+          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
+        },
+      });
+      quillInstance.current.focus();
+
+      const editor = quillInstance.current.root;
+      const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleSendMessage();
+        }
+      };
+      editor.addEventListener('keydown', handleKeyDown);
+      return () => {
+        editor.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [handleSendMessage]);
+
+  useLayoutEffect(() => {
+    const messageArea = document.querySelector('.aim-message-area');
+    if (messageArea) {
+      messageArea.scrollTop = messageArea.scrollHeight;
+    }
+  }, [messages]);
 
   useEffect(() => {
     if (messages.length === 0) return;
