@@ -19,6 +19,8 @@ const normalizeContacts = (contacts) =>
   }));
 
 const AimClient = ({ openAimWindow }) => {
+  const randomStatusEnabled = false;
+
   useEffect(() => {
     openAimWindow();
   }, [openAimWindow]);
@@ -107,6 +109,7 @@ const AimClient = ({ openAimWindow }) => {
   }, [randomlyChangeStatus]);
 
   useEffect(() => {
+    if (!randomStatusEnabled) return;
     const signOnInterval = setInterval(randomlySignOn, 70000);
     const signOffInterval = setInterval(randomlySignOff, 15000);
 
@@ -114,7 +117,7 @@ const AimClient = ({ openAimWindow }) => {
       clearInterval(signOnInterval);
       clearInterval(signOffInterval);
     };
-  }, [randomlySignOn, randomlySignOff]);
+  }, [randomlySignOn, randomlySignOff, randomStatusEnabled]);
 
   return (
     <div className="aim-client-container">
@@ -180,7 +183,7 @@ const AimClient = ({ openAimWindow }) => {
               />
               {lists.coworkers.status === 'open' && (
                 <ContactListItem className="coworkers-list" contactList={coworkers} />
-              )}
+              )}                            
             </div>
             <div className="aim-client-list-container offline-list-container">
               <div className="offline-list-header">

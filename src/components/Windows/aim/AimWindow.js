@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef, useLayoutEffect, useCallback, useContext } from 'react';
+import React, { 
+  useState, useEffect, useRef, useLayoutEffect, useCallback, useContext 
+} from 'react';
+import ReactDOM from 'react-dom';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
@@ -22,8 +25,10 @@ const AimWindow = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
   const [nextResponseIndex, setNextResponseIndex] = useState(0);
-
   const imReceivedAudioRef = useRef(null);
+  
+  const aimContainerRef = useRef(null);
+
   useEffect(() => {
     imReceivedAudioRef.current = new Audio(imrcvSound);
   }, []);
@@ -67,9 +72,11 @@ const AimWindow = () => {
   }, [handleSendMessage]);
 
   useLayoutEffect(() => {
-    const messageArea = document.querySelector('.aim-message-area');
-    if (messageArea) {
-      messageArea.scrollTop = messageArea.scrollHeight;
+    if (aimContainerRef.current) {
+      const messageArea = aimContainerRef.current.querySelector('.aim-message-area');
+      if (messageArea) {
+        messageArea.scrollTop = messageArea.scrollHeight;
+      }
     }
   }, [messages]);
 
@@ -108,7 +115,7 @@ const AimWindow = () => {
   };
 
   return (
-    <div className="aim-window" aria-label="Chat Window">
+    <div className="aim-window" ref={aimContainerRef} aria-label="Chat Window">
       <ul className="aim-menu-bar">
         <li className="aim-window-file-option">
           <span style={{ textDecoration: 'underline' }}>F</span>ile
