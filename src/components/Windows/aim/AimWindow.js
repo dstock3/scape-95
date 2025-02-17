@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect, useCallback, useContext } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import blueSkyWalkerResponses from '../../../assets/aim/aim_scripts/BlueSkyWalker.json';
 import starGazer91Responses from '../../../assets/aim/aim_scripts/StarGazer91.json';
+import { UserContext } from '../../../context/UserContext'
 
 const characterResponses = {
   BlueSkyWalker: blueSkyWalkerResponses,
@@ -13,12 +14,33 @@ const characterResponses = {
 };
 
 const AimWindow = () => {
+  const { userName } = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const quillRef = useRef(null);
   const quillInstance = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
   const [nextResponseIndex, setNextResponseIndex] = useState(0);
+
+  useEffect(() => {
+    if (quillRef.current && !quillInstance.current) {
+      quillInstance.current = new Quill(quillRef.current, {
+        theme: 'snow',
+        modules: {
+          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
+        },
+      });
+      quillInstance.current.focus();
+      // (Optional) Bind Enter key here if needed.
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    const messageArea = document.querySelector('.aim-message-area');
+    if (messageArea) {
+      messageArea.scrollTop = messageArea.scrollHeight;
+    }
+  }, [messages]);
 
   const handleSendMessage = useCallback(() => {
     if (quillInstance.current) {
@@ -34,38 +56,6 @@ const AimWindow = () => {
       }
     }
   }, []);
-
-  useEffect(() => {
-    if (quillRef.current && !quillInstance.current) {
-      quillInstance.current = new Quill(quillRef.current, {
-        theme: 'snow',
-        modules: {
-          toolbar: [['bold', 'italic', 'underline', 'link', 'image']],
-        },
-      });
-      quillInstance.current.focus();
-
-      // Attach a keydown listener to quill's root
-      const editor = quillInstance.current.root;
-      const handleKeyDown = (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          handleSendMessage();
-        }
-      };
-      editor.addEventListener("keydown", handleKeyDown);
-      return () => {
-        editor.removeEventListener("keydown", handleKeyDown);
-      };
-    }
-  }, [handleSendMessage]);
-
-  useLayoutEffect(() => {
-    const messageArea = document.querySelector('.aim-message-area');
-    if (messageArea) {
-      messageArea.scrollTop = messageArea.scrollHeight;
-    }
-  }, [messages]);
 
   useEffect(() => {
     if (messages.length === 0) return;
@@ -125,7 +115,7 @@ const AimWindow = () => {
             aria-label={`Message sent at ${message.time}`}
           >
             <span className="username">
-              {message.sent ? 'You' : currentCharacter}:
+              {message.sent ? userName || 'You' : currentCharacter}:
             </span>
             <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
           </div>

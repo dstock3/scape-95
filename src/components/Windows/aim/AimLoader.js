@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../../context/UserContext';
 import '../../../style/aim.css'; 
 import aimSignInImg from '../../../assets/aim/aim-sign-in.png'; 
 
 const AimLoader = ({ closeAimLoader, openAimClient }) => {
+  const { userName } = useContext(UserContext);
   const [loadingStep, setLoadingStep] = useState(1);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const AimLoader = ({ closeAimLoader, openAimClient }) => {
     ];
 
     return () => timers.forEach(timer => clearTimeout(timer));
-  }, []);
+  }, [closeAimLoader, openAimClient]);
 
   const renderLoadingMessage = () => {
     switch (loadingStep) {
@@ -38,7 +40,9 @@ const AimLoader = ({ closeAimLoader, openAimClient }) => {
             <img src={aimSignInImg} alt="AIM Logo" className="aim-logo" />
         </div>
         <hr className="aim-hr" />
-        <div className="aim-screenname">Screen Name</div>
+        <div className="aim-screenname">
+          {userName ? `Logging in as ${userName}` : 'Screen Name'}
+        </div>
         <div className="aim-loading-message">{renderLoadingMessage()}</div>
         <div className="aim-buttons-container">
             <button className="aim-cancel-btn" onClick={closeAimLoader}>Cancel</button>

@@ -4,6 +4,7 @@ import Main from './components/Main';
 import Loading from './components/Startup/Loading';
 import SafeMode from './components/Startup/SafeMode';
 import Terminal from './components/Windows/Terminal';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   const [startup, setStartup] = useState("start");
@@ -20,17 +21,18 @@ function App() {
       component = <Terminal winState="full" />;
       break;
     case "start":
-      component = <Main setStartup={setStartup} />
+      component = <Main setStartup={setStartup} />;
       break;
-
     default:
       component = <Main setStartup={setStartup} />;
   }
 
   return (
-    <div className="App">
-      {component}
-    </div>
+    <UserProvider>
+      <div className="App">
+        {component}
+      </div>
+    </UserProvider>
   );
 }
 export default App;

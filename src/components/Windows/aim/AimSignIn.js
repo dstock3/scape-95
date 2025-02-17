@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../../../context/UserContext'
 import '../../../style/aim.css'; 
 import aimSignInImg from '../../../assets/aim/aim-sign-in.png'; 
 import keyImg from '../../../assets/aim/aim-key.svg';
 
 const AimSignIn = ({ closeAim, openAimLoader }) => {
-    const [username, setUsername] = useState('');
+    const { setUserName } = useContext(UserContext);
+    const [username, setUsernameLocal] = useState('');
     const [password, setPassword] = useState('');
     const [savePassword, setSavePassword] = useState(false);
     const [autoLogin, setAutoLogin] = useState(false);
 
     const handleSignIn = () => {
+        setUserName(username);
         openAimLoader();
         closeAim();
     };
@@ -30,7 +33,7 @@ const AimSignIn = ({ closeAim, openAimLoader }) => {
                     placeholder="Screen Name"
                     value={username}
                     className="aim-input"
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setUsernameLocal(e.target.value)}
                 />
                 <a href="#" className="aim-link">Get a Screen Name</a>
                 <label className="aim-label password-label">Password</label>
