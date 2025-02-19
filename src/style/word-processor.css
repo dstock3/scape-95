@@ -92,7 +92,7 @@
 .wp-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 58vh;
     background: #c0c0c0;
     font-family: 'MS Sans Serif', Arial, sans-serif;
     border: 2px outset #fff;
