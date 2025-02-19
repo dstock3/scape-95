@@ -69,7 +69,7 @@ function Main({ setStartup }) {
     useWindow(minWin, setMinWin, 20, "AIM-Loader", "aimLoader"),
     useWindow(minWin, setMinWin, 21, "AIM-Client", "aimClient"),
     useWindow(minWin, setMinWin, 22, "AIM", "aimWindow"),
-    useWindow(minWin, setMinWin, 23, "Word Processor", "wordProc")
+    useWindow(minWin, setMinWin, 23, "Word", "wordProc")
   ];
 
   const windows = {
@@ -95,7 +95,7 @@ function Main({ setStartup }) {
     aimLoader: { state: windowHooks[19][0], setState: windowHooks[19][1], open: windowHooks[19][2], close: windowHooks[19][3], minState: windowHooks[19][4], title: "AIM-Loader" },
     aimClient: { state: windowHooks[20][0], setState: windowHooks[20][1], open: windowHooks[20][2], close: windowHooks[20][3], minState: windowHooks[20][4], title: "AIM-Client" },
     aimWindow: { state: windowHooks[21][0], setState: windowHooks[21][1], open: windowHooks[21][2], close: windowHooks[21][3], minState: windowHooks[21][4], title: "AIM" },
-    wordProc: { state: windowHooks[22][0], setState: windowHooks[22][1], open: windowHooks[22][2], close: windowHooks[22][3], minState: windowHooks[22][4], title: "Word Processor" },
+    wordProc: { state: windowHooks[22][0], setState: windowHooks[22][1], open: windowHooks[22][2], close: windowHooks[22][3], minState: windowHooks[22][4], title: "Word" },
   };
 
   const openApps = {
@@ -164,11 +164,7 @@ function Main({ setStartup }) {
               contents={<Internet />}
             />
           }
-        />
-
-        <Col 
-          colId="two"
-          slotOne={
+          slotFive={
             <DesktopIcon
               open={windows.wordProc.open}
               shortcutId={windows.wordProc.state.shortcutId}
@@ -178,6 +174,8 @@ function Main({ setStartup }) {
             />
           }
         />
+
+        <Col colId="two" />
         <Col colId="three" />
         <Col colId="four" />
         <Col colId="five" />

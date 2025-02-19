@@ -1,0 +1,72 @@
+.word-processor {
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    background: #c0c0c0;
+    border: 2px outset #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .wp-menu-bar {
+    background: #000080;
+    color: #fff;
+    padding: 2px 5px;
+  }
+  
+  .wp-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .wp-menu-item {
+    margin-right: 15px;
+    cursor: default;
+  }
+  
+  .wp-toolbar {
+    background: #e0e0e0;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #808080;
+  }
+  
+  .wp-button {
+    font-family: inherit;
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 2px 4px;
+    border: 1px solid #808080;
+    background: #d4d0c8;
+    cursor: pointer;
+  }
+  
+  .wp-button:hover {
+    background: #c8c0b4;
+  }
+  
+  .wp-spacer {
+    flex: 1;
+  }
+  
+  .wp-editor {
+    flex: 1;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    border: none;
+    resize: none;
+    outline: none;
+  }
+  
+  .wp-status-bar {
+    background: #c0c0c0;
+    border-top: 1px solid #808080;
+    padding: 2px 5px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
