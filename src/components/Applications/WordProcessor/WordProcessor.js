@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../../../style/word-processor.css'
+import '../../../style/word-processor.css';
+import Clippy from './Clippy';
 
 const WordProcessor = () => {
   const [content, setContent] = useState("-");
@@ -7,10 +8,36 @@ const WordProcessor = () => {
   const [fontSize, setFontSize] = useState("10");
   const [line, setLine] = useState(1);
   const [col, setCol] = useState(1);
+  const [showClippy, setShowClippy] = useState(false);
+
+  const fontOptions = [
+    "Times New Roman",
+    "Arial",
+    "Courier New",
+    "Verdana",
+    "Georgia",
+    "Palatino",
+    "Garamond",
+    "Comic Sans MS",
+    "Impact",
+    "Lucida Console",
+    "Tahoma",
+    "Trebuchet MS",
+    "Helvetica",
+    "Calibri",
+    "Cambria",
+    "Book Antiqua",
+    "Candara",
+    "Century Gothic",
+    "Franklin Gothic Medium",
+    "Gill Sans",
+    "Lucida Sans Unicode",
+  ];
+
+  const fontSizes = [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30];
 
   const handleChange = (e) => {
     setContent(e.target.value);
-
   };
 
   return (
@@ -34,7 +61,12 @@ const WordProcessor = () => {
           <li className="wp-menu-item"><span>T</span>ools</li>
           <li className="wp-menu-item"><span>T</span>able</li>
           <li className="wp-menu-item"><span>W</span>indow</li>
-          <li className="wp-menu-item"><span>H</span>elp</li>
+          <li 
+            className="wp-menu-item"
+            onClick={() => setShowClippy(true)}
+          >
+            <span>H</span>elp
+          </li>
         </ul>
       </div>
 
@@ -58,17 +90,22 @@ const WordProcessor = () => {
           value={font}
           onChange={(e) => setFont(e.target.value)}
         >
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Arial">Arial</option>
+          {fontOptions.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
         </select>
         <select
           className="wp-select"
           value={fontSize}
           onChange={(e) => setFontSize(e.target.value)}
         >
-          <option value="10">10 pt</option>
-          <option value="12">12 pt</option>
-          <option value="14">14 pt</option>
+          {fontSizes.map((size) => (
+            <option key={size} value={size}>
+              {size} pt
+            </option>
+          ))}
         </select>
         <button className="wp-btn" title="Bold"><b>B</b></button>
         <button className="wp-btn" title="Italic"><i>I</i></button>
@@ -92,12 +129,16 @@ const WordProcessor = () => {
         <div className="wp-ruler-marker" style={{ left: "1in" }}></div>
       </div>
 
-      <textarea
-        className="wp-editor"
-        value={content}
-        onChange={handleChange}
-        spellCheck="false"
-      />
+      <div className="wp-editor-container">
+        <textarea
+          className="wp-editor"
+          value={content}
+          onChange={handleChange}
+          spellCheck="false"
+          style={{ fontFamily: font, fontSize: `${fontSize}pt` }}
+        />
+        {showClippy && <Clippy />}
+      </div>
 
       <div className="wp-status-bar">
         <span>Page 1, Section 1</span>
