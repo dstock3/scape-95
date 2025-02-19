@@ -3,6 +3,8 @@ import '../../style/start.css'
 import accIcon from '../../assets/icons/programs.png'
 import netIcon from '../../assets/icons/internet.png'
 import dosIcon from '../../assets/icons/dos.png'
+import wordProcIcon from '../../assets/icons/wordProcessor.png';
+
 import {StartContext} from '../Main'
 import AccMenu from './AccMenu'
 import OnlineServices from './OnlineServices'
@@ -66,7 +68,14 @@ function ProgramsMenu({isClicked, canStart, setStart}) {
                             <div className="start-item"><span style={{textDecoration: "underline"}}>S</span>tart Up</div>
                         </div>
                         <div className="start-option-arrow">▶</div>
-                    </div>             
+                    </div>
+                    <div className="start-option-container" onClick={() => openNewApp(openApps.word)}>
+                        <div className="start-option">
+                            <img src={wordProcIcon} alt="Word Processor Icon" className="start-item-icon" />
+                            <div className="start-item">Word</div>
+                        </div>
+                    </div>
+             
                     <div className="start-option-container" onClick={()=> openNewApp(openApps.internet)}>
                         <div className="start-option">
                             <img src={netIcon} id="online-programs-icon" alt="internet icon" className="start-item-icon"></img>
