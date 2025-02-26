@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../../style/word-processor.css';
 import Clippy from './Clippy';
+import wordIcon from '../../../assets/icons/wordProcessor.png';
 
 const WordProcessor = () => {
   const [content, setContent] = useState("");
@@ -43,31 +44,34 @@ const WordProcessor = () => {
   return (
     <div className="wp-container">
       <div className="wp-title-bar">
-        <div className="wp-title">Word - Document1</div>
+        <div className="wp-subcontainer">
+          <img src={wordIcon} className="wp-icon" alt="word icon"></img>
+
+          <div className="wp-menu-bar">
+            <ul className="wp-menu">
+              <li className="wp-menu-item"><span>F</span>ile</li>
+              <li className="wp-menu-item"><span>E</span>dit</li>
+              <li className="wp-menu-item"><span>V</span>iew</li>
+              <li className="wp-menu-item"><span>I</span>nsert</li>
+              <li className="wp-menu-item"><span>F</span>ormat</li>
+              <li className="wp-menu-item"><span>T</span>ools</li>
+              <li className="wp-menu-item"><span>T</span>able</li>
+              <li className="wp-menu-item"><span>W</span>indow</li>
+              <li 
+                className="wp-menu-item"
+                onClick={() => setShowClippy(true)}
+              >
+                <span>H</span>elp
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <div className="wp-window-controls">
           <button className="wp-control-button">_</button>
           <button className="wp-control-button">□</button>
           <button className="wp-control-button">X</button>
         </div>
-      </div>
-
-      <div className="wp-menu-bar">
-        <ul className="wp-menu">
-          <li className="wp-menu-item"><span>F</span>ile</li>
-          <li className="wp-menu-item"><span>E</span>dit</li>
-          <li className="wp-menu-item"><span>V</span>iew</li>
-          <li className="wp-menu-item"><span>I</span>nsert</li>
-          <li className="wp-menu-item"><span>F</span>ormat</li>
-          <li className="wp-menu-item"><span>T</span>ools</li>
-          <li className="wp-menu-item"><span>T</span>able</li>
-          <li className="wp-menu-item"><span>W</span>indow</li>
-          <li 
-            className="wp-menu-item"
-            onClick={() => setShowClippy(true)}
-          >
-            <span>H</span>elp
-          </li>
-        </ul>
       </div>
 
       <div className="wp-standard-toolbar">
