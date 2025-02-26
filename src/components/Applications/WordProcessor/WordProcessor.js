@@ -3,7 +3,7 @@ import '../../../style/word-processor.css';
 import Clippy from './Clippy';
 
 const WordProcessor = () => {
-  const [content, setContent] = useState("-");
+  const [content, setContent] = useState("");
   const [font, setFont] = useState("Times New Roman");
   const [fontSize, setFontSize] = useState("10");
   const [line, setLine] = useState(1);

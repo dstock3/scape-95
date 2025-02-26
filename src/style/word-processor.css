@@ -7,6 +7,47 @@
     height: 100%;
 }
 
+.wp-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 58vh;
+    background: #c0c0c0;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    border: 2px outset #fff;
+}
+
+.wp-title-bar {
+    background: #000080;
+    color: #fff;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wp-title {
+    font-weight: bold;
+}
+
+.wp-window-controls {
+    display: flex;
+}
+
+.wp-control-button {
+    background: #c0c0c0;
+    border: 1px solid #808080;
+    margin-left: 2px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.wp-control-button:active {
+    border: 1px inset #000;
+    background-color: #c0c0c0;
+}
+
 .wp-menu-bar {
     background: #c0c0c0;
     color: #000;
@@ -23,6 +64,11 @@
 .wp-menu-item {
     margin-right: 15px;
     cursor: default;
+}
+
+.wp-menu-item:hover {
+    background-color: #000080;
+    color: #fff;
 }
 
 .wp-menu-item span {
@@ -61,21 +107,14 @@
     position: relative;
 }
 
+/* Updated editor styling for retro inset look */
 .wp-editor {
     flex: 1;
     width: 100%;
     padding: 10px;
     font-size: 14px;
-    border: none;
-    resize: none;
-    outline: none;
-}
-
-.wp-editor {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    border: none;
+    border: 1px inset #808080;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
     resize: none;
     outline: none;
 }
@@ -87,42 +126,6 @@
     font-size: 12px;
     display: flex;
     justify-content: space-between;
-}
-
-.wp-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 58vh;
-    background: #c0c0c0;
-    font-family: 'MS Sans Serif', Arial, sans-serif;
-    border: 2px outset #fff;
-}
-
-.wp-title-bar {
-    background: #000080;
-    color: #fff;
-    padding: 2px 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.wp-title {
-    font-weight: bold;
-}
-
-.wp-window-controls {
-    display: flex;
-}
-
-.wp-control-button {
-    background: #c0c0c0;
-    border: 1px solid #808080;
-    margin-left: 2px;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    cursor: pointer;
 }
 
 .wp-standard-toolbar {
@@ -144,6 +147,7 @@
 
 .wp-btn:hover {
     background: #c8c0b4;
+    box-shadow: inset 1px 1px 2px #808080;
 }
 
 .wp-formatting-toolbar {
@@ -184,5 +188,3 @@
     height: 100%;
     border-left: 2px solid red;
 }
-
-  
