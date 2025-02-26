@@ -96,11 +96,11 @@
 }
 
 @keyframes arm-wave {
-    0% { transform: rotate(-45deg); }
-    50% { transform: rotate(-20deg); }
-    100% { transform: rotate(-45deg); }
+    0% { transform: rotate(-45deg) translate(0, 0); }
+    50% { transform: rotate(-145deg) translate(15px, 10px); }
+    100% { transform: rotate(-45deg) translate(0, 0); }
 }
 
 .clippy:hover .clippy-arm-right {
-    animation: arm-wave 0.5s ease-in-out;
+    animation: arm-wave 1.5s ease-in-out;
 }
