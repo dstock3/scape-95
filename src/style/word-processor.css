@@ -199,9 +199,10 @@
 .wp-ruler-marker {
     position: absolute;
     top: 0;
-    width: 0;
-    height: 100%;
-    border-left: 2px solid red;
+    width: 5px; 
+    height: 20px;
+    background: #e1e0e0;
+    border: 1px solid black;
 }
 
 .wp-editor::-webkit-scrollbar {
