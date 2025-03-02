@@ -178,33 +178,6 @@
     font-size: 12px;
 }
 
-.wp-ruler {
-    background: #c0c0c0;
-    padding: 2px 5px;
-    position: relative;
-    border-bottom: 1px solid #808080;
-}
-
-.wp-ruler-scale {
-    display: flex;
-}
-
-.wp-ruler-mark {
-    flex: 1;
-    text-align: center;
-    font-size: 10px;
-    color: #000;
-}
-
-.wp-ruler-marker {
-    position: absolute;
-    top: 0;
-    width: 5px; 
-    height: 20px;
-    background: #e1e0e0;
-    border: 1px solid black;
-}
-
 .wp-editor::-webkit-scrollbar {
     width: 16px;
 }
@@ -223,3 +196,33 @@
     background: #707070;
 }
 
+.wp-ruler {
+    position: relative;
+    width: 100%;
+    padding: 2px 5px;
+    border-bottom: 1px solid #808080;
+    background: #c0c0c0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.wp-ruler-scale {
+    display: grid;
+}
+
+.wp-ruler-mark {
+    text-align: center;
+    font-size: 10px;
+    color: #000;
+    border-right: 1px solid #808080;
+    box-sizing: border-box;
+}
+
+.wp-ruler-marker {
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 20px;
+    background: #e1e0e0;
+    border: 1px solid black;
+}

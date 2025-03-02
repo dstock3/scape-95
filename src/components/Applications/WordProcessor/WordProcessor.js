@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../../style/word-processor.css';
 import Clippy from './Clippy';
 import wordIcon from '../../../assets/icons/wordProcessor.png';
+import Ruler from './Ruler';
 
 const WordProcessor = () => {
   const [content, setContent] = useState("");
@@ -45,8 +46,7 @@ const WordProcessor = () => {
     <div className="wp-container">
       <div className="wp-title-bar">
         <div className="wp-subcontainer">
-          <img src={wordIcon} className="wp-icon" alt="word icon"></img>
-
+          <img src={wordIcon} className="wp-icon" alt="word icon" />
           <div className="wp-menu-bar">
             <ul className="wp-menu">
               <li className="wp-menu-item"><span>F</span>ile</li>
@@ -66,7 +66,6 @@ const WordProcessor = () => {
             </ul>
           </div>
         </div>
-
         <div className="wp-window-controls">
           <button className="wp-control-button">_</button>
           <button className="wp-control-button">□</button>
@@ -124,14 +123,7 @@ const WordProcessor = () => {
         <button className="wp-btn" title="Decrease Indent">←</button>
       </div>
 
-      <div className="wp-ruler">
-        <div className="wp-ruler-scale">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className="wp-ruler-mark">{i}</div>
-          ))}
-        </div>
-        <div className="wp-ruler-marker" style={{ left: "1in" }}></div>
-      </div>
+      <Ruler />
 
       <div className="wp-editor-container">
         <textarea
