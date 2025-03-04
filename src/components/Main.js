@@ -36,7 +36,6 @@ import aimIcon from "../assets/icons/aim.png";
 import AimLoader from './Windows/aim/AimLoader'
 import AimWindow from './Windows/aim/AimWindow'
 import WordProcessor from './Applications/WordProcessor/WordProcessor';
-import wordProcIcon from '../assets/icons/wordProcessor.png';
 
 export const StartContext = React.createContext()
 
@@ -162,15 +161,6 @@ function Main({ setStartup }) {
               imgSrc={netIcon}
               shortcut={windows.net.state.shortcut}
               contents={<Internet />}
-            />
-          }
-          slotFive={
-            <DesktopIcon
-              open={windows.wordProc.open}
-              shortcutId={windows.wordProc.state.shortcutId}
-              shortcutIconId={`${windows.wordProc.state.shortcutId}-icon`}
-              imgSrc={wordProcIcon}
-              shortcut={windows.wordProc.state.shortcut}
             />
           }
         />
