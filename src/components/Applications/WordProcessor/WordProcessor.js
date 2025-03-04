@@ -23,7 +23,7 @@ const WordProcessor = () => {
       const text = preCaretRange.toString();
       const lines = text.split('\n');
       setLine(lines.length);
-      setCol(lines[lines.length - 1].length + 1); 
+      setCol(lines[lines.length - 1].length + 1);
     }
   };
 
@@ -34,8 +34,7 @@ const WordProcessor = () => {
       }
     };
     document.addEventListener('selectionchange', handleSelectionChange);
-    return () =>
-      document.removeEventListener('selectionchange', handleSelectionChange);
+    return () => document.removeEventListener('selectionchange', handleSelectionChange);
   }, []);
 
   const handleCommand = (command, value = null) => {
@@ -49,10 +48,24 @@ const WordProcessor = () => {
     handleCommand('fontName', selectedFont);
   };
 
+  const applyFontSize = (size) => {
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    const range = selection.getRangeAt(0);
+    const span = document.createElement('span');
+    span.style.fontSize = `${size}pt`;
+    try {
+      range.surroundContents(span);
+    } catch (error) {
+      console.error("Could not apply font size:", error);
+    }
+    selection.removeAllRanges();
+  };
+
   const handleFontSizeChange = (e) => {
     const selectedSize = e.target.value;
     setFontSize(selectedSize);
-    handleCommand('fontSize', 3);
+    applyFontSize(selectedSize);
   };
 
   const saveDocument = () => {
