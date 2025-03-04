@@ -23,7 +23,7 @@ const WordProcessor = () => {
       const text = preCaretRange.toString();
       const lines = text.split('\n');
       setLine(lines.length);
-      setCol(lines[lines.length - 1].length + 1);
+      setCol(lines[lines.length - 1].length + 1); 
     }
   };
 
@@ -53,9 +53,6 @@ const WordProcessor = () => {
     const selectedSize = e.target.value;
     setFontSize(selectedSize);
     handleCommand('fontSize', 3);
-    if (editorRef.current) {
-      editorRef.current.style.fontSize = `${selectedSize}pt`;
-    }
   };
 
   const saveDocument = () => {
@@ -99,9 +96,7 @@ const WordProcessor = () => {
               <li className="wp-menu-item" onClick={saveDocument}><span>F</span>ile</li>
               <li className="wp-menu-item" onClick={clearDocument}><span>N</span>ew</li>
               <li className="wp-menu-item" onClick={loadDocument}><span>O</span>pen</li>
-              <li className="wp-menu-item" onClick={() => setShowClippy(true)}>
-                <span>H</span>elp
-              </li>
+              <li className="wp-menu-item" onClick={() => setShowClippy(true)}><span>H</span>elp</li>
             </ul>
           </div>
         </div>
@@ -122,20 +117,12 @@ const WordProcessor = () => {
       </div>
 
       <div className="wp-formatting-toolbar">
-        <select
-          className="wp-select"
-          value={font}
-          onChange={handleFontChange}
-        >
+        <select className="wp-select" value={font} onChange={handleFontChange}>
           {fontOptions.map((f) => (
             <option key={f} value={f}>{f}</option>
           ))}
         </select>
-        <select
-          className="wp-select"
-          value={fontSize}
-          onChange={handleFontSizeChange}
-        >
+        <select className="wp-select" value={fontSize} onChange={handleFontSizeChange}>
           {fontSizes.map((size) => (
             <option key={size} value={size}>{size} pt</option>
           ))}
@@ -161,7 +148,6 @@ const WordProcessor = () => {
           contentEditable="true"
           suppressContentEditableWarning={true}
           ref={editorRef}
-          style={{ fontFamily: font, fontSize: `${fontSize}pt` }}
           onInput={updateCaretPosition}
         ></div>
         {showClippy && <Clippy />}
