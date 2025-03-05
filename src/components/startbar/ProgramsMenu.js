@@ -56,10 +56,13 @@ function ProgramsMenu({isClicked, canStart, setStart}) {
                         <div className="start-option-arrow">▶</div>
                     </div>
                     <div className="start-option-container" onClick={openOnline}>
-                        <div className="start-option">
-                            <img src={accIcon} alt="online icon" className="start-item-icon"></img>
-                            <div className="start-item"><span style={{textDecoration: "underline"}}>O</span>nline Services</div>
-                        </div>
+                    <div className="start-option">
+                    <img src={accIcon} alt="online icon" className="start-item-icon" />
+                    <div className="start-item">
+                        <span className="right-align">
+                        <span style={{ textDecoration: "underline" }}>O</span>nline Services</span>
+                    </div>
+                    </div>
                         <div className="start-option-arrow">▶</div>
                     </div>
                     <div className="start-option-container">
