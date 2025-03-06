@@ -20,11 +20,6 @@ const normalizeContacts = (contacts) =>
 
 const AimClient = ({ openAimWindow }) => {
   const randomStatusEnabled = false;
-
-  useEffect(() => {
-    openAimWindow();
-  }, [openAimWindow]);
-
   const [selectedList, setSelectedList] = useState('buddies');
 
   const [lists, setLists] = useState({
