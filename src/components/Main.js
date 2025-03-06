@@ -1,43 +1,69 @@
-/* eslint-disable default-case */
-import React, { useEffect, useState } from 'react'
-import Start from './startbar/Start'
-import compIcon from "../assets/icons/mycomputer.png"
-import binIcon from "../assets/icons/bin.png"
-import docIcon from "../assets/icons/docFull.png"
-import DesktopIcon from './desktop_shortcuts/DesktopIcon'
-import netIcon from "../assets/icons/internet.png"
-import Internet from './Windows/internet/Internet'
-import '../style/main.css'
-import BasicWindow from './Windows/BasicWindow'
-import Col from '../components/Interface/Col'
-import Terminal from './Windows/Terminal'
-import Run from './Windows/Run'
-import RunError from './Windows/RunError'
-import SpecialWindow from './Windows/SpecialWindow'
-import HelpButton from './Windows/HelpButton'
-import Shutdown from './Windows/Shutdown'
-import ShutdownPortal from './ShutdownPortal'
-import Calc from './Accessories/Calc'
-import MinMaxSpec from './Windows/MinMaxSpec'
-import flopIcon from '../assets/icons/flop.png'
-import printIcon from '../assets/icons/print.png'
-import driveIcon from '../assets/icons/drive.png'
-import controlIcon from '../assets/icons/control.png'
-import useWindow from '../Hooks/useWindow'
-import noteIcon from '../assets/icons/note.png'
-import HidCol from './Interface/HidCol'
-import NotePad from './Windows/NotePad'
-import ReadMe from '../assets/text/ReadMe'
-import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper'
-import ErrorMsg from './Windows/ErrorMsg'
-import AimSignIn from './Windows/aim/AimSignIn'
-import AimClient from './Windows/aim/AimClient'
+/* eslint-disable default-case, react-hooks/rules-of-hooks */
+import React, { useEffect, useState, useMemo, useRef } from 'react';
+import Start from './startbar/Start';
+import compIcon from "../assets/icons/mycomputer.png";
+import binIcon from "../assets/icons/bin.png";
+import docIcon from "../assets/icons/docFull.png";
+import DesktopIcon from './desktop_shortcuts/DesktopIcon';
+import netIcon from "../assets/icons/internet.png";
+import Internet from './Windows/internet/Internet';
+import '../style/main.css';
+import BasicWindow from './Windows/BasicWindow';
+import Col from '../components/Interface/Col';
+import Terminal from './Windows/Terminal';
+import Run from './Windows/Run';
+import RunError from './Windows/RunError';
+import SpecialWindow from './Windows/SpecialWindow';
+import HelpButton from './Windows/HelpButton';
+import Shutdown from './Windows/Shutdown';
+import ShutdownPortal from './ShutdownPortal';
+import Calc from './Accessories/Calc';
+import MinMaxSpec from './Windows/MinMaxSpec';
+import flopIcon from '../assets/icons/flop.png';
+import printIcon from '../assets/icons/print.png';
+import driveIcon from '../assets/icons/drive.png';
+import controlIcon from '../assets/icons/control.png';
+import useWindow from '../Hooks/useWindow';
+import noteIcon from '../assets/icons/note.png';
+import HidCol from './Interface/HidCol';
+import NotePad from './Windows/NotePad';
+import ReadMe from '../assets/text/ReadMe';
+import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper';
+import ErrorMsg from './Windows/ErrorMsg';
+import AimSignIn from './Windows/aim/AimSignIn';
+import AimClient from './Windows/aim/AimClient';
 import aimIcon from "../assets/icons/aim.png"; 
-import AimLoader from './Windows/aim/AimLoader'
-import AimWindow from './Windows/aim/AimWindow'
+import AimLoader from './Windows/aim/AimLoader';
+import AimWindow from './Windows/aim/AimWindow';
 import WordProcessor from './Applications/WordProcessor/WordProcessor';
 
-export const StartContext = React.createContext()
+export const StartContext = React.createContext();
+
+const windowDefinitions = [
+  { key: "comp", id: 1, title: "My Computer" },
+  { key: "doc", id: 2, title: "My Documents" },
+  { key: "bin", id: 3, title: "Recycle Bin" },
+  { key: "net", id: 4, title: "Internet" },
+  { key: "cli", id: 5, title: "Scape-CLI Prompt" },
+  { key: "flop", id: 6, title: "3 1/2 Floppy (A:)" },
+  { key: "driveC", id: 7, title: "(C:)" },
+  { key: "control", id: 8, title: "Control Panel" },
+  { key: "print", id: 9, title: "Printers" },
+  { key: "run", id: 10, title: "Run" },
+  { key: "runError", id: 11, title: "Run Error" },
+  { key: "shutdown", id: 12, title: "Shut Down Windows" },
+  { key: "minesweeper", id: 13, title: "Minesweeper" },
+  { key: "calc", id: 14, title: "Calculator" },
+  { key: "read", id: 15, title: "readme.txt" },
+  { key: "notepad", id: 16, title: "Notepad" },
+  { key: "misc", id: 17, title: "misc.txt" },
+  { key: "err", id: 18, title: "Error" },
+  { key: "aim", id: 19, title: "Aim" },
+  { key: "aimLoader", id: 20, title: "AIM-Loader" },
+  { key: "aimClient", id: 21, title: "AIM-Client" },
+  { key: "aimWindow", id: 22, title: "AIM" },
+  { key: "wordProc", id: 23, title: "Word" },
+];
 
 function Main({ setStartup }) {
   const [minWin, setMinWin] = useState([]);
@@ -45,59 +71,29 @@ function Main({ setStartup }) {
   const [runInput, setRunInput] = useState("");
   const [help, setHelp] = useState(false);
 
-  const windowHooks = [
-    useWindow(minWin, setMinWin, 1, "My Computer", "comp"),
-    useWindow(minWin, setMinWin, 2, "My Documents", "doc"),
-    useWindow(minWin, setMinWin, 3, "Recycle Bin", "bin"),
-    useWindow(minWin, setMinWin, 4, "Internet", "net"),
-    useWindow(minWin, setMinWin, 5, "Scape-CLI Prompt", "cli"),
-    useWindow(minWin, setMinWin, 6, "3 1/2 Floppy (A:)", "flop"),
-    useWindow(minWin, setMinWin, 7, "(C:)", "driveC"),
-    useWindow(minWin, setMinWin, 8, "Control Panel", "control"),
-    useWindow(minWin, setMinWin, 9, "Printers", "print"),
-    useWindow(minWin, setMinWin, 10, "Run", "run"),
-    useWindow(minWin, setMinWin, 11, "Run Error", "runError"),
-    useWindow(minWin, setMinWin, 12, "Shut Down Windows", "shutdown"),
-    useWindow(minWin, setMinWin, 13, "Minesweeper", "minesweeper"),
-    useWindow(minWin, setMinWin, 14, "Calculator", "calc"),
-    useWindow(minWin, setMinWin, 15, "readme.txt", "read"),
-    useWindow(minWin, setMinWin, 16, "Notepad", "notepad"),
-    useWindow(minWin, setMinWin, 17, "misc.txt", "misc"),
-    useWindow(minWin, setMinWin, 18, "Error", "err"),
-    useWindow(minWin, setMinWin, 19, "Aim", "aim"),
-    useWindow(minWin, setMinWin, 20, "AIM-Loader", "aimLoader"),
-    useWindow(minWin, setMinWin, 21, "AIM-Client", "aimClient"),
-    useWindow(minWin, setMinWin, 22, "AIM", "aimWindow"),
-    useWindow(minWin, setMinWin, 23, "Word", "wordProc")
-  ];
+  const windowHooks = [];
+  for (let i = 0; i < windowDefinitions.length; i++) {
+    const def = windowDefinitions[i];
+    windowHooks.push(useWindow(minWin, setMinWin, def.id, def.title, def.key));
+  }
 
-  const windows = {
-    comp: { state: windowHooks[0][0], setState: windowHooks[0][1], open: windowHooks[0][2], close: windowHooks[0][3], minState: windowHooks[0][4], title: "My Computer" },
-    doc: { state: windowHooks[1][0], setState: windowHooks[1][1], open: windowHooks[1][2], close: windowHooks[1][3], minState: windowHooks[1][4], title: "My Documents" },
-    bin: { state: windowHooks[2][0], setState: windowHooks[2][1], open: windowHooks[2][2], close: windowHooks[2][3], minState: windowHooks[2][4], title: "Recycle Bin" },
-    net: { state: windowHooks[3][0], setState: windowHooks[3][1], open: windowHooks[3][2], close: windowHooks[3][3], minState: windowHooks[3][4], title: "Internet" },
-    cli: { state: windowHooks[4][0], setState: windowHooks[4][1], open: windowHooks[4][2], close: windowHooks[4][3], minState: windowHooks[4][4], title: "Scape-CLI Prompt" },
-    flop: { state: windowHooks[5][0], setState: windowHooks[5][1], open: windowHooks[5][2], close: windowHooks[5][3], minState: windowHooks[5][4], title: "3 1/2 Floppy (A:)" },
-    driveC: { state: windowHooks[6][0], setState: windowHooks[6][1], open: windowHooks[6][2], close: windowHooks[6][3], minState: windowHooks[6][4], title: "(C:)" },
-    control: { state: windowHooks[7][0], setState: windowHooks[7][1], open: windowHooks[7][2], close: windowHooks[7][3], minState: windowHooks[7][4], title: "Control Panel" },
-    print: { state: windowHooks[8][0], setState: windowHooks[8][1], open: windowHooks[8][2], close: windowHooks[8][3], minState: windowHooks[8][4], title: "Printers" },
-    run: { state: windowHooks[9][0], setState: windowHooks[9][1], open: windowHooks[9][2], close: windowHooks[9][3], minState: windowHooks[9][4], title: "Run" },
-    runError: { state: windowHooks[10][0], setState: windowHooks[10][1], open: windowHooks[10][2], close: windowHooks[10][3], minState: windowHooks[10][4], title: "Run Error" },
-    shutdown: { state: windowHooks[11][0], setState: windowHooks[11][1], open: windowHooks[11][2], close: windowHooks[11][3], minState: windowHooks[11][4], title: "Shut Down Windows" },
-    minesweeper: { state: windowHooks[12][0], setState: windowHooks[12][1], open: windowHooks[12][2], close: windowHooks[12][3], minState: windowHooks[12][4], title: "Minesweeper" },
-    calc: { state: windowHooks[13][0], setState: windowHooks[13][1], open: windowHooks[13][2], close: windowHooks[13][3], minState: windowHooks[13][4], title: "Calculator" },
-    read: { state: windowHooks[14][0], setState: windowHooks[14][1], open: windowHooks[14][2], close: windowHooks[14][3], minState: windowHooks[14][4], title: "readme.txt" },
-    notepad: { state: windowHooks[15][0], setState: windowHooks[15][1], open: windowHooks[15][2], close: windowHooks[15][3], minState: windowHooks[15][4], title: "Notepad" },
-    misc: { state: windowHooks[16][0], setState: windowHooks[16][1], open: windowHooks[16][2], close: windowHooks[16][3], minState: windowHooks[16][4], title: "misc.txt" },
-    err: { state: windowHooks[17][0], setState: windowHooks[17][1], open: windowHooks[17][2], close: windowHooks[17][3], minState: windowHooks[17][4], title: "Error" },
-    aim: { state: windowHooks[18][0], setState: windowHooks[18][1], open: windowHooks[18][2], close: windowHooks[18][3], minState: windowHooks[18][4], title: "Aim" },
-    aimLoader: { state: windowHooks[19][0], setState: windowHooks[19][1], open: windowHooks[19][2], close: windowHooks[19][3], minState: windowHooks[19][4], title: "AIM-Loader" },
-    aimClient: { state: windowHooks[20][0], setState: windowHooks[20][1], open: windowHooks[20][2], close: windowHooks[20][3], minState: windowHooks[20][4], title: "AIM-Client" },
-    aimWindow: { state: windowHooks[21][0], setState: windowHooks[21][1], open: windowHooks[21][2], close: windowHooks[21][3], minState: windowHooks[21][4], title: "AIM" },
-    wordProc: { state: windowHooks[22][0], setState: windowHooks[22][1], open: windowHooks[22][2], close: windowHooks[22][3], minState: windowHooks[22][4], title: "Word" },
-  };
+  const windows = useMemo(() => {
+    const map = {};
+    windowDefinitions.forEach((def, index) => {
+      const hook = windowHooks[index];
+      map[def.key] = {
+        state: hook[0],
+        setState: hook[1],
+        open: hook[2],
+        close: hook[3],
+        minState: hook[4],
+        title: def.title,
+      };
+    });
+    return map;
+  }, [windowHooks]);
 
-  const openApps = {
+  const openApps = useMemo(() => ({
     command: windows.cli.open,
     cmd: windows.cli.open,
     browser: windows.net.open,
@@ -111,18 +107,20 @@ function Main({ setStartup }) {
     calc: windows.calc.open,
     readMe: windows.read.open,
     word: windows.wordProc.open,
-  };
+  }), [windows]);
 
+  const mainRef = useRef(null);
   useEffect(() => {
-    const mainElem = document.querySelector(".main");
-    if (!windows.shutdown.state.isClicked) {
-      mainElem.style.opacity = "1";
-      mainElem.style.background = "rgb(176,196,222)";
+    if (mainRef.current && !windows.shutdown.state.isClicked) {
+      mainRef.current.style.opacity = "1";
+      mainRef.current.style.background = "rgb(176,196,222)";
     }
   }, [windows.shutdown.state.isClicked]);
 
+  const colIds = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
+
   return (
-    <div className="main">
+    <div className="main" ref={mainRef}>
       <div className="col-container">
         <Col
           colId="one"
@@ -164,20 +162,9 @@ function Main({ setStartup }) {
             />
           }
         />
-
-        <Col colId="two" />
-        <Col colId="three" />
-        <Col colId="four" />
-        <Col colId="five" />
-        <Col colId="six" />
-        <Col colId="seven" />
-        <Col colId="eight" />
-        <Col colId="nine" />
-        <Col colId="ten" />
-        <Col colId="eleven" />
-        <Col colId="twelve" />
-        <Col colId="thirteen" />
-        <Col colId="fourteen" />
+        {colIds.slice(1).map(id => (
+          <Col key={id} colId={id} />
+        ))}
       </div>
 
       <HidCol
@@ -533,3 +520,6 @@ function Main({ setStartup }) {
 }
 
 export default Main;
+
+
+
