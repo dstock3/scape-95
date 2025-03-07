@@ -135,10 +135,10 @@ const AimWindow = ({ conversation, onClose }) => {
       <hr className="aim-menu-bar-divider" />
 
       <div className="aim-message-area">
-        {messages.map(message => (
+        {messages.map((message, index) => (
           <div
             key={message.id}
-            className={`message ${message.sent ? 'sent' : 'received'}`}
+            className={`message ${message.sent ? 'sent' : 'received'} ${index === 0 ? 'first-message' : ''}`}
             aria-label={`Message sent at ${message.time}`}
           >
             <span className="username">
@@ -163,6 +163,9 @@ const AimWindow = ({ conversation, onClose }) => {
         </button>
         <button className="aim-window-button" aria-label="Block">
           Block
+        </button>
+        <button className="aim-window-button" aria-label="Get Info">
+          Get Info
         </button>
         <button
           className="aim-window-button"
