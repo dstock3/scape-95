@@ -114,17 +114,10 @@ const AimWindow = ({ conversation, onClose }) => {
     }, 300);
   };
 
-  // Determine the conversation partner's name. If conversation is provided, use its name.
   const partnerName = conversation ? conversation.name : currentCharacter;
 
   return (
     <div className="aim-window" ref={aimContainerRef} aria-label="Chat Window">
-      <div className="aim-window-header">
-        <div className="aim-window-title">
-          {conversation ? `Chat with ${conversation.name}` : `Chat with ${currentCharacter}`}
-        </div>
-        <button className="aim-window-close-btn" onClick={onClose}>Close</button>
-      </div>
       <ul className="aim-menu-bar">
         <li className="aim-window-file-option">
           <span style={{ textDecoration: 'underline' }}>F</span>ile
