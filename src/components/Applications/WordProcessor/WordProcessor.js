@@ -162,6 +162,7 @@ const WordProcessor = () => {
           suppressContentEditableWarning={true}
           ref={editorRef}
           onInput={updateCaretPosition}
+          onMouseDown={(e) => e.stopPropagation()} 
         ></div>
         {showClippy && <Clippy />}
       </div>
