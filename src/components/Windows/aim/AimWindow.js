@@ -17,7 +17,7 @@ const characterResponses = {
   StarGazer91: starGazer91Responses,
 };
 
-const AimWindow = () => {
+const AimWindow = ({ conversation, onClose }) => {
   const { userName } = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const quillRef = useRef(null);
@@ -114,8 +114,17 @@ const AimWindow = () => {
     }, 300);
   };
 
+  // Determine the conversation partner's name. If conversation is provided, use its name.
+  const partnerName = conversation ? conversation.name : currentCharacter;
+
   return (
     <div className="aim-window" ref={aimContainerRef} aria-label="Chat Window">
+      <div className="aim-window-header">
+        <div className="aim-window-title">
+          {conversation ? `Chat with ${conversation.name}` : `Chat with ${currentCharacter}`}
+        </div>
+        <button className="aim-window-close-btn" onClick={onClose}>Close</button>
+      </div>
       <ul className="aim-menu-bar">
         <li className="aim-window-file-option">
           <span style={{ textDecoration: 'underline' }}>F</span>ile
@@ -141,7 +150,7 @@ const AimWindow = () => {
             aria-label={`Message sent at ${message.time}`}
           >
             <span className="username">
-              {message.sent ? userName || 'You' : currentCharacter}:
+              {message.sent ? userName || 'You' : partnerName}:
             </span>
             <span dangerouslySetInnerHTML={{ __html: message.text }}></span>
           </div>
@@ -151,7 +160,7 @@ const AimWindow = () => {
       <div ref={quillRef} style={{ height: 100 }}></div>
 
       <div className="typing-indicator">
-        {isTyping && <span>{currentCharacter} is typing...</span>}
+        {isTyping && <span>{partnerName} is typing...</span>}
       </div>
 
       <div className="aim-window-button-container">

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import './App.css';
 import Main from './components/Main';
 import Loading from './components/Startup/Loading';
@@ -33,6 +33,3 @@ function App() {
 }
 
 export default App;
-
-
-

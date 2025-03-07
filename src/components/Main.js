@@ -465,6 +465,7 @@ function Main({ setStartup }) {
             contents={
               <AimClient
                 openAimWindow={windows.aimWindow.open}
+                setAimWindowState={windows.aimWindow.setState}
                 closeAimLoader={windows.aimLoader.close}
               />
             }
@@ -479,7 +480,12 @@ function Main({ setStartup }) {
             close={windows.aimWindow.close}
             size={{ width: "550px", height: "425px" }}
             position={{ left: "-1700px", bottom: "500px" }}
-            contents={<AimWindow />}
+            contents={
+              <AimWindow 
+                conversation={windows.aimWindow.state.contact} 
+                onClose={windows.aimWindow.close} 
+              />
+            }
           />
         }
         slotNineteen={

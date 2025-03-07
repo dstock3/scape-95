@@ -6,6 +6,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import '../../../style/aim.css';
 import doorOpenSound from '../../../assets/aim/doorOpen.mp3';
 import doorCloseSound from '../../../assets/aim/doorClose.mp3';
+import AimWindow from './AimWindow';
 
 import buddiesData from '../../../assets/aim/aim_scripts/buddies_list/buddies.json';
 import familyData from '../../../assets/aim/aim_scripts/buddies_list/family.json';
@@ -18,9 +19,10 @@ const normalizeContacts = (contacts) =>
     ...contact,
   }));
 
-const AimClient = ({ openAimWindow }) => {
+const AimClient = ({ openAimWindow, setAimWindowState, closeAimLoader }) => {
   const randomStatusEnabled = false;
   const [selectedList, setSelectedList] = useState('buddies');
+  const [activeConversation, setActiveConversation] = useState(null);
 
   const [lists, setLists] = useState({
     buddies: { status: 'open' },
@@ -114,6 +116,15 @@ const AimClient = ({ openAimWindow }) => {
     };
   }, [randomlySignOn, randomlySignOff, randomStatusEnabled]);
 
+  const handleOpenConversation = (contact) => {
+    setAimWindowState(prev => ({ ...prev, contact }));
+    openAimWindow();
+  };
+
+  const handleCloseConversation = () => {
+    setActiveConversation(null);
+  };
+
   return (
     <div className="aim-client-container">
       <div className="aim-client-header">
@@ -153,7 +164,11 @@ const AimClient = ({ openAimWindow }) => {
                 onClick={() => handleListSelection('buddies')}
               />
               {lists.buddies.status === 'open' && (
-                <ContactListItem className="buddies-list" contactList={buddies} />
+                <ContactListItem
+                  className="buddies-list"
+                  contactList={buddies}
+                  onDoubleClick={handleOpenConversation}
+                />
               )}
             </div>
             <div className="aim-client-list-container family-list-container">
@@ -165,7 +180,11 @@ const AimClient = ({ openAimWindow }) => {
                 onClick={() => handleListSelection('family')}
               />
               {lists.family.status === 'open' && (
-                <ContactListItem className="family-list" contactList={family} />
+                <ContactListItem
+                  className="family-list"
+                  contactList={family}
+                  onDoubleClick={handleOpenConversation}
+                />
               )}
             </div>
             <div className="aim-client-list-container coworkers-list-container">
@@ -177,7 +196,11 @@ const AimClient = ({ openAimWindow }) => {
                 onClick={() => handleListSelection('coworkers')}
               />
               {lists.coworkers.status === 'open' && (
-                <ContactListItem className="coworkers-list" contactList={coworkers} />
+                <ContactListItem
+                  className="coworkers-list"
+                  contactList={coworkers}
+                  onDoubleClick={handleOpenConversation}
+                />
               )}                            
             </div>
             <div className="aim-client-list-container offline-list-container">
@@ -190,7 +213,11 @@ const AimClient = ({ openAimWindow }) => {
               {offline && offline.length > 0 && (
                 <ul className="offline-list">
                   {offline.map((contact, index) => (
-                    <li className="contact-list-item" key={index}>
+                    <li
+                      className="contact-list-item"
+                      key={index}
+                      onDoubleClick={() => handleOpenConversation(contact)}
+                    >
                       <div className="contact-list-item-name-container">
                         <span className="contact-list-item-name">{contact.name}</span>
                       </div>
@@ -239,6 +266,12 @@ const AimClient = ({ openAimWindow }) => {
           <img className="aim-client-footer-banner-img" src="https://picsum.photos/190/40" alt="aim-client-footer-banner" />
         </div>
       </div>
+      {activeConversation && (
+        <AimWindow
+          conversation={activeConversation}
+          onClose={handleCloseConversation}
+        />
+      )}
     </div>
   );
 };
