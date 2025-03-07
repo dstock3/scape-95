@@ -208,7 +208,7 @@
     margin-left: 10px 
 }
 
-.aim-client-hr , .aim-menu-bar-divider {
+.aim-client-hr , .aim-menu-bar-divider, .aim-menu-bar-bottom-divider {
     width: 95%;
     border-bottom: white 2px solid;
     border-top: black 1px solid;
@@ -216,6 +216,11 @@
 
 .aim-menu-bar-divider {
     width: 99%;
+}
+
+.aim-menu-bar-bottom-divider {
+    width: 97%;
+    margin-block-end: 0;
 }
 
 .aim-client-banner {
@@ -481,6 +486,15 @@
 .ql-container {
     width: 97%; 
     align-self: center;
+}
+
+.ql-toolbar.ql-snow {
+    padding: 4px !important;
+}
+
+.ql-editor {
+    border-top: 2px solid black;
+    border-left: 2px solid black;
 }
 
 .aim-window .ql-editor {

@@ -149,7 +149,7 @@ const AimWindow = ({ conversation, onClose }) => {
         ))}
       </div>
 
-      <hr className="aim-menu-bar-divider" />
+      <hr className="aim-menu-bar-bottom-divider" />
 
       <div ref={quillRef} style={{ height: 100 }}></div>
 
