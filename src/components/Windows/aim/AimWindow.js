@@ -1,7 +1,6 @@
 import React, { 
   useState, useEffect, useRef, useLayoutEffect, useCallback, useContext 
 } from 'react';
-import ReactDOM from 'react-dom';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
@@ -149,6 +148,8 @@ const AimWindow = ({ conversation, onClose }) => {
           </div>
         ))}
       </div>
+
+      <hr className="aim-menu-bar-divider" />
 
       <div ref={quillRef} style={{ height: 100 }}></div>
 
