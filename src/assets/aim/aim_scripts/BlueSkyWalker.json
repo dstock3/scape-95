@@ -1,6 +1,18 @@
 [
-    "Hey there, how can I help you today?",
-    "I was just thinking about our next project.",
-    "Don't forget to check the latest report."
+    {
+      "name": "BlueSkyWalker",
+      "status": "online",
+      "existingConversation": [
+        "Hey, we still on for tomorrow’s meeting?",
+        "I’ve got some new ideas to run by you."
+      ]
+    },
+    {
+      "name": "StarGazer91",
+      "status": "online",
+      "existingConversation": [
+        "Don’t forget to bring the annual report!",
+        "The new system is glitchy, watch out."
+      ]
+    }
 ]
-  

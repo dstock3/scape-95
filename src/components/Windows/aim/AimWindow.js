@@ -25,6 +25,18 @@ const AimWindow = ({ conversation, onClose }) => {
   const [currentCharacter, setCurrentCharacter] = useState('BlueSkyWalker');
   const [nextResponseIndex, setNextResponseIndex] = useState(0);
   const imReceivedAudioRef = useRef(null);
+
+  useEffect(() => {
+    if (conversation && conversation.existingConversation) {
+      const loadedMessages = conversation.existingConversation.map(line => ({
+        id: uuidv4(),
+        text: line,
+        sent: false,      
+        time: new Date().toLocaleTimeString(),
+      }));
+      setMessages(prev => [...loadedMessages, ...prev]); 
+    }
+  }, [conversation]);
   
   const aimContainerRef = useRef(null);
 

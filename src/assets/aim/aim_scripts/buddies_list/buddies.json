@@ -1,33 +1,49 @@
 [
-    {
-      "name": "StarGazer91",
-      "status": "online",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "BlueSkyWalker",
-      "status": "online",
-      "away": true,
-      "idle": false
-    },
-    {
-      "name": "PixelPirate",
-      "status": "idle",
-      "away": false,
-      "idle": true
-    },
-    {
-      "name": "DigitalDruid",
-      "status": "offline",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "NeonNinja",
-      "status": "online",
-      "away": false,
-      "idle": false
-    }
-  ]
-  
+  {
+    "name": "StarGazer91",
+    "status": "online",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "Don’t forget to bring the annual report!",
+      "The new system is glitchy, watch out."
+    ]
+  },
+  {
+    "name": "BlueSkyWalker",
+    "status": "online",
+    "away": true,
+    "idle": false,
+    "existingConversation": [
+      "Hey, we still on for tomorrow’s meeting?",
+      "I’ve got some new ideas to run by you."
+    ]
+  },
+  {
+    "name": "PixelPirate",
+    "status": "idle",
+    "away": false,
+    "idle": true,
+    "existingConversation": [
+      "Guess I'm just idling here..."
+    ]
+  },
+  {
+    "name": "DigitalDruid",
+    "status": "offline",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "Signed off for now."
+    ]
+  },
+  {
+    "name": "NeonNinja",
+    "status": "online",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "Ready for a stealthy infiltration of your codebase!"
+    ]
+  }
+]
