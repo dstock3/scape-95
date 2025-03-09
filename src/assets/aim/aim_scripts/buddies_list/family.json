@@ -1,27 +1,62 @@
 [
-    {
-      "name": "MamaBear2020",
-      "status": "offline",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "PapaWolf",
-      "status": "online",
-      "away": true,
-      "idle": false
-    },
-    {
-      "name": "JuniorJaguar",
-      "status": "online",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "BabyKoala",
-      "status": "idle",
-      "away": false,
-      "idle": true
-    }
-  ]
-  
+  {
+    "name": "MamaBear2020",
+    "status": "offline",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "Honey, did you eat something today?",
+      "Don’t forget to call your grandma!"
+    ],
+    "automatedResponses": [
+      "I made your favorite meal—come on over!",
+      "You better stay safe, dear.",
+      "I'll message again after my nap."
+    ]
+  },
+  {
+    "name": "PapaWolf",
+    "status": "online",
+    "away": true,
+    "idle": false,
+    "existingConversation": [
+      "Hey kiddo, need any help with the car?",
+      "Your cousin is in town next week."
+    ],
+    "automatedResponses": [
+      "Gotta run, there's a big game on!",
+      "Sure thing, let’s chat later.",
+      "Don’t forget to update me on your new job."
+    ]
+  },
+  {
+    "name": "JuniorJaguar",
+    "status": "online",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "I aced my math test—aren’t you proud of me?",
+      "Can I borrow the car on Saturday?"
+    ],
+    "automatedResponses": [
+      "Homework is done, time to game!",
+      "I'll text you after practice.",
+      "Yes, I fed the cat... I think."
+    ]
+  },
+  {
+    "name": "BabyKoala",
+    "status": "idle",
+    "away": false,
+    "idle": true,
+    "existingConversation": [
+      "Naptime soon, but let’s play first!",
+      "Wanna join me for a walk in the park?"
+    ],
+    "automatedResponses": [
+      "Goo goo ga ga—just kidding!",
+      "I’m learning new words every day.",
+      "Can we watch cartoons together?"
+    ]
+  }
+]

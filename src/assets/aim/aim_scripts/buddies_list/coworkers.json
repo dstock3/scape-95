@@ -1,33 +1,77 @@
 [
-    {
-      "name": "CodeMaster",
-      "status": "online",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "BugHunter",
-      "status": "online",
-      "away": true,
-      "idle": false
-    },
-    {
-      "name": "DesignDiva",
-      "status": "offline",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "AgileAce",
-      "status": "offline",
-      "away": false,
-      "idle": false
-    },
-    {
-      "name": "DynamoDev",
-      "status": "idle",
-      "away": false,
-      "idle": true
-    }
-  ]
-  
+  {
+    "name": "CodeMaster",
+    "status": "online",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "Morning stand-up in 5 minutes—don’t be late.",
+      "Your last commit broke the build, just a heads-up."
+    ],
+    "automatedResponses": [
+      "All tests have passed, we’re good to go!",
+      "Refactoring is a must before release.",
+      "Check your merge conflicts and try again."
+    ]
+  },
+  {
+    "name": "BugHunter",
+    "status": "online",
+    "away": true,
+    "idle": false,
+    "existingConversation": [
+      "Found 3 new critical bugs, pushing hotfix soon.",
+      "Have you seen the new QA tool? It’s glitchy."
+    ],
+    "automatedResponses": [
+      "Looks like we have a memory leak in the main module.",
+      "I’ll investigate that stack trace right away.",
+      "Bug report filed—someone needs to step on it!"
+    ]
+  },
+  {
+    "name": "DesignDiva",
+    "status": "offline",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "FYI: Updating color palettes for the new layout.",
+      "The mockups for our marketing site are done."
+    ],
+    "automatedResponses": [
+      "We need a more minimalist aesthetic.",
+      "Have you seen the new UX guidelines?",
+      "I’ll ping you once we finalize the brand kit."
+    ]
+  },
+  {
+    "name": "AgileAce",
+    "status": "offline",
+    "away": false,
+    "idle": false,
+    "existingConversation": [
+      "Sprint review tomorrow, we need a full demo ready.",
+      "Remember to add story points before stand-up!"
+    ],
+    "automatedResponses": [
+      "Let’s track this in Jira, we’ll get it sorted.",
+      "We may need another retrospective soon.",
+      "I’m finalizing the backlog for next sprint."
+    ]
+  },
+  {
+    "name": "DynamoDev",
+    "status": "idle",
+    "away": false,
+    "idle": true,
+    "existingConversation": [
+      "Just wrapping up the new feature branch.",
+      "Might be AFK, but I'll check in if anything urgent pops up."
+    ],
+    "automatedResponses": [
+      "Currently debugging the performance bottleneck.",
+      "Give me a second, I’ll push the latest commit.",
+      "Let’s do a code review once I'm back."
+    ]
+  }
+]

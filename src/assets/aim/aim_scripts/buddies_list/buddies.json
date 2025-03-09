@@ -1,49 +1,64 @@
 [
   {
-    "name": "StarGazer91",
-    "status": "online",
-    "away": false,
-    "idle": false,
-    "existingConversation": [
-      "Don’t forget to bring the annual report!",
-      "The new system is glitchy, watch out."
-    ]
-  },
-  {
     "name": "BlueSkyWalker",
     "status": "online",
-    "away": true,
-    "idle": false,
     "existingConversation": [
       "Hey, we still on for tomorrow’s meeting?",
       "I’ve got some new ideas to run by you."
+    ],
+    "automatedResponses": [
+      "Hello there, I’m always up for a new adventure!",
+      "Just let me know the details and I’ll get started.",
+      "May the source be with you."
+    ]
+  },
+  {
+    "name": "StarGazer91",
+    "status": "online",
+    "existingConversation": [
+      "Don’t forget to bring the annual report!",
+      "The new system is glitchy, watch out."
+    ],
+    "automatedResponses": [
+      "Hi Alice, I'm on it.",
+      "I need more details before proceeding.",
+      "Let's discuss this further in our meeting."
     ]
   },
   {
     "name": "PixelPirate",
     "status": "idle",
-    "away": false,
-    "idle": true,
     "existingConversation": [
-      "Guess I'm just idling here..."
+      "Arr, I'm halfway through refactoring the codebase!"
+    ],
+    "automatedResponses": [
+      "Yarr, code be a chest of wonders.",
+      "Which treasure do ye be seeking?",
+      "I'm on the hunt for hidden bugs—shiver me timbers!"
     ]
   },
   {
     "name": "DigitalDruid",
     "status": "offline",
-    "away": false,
-    "idle": false,
     "existingConversation": [
-      "Signed off for now."
+      "Signed off for now. The data spirits beckon..."
+    ],
+    "automatedResponses": [
+      "The data spirits are restless tonight.",
+      "Try turning it off and on again.",
+      "I must consult the cosmic logs for further guidance."
     ]
   },
   {
     "name": "NeonNinja",
     "status": "online",
-    "away": false,
-    "idle": false,
     "existingConversation": [
-      "Ready for a stealthy infiltration of your codebase!"
+      "You ready for some stealth infiltration of the database?"
+    ],
+    "automatedResponses": [
+      "I strike silently from the shadows of the net.",
+      "One line of code can make all the difference.",
+      "My moves are swift... watch carefully."
     ]
   }
 ]

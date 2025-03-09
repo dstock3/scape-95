@@ -6,15 +6,9 @@ import 'quill/dist/quill.snow.css';
 import '../../../style/aim.css';
 import { v4 as uuidv4 } from 'uuid';
 
-import blueSkyWalkerResponses from '../../../assets/aim/aim_scripts/BlueSkyWalker.json';
-import starGazer91Responses from '../../../assets/aim/aim_scripts/StarGazer91.json';
 import { UserContext } from '../../../context/UserContext';
 import imrcvSound from '../../../assets/aim/imrcv.wav';
 
-const characterResponses = {
-  BlueSkyWalker: blueSkyWalkerResponses,
-  StarGazer91: starGazer91Responses,
-};
 
 const AimWindow = ({ conversation, onClose }) => {
   const { userName } = useContext(UserContext);
@@ -109,7 +103,7 @@ const AimWindow = ({ conversation, onClose }) => {
       if (imReceivedAudioRef.current) {
         imReceivedAudioRef.current.play();
       }
-      const responses = characterResponses[currentCharacter] || [];
+      const responses = conversation?.automatedResponses || [];
       const responseText =
         responses.length > 0
           ? responses[nextResponseIndex]
