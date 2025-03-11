@@ -502,20 +502,19 @@ function Main({ setStartup }) {
           />
         }
         slotTwenty={
-          <SpecialWindow
+          <BasicWindow
             isClicked={windows.adPopUp.state.isClicked}
-            open={windows.adPopUp.open}
+            open={windows.adPopUp.open}          
+            min={windows.adPopUp.minState}       
+            minState={windows.adPopUp.state.isMin}
             close={windows.adPopUp.close}
             winTitle={"Advertisement"}
             winId={`${windows.adPopUp.state.shortcutId}-window`}
             size={{ width: "300px", height: "200px" }}
-            position={{ left: "400px", top: "200px" }}
-            closeState={true}
             contents={<AdPopUp />}
           />
         }
       />
-
 
       <StartContext.Provider
         value={{
