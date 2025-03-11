@@ -1,232 +1,265 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Homepage from './pages/Homepage'
-import NotFound from './pages/NotFound'
-import NewPage from './pages/NewPage'
-import NewPage2 from './pages/NewPage2'
-import '../../../style/net.css'
-import Loading from './pages/Loading'
-import NetButtons from './containers/NetButtons'
-import WebGames from './pages/WebGames'
-import TicTacToe from './pages/games/TicTacToe'
-import Bookmarks from './containers/Bookmarks'
-import InputContainer from './containers/InputContainer'
-import GridLayout from './pages/GridLayout'
-import NewPage3 from './pages/NewPage3'
+import React, { useState, useCallback, useRef, useEffect, memo } from 'react';
+import Homepage from './pages/Homepage';
+import NotFound from './pages/NotFound';
+import NewPage from './pages/NewPage';
+import NewPage2 from './pages/NewPage2';
+import WebGames from './pages/WebGames';
+import TicTacToe from './pages/games/TicTacToe';
+import GridLayout from './pages/GridLayout';
+import NewPage3 from './pages/NewPage3';
+import Loading from './pages/Loading';
+import NetButtons from './containers/NetButtons';
+import Bookmarks from './containers/Bookmarks';
+import InputContainer from './containers/InputContainer';
+import '../../../style/net.css';
 
-function Internet() {
-  useEffect(() => {
-    let images = Array.from(document.getElementsByClassName("net-article-image"))
-    for (let i = 0; i < images.length; i++) {
-      images[i].style.float = (i === 0 || i % 2 === 0) ? "left" : "right"
-    }
-  }, [])
-
-  const [pageList, setPageList] = useState([
-    { component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net" },
-    { component: <WebGames />, title: "Web Games", id: "games", url: "http://www.webgames.com" },
-    { component: <NewPage colPosition="col-right" />, title: "New Page", id: "newpage", url: "http://www.newpage.com" },
-    { component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com" },
-    { component: <NotFound />, title: "404 Not Found", id: "not-found", url: "" },
-    { component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url: "http://www.webgames.com/tictactoe" },
-    { component: <GridLayout />, title: "Grid Layout", id: "grid-layout", url: "http://www.gridlayout.com" },
-    { component: <NewPage3 />, title: "New Page 3", id: "newpage3", url: "http://www.newpage3.com" }
-  ])
-
-  const bookmarks = [
-    { component: <Homepage colPosition="col-left" />, title: "ScapeNet", id: "homepage", url: "http://www.scape.net" },
-    { component: <WebGames />, title: "Web Games", id: "games", url: "http://www.webgames.com" },
-    { component: <NewPage colPosition="col-right" />, title: "New Page", id: "newpage", url: "http://www.newpage.com" },
-    { component: <NewPage2 />, title: "New Page 2", id: "newpage2", url: "http://www.newpage2.com" },
-    { component: <TicTacToe />, title: "Tic-Tac-Toe", id: "tic-tac-toe", url: "http://www.webgames.com/tictactoe" },
-    { component: <GridLayout />, title: "Grid Layout", id: "grid-layout", url: "http://www.gridlayout.com" },
-    { component: <NewPage3 />, title: "New Page 3", id: "newpage3", url: "http://www.newpage3.com" }
-  ]
-
-  const homePage = { current: <Homepage colPosition="col-left" />, title: "ScapeNet", pageID: "homepage", url: "http://www.scape.net" }
-  const ticTacToe = { current: <TicTacToe />, title: "Tic-Tac-Toe", pageID: "tic-tac-toe", url: "http://www.webgames.com/tictactoe" }
-
-  const [page, setPage] = useState(homePage)
-  const [pageTerm, setPageTerm] = useState("http://www.scape.net")
-  const [prevPage, setPrevPage] = useState([])
-  const [nextPage, setNextPage] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [isMaxed, setIsMaxed] = useState(false)
-
-  const timeoutRef = useRef(null)
+function useRandomLoading() {
+  const [loading, setLoading] = useState(false);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+        clearTimeout(timeoutRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  const isLoading = () => {
-    setLoading(true)
-    const loadInterval = (Math.random() * (3 - 2) + 2) * 1000
+  const startLoading = useCallback(() => {
+    setLoading(true);
+    const loadInterval = (Math.random() * (3 - 2) + 2) * 1000; 
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
+      clearTimeout(timeoutRef.current);
     }
     timeoutRef.current = setTimeout(() => {
-      setLoading(false)
-      timeoutRef.current = null
-    }, loadInterval)
-  }
+      setLoading(false);
+      timeoutRef.current = null;
+    }, loadInterval);
+  }, []);
+
+  return [loading, startLoading];
+}
+
+function Internet() {
+
+  const pages = [
+    {
+      id: 'homepage',
+      title: 'ScapeNet',
+      url: 'http://www.scape.net',
+      component: <Homepage colPosition="col-left" />
+    },
+    {
+      id: 'games',
+      title: 'Web Games',
+      url: 'http://www.webgames.com',
+      component: <WebGames />
+    },
+    {
+      id: 'newpage',
+      title: 'New Page',
+      url: 'http://www.newpage.com',
+      component: <NewPage colPosition="col-right" />
+    },
+    {
+      id: 'newpage2',
+      title: 'New Page 2',
+      url: 'http://www.newpage2.com',
+      component: <NewPage2 />
+    },
+    {
+      id: 'not-found',
+      title: '404 Not Found',
+      url: '',
+      component: <NotFound />
+    },
+    {
+      id: 'tic-tac-toe',
+      title: 'Tic-Tac-Toe',
+      url: 'http://www.webgames.com/tictactoe',
+      component: <TicTacToe />
+    },
+    {
+      id: 'grid-layout',
+      title: 'Grid Layout',
+      url: 'http://www.gridlayout.com',
+      component: <GridLayout />
+    },
+    {
+      id: 'newpage3',
+      title: 'New Page 3',
+      url: 'http://www.newpage3.com',
+      component: <NewPage3 />
+    }
+  ];
+
+  const bookmarkIds = ['homepage', 'games', 'newpage', 'newpage2', 'tic-tac-toe', 'grid-layout', 'newpage3'];
+
+  const getPageByUrl = (url) => {
+    return pages.find((p) => p.url === url);
+  };
+
+  const getPageById = (id) => {
+    return pages.find((p) => p.id === id);
+  };
+
+  const [currentPageId, setCurrentPageId] = useState('homepage');
+  const [pageTerm, setPageTerm] = useState('http://www.scape.net'); 
+  const [backStack, setBackStack] = useState([]);  
+  const [forwardStack, setForwardStack] = useState([]); 
+
+  const [loading, startLoading] = useRandomLoading();
+
+  const currentPage = getPageById(currentPageId) || getPageById('not-found');
 
   useEffect(() => {
-    if (!loading) {
-      let netWindow = document.getElementById("net-window")
-      if (netWindow && netWindow.firstChild) {
-        let winTitle = netWindow.firstChild.firstChild
-        if (winTitle) {
-          winTitle.innerHTML = page.title
-        }
-      }
-      let netInput = document.querySelector(".net-input")
-      if (netInput) {
-        netInput.value = page.url
-      }
+    if (currentPage) {
+      setPageTerm(currentPage.url);
     }
-  }, [page, loading])
+  }, [currentPage]);
 
   useEffect(() => {
-    let enterEvent = (e) => {
-      if (e.key === 'Enter') {
-        findPage()
-      }
+    const link = 'http://www.';
+    if (pageTerm && !pageTerm.includes(link)) {
+      setPageTerm(`http://www.${pageTerm}`);
     }
-    document.addEventListener('keypress', enterEvent)
-    return () => {
-      document.removeEventListener('keypress', enterEvent)
-    }
-  }, [])
+  }, [pageTerm]);
 
-  useEffect(() => {
-    let checkValue = pageTerm
-    let link = `http://www.`
-    if (!checkValue.includes(link)) {
-      setPageTerm(`http://www.${pageTerm}`)
-    }
-  }, [pageTerm])
-
-  function setTic() {
-    isLoading()
-    setPrevPage([...prevPage, page])
-    setPage(ticTacToe)
-  }
-
-  const handleVisit = () => {
-    findPage()
-  }
-
-  const refresh = () => {
-    isLoading()
-    setPage({ ...page, current: page.current, title: page.title, pageID: page.pageID, url: page.url })
-  }
-
-  const searchPageTerm = e => {
-    setPageTerm(e.target.value)
-  }
+  const goToPage = useCallback((pageId) => {
+    const nextPage = getPageById(pageId) || getPageById('not-found');
+    startLoading();
+    setBackStack((prev) => [...prev, currentPageId]);
+    setForwardStack([]);
+    setCurrentPageId(nextPage.id);
+  }, [currentPageId, startLoading]);
 
   const findPage = () => {
-    isLoading()
-    let match = false
-    for (let i = 0; i < pageList.length; i++) {
-      if (pageTerm === pageList[i].url) {
-        match = true
-        setPrevPage([...prevPage, page])
-        setPage({ ...page, current: pageList[i].component, title: pageList[i].title, pageID: pageList[i].id, url: pageList[i].url })
-      }
+    startLoading();
+    const match = getPageByUrl(pageTerm);
+    setBackStack((prev) => [...prev, currentPageId]);
+    setForwardStack([]);
+    if (match) {
+      setCurrentPageId(match.id);
+    } else {
+      setCurrentPageId('not-found');
     }
-    if (!match) {
-      setPrevPage([...prevPage, page])
-      setPage({ ...page, current: <NotFound />, title: "404 Not Found", pageID: "not-found", url: pageTerm })
-    }
-  }
-
-  const setBack = () => {
-    setPrevPage(prevPage => prevPage.filter(item => item !== prevPage[prevPage.length - 1]))
-  }
+  };
 
   const goBack = () => {
-    isLoading()
-    if (prevPage.length > 0) {
-      setNextPage([...nextPage, page])
-      setPage(prevPage[prevPage.length - 1])
-      setBack()
+    if (backStack.length > 0) {
+      startLoading();
+      const prev = [...backStack];
+      const lastId = prev.pop();
+      setForwardStack((fwd) => [...fwd, currentPageId]);
+      setBackStack(prev);
+      setCurrentPageId(lastId);
     }
-  }
-
-  const setForward = () => {
-    setNextPage(nextPage => nextPage.filter(item => item !== nextPage[nextPage.length - 1]))
-  }
+  };
 
   const goForward = () => {
-    isLoading()
-    if (nextPage.length > 0) {
-      setPrevPage([...prevPage, page])
-      setPage(nextPage[nextPage.length - 1])
-      setForward()
+    if (forwardStack.length > 0) {
+      startLoading();
+      const fwd = [...forwardStack];
+      const nextId = fwd.pop();
+      setBackStack((prev) => [...prev, currentPageId]);
+      setForwardStack(fwd);
+      setCurrentPageId(nextId);
     }
-  }
+  };
 
-  useEffect(() => {
-    let win = document.querySelector(".internet")
-    if (win && win.parentElement && win.parentElement.parentElement) {
-      if (win.parentElement.parentElement.classList.contains("max")) {
-        setIsMaxed(true)
-      } else {
-        setIsMaxed(false)
-      }
+  const refresh = () => {
+    startLoading();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      findPage();
     }
-  }, [isMaxed])
+  };
+
+  const setTic = () => {
+    goToPage('tic-tac-toe');
+  };
 
   if (loading) {
     return (
-      <div className="internet" style={{ height: "87.5%" }}>
+      <div className="internet" style={{ height: '87.5%' }}>
         <div className="net-header">
           <div className="net-options">
             <div className="file-button">File</div>
-            <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
+            <Bookmarks
+              bookmarks={bookmarkIds}
+              pages={pages}
+              currentPageId={currentPageId}
+              goToPage={goToPage}
+              loading={startLoading}
+            />
           </div>
           <div className="net-row">
             <div className="net-line head"></div>
             <div className="net-head-container">
-              <NetButtons setHome={setTic} goBack={goBack} goForward={goForward} refresh={refresh} />
-              <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit} />
+              <NetButtons
+                setHome={setTic}
+                goBack={goBack}
+                goForward={goForward}
+                refresh={refresh}
+              />
+              <InputContainer
+                url={pageTerm}
+                onKeyDown={handleKeyDown}
+                onVisit={findPage}
+                onChange={(val) => setPageTerm(val)}
+              />
             </div>
             <div className="net-line end"></div>
           </div>
         </div>
-        <div className="net-page" id={page.pageID}>
+        <div className="net-page" id={currentPage.id}>
           <Loading />
         </div>
       </div>
-    )
-  } else {
-    return (
-      <div className="internet" style={{ height: "87.5%" }}>
-        <div className="net-header">
-          <div className="net-options">
-            <div className="file-button"><span style={{ textDecoration: "underline" }}>F</span>ile</div>
-            <Bookmarks bookmarks={bookmarks} page={page} pageSetter={setPage} prevPage={prevPage} prevPageSetter={setPrevPage} loading={isLoading} />
+    );
+  }
+
+  return (
+    <div className="internet" style={{ height: '87.5%' }}>
+      <div className="net-header">
+        <div className="net-options">
+          <div className="file-button">
+            <span style={{ textDecoration: 'underline' }}>F</span>ile
           </div>
-          <div className="net-row">
-            <div className="net-line head"></div>
-            <div className="net-head-container">
-              <NetButtons setHome={setTic} goBack={goBack} goForward={goForward} refresh={refresh} />
-              <InputContainer url={page.url} searchTerm={searchPageTerm} visit={handleVisit} />
-            </div>
-            <div className="net-line end"></div>
-          </div>
+          <Bookmarks
+            bookmarks={bookmarkIds}
+            pages={pages}
+            currentPageId={currentPageId}
+            goToPage={goToPage}
+            loading={startLoading}
+          />
         </div>
-        <div className="net-page" id={page.pageID}>
-          {page.current}
+        <div className="net-row">
+          <div className="net-line head"></div>
+          <div className="net-head-container">
+            <NetButtons
+              setHome={setTic}
+              goBack={goBack}
+              goForward={goForward}
+              refresh={refresh}
+            />
+            <InputContainer
+              url={pageTerm}
+              onKeyDown={handleKeyDown}
+              onVisit={findPage}
+              onChange={(val) => setPageTerm(val)}
+            />
+          </div>
+          <div className="net-line end"></div>
         </div>
       </div>
-    )
-  }
+      <div className="net-page" id={currentPage.id}>
+        {currentPage.component}
+      </div>
+    </div>
+  );
 }
 
-export default React.memo(Internet)
+export default memo(Internet);
