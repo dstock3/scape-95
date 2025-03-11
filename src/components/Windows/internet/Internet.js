@@ -40,7 +40,7 @@ function useRandomLoading() {
   return [loading, startLoading];
 }
 
-function Internet() {
+function Internet({ openAd }) {
 
   const pages = [
     {
@@ -124,6 +124,15 @@ function Internet() {
       setPageTerm(`http://www.${pageTerm}`);
     }
   }, [pageTerm]);
+
+  useEffect(() => {
+    if (!loading && currentPage) {
+      const chance = Math.random();
+      if (chance < 0.3) {
+        openAd();
+      }
+    }
+  }, [loading, currentPage]);
 
   const goToPage = useCallback((pageId) => {
     const nextPage = getPageById(pageId) || getPageById('not-found');

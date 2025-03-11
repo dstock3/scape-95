@@ -32,10 +32,10 @@ import Minesweeper from './Accessories/Games/Minesweeper/Minesweeper';
 import ErrorMsg from './Windows/ErrorMsg';
 import AimSignIn from './Windows/aim/AimSignIn';
 import AimClient from './Windows/aim/AimClient';
-import aimIcon from "../assets/icons/aim.png"; 
 import AimLoader from './Windows/aim/AimLoader';
 import AimWindow from './Windows/aim/AimWindow';
 import WordProcessor from './Applications/WordProcessor/WordProcessor';
+import AdPopUp from './Windows/internet/pages/PopUpAd';
 
 export const StartContext = React.createContext();
 
@@ -63,6 +63,7 @@ const windowDefinitions = [
   { key: "aimClient", id: 21, title: "AIM-Client" },
   { key: "aimWindow", id: 22, title: "AIM" },
   { key: "wordProc", id: 23, title: "Word" },
+  { key: "adPopUp", id: 24, title: "Advertisement" },
 ];
 
 function Main({ setStartup }) {
@@ -158,7 +159,7 @@ function Main({ setStartup }) {
               shortcutIconId={`${windows.net.state.shortcutId}-icon`}
               imgSrc={netIcon}
               shortcut={windows.net.state.shortcut}
-              contents={<Internet />}
+              contents={<Internet/>}
             />
           }
         />
@@ -243,7 +244,7 @@ function Main({ setStartup }) {
             min={windows.net.minState}
             minState={windows.net.state.isMin}
             close={windows.net.close}
-            contents={<Internet />}
+            contents={<Internet openAd={windows.adPopUp.open} />}
           />
         }
         slotSix={
@@ -500,7 +501,21 @@ function Main({ setStartup }) {
             contents={<WordProcessor />}
           />
         }
+        slotTwenty={
+          <SpecialWindow
+            isClicked={windows.adPopUp.state.isClicked}
+            open={windows.adPopUp.open}
+            close={windows.adPopUp.close}
+            winTitle={"Advertisement"}
+            winId={`${windows.adPopUp.state.shortcutId}-window`}
+            size={{ width: "300px", height: "200px" }}
+            position={{ left: "400px", top: "200px" }}
+            closeState={true}
+            contents={<AdPopUp />}
+          />
+        }
       />
+
 
       <StartContext.Provider
         value={{
