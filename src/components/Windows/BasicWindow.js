@@ -2,7 +2,8 @@ import React, { useState, useRef, useMemo, useCallback } from 'react';
 import '../../style/window.css';
 import WindowsButtons from './WindowsButtons';
 
-function BasicWindow({ 
+function BasicWindow({
+  position, 
   size = { width: "650px", height: "650px" }, 
   winId, 
   minState, 
@@ -19,12 +20,12 @@ function BasicWindow({
 
   const windowStyle = useMemo(() => ({
     position: "fixed",
-    top: isMaximized ? "0" : "50px", 
-    left: isMaximized ? "0" : "50px", 
+    left: position?.left ?? (isMaximized ? "0" : "50px"),
+    top: position?.top ?? (isMaximized ? "0" : "50px"),
     width: isMaximized ? "100%" : size.width,
     height: isMaximized ? "100%" : size.height,
     zIndex: 2,
-  }), [isMaximized, size]);
+  }), [position, isMaximized, size]);
 
   const windowBodyStyle = useMemo(() => ({
     height: isMaximized ? 'calc(100% - 25px)' : `calc(${size.height} - 25px)`,

@@ -71,11 +71,29 @@ function Main({ setStartup }) {
   const [mineInst, setMineInst] = useState(0);
   const [runInput, setRunInput] = useState("");
   const [help, setHelp] = useState(false);
+  const [adPosition, setAdPosition] = useState({ left: "100px", top: "100px" });
 
   const windowHooks = [];
   for (let i = 0; i < windowDefinitions.length; i++) {
     const def = windowDefinitions[i];
     windowHooks.push(useWindow(minWin, setMinWin, def.id, def.title, def.key));
+  }
+
+  function openRandomAd() {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const adWidth = 300;  
+    const adHeight = 200; 
+  
+    const randomLeft = Math.floor(Math.random() * (viewportWidth - adWidth));
+    const randomTop = Math.floor(Math.random() * (viewportHeight - adHeight));
+  
+    setAdPosition({
+      left: `${randomLeft}px`,
+      top: `${randomTop}px`,
+    });
+  
+    windows.adPopUp.open();
   }
 
   const windows = useMemo(() => {
@@ -159,7 +177,7 @@ function Main({ setStartup }) {
               shortcutIconId={`${windows.net.state.shortcutId}-icon`}
               imgSrc={netIcon}
               shortcut={windows.net.state.shortcut}
-              contents={<Internet/>}
+              contents={<Internet openRandomAd={openRandomAd} />}
             />
           }
         />
@@ -244,7 +262,7 @@ function Main({ setStartup }) {
             min={windows.net.minState}
             minState={windows.net.state.isMin}
             close={windows.net.close}
-            contents={<Internet openAd={windows.adPopUp.open} />}
+            contents={<Internet openRandomAd={openRandomAd} />}
           />
         }
         slotSix={
@@ -501,21 +519,23 @@ function Main({ setStartup }) {
             contents={<WordProcessor />}
           />
         }
+
         slotTwenty={
           <BasicWindow
             isClicked={windows.adPopUp.state.isClicked}
-            open={windows.adPopUp.open}          
-            min={windows.adPopUp.minState}       
-            minState={windows.adPopUp.state.isMin}
+            open={windows.adPopUp.open}
             close={windows.adPopUp.close}
-            winTitle={"Advertisement"}
+            min={windows.adPopUp.minState}
+            minState={windows.adPopUp.state.isMin}
+            winTitle="Advertisement"
             winId={`${windows.adPopUp.state.shortcutId}-window`}
             size={{ width: "300px", height: "200px" }}
+            position={adPosition}
             contents={<AdPopUp />}
           />
         }
       />
-
+      
       <StartContext.Provider
         value={{
           calc: windows.calc.open,

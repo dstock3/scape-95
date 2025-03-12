@@ -40,7 +40,7 @@ function useRandomLoading() {
   return [loading, startLoading];
 }
 
-function Internet({ openAd }) {
+function Internet({ openRandomAd }) {
   // Memoize pages and bookmarkIds so that they don't change on every render
   const pages = useMemo(() => [
     {
@@ -106,7 +106,6 @@ function Internet({ openAd }) {
   const getPageByUrl = (url) => pages.find((p) => p.url === url);
   const getPageById = (id) => pages.find((p) => p.id === id);
 
-  // Navigation state
   const [currentPageId, setCurrentPageId] = useState('homepage');
   const [pageTerm, setPageTerm] = useState('http://www.scape.net');
   const [backStack, setBackStack] = useState([]);
@@ -114,29 +113,25 @@ function Internet({ openAd }) {
 
   const [loading, startLoading] = useRandomLoading();
 
-  // Use memoized pages so that currentPage doesn't change referentially unless currentPageId changes.
   const currentPage = useMemo(() => {
     return getPageById(currentPageId) || getPageById('not-found');
   }, [currentPageId, pages]);
 
-  // Update the address bar when the page changes
   useEffect(() => {
     if (currentPage) {
       setPageTerm(currentPage.url);
     }
   }, [currentPage]);
 
-  // Random ad pop-up effect (if openAd is provided)
   useEffect(() => {
-    if (!loading && currentPage && openAd) {
+    if (!loading && currentPage && openRandomAd) {
       const chance = Math.random();
       if (chance < 0.3) {
-        openAd();
+        openRandomAd();
       }
     }
-  }, [loading, currentPage, openAd]);
+  }, [loading, currentPage, openRandomAd]);
 
-  // Navigation functions
   const goToPage = useCallback(
     (pageId) => {
       const nextPage = getPageById(pageId) || getPageById('not-found');
@@ -153,7 +148,6 @@ function Internet({ openAd }) {
     setBackStack((prev) => [...prev, currentPageId]);
     setForwardStack([]);
 
-    // Only add "http://www." if user typed something without a protocol.
     let typed = pageTerm.trim();
     if (!typed.startsWith('http://') && !typed.startsWith('https://')) {
       typed = `http://www.${typed}`;
@@ -203,7 +197,6 @@ function Internet({ openAd }) {
     goToPage('tic-tac-toe');
   };
 
-  // Render loading view if loading
   if (loading) {
     return (
       <div className="internet" style={{ height: '87.5%' }}>
@@ -244,7 +237,6 @@ function Internet({ openAd }) {
     );
   }
 
-  // Render normal view if not loading
   return (
     <div className="internet" style={{ height: '87.5%' }}>
       <div className="net-header">
