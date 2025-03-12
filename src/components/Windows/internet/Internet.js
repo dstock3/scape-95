@@ -41,7 +41,6 @@ function useRandomLoading() {
 }
 
 function Internet({ openRandomAd }) {
-  // Memoize pages and bookmarkIds so that they don't change on every render
   const pages = useMemo(() => [
     {
       id: 'homepage',

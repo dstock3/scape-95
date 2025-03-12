@@ -36,6 +36,8 @@ import AimLoader from './Windows/aim/AimLoader';
 import AimWindow from './Windows/aim/AimWindow';
 import WordProcessor from './Applications/WordProcessor/WordProcessor';
 import AdPopUp from './Windows/internet/pages/PopUpAd';
+import AdPopUp2 from './Windows/internet/pages/AdPopUp2';
+import AdPopUp3 from './Windows/internet/pages/AdPopUp3';
 
 export const StartContext = React.createContext();
 
@@ -72,6 +74,9 @@ function Main({ setStartup }) {
   const [runInput, setRunInput] = useState("");
   const [help, setHelp] = useState(false);
   const [adPosition, setAdPosition] = useState({ left: "100px", top: "100px" });
+  const [adIndex, setAdIndex] = useState(0);
+
+  const ads = [<AdPopUp />, <AdPopUp2 />, <AdPopUp3 />];
 
   const windowHooks = [];
   for (let i = 0; i < windowDefinitions.length; i++) {
@@ -92,6 +97,9 @@ function Main({ setStartup }) {
       left: `${randomLeft}px`,
       top: `${randomTop}px`,
     });
+
+    const randomAd = Math.floor(Math.random() * ads.length);
+    setAdIndex(randomAd);
   
     windows.adPopUp.open();
   }
@@ -531,7 +539,7 @@ function Main({ setStartup }) {
             winId={`${windows.adPopUp.state.shortcutId}-window`}
             size={{ width: "300px", height: "200px" }}
             position={adPosition}
-            contents={<AdPopUp />}
+            contents={ads[adIndex]}
           />
         }
       />
