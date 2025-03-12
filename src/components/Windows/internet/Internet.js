@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect, memo } from 'react';
+import React, { useState, useCallback, useRef, useEffect, memo, useMemo } from 'react';
 import Homepage from './pages/Homepage';
 import NotFound from './pages/NotFound';
 import NewPage from './pages/NewPage';
@@ -27,7 +27,7 @@ function useRandomLoading() {
 
   const startLoading = useCallback(() => {
     setLoading(true);
-    const loadInterval = (Math.random() * (3 - 2) + 2) * 1000; 
+    const loadInterval = (Math.random() * (3 - 2) + 2) * 1000;
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -41,112 +41,125 @@ function useRandomLoading() {
 }
 
 function Internet({ openAd }) {
-
-  const pages = [
+  // Memoize pages and bookmarkIds so that they don't change on every render
+  const pages = useMemo(() => [
     {
       id: 'homepage',
       title: 'ScapeNet',
       url: 'http://www.scape.net',
-      component: <Homepage colPosition="col-left" />
+      component: <Homepage colPosition="col-left" />,
     },
     {
       id: 'games',
       title: 'Web Games',
       url: 'http://www.webgames.com',
-      component: <WebGames />
+      component: <WebGames />,
     },
     {
       id: 'newpage',
       title: 'New Page',
       url: 'http://www.newpage.com',
-      component: <NewPage colPosition="col-right" />
+      component: <NewPage colPosition="col-right" />,
     },
     {
       id: 'newpage2',
       title: 'New Page 2',
       url: 'http://www.newpage2.com',
-      component: <NewPage2 />
+      component: <NewPage2 />,
     },
     {
       id: 'not-found',
       title: '404 Not Found',
       url: '',
-      component: <NotFound />
+      component: <NotFound />,
     },
     {
       id: 'tic-tac-toe',
       title: 'Tic-Tac-Toe',
       url: 'http://www.webgames.com/tictactoe',
-      component: <TicTacToe />
+      component: <TicTacToe />,
     },
     {
       id: 'grid-layout',
       title: 'Grid Layout',
       url: 'http://www.gridlayout.com',
-      component: <GridLayout />
+      component: <GridLayout />,
     },
     {
       id: 'newpage3',
       title: 'New Page 3',
       url: 'http://www.newpage3.com',
-      component: <NewPage3 />
-    }
-  ];
+      component: <NewPage3 />,
+    },
+  ], []);
 
-  const bookmarkIds = ['homepage', 'games', 'newpage', 'newpage2', 'tic-tac-toe', 'grid-layout', 'newpage3'];
+  const bookmarkIds = useMemo(() => [
+    'homepage',
+    'games',
+    'newpage',
+    'newpage2',
+    'tic-tac-toe',
+    'grid-layout',
+    'newpage3',
+  ], []);
 
-  const getPageByUrl = (url) => {
-    return pages.find((p) => p.url === url);
-  };
+  const getPageByUrl = (url) => pages.find((p) => p.url === url);
+  const getPageById = (id) => pages.find((p) => p.id === id);
 
-  const getPageById = (id) => {
-    return pages.find((p) => p.id === id);
-  };
-
+  // Navigation state
   const [currentPageId, setCurrentPageId] = useState('homepage');
-  const [pageTerm, setPageTerm] = useState('http://www.scape.net'); 
-  const [backStack, setBackStack] = useState([]);  
-  const [forwardStack, setForwardStack] = useState([]); 
+  const [pageTerm, setPageTerm] = useState('http://www.scape.net');
+  const [backStack, setBackStack] = useState([]);
+  const [forwardStack, setForwardStack] = useState([]);
 
   const [loading, startLoading] = useRandomLoading();
 
-  const currentPage = getPageById(currentPageId) || getPageById('not-found');
+  // Use memoized pages so that currentPage doesn't change referentially unless currentPageId changes.
+  const currentPage = useMemo(() => {
+    return getPageById(currentPageId) || getPageById('not-found');
+  }, [currentPageId, pages]);
 
+  // Update the address bar when the page changes
   useEffect(() => {
     if (currentPage) {
       setPageTerm(currentPage.url);
     }
   }, [currentPage]);
 
+  // Random ad pop-up effect (if openAd is provided)
   useEffect(() => {
-    const link = 'http://www.';
-    if (pageTerm && !pageTerm.includes(link)) {
-      setPageTerm(`http://www.${pageTerm}`);
-    }
-  }, [pageTerm]);
-
-  useEffect(() => {
-    if (!loading && currentPage) {
+    if (!loading && currentPage && openAd) {
       const chance = Math.random();
       if (chance < 0.3) {
         openAd();
       }
     }
-  }, [loading, currentPage]);
+  }, [loading, currentPage, openAd]);
 
-  const goToPage = useCallback((pageId) => {
-    const nextPage = getPageById(pageId) || getPageById('not-found');
-    startLoading();
-    setBackStack((prev) => [...prev, currentPageId]);
-    setForwardStack([]);
-    setCurrentPageId(nextPage.id);
-  }, [currentPageId, startLoading]);
+  // Navigation functions
+  const goToPage = useCallback(
+    (pageId) => {
+      const nextPage = getPageById(pageId) || getPageById('not-found');
+      startLoading();
+      setBackStack((prev) => [...prev, currentPageId]);
+      setForwardStack([]);
+      setCurrentPageId(nextPage.id);
+    },
+    [currentPageId, startLoading, pages]
+  );
 
   const findPage = () => {
     startLoading();
-    const match = getPageByUrl(pageTerm);
     setBackStack((prev) => [...prev, currentPageId]);
     setForwardStack([]);
+
+    // Only add "http://www." if user typed something without a protocol.
+    let typed = pageTerm.trim();
+    if (!typed.startsWith('http://') && !typed.startsWith('https://')) {
+      typed = `http://www.${typed}`;
+    }
+
+    const match = getPageByUrl(typed);
     if (match) {
       setCurrentPageId(match.id);
     } else {
@@ -190,6 +203,7 @@ function Internet({ openAd }) {
     goToPage('tic-tac-toe');
   };
 
+  // Render loading view if loading
   if (loading) {
     return (
       <div className="internet" style={{ height: '87.5%' }}>
@@ -230,6 +244,7 @@ function Internet({ openAd }) {
     );
   }
 
+  // Render normal view if not loading
   return (
     <div className="internet" style={{ height: '87.5%' }}>
       <div className="net-header">
