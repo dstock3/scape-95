@@ -1,0 +1,34 @@
+{
+    "id": "newpage3",
+    "title": "New Page 3",
+    "url": "http://www.newpage3.com",
+    "content": {
+        "title": "Welcome to Our Page",
+        "logo": "path-to-your-logo.png",
+        "navItems": ["News", "Directory", "Resources", "Projects"],
+        "sections": [
+            {
+            "id": "news",
+            "title": "Latest Updates",
+            "content": "Lorem ipsum dolor sit amet..."
+            },
+            {
+            "id": "announcements",
+            "title": "What's New",
+            "content": "Lorem ipsum dolor sit amet..."
+            },
+            {
+            "id": "resources",
+            "title": "Useful Resources",
+            "content": "Lorem ipsum dolor sit amet..."
+            },
+            {
+            "id": "projects",
+            "title": "Our Projects",
+            "links": ["Project 1", "Project 2", "Project 3", "Project 4"]
+            }
+        ],
+        "footer": "Your Company. All rights reserved."
+    }
+}
+  

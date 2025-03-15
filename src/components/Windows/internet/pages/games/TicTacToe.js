@@ -23,7 +23,6 @@ function TicTacToe() {
     const [messageButton, setMessageButton] = useState(null)
     const [tie, setTie] = useState(false)
 
-    // Ref to store the timer for the computer move
     const compMoveTimerRef = useRef(null)
 
     const compMove = () => {
@@ -110,7 +109,7 @@ function TicTacToe() {
         }
     }
 
-    // New useEffect to detect a tie by checking if all board spaces are filled
+
     useEffect(() => {
         const boardIsFull = Object.values(spaces).every(space => space !== null)
         if (boardIsFull && !win("X") && !win("O")) {
@@ -118,12 +117,12 @@ function TicTacToe() {
         }
     }, [spaces])
 
-    // Effect for the computer move with proper timer cleanup and tie check
+
     useEffect(() => {
         if (moveRef.current && !win("X") && !win("O") && !tie) {
             setMessage("Your Opponent is Thinking...")
             const loadInterval = (Math.random() * (3 - 2) + 2) * 1000
-            // Clear any existing timer before setting a new one
+
             if (compMoveTimerRef.current) {
                 clearTimeout(compMoveTimerRef.current)
             }
@@ -184,7 +183,7 @@ function TicTacToe() {
             reset()
             clickHere.removeEventListener('click', resetEvent)
         }
-        // Only check for a win if enough moves have been played
+
         if (round > 1) {
             if (tie) {
                 setMessage("It's a tie! Click Here to Play Again.")
@@ -208,7 +207,6 @@ function TicTacToe() {
     })
 
     const clickHandler = (position) => {
-        // Remove tie check here since we now detect tie based on board fullness
         for (let prop in spaces) {
             if (prop === position) {
                 if (spaces[prop] !== "O" && !win("X") && !win("O")) {

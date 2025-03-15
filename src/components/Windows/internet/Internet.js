@@ -11,6 +11,12 @@ import Loading from './pages/Loading';
 import NetButtons from './containers/NetButtons';
 import Bookmarks from './containers/Bookmarks';
 import InputContainer from './containers/InputContainer';
+import homepageContent from '../../../assets/internet/content/homepage.json'
+import gridLayoutContent from '../../../assets/internet/content/gridLayout.json';
+import webGamesContent from '../../../assets/internet/content/webGames.json';
+import newPageContent from '../../../assets/internet/content/newPage.json';
+import newPage2Content from '../../../assets/internet/content/newPage2.json';
+import newPage3Content from '../../../assets/internet/content/newPage3.json';
 import '../../../style/net.css';
 
 function useRandomLoading() {
@@ -40,31 +46,34 @@ function useRandomLoading() {
   return [loading, startLoading];
 }
 
+
+
 function Internet({ openRandomAd }) {
+
   const pages = useMemo(() => [
     {
-      id: 'homepage',
-      title: 'ScapeNet',
-      url: 'http://www.scape.net',
-      component: <Homepage colPosition="col-left" />,
+      id: homepageContent.id,
+      title: homepageContent.title,
+      url: homepageContent.url,
+      component: <Homepage pageData={homepageContent} />,
     },
     {
-      id: 'games',
-      title: 'Web Games',
-      url: 'http://www.webgames.com',
-      component: <WebGames />,
+      id: webGamesContent.id,
+      title: webGamesContent.title,
+      url: webGamesContent.url,
+      component: <WebGames pageData={webGamesContent} linkOne={() => goToPage('tic-tac-toe')} />,
     },
     {
-      id: 'newpage',
-      title: 'New Page',
-      url: 'http://www.newpage.com',
-      component: <NewPage colPosition="col-right" />,
+      id: newPageContent.id,
+      title: newPageContent.title,
+      url: newPageContent.url,
+      component: <NewPage pageData={newPageContent} />,
     },
     {
-      id: 'newpage2',
-      title: 'New Page 2',
-      url: 'http://www.newpage2.com',
-      component: <NewPage2 />,
+      id: newPage2Content.id,
+      title: newPage2Content.title,
+      url: newPage2Content.url,
+      component: <NewPage2 pageData={newPage2Content} />,
     },
     {
       id: 'not-found',
@@ -79,16 +88,16 @@ function Internet({ openRandomAd }) {
       component: <TicTacToe />,
     },
     {
-      id: 'grid-layout',
-      title: 'Grid Layout',
-      url: 'http://www.gridlayout.com',
+      id: gridLayoutContent.id,
+      title: gridLayoutContent.title,
+      url: gridLayoutContent.url,
       component: <GridLayout />,
     },
     {
-      id: 'newpage3',
-      title: 'New Page 3',
-      url: 'http://www.newpage3.com',
-      component: <NewPage3 />,
+      id: newPage3Content.id,
+      title: newPage3Content.title,
+      url: newPage3Content.url,
+      component: <NewPage3 pageData={newPage3Content} />,
     },
   ], []);
 

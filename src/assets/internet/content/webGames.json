@@ -1,0 +1,24 @@
+{
+    "id": "games",
+    "title": "Web Games",
+    "url": "http://www.webgames.com",
+    "content": {
+        "header": "Web Games",
+        "games": [
+            {
+                "id": "tic-tac-toe",
+                "title": "Tic-Tac-Toe",
+                "image": "assets/internet/games/tictactoe.png",
+                "description": "Play the classic game Tic-Tac-Toe right in your browser!",
+                "linkText": "Play Tic-Tac-Toe"
+            },
+            {
+                "id": "lorem-game-2",
+                "title": "Lorem Ipsum Game",
+                "image": "https://picsum.photos/seed/picsum/300/300",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+                "linkText": "Read More..."
+            }
+        ]
+    }
+}

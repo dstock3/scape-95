@@ -1,57 +1,51 @@
 import React from 'react';
-import '../../../../style/net-page.css'
+import '../../../../style/net-page.css';
 
-const NewPage3 = () => {
+const NewPage3 = ({ pageData }) => {
+  const { title, logo, navItems, sections, footer } = pageData.content;
+
   return (
     <div className="new-page3-container">
-        <div className="new-page3">
+      <div className="new-page3">
         <header className="page3-header">
-            <h1 className="page3-title">Welcome to Our Page</h1>
-            <img src="path-to-your-logo.png" alt="Logo" className="page3-logo"/>
+          <h1 className="page3-title">{title}</h1>
+          <img src={logo} alt="Logo" className="page3-logo"/>
         </header>
 
         <nav className="page3-navigation">
-            <ul className="page3-nav-list">
-            <li><a href="#news">News</a></li>
-            <li><a href="#directory">Directory</a></li>
-            <li><a href="#resources">Resources</a></li>
-            <li><a href="#projects">Projects</a></li>
-            </ul>
+          <ul className="page3-nav-list">
+            {navItems.map((item, idx) => (
+              <li key={idx}><a href={`#${item.toLowerCase()}`}>{item}</a></li>
+            ))}
+          </ul>
         </nav>
 
         <main className="page3-main-content">
-            <section className="page3-news">
-            <h2>Latest Updates</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          {sections.map((section) => (
+            <section key={section.id} className={`page3-${section.id}`}>
+              <h2>{section.title}</h2>
+              {section.content && <p>{section.content}</p>}
+              {section.links && (
+                <ul className="page3-project-links">
+                  {section.links.map((link, idx) => (
+                    <li key={idx}>
+                      <a className="page3-project-link" href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}>
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
-
-            <section className="page3-announcements">
-            <h2>What's New</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </section>
-
-            <section className="page3-resources">
-            <h2>Useful Resources</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </section>
-
-            <section className="page3-projects">
-            <h2 className="page3-project-head">Our Projects</h2>
-            <ul className="page3-project-links">
-                <li><a className="page3-project-link" href="#project1">Project 1</a></li>
-                <li><a className="page3-project-link" href="#project2">Project 2</a></li>
-                <li><a className="page3-project-link" href="#project3">Project 3</a></li>
-                <li><a className="page3-project-link" href="#project4">Project 4</a></li>
-            </ul>
-            </section>
+          ))}
         </main>
 
         <footer className="page3-footer">
-            <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {footer}</p>
         </footer>
-        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default NewPage3;

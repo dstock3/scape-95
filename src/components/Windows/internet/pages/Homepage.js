@@ -1,66 +1,45 @@
-import React, { useState } from 'react'
-import '../../../../style/net-page.css'
-import NetColList from '../containers/NetColList'
+import React, { useState } from 'react';
+import '../../../../style/net-page.css';
+import NetColList from '../containers/NetColList';
 
-function Homepage({colPosition}) {
-    const [netList, setNetList] = useState([
-        {key: 1, link: "#", linkTitle: "Lorem Ipsum"},
-        {key: 2, link: "#", linkTitle: "Lorem Ipsum"},
-        {key: 3, link: "#", linkTitle: "Lorem Ipsum"},
-        {key: 4, link: "#", linkTitle: "Lorem Ipsum"},
-        {key: 5, link: "#", linkTitle: "Lorem Ipsum"},
-    ])
-    
+function Homepage({ pageData }) {
+    const [netList, setNetList] = useState(pageData.content.sidebarLinks);
+
     return (
         <>
-            <h1>Welcome Home</h1>
-            <h2>The frontpage of the entire internet.</h2>
+            <h1>{pageData.content.header}</h1>
+            <h2>{pageData.content.subheader}</h2>
             <div className="net-container">
-                <div className={`net-col ${colPosition}`}>
-                    <NetColList list={netList} image={"https://picsum.photos/seed/picsum/200/200"}/>
+                <div className={`net-col ${pageData.position}`}>
+                    <NetColList
+                        list={netList}
+                        image={pageData.content.sidebarImage}
+                    />
                 </div>
                 <div className="net-body">
                     <section>
-                        <article className="net-article">
-                        <h3 className="net-article-head">Lorem Ipsum</h3>
-                            <div className="net-lede">
-                                <img className="net-article-image" src="https://picsum.photos/id/237/300/300" alt="placeholder"></img>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            
-                            <a className="article-link" href="#">Read More...</a>
-                        </article>
-                        <article className="net-article">
-                            <h3 className="net-article-head">Lorem Ipsum</h3>
-                            <div className="net-lede">
-                                <img className="net-article-image" src="https://picsum.photos/seed/picsum/300/300" alt="placeholder"></img>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            
-                            <a className="article-link" href="#">Read More...</a>
-                        </article>
-                        <article className="net-article">
-                            <h3 className="net-article-head">Lorem Ipsum</h3>
-                            <div className="net-lede">
-                                <img className="net-article-image" src="https://picsum.photos/300/300?grayscale" alt="placeholder"></img>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            
-                            <a className="article-link" href="#">Read More...</a>
-                        </article>
+                        {pageData.content.articles.map(article => (
+                            <article key={article.id} className="net-article">
+                                <h3 className="net-article-head">{article.headline}</h3>
+                                <div className="net-lede">
+                                    <img
+                                        className="net-article-image"
+                                        src={article.image}
+                                        alt={article.headline}
+                                    />
+                                    <p>{article.lede}</p>
+                                </div>
+                                {article.body.map((paragraph, idx) => (
+                                    <p key={idx}>{paragraph}</p>
+                                ))}
+                                <a className="article-link" href={article.link}>Read More...</a>
+                            </article>
+                        ))}
                     </section>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default Homepage
+export default Homepage;

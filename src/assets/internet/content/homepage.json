@@ -1,0 +1,43 @@
+{
+    "id": "homepage",
+    "title": "ScapeNet",
+    "url": "http://www.scape.net",
+    "position": "col-left",
+    "content": {
+        "header": "Welcome to ScapeNet",
+        "subheader": "The frontpage of the entire internet",
+        "sidebarImage": "https://picsum.photos/seed/picsum/200/200",
+        "sidebarLinks": [
+            {"key": 1, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 2, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 3, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 4, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 5, "link": "#", "linkTitle": "Lorem Ipsum"}
+        ],
+        "articles": [
+            {
+                "id": 1,
+                "headline": "Breaking News",
+                "lede": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "image": "https://picsum.photos/id/237/300/300",
+                "link": "#",
+                "body": [
+                "First paragraph of the article body.",
+                "Second paragraph of the article body."
+                ]
+            },
+            {
+                "id": 2,
+                "headline": "Tech Update",
+                "lede": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                "image": "https://picsum.photos/seed/picsum/300/300",
+                "link": "#",
+                "body": [
+                "First paragraph of the article body.",
+                "Second paragraph of the article body."
+                ]
+            }
+        ]
+    }
+}
+  

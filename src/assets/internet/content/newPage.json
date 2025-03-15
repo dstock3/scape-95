@@ -1,0 +1,32 @@
+{
+    "id": "newpage",
+    "title": "New Page",
+    "url": "http://www.newpage.com",
+    "position": "col-right",
+    "content": {
+        "header": "New Page",
+        "colList": [
+            {"key": 1, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 2, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 3, "link": "#", "linkTitle": "Lorem Ipsum"},
+            {"key": 4, "link": "#", "linkTitle": "Lorem Ipsum"}
+        ],
+        "articles": [
+            {
+                "id": 1,
+                "headline": "Lorem Ipsum",
+                "lede": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+                "image": "https://picsum.photos/300/300",
+                "link": "#"
+            },
+            {
+                "id": 2,
+                "headline": "Lorem Ipsum",
+                "lede": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+                "image": "https://picsum.photos/seed/picsum/300/300",
+                "link": "#"
+            }
+        ]
+    }
+}
+  

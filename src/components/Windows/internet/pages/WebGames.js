@@ -1,54 +1,38 @@
-import React from 'react'
-import ticPic from '../../../../assets/internet/games/tictactoe.png'
-import '../../../../style/net-page.css'
+import React from 'react';
+import '../../../../style/net-page.css';
 
-function WebGames({linkOne}) {
-    
-    return (
-        <>
-            <h1>Web Games</h1>
-
-            <div className="net-container">
-                <div className="net-body">
-                    <section>
-                    <article className="net-article" style={{border: "2px dotted rgb(133, 2, 2)"}}>
-                            <h3 className="net-article-head">Tic-Tac-Toe</h3>
-                            <div className="net-lede">
-                                <img className="net-article-image" style={{margin: "-2% 0", cursor: "pointer"}} src={ticPic} onClick={linkOne} alt="Tic-Tac-Toe"></img>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                <div onClick={linkOne} style={{textDecoration: "underline", fontWeight: "bold",cursor: "pointer", textAlign: "right", margin: "0 6%"}}>Play Tic-Tac-Toe</div>
-                            </div>
-                        </article>
-
-                        <article className="net-article" style={{border: "2px dotted rgb(133, 2, 2)"}}>
-                            <h3 className="net-article-head">Lorem Ipsum</h3>
-                            <div className="net-lede">
-                                <img className="net-article-image" src="https://picsum.photos/seed/picsum/300/300" alt="placeholder"></img>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            
-                            <a className="article-link" href="#">Read More...</a>
-                        </article>
-                        <article className="net-article">
-                            <h3 className="net-article-head">Lorem Ipsum</h3>
-                            <div className="net-lede">
-                                <img className="net-article-image" src="https://picsum.photos/300/300?grayscale" alt="placeholder"></img>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            
-                            <a className="article-link" href="#">Read More...</a>
-                        </article>
-                    </section>
+function WebGames({ pageData, linkOne }) {
+  return (
+    <>
+      <h1>{pageData.content.header}</h1>
+      <div className="net-container">
+        <div className="net-body">
+          <section>
+            {pageData.content.games.map(game => (
+              <article className="net-article" key={game.id} style={{ border: "2px dotted rgb(133, 2, 2)" }}>
+                <h3 className="net-article-head">{game.title}</h3>
+                <div className="net-lede">
+                  <img 
+                    className="net-article-image" 
+                    style={{ cursor: "pointer" }} 
+                    src={game.image} 
+                    onClick={game.id === "tic-tac-toe" ? linkOne : undefined} 
+                    alt={game.title} />
+                  <p>{game.description}</p>
+                  <div
+                    onClick={game.id === "tic-tac-toe" ? linkOne : undefined}
+                    style={{ textDecoration: "underline", cursor: "pointer", textAlign: "right", margin: "0 6%" }}
+                  >
+                    {game.linkText}
+                  </div>
                 </div>
-            </div>
-        </>
-    )
+              </article>
+            ))}
+          </section>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default WebGames
+export default WebGames;
