@@ -1,0 +1,31 @@
+.net-loading-container {
+    display: flex;
+    max-width: 250px;
+    flex-direction: column;
+    font-family: Tahoma, Verdana, sans-serif;
+    font-size: 11px;
+    color: #000;
+    padding: 4px;
+    background-color: #ece9d8; 
+    border: 1px solid #aca899; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.net-loading-message {
+    padding-bottom: 3px;
+}
+
+.net-loading-bar {
+    height: 12px;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #7f9db9;
+    box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.net-loading-progress {
+    height: 100%;
+    background-color: blue; 
+    transition: width 0.3s ease-out;
+}

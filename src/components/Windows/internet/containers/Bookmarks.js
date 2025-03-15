@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 function Bookmarks({
-  bookmarks,       // An array of page IDs
-  pages,           // The master array of page objects
-  currentPageId,   // The currently displayed page ID
-  goToPage,        // Function that updates the page by ID
-  loading          // The "startLoading" function from your custom hook
+  bookmarks,       
+  pages,           
+  currentPageId,   
+  goToPage,        
+  loading          
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,9 +25,7 @@ function Bookmarks({
 
   const openBookmark = (bookmarkId) => {
     setIsOpen(false);
-    // Trigger random loading spinner
     loading();
-    // Use the goToPage callback to switch the current page
     goToPage(bookmarkId);
   };
 

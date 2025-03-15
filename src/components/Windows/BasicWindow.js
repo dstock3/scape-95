@@ -4,7 +4,7 @@ import WindowsButtons from './WindowsButtons';
 
 function BasicWindow({
   position, 
-  size = { width: "650px", height: "650px" }, 
+  size = { width: "1000px", height: "650px" }, 
   winId, 
   minState, 
   close, 

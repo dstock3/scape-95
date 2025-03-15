@@ -25,7 +25,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  height: 110px;
+  height: 125px;
   display: flex;
   align-items: center;
   background: rgb(184,184,184);
@@ -81,12 +81,14 @@
   margin: auto;
   padding-inline: 2%;
   display: flex;
-  width: 95%;
+  width: 90%;
 }
+
 .net-location {
   margin: 0 10px;
   width: 75px;
 }
+
 .net-input {
   width: 100%;
   height: 20px;
@@ -140,6 +142,15 @@
   cursor: pointer;
 }
 
+.net-status-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #222;
+}
 
 
 

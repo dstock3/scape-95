@@ -7,10 +7,10 @@ import WebGames from './pages/WebGames';
 import TicTacToe from './pages/games/TicTacToe';
 import GridLayout from './pages/GridLayout';
 import NewPage3 from './pages/NewPage3';
-import Loading from './pages/Loading';
 import NetButtons from './containers/NetButtons';
 import Bookmarks from './containers/Bookmarks';
 import InputContainer from './containers/InputContainer';
+import NetLoading from './containers/NetLoading';
 import homepageContent from '../../../assets/internet/content/homepage.json'
 import gridLayoutContent from '../../../assets/internet/content/gridLayout.json';
 import webGamesContent from '../../../assets/internet/content/webGames.json';
@@ -45,8 +45,6 @@ function useRandomLoading() {
 
   return [loading, startLoading];
 }
-
-
 
 function Internet({ openRandomAd }) {
 
@@ -205,53 +203,12 @@ function Internet({ openRandomAd }) {
     goToPage('tic-tac-toe');
   };
 
-  if (loading) {
-    return (
-      <div className="internet" style={{ height: '87.5%' }}>
-        <div className="net-header">
-          <div className="net-options">
-            <div className="file-button">File</div>
-            <Bookmarks
-              bookmarks={bookmarkIds}
-              pages={pages}
-              currentPageId={currentPageId}
-              goToPage={goToPage}
-              loading={startLoading}
-            />
-          </div>
-          <div className="net-row">
-            <div className="net-line head"></div>
-            <div className="net-head-container">
-              <NetButtons
-                setHome={setTic}
-                goBack={goBack}
-                goForward={goForward}
-                refresh={refresh}
-              />
-              <InputContainer
-                url={pageTerm}
-                onKeyDown={handleKeyDown}
-                onVisit={findPage}
-                onChange={(val) => setPageTerm(val)}
-              />
-            </div>
-            <div className="net-line end"></div>
-          </div>
-        </div>
-        <div className="net-page" id={currentPage.id}>
-          <Loading />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="internet" style={{ height: '87.5%' }}>
       <div className="net-header">
         <div className="net-options">
-          <div className="file-button">
-            <span style={{ textDecoration: 'underline' }}>F</span>ile
-          </div>
+          <div className="file-button">File</div>
           <Bookmarks
             bookmarks={bookmarkIds}
             pages={pages}
@@ -269,18 +226,28 @@ function Internet({ openRandomAd }) {
               goForward={goForward}
               refresh={refresh}
             />
+            
             <InputContainer
               url={pageTerm}
               onKeyDown={handleKeyDown}
               onVisit={findPage}
               onChange={(val) => setPageTerm(val)}
             />
+            
+            <div className="net-status-container">
+              {loading ? (
+                <NetLoading />
+              ) : (
+                <span className="net-status-text">Done</span> 
+              )}
+            </div>
+            
           </div>
           <div className="net-line end"></div>
         </div>
       </div>
       <div className="net-page" id={currentPage.id}>
-        {currentPage.component}
+        {loading ? null : currentPage.component}
       </div>
     </div>
   );
